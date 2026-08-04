@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* CBB design tokens (design.md §4) */
+    --ink-950: #07090D;
+    --ink-900: #0C1017;
+    --ink-850: #101623;
+    --ink-800: #151C2B;
+    --ink-700: #222C40;
+    --line: rgba(237, 235, 227, 0.09);
+    --line-strong: rgba(237, 235, 227, 0.18);
+    --text: #EDEBE3;
+    --muted: #8E97A8;
+    --faint: #5A6376;
+    --paper: #F4F0E6;
+    --paper-2: #EAE4D5;
+    --paper-ink: #16181D;
+    --paper-muted: #6B6558;
+    --volt: #C9F24B;
+    --volt-dim: rgba(201, 242, 75, 0.12);
+    --lithium: #5ADFC3;
+    --signal: #FF5B45;
+    --amber: #F0A832;
+    --radius: 2px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-ink-950 text-text font-sans antialiased;
+    font-feature-settings: "ss01";
+  }
+
+  /* Tabular numerals in mono/data contexts (design.md §3.2) */
+  .tnum,
+  code,
+  kbd {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Selection (§4.4) */
+  ::selection {
+    background: var(--volt);
+    color: var(--ink-950);
+  }
+
+  /* Focus ring (§4.4) */
+  :focus-visible {
+    outline: 1.5px solid var(--volt);
+    outline-offset: 2px;
+  }
+
+  /* Scrollbar (§4.4) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--ink-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ink-700);
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 242, 75, 0.6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-scroll-cue,
+    .animate-breathe,
+    .animate-node-pulse {
+      animation: none !important;
+    }
+  }
+
+  /* ---------- zh locale tweaks (toggled via <html class="zh">) ---------- */
+  /* CJK body text breathes better with a touch of tracking and taller leading */
+  html.zh body {
+    letter-spacing: 0.01em;
+  }
+  html.zh p {
+    line-height: 1.85;
+  }
+  /* Display serif: CJK glyphs must not carry Latin display tracking */
+  html.zh .font-display {
+    letter-spacing: 0;
+  }
+  /* CJK has no case — neutralize all-caps chrome, keep a modest tracking instead */
+  html.zh .uppercase,
+  html.zh .kicker {
+    text-transform: none;
+    letter-spacing: 0.08em;
+  }
+  /* CJK kinsoku: never start a line with closing punctuation, and let
+     opening/closing marks hang outside the measure where supported
+     (AGENTS.md — 中文排版规范) */
+  html.zh h1,
+  html.zh h2,
+  html.zh h3,
+  html.zh p,
+  html.zh li {
+    line-break: strict;
+    hanging-punctuation: first allow-end;
+  }
+}
+
+@layer components {
+  /* Faint graph-grid background, radially masked (design.md §5) */
+  .graph-grid {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+  }
+
+  /* Uniform grid, no edge vignette — used on reading pages where the
+     radial mask reads as an unwanted progressive darkening at the sides. */
+  .graph-grid-flat {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Paper ledger rules (design.md §5) */
+  .paper-ledger {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 27px,
+      rgba(22, 24, 29, 0.03) 27px,
+      rgba(22, 24, 29, 0.03) 28px
+    );
+  }
+
+  /* Mono kicker label (design.md §3.2) */
+  .kicker {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.16em];
+  }
+
+  .data-text {
+    @apply font-mono text-[13px] leading-relaxed tnum;
+  }
+}
+
+/* Global film grain overlay (design.md §5) — fixed, non-interactive */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay {
+    display: none;
+  }
+}
+
+/* Paper grain (warm tint) for cream surfaces */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.35 0 0 0 0 0.30 0 0 0 0 0.22 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

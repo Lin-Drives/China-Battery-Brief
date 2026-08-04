@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 48" width="340" height="48" fill="none">
+  <defs>
+    <path id="logoRing" d="M 24,24 m -17.5,0 a 17.5,17.5 0 1,1 35,0 a 17.5,17.5 0 1,1 -35,0"/>
+  </defs>
+  <g color="currentColor">
+    <!-- compact seal mark -->
+    <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="13.5" stroke="currentColor" stroke-width="1.5"/>
+    <text fill="currentColor" font-family="'IBM Plex Mono', monospace" font-size="4.6" font-weight="600" letter-spacing="1">
+      <textPath href="#logoRing" startOffset="0">CHINA BATTERY BRIEF · EST 2025 ·</textPath>
+    </text>
+    <text x="24" y="29" text-anchor="middle" fill="currentColor" font-family="'Noto Serif SC', serif" font-weight="500" font-size="13">电</text>
+    <!-- wordmark -->
+    <text x="58" y="29" fill="currentColor" font-family="'IBM Plex Mono', monospace" font-size="15" font-weight="600" letter-spacing="2.1">CHINA BATTERY BRIEF</text>
+  </g>
+</svg>

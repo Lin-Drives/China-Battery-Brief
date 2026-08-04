@@ -1,0 +1,15 @@
+.DS_Store
+
+# Backups & archives (may contain .env — never commit)
+backups/
+Kimi_Agent_一键中英切换.zip
+
+# Local MySQL runtime data
+Kimi_Agent_一键中英切换/.local-mysql/
+
+# Redundant safety (already covered by app/.gitignore)
+node_modules/
+dist/
+.env
+.env.*
+*.log
