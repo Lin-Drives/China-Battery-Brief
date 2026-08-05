@@ -22,7 +22,7 @@ Southeast Asia is where Chinese capital builds factories it owns. America is whe
 
 OBBBA's licensing clause (№045) is aimed directly at the first model — the Ford-CATL structure. The joint venture is the answer the rules have not yet priced out. The winner of that contest gets the §45X production credit: $35 for every kWh of cells and $10 for every kWh of modules made in America. EVE's Amplify is the live experiment the Ford-CATL structure is no longer allowed to run.
 
-## The stalled front: BYD's Turkish detour
+## Turkey: the plant that never broke ground
 
 Not every hub holds. BYD's Manisa plant in Turkey — a $1bn deal signed in July 2024 with the Turkish president in the room, marketed as a bridge into a customs-union market — has quietly stopped moving.[^9] By February 2026, industry sources and a parliamentary review pointed to the project being halted; by June, Turkey had suspended the import-tax breaks tied to it and warned BYD it may have to repay what it had already received if the investment does not happen.[^10][^11] BYD's own leadership, meanwhile, has said Hungary is the number one priority.[^11]
 
