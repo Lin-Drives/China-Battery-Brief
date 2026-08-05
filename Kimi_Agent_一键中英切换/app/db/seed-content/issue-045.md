@@ -1,5 +1,6 @@
 Barely 200 days out — 18 February 2027 — the EU Battery Passport becomes mandatory for every EV battery, LMT battery and industrial battery above 2 kWh sold in Europe. Unlike the regulation's slipping carbon-footprint deadlines, this date is fixed in law. Meanwhile Washington has rebuilt its subsidy architecture around a single principle: no Chinese touchpoints. And Beijing, having added LFP cathode know-how to its export-control catalogue, is watching the one-year truce suspension of its toughest battery controls run down toward November. Three calendars, one supply chain.
 
+<!-- k:#C9F24B|PART 01 · BRUSSELS — THE FIXED DATE -->
 ## Brussels: the fixed date and the floating ones
 
 The EU Battery Regulation (2023/1542) is best understood as two clocks running at different speeds. The battery passport (Article 77) is the fast clock: mandatory from 18 February 2027, QR-code access, Annex XIII data — carbon footprint, recycled content, state of health, due-diligence declarations — with tiered public, legitimate-interest and restricted access. Critically, this date is written into the regulation itself, not chained to a delegated act. It will not move.[^1]
@@ -17,6 +18,7 @@ The slow clock is everything else. The carbon-footprint declaration (Article 7) 
 
 The strategic consequence: the passport arrives first, and it will demand data that the carbon methodology does not yet define how to compute. Chinese cell makers with European plants — CATL 宁德时代 in Erfurt and Debrecen, Gotion 国轩高科 in Göttingen, where its 5 MWh BESS already carries TÜV SÜD certification under the regulation — are building compliance in-house. Everyone shipping from China will be buying compliance as a service, at the gate, on a deadline that cannot slip.
 
+<!-- k:#F0A832|PART 02 · WASHINGTON — THE LICENSING CLAUSE -->
 ## Washington: the subsidy wall gets a licensing clause
 
 The One Big Beautiful Bill Act, signed 4 July 2025, is usually described as a repeal story — §30D, §25E and §45W consumer EV credits terminated 30 September 2025, wind and solar credits choked off for construction starts after 4 July 2026. But the battery-relevant architecture is more surgical. The §45X production credit ($35/kWh for cells, $10/kWh for modules) survived — wrapped in the new "prohibited foreign entity" regime that extends FEOC logic across §45X, §45Y, §48E, §45Q, §45Z and §45U.[^2]
@@ -27,12 +29,14 @@ The mechanics underneath are tightening too. Wind-component credits end after 20
 
 The tariff layer compounds it: the 2024 Section 301 review took Chinese EV batteries to 25% and non-EV lithium batteries to 25% from 1 January 2026, and the two 2025 IEEPA tranches push the combined burden on Chinese batteries and BESS toward 48.4% from January 2026. The one mercy — the graphite-anode tracing exemption — expires 31 December 2026. Battery storage keeps its credits through 2035, but with a supply chain that is, by one 2024 estimate, 90% Chinese LFP cells. Washington is subsidizing an industry it is simultaneously tariffing.
 
+<!-- k:#FF5B45|PART 03 · BEIJING — THE COUNTER-CALENDAR -->
 ## Beijing: the counter-calendar
 
 China's 2025 export-control offensive had two waves. On 15 July 2025, MOFCOM and MOST restricted the export of LFP and LMFP cathode preparation technology — plus phosphate raw materials, lithium extraction and processing technologies, and gallium — under a two-step licensing regime covering JVs, licensing deals and tech-service agreements. The target was not goods but know-how: the process technology that makes Chinese LFP the global default.[^3] On 9 October 2025, Announcement No. 58 went further — export controls on lithium batteries at or above 300 Wh/kg, cathode materials, artificial graphite anodes, and the manufacturing equipment itself (winding, stacking, formation systems).
 
 Then came the truce: in November 2025, China temporarily suspended the October controls for one year. Do the arithmetic. The suspension lapses around November 2026 — roughly four months from today. The cathode-technology restrictions of July 2025 were never suspended. Beijing has built a licensing lever over exactly the inputs — LFP know-how, high-density cells, graphite anodes, production equipment — that the Western localization build-out most needs, and it has demonstrated both the will to pull it and the diplomatic value of releasing it.
 
+<!-- k:#8E97A8|THE TAKE -->
 ## The Take
 
 **Three governments are now rationing three different scarcities: Brussels rations data, Washington rations subsidies, Beijing rations know-how.** The passport deadline is the one to operationalize first because it is the only one that cannot be negotiated — 18 February 2027 arrives regardless of methodology drafts, trade truces or election cycles. The smart money treats OBBBA's licensing clause not as settled law but as litigation-in-waiting; if Ford Energy's 45X eligibility survives, every Korean and Japanese cell maker will hire licensing lawyers within the quarter. And the November expiry of China's control suspension is the single most under-priced date on the 2026 battery calendar. Companies that spent the truce year qualifying non-Chinese graphite and equipment suppliers will call it foresight. Everyone else will call it a supply shock.

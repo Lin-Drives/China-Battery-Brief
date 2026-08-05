@@ -1,5 +1,6 @@
 The first week of July delivered a tidy snapshot of where Chinese battery globalization actually stands: in Indonesia, CATL 宁德时代's $6bn nickel-to-battery ecosystem is pouring concrete on schedule; in Brazil, BYD 比亚迪 is the country's best-selling car brand while sitting on the labor ministry's "dirty list"; in Morocco, Gotion 国轩高科's $1.3bn gigafactory — Africa's first — is weeks from its production target. Three continents, three models of market entry, and one common lesson: the bottleneck in going global is no longer capital or chemistry. It is governance.
 
+<!-- k:#C9F24B|PART 01 · INDONESIA — THE VERTICAL -->
 ## Indonesia: the $6bn vertical
 
 CATL's Indonesia project, internally styled "Dragon," is the most fully integrated bet any battery maker has placed anywhere. Through subsidiary CBL (Ningbo Contemporary Brunp Lygend), with state miner PT Antam and Indonesia Battery Corporation, the roughly $6bn ecosystem spans mining, HPAL and RKEF processing, battery materials, cells and recycling across more than 2,000 hectares in East Halmahera and Karawang. Groundbreaking came in mid-2025.[^1]
@@ -10,6 +11,7 @@ What integration buys is worth spelling out. MHP from the HPAL line and NPI from
 
 The follow-ons confirm the pattern. In January 2026, the EVE 亿纬锂能–Huayou joint venture signed its own framework with Antam and IBC for an integrated chain. BYD's $1bn Subang plant — 150,000 vehicles a year, 50–60% localization, positioned as a right-hand-drive export hub for ASEAN, the Middle East and Africa — targets mass production in Q3 2026, with stamping dies shipped from Shenzhen in May. Jakarta's downstreaming doctrine, once dismissed as resource nationalism with better branding, has converted ore export bans into the densest cluster of Chinese battery capital outside China.
 
+<!-- k:#F0A832|PART 02 · BRAZIL — THE DIRTY LIST -->
 ## Brazil: the best-seller on the dirty list
 
 BYD's Camaçari complex — a R$5.5bn (~$1.1bn) resurrection of Ford's abandoned Bahia plant — is a genuine industrial success. First vehicle off the line 1 July 2025; phase one officially inaugurated in October with President Lula in attendance; initial 150,000 vehicles a year with expansion plans to 300,000 by 2026 on a 4.6 km² site. Commercially, the results are stark: BYD holds roughly 79% of Brazil's EV segment and topped the country's overall car sales in Q1 2026.[^2]
@@ -18,6 +20,7 @@ And the company is on the government's employer blacklist. The recap: a December
 
 Nor is this a Brazil problem. China Labor Watch interviews with 50 workers at BYD's Szeged, Hungary site describe twelve-to-fourteen-hour shifts, seven-day weeks, business-visa labor and delayed wages; a Chinese worker death was reported there in February 2026. The pattern is systematic: the construction phase of Chinese overseas plants imports a labor regime that the operating phase then disowns. Host governments are learning to price that in.
 
+<!-- k:#FF5B45|PART 03 · MOROCCO — THE HEDGE -->
 ## Morocco: Gotion's Atlantic hedge
 
 Gotion's Kenitra plant is the quietest of the three bets and arguably the cleverest. The June 2024 investment agreement commits 12.8bn MAD (~$1.3bn) initially for 20 GWh — Africa's first gigafactory — scalable to 100 GWh and up to $6.5bn, with 2,300 jobs at first and up to 10,000 at build-out. Earthworks are complete, construction is starting, and production is targeted for Q3 2026 — this quarter.[^3]
@@ -32,6 +35,7 @@ The logic is geography. Morocco sits in the EU's regulatory gravity well, with f
 | Core asset | Nickel margin + closed loop | 79% EV share; #1 overall brand | EU/US trade access, no FEOC friction |
 | Core risk | HPAL execution, commodity cycle | Labor governance, reputational drag | Ramp timing, VW-group dependence |
 
+<!-- k:#8E97A8|THE TAKE -->
 ## The Take
 
 **The next phase of Chinese battery expansion will be won or lost on compliance plumbing, not engineering.** Indonesia works because the host state's leverage (ore) and the investor's leverage (processing technology) are mutually locked in — a genuinely aligned structure, whatever one thinks of its labor and environmental externalities. Brazil shows the opposite: world-beating commercial execution permanently asterisked by a labor scandal that followed the company from Bahia to Szeged. Morocco is the hedge against a world where both the US and EU are raising walls. Investors should read the dirty-list episode not as an ESG footnote but as a leading indicator: host governments have stopped grading Chinese projects on capital committed and started grading them on conduct. The companies that internalize that — as CATL's local-hire, water-reduced Debrecen build suggests it has — will keep their permits. The rest will keep their lawyers busy.
