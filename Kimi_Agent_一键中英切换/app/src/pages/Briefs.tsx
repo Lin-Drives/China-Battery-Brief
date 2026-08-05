@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import TickerBar from '@/components/TickerBar'
 import CBBButton from '@/components/Buttons'
 import FilterBar from '@/components/briefs/FilterBar'
 import type { PillarFilter, SortKey, ViewMode } from '@/components/briefs/FilterBar'
@@ -206,11 +205,6 @@ export default function Briefs() {
           </motion.p>
         </div>
       </section>
-
-      {/* Ticker — paused by default on this page, plays on hover (S0) */}
-      <div className="group/ticker [&_.animate-marquee]:[animation-play-state:paused] hover:[&_.animate-marquee]:[animation-play-state:running]">
-        <TickerBar />
-      </div>
 
       {/* S1 · Filter bar (sticky) */}
       <FilterBar

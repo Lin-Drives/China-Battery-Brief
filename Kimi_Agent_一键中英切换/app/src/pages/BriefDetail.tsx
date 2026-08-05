@@ -16,7 +16,6 @@ import ReaderMarkdown, {
 } from '@/components/briefs/ReaderMarkdown'
 import {
   PAPER_TONES,
-  ProgressRail,
   READER_SIZES,
   TocRail,
   UtilityDock,
@@ -32,6 +31,7 @@ import type { IssueMeta } from '@/components/briefs/pillar'
 import { trpc } from '@/providers/trpc'
 import { OpenAccess } from '@contracts/constants'
 import { cn } from '@/lib/utils'
+import { scrollToEl } from '@/lib/scroll'
 import { useLang, tpl } from '@/i18n/lang'
 import { fmtDateLong, fmtReadTime, pick } from '@/i18n/format'
 
@@ -116,7 +116,7 @@ export default function BriefDetail() {
 
   const headings = useMemo(() => extractHeadings(content), [content])
   const kickers = useMemo(() => extractKickers(content), [content])
-  const hasSources = /^\[\^\d+\]:/m.test(content)
+  const hasSources = !!issue && !issue.paywalled && (issue.sources?.length ?? 0) > 0
 
   // Scrollspy: active = last section whose top has passed the 120px offset
   useEffect(() => {
@@ -217,7 +217,6 @@ export default function BriefDetail() {
 
   return (
     <div className="relative">
-      <ProgressRail />
       <TocRail
         headings={headings}
         activeId={activeId}
@@ -336,7 +335,7 @@ export default function BriefDetail() {
                       type="button"
                       onClick={() => {
                         setMobileTocOpen(false)
-                        document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' })
+                        scrollToEl(h.id, -96)
                       }}
                       className="text-left font-mono text-[11px] uppercase tracking-[0.08em]"
                       style={{ color: 'var(--sheet-muted)' }}
@@ -429,8 +428,9 @@ export default function BriefDetail() {
             {/* S5.5 · Sources & attribution (full view only) */}
             {!issue.paywalled && issue.sources && issue.sources.length > 0 && (
               <section
+                id="sources"
                 aria-label={t('detail.sourcesHeading')}
-                className="mt-14 pt-8"
+                className="mt-14 scroll-mt-28 pt-8"
                 style={{ borderTop: '1px solid var(--sheet-line)' }}
               >
                 <h2

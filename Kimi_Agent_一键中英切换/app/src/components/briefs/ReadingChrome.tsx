@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUp, Share2, SunMoon, Type } from 'lucide-react'
 import SaveButton from './SaveButton'
@@ -6,30 +6,9 @@ import { cn } from '@/lib/utils'
 import { useLang, tpl } from '@/i18n/lang'
 import { pillarColor } from './pillar'
 import type { Kicker, TocHeading } from './ReaderMarkdown'
+import { scrollToEl } from '@/lib/scroll'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
-
-/** rAF-throttled scroll fraction (0–1) of the whole document. */
-function useScrollFraction() {
-  const [frac, setFrac] = useState(0)
-  const raf = useRef(0)
-  useEffect(() => {
-    const onScroll = () => {
-      cancelAnimationFrame(raf.current)
-      raf.current = requestAnimationFrame(() => {
-        const max = document.documentElement.scrollHeight - window.innerHeight
-        setFrac(max > 0 ? Math.min(1, window.scrollY / max) : 0)
-      })
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      cancelAnimationFrame(raf.current)
-      window.removeEventListener('scroll', onScroll)
-    }
-  }, [])
-  return frac
-}
 
 function useScrolledPast(px: number) {
   const [past, setPast] = useState(false)
@@ -40,27 +19,6 @@ function useScrolledPast(px: number) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [px])
   return past
-}
-
-/**
- * brief-detail.md S0.1 — 3px volt progress rail fixed above the navbar,
- * scaleX = article scroll progress; mono percentage at the right end.
- */
-export function ProgressRail() {
-  const frac = useScrollFraction()
-  return (
-    <div className="fixed left-0 top-0 z-[70] h-[3px] w-full bg-ink-900/60">
-      <div
-        className="h-full origin-left bg-volt transition-transform duration-75 ease-linear"
-        style={{ transform: `scaleX(${frac})` }}
-      />
-      {frac > 0.02 && (
-        <span className="absolute right-2 top-1.5 font-mono text-[10px] text-volt tnum">
-          {Math.round(frac * 100)}%
-        </span>
-      )}
-    </div>
-  )
 }
 
 /**
@@ -83,12 +41,7 @@ export function TocRail({
   const visible = useScrolledPast(400)
 
   const jump = (id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.scrollY - 96,
-      behavior: 'smooth',
-    })
+    scrollToEl(id, -96)
   }
 
   const { t } = useLang()
@@ -102,7 +55,8 @@ export function TocRail({
       let last = ''
       headings.forEach((h, i) => {
         const k = kickers.get(h.text)
-        const partStart = !!k && k.label !== last
+        const redundantKicker = !!k && k.label.trim().toLowerCase() === h.text.trim().toLowerCase()
+        const partStart = !!k && !redundantKicker && k.label !== last
         if (k) last = k.label
         out.push({
           id: h.id,
@@ -120,7 +74,7 @@ export function TocRail({
     <nav
       aria-label="Table of contents"
       className={cn(
-        'fixed left-6 top-32 z-40 hidden w-[220px] transition-opacity duration-500 xl:block',
+        'fixed left-6 top-32 z-40 hidden w-[320px] transition-opacity duration-500 xl:block',
         visible ? 'opacity-100' : 'pointer-events-none opacity-0',
       )}
     >
@@ -133,20 +87,20 @@ export function TocRail({
                 type="button"
                 onClick={() => jump(item.id)}
                 className={cn(
-                  'flex flex-col gap-0.5 border-l-2 py-1.5 pl-3 text-left font-mono text-[11px] leading-[1.45] tracking-[0.08em] transition-all duration-200',
-                  active ? 'opacity-100' : 'opacity-40 hover:opacity-80',
+                  'flex flex-col gap-0.5 border-l-2 py-1.5 pl-3 text-left font-mono text-[15px] leading-[1.4] tracking-[0.08em] transition-all duration-200',
+                  active ? 'opacity-100' : 'opacity-90 hover:opacity-100',
                 )}
                 style={{ borderColor: active ? (item.color ?? 'var(--volt)') : 'transparent' }}
               >
                 {item.kicker && (
                   <span
-                    className="text-[10px] font-semibold uppercase tracking-[0.14em]"
+                    className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.12em]"
                     style={{ color: item.color }}
                   >
                     {item.kicker}
                   </span>
                 )}
-                <span className="text-text">{item.label}</span>
+                <span className="whitespace-nowrap text-text">{item.label}</span>
               </button>
             </li>
           )
@@ -208,7 +162,7 @@ export function UtilityDock({
       key: 'top',
       label: t('reading.dockTop'),
       active: false,
-      onClick: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+      onClick: () => scrollToEl('reader-top'),
       icon: <ArrowUp className="h-4 w-4" />,
     },
   ]

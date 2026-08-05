@@ -1,7 +1,20 @@
-import { useMemo } from 'react'
+import { Children, isValidElement, useMemo } from 'react'
+import type { ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
+/** Flatten React children to plain text (footnote refs render as `<sup>N</sup>`). */
+function collectText(nodes: ReactNode): string {
+  let out = ''
+  for (const child of Children.toArray(nodes)) {
+    if (typeof child === 'string' || typeof child === 'number') out += String(child)
+    else if (isValidElement<{ children?: ReactNode }>(child)) {
+      out += collectText(child.props.children)
+    }
+  }
+  return out
+}
 
 export type TocHeading = { id: string; text: string }
 
@@ -22,11 +35,13 @@ export function extractKickers(markdown: string): Map<string, Kicker> {
   return kickers
 }
 
-/** Slugify a `##` heading for anchor ids (TOC scrollspy). */
+/** Slugify a `##` heading for anchor ids (TOC scrollspy). Keeps Unicode
+ *  letters (incl. CJK) so Chinese headings get valid, unique ids. */
 export function headingSlug(text: string): string {
   return text
+    .normalize('NFKC')
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[^\p{L}\p{N}\s-]/gu, '')
     .trim()
     .replace(/\s+/g, '-')
 }
@@ -51,7 +66,7 @@ export function stripDanglingFootnoteRefs(markdown: string): string {
   )
 }
 
-/* Scoped reader styles that Tailwind can't express (drop cap, gfm footnotes).
+/* Scoped reader styles that Tailwind can't express (drop cap, footnote markers).
    Everything is namespaced under .cbb-reader and driven by the sheet's CSS vars
    so the paper-tone flip (cream / sepia / night) keeps working. */
 const READER_CSS = `
@@ -68,36 +83,8 @@ const READER_CSS = `
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.62em;
   letter-spacing: 0.04em;
-}
-.cbb-reader sup a {
   color: var(--dropcap-color, #C9F24B);
-  text-decoration: none;
-  padding: 0 1px;
-}
-.cbb-footnotes ol { list-style: none; padding: 0; margin: 0; }
-.cbb-footnotes li {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  line-height: 1.75;
-  color: var(--sheet-muted, #6B6558);
-  margin-bottom: 10px;
-  padding-left: 28px;
-  position: relative;
-  counter-increment: cbbfn;
-}
-.cbb-footnotes li::before {
-  content: counter(cbbfn, decimal-leading-zero);
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--dropcap-color, #C9F24B);
-}
-.cbb-footnotes ol { counter-reset: cbbfn; }
-.cbb-footnotes li p { display: inline; margin: 0; font: inherit; }
-.cbb-footnotes a[data-footnote-backref] {
-  margin-left: 6px;
-  color: var(--dropcap-color, #C9F24B);
-  text-decoration: none;
+  font-weight: 600;
 }
 `
 
@@ -150,7 +137,11 @@ export default function ReaderMarkdown({
         const idx = headings.findIndex((h) => h.text === text)
         const id = idx >= 0 ? headings[idx].id : headingSlug(text)
         const k = idx >= 0 ? kickerSeq[idx] : undefined
-        const showKicker = !!k && (idx <= 0 || kickerSeq[idx - 1]?.label !== k.label)
+        // A kicker that repeats the heading text (e.g. THE TAKE / 本刊观点) is
+        // redundant — hide the signpost and let the title speak for itself.
+        const redundantKicker = !!k && k.label.trim().toLowerCase() === text.trim().toLowerCase()
+        const showKicker =
+          !!k && !redundantKicker && (idx <= 0 || kickerSeq[idx - 1]?.label !== k.label)
         return (
           <h2 id={id} className="cbb-h2 mb-7 mt-14 scroll-mt-28 first:mt-0" {...props}>
             {showKicker ? (
@@ -189,6 +180,16 @@ export default function ReaderMarkdown({
           >
             {children}
           </p>
+        )
+      },
+      // Footnote refs: render as plain superscript markers (the sources ledger
+      // is rendered from structured issue.sources, so gfm's footnote jump links
+      // would point at a list we deliberately suppress).
+      sup({ node: _n, children, ...props }) {
+        return (
+          <sup {...props}>
+            {collectText(children)}
+          </sup>
         )
       },
       strong({ node: _n, children, ...props }) {
@@ -314,17 +315,10 @@ export default function ReaderMarkdown({
         const isFootnotes =
           node?.properties?.dataFootnotes !== undefined ||
           String(node?.properties?.className ?? '').includes('footnotes')
-        if (isFootnotes) {
-          return (
-            <section
-              className="cbb-footnotes mt-16 pt-8"
-              style={{ borderTop: '1px solid var(--sheet-line)' }}
-              {...props}
-            >
-              {children}
-            </section>
-          )
-        }
+        // gfm groups `[^n]:` definitions into a footnotes section; the sources
+        // ledger is rendered from structured issue.sources instead, so suppress
+        // the duplicate list here.
+        if (isFootnotes) return null
         return <section {...props}>{children}</section>
       },
     }
@@ -333,7 +327,7 @@ export default function ReaderMarkdown({
   return (
     <div className="cbb-reader">
       <style>{READER_CSS}</style>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components} skipHtml>
         {content}
       </ReactMarkdown>
     </div>
