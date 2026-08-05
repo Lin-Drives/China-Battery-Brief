@@ -119,7 +119,7 @@ export const zh: Record<string, string> = {
   'latest.titleB': '电池之都',
   'latest.body':
     '№047 期用 3,400 字回答一个问题：宁德时代德布勒森工厂的爬坡速度，为何超过了每一家欧洲对手演示文稿里的承诺？另附：上汽固态电池营销话术解码，以及第二轮 FEOC 指引究竟禁止了什么',
-  'latest.meta': '№047 · 11月20日 周四 · 约 14 分钟 · 3 章 · 21 个来源',
+  'latest.meta': '№047 · 11 月 20 日 周四 · 约 14 分钟 · 3 章 · 21 个来源',
   'latest.cta': '浏览档案库 →',
   'latest.sheetTag': '№047 · 免费样刊',
   'latest.sheetTitle': '德布勒森进度超前',
@@ -448,7 +448,7 @@ Object.assign(zh, {
   'tech.h1c': '磷酸铁锂 vs. 固态电池',
   'tech.sub':
     '磷酸铁锂拥有现在：便宜、安全、无处不在。固态电池拥有头条：高能量密度、快充，却永远“还有三年”。本页负责记分——成本、密度、安全，以及决定哪个未来最终量产的产线',
-  'tech.meta': '上次修订 11月20日 · 9 项跟踪指标 · 14 家公司',
+  'tech.meta': '上次修订 11 月 20 日 · 9 项跟踪指标 · 14 家公司',
   'tech.incumbent': '在任者',
   'tech.challenger': '挑战者',
   'tech.battleKicker': '正面交锋 · 六项指标',

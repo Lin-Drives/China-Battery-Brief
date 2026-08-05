@@ -1,0 +1,47 @@
+每一幅中国电池全球化的地图，都画着同样的两个锚点：欧洲——宁德时代（CATL）的德布勒森还没开机就已售罄；美国——准入条件被写进了法律。第三个圈，地图上几乎看不到的那个圈，是东南亚。在泰国，比亚迪（BYD）用一座本是为曼谷通勤者准备的工厂，花了一年时间把车卖到德国。在马来西亚，亿纬锂能（EVE）悄悄把库林基地扩成了双轨电池枢纽。在印尼，比亚迪的苏邦工厂距投产只剩几周——而这座工厂从第一天起就是为出口而建，不是为本地市场。本期，我们把这第三个圈铺开：连同中国资本为进入那个不愿接受其工厂的市场，正在押注的两种替代模式。
+
+## 罗勇：跑赢了国界的工厂
+
+比亚迪的泰国工厂位于罗勇府 WHA Rayong 36 工业园，原本是一步区域棋：设计产能 15 万辆/年，比亚迪在海外第一座全资乘用车工厂，同时充当泰国及其邻国的右舵车枢纽。[^1] 野心是区域的，执行却走向了全球。2025 年 8 月，第一批出口货轮驶向欧洲——900 多辆海豚（Dolphin），目的地是英国、德国和比利时。[^2] 到 2026 年 7 月工厂两周年时，泰国累计交付已突破 13 万辆。[^3]
+
+罗勇的意义，比这些数字更深。其一，它是整个第三圈的证明：中国工厂可以绕开布鲁塞尔、直接服务欧洲，只需要换一个产地标签。其二，它逼出了一个关税战里没人愿意回答的问题——如果泰国能一次性往德国运 900 辆车，那么每一堵墙都指望被挡住的那股量，还有什么能阻止它继续滚动？
+
+## 库林：两期，悄无声息
+
+亿纬锂能的库林基地位于吉打州，是马来西亚制造业里最安静的大项目。一期——亿纬在海外的第一家工厂，也是它在全球的第 53 家——2025 年 2 月 16 日下线第一颗电芯，生产 21700 圆柱电芯，面向电动工具与电动两轮车。[^4] 一年后，公司又追加了一项最高 86.5 亿元人民币（约 12 亿美元）的储能扩建，把一座区域电芯厂变成服务东南亚整车与储能的多产品电池基地。[^5]
+
+模式本身就是要点：中国电芯产能进入东盟，不等锚定客户先写意向书。它在当地土地、当地工人之上，先建起通用型、零关税的量，然后让市场自己来选。没有旗舰发布，没有大张旗鼓——只有产线。
+
+## 苏邦：印尼的出口红利
+
+比亚迪位于西爪哇的苏邦工厂——10 亿美元、年产 15 万辆、本地化率 50%–60%——目标 2026 年三季度量产，冲压模具已从深圳启运。[^6] 它的定位写得很清楚：面向东盟、中东与非洲的右舵车出口枢纽。[^6] 罗勇证明了第三圈可行，苏邦则从第一天就为第三圈而生——这里的客户，本来就没打算以印尼人为主。
+
+## 美国：用所有权换准入
+
+东南亚是中国资本建自有工厂的地方；美国则是中国资本不得不交出所有权、以保住入场券的地方。眼下，三种替代模式在并行运转。第一种是授权：福特全资的密歇根马歇尔工厂，用 LRS（许可—特许权使用费—服务）结构把宁德时代的 LFP 工艺知识搬进美国，2026 年 5 月又借“Ford Energy”扩进储能——一个以宁德时代授权的 512 Ah 电芯为核心、年产 20 GWh 的储能计划。[^7] 第二种是合资：亿纬锂能的 Amplify Cell Technologies——与戴姆勒卡车、PACCAR 和 Accelera/Cummins 共同组建——2024 年在密西西比破土，规划 21 GWh 方形 LFP，亿纬持股约一成。[^8] 第三种是权宜之计：通用汽车直接进口宁德时代的 LFP 电芯，装进第二代雪佛兰 Bolt，既不建厂，也不授权。[^7]
+
+OBBBA 的许可条款（№045）瞄准的正是第一种。合资是规则尚未定价封死的答案。哪一种活下来，将决定谁能拿到美国市场内的 §45X 利润——而 Amplify 正是福特—宁德时代结构再也无法做的那场活体实验。
+
+## 搁浅的前线：比亚迪的土耳其迂回
+
+不是每一圈都立得住。比亚迪位于土耳其马尼萨的工厂——2024 年 7 月在土耳其总统见证下签约的 10 亿美元项目，被宣传为进入关税同盟市场的桥梁——已经悄悄停摆。[^9] 到 2026 年 2 月，行业消息源与一项议会审查都指向项目搁浅；到 6 月，土耳其暂停了与该项目挂钩的进口税减免，并警告比亚迪：若投资不落地，已享受的优惠可能被要求追回。[^10][^11] 而比亚迪自己的高管，已经明说匈牙利才是第一优先。[^11]
+
+土耳其的教训，是罗勇的镜像：一个把中国投资当产业政策对待的东道国，同样可以随时停止这么对待——而逆转总是先出现在激励里，然后才出现在工地上。
+
+## 本刊观点
+
+**中国电池与电动车资本的版图，如今是三个圈，而量最大的那个，恰恰是地图上没人画的那个。** 欧洲是所有权之圈——德布勒森售罄、萨拉戈萨拔地而起、比亚迪塞格德即将量产。美国是准入之圈——因为补贴体系已把中国股权定价为零，所有权被换成了授权与合资。东南亚是再出口之圈——通用型、零关税、政治上宽松，按一套不等待锚定客户的时钟扩张。对投资者而言，第二层的问题已经换了：美国境内授权与合资之争，将决定谁能拿下 §45X 的利润，而 Amplify 正是福特—宁德时代结构再也做不了的那场测试。对所有人而言，结论更冷峻：中国出口到欧洲的产品，不再需要越过边境——它们只需要换一面旗。
+
+---
+
+[^1]: CnEVPost — ["BYD Thailand plant reaches 70,000th car production milestone," 2025-12-03](https://cnevpost.com/2025/12/03/byd-thailand-plant-70000th-production-milestone/).
+[^2]: CnEVPost — ["BYD exports EVs from Thailand plant to Europe for first time," 2025-08-26](https://cnevpost.com/2025/08/26/byd-exports-evs-thailand-plant-to-europe/).
+[^3]: CnEVPost — ["BYD Thailand deliveries surpass 130,000 as local plant marks second anniversary," 2026-07-14](https://cnevpost.com/2026/07/14/byd-thailand-deliveries-130000-local-plant-2nd-anniversary/).
+[^4]: CnEVPost — ["Eve Energy plant in Malaysia sees 1st battery unit roll off line," 2025-02-17](https://cnevpost.com/2025/02/17/eve-energy-plant-malaysia-1st-battery-off-line/).
+[^5]: CnEVPost — ["Eve Energy plans to build $1.2 billion energy storage battery project in Malaysia," 2025-06-30](https://cnevpost.com/2025/06/30/eve-energy-plans-energy-storage-battery-project-malaysia/).
+[^6]: EV (eletric-vehicles.com) — ["BYD's $1 Billion Indonesia Plant on Track for Q3 Production Start," 2026-05-26](https://eletric-vehicles.com/byd/byds-1-billion-indonesia-plant-on-track-for-q3-production-start/).
+[^7]: China Daily — ["Global auto giants plug into China's battery power," 2026-05-12](https://global.chinadaily.com.cn/a/202605/12/WS6a029b76a310d6866eb48222.html).
+[^8]: CnEVPost — ["Eve Energy's US JV breaks ground on battery plant in Mississippi," 2024-07-02](https://cnevpost.com/2024/07/02/eve-energy-us-jv-breaks-ground-battery-plant/).
+[^9]: CnEVPost — ["BYD to build $1 billion EV plant in Turkey, production to start by end of 2026," 2024-07-09](https://cnevpost.com/2024/07/09/byd-to-build-1-billion-ev-plant-in-turkey/).
+[^10]: EV (eletric-vehicles.com) — ["BYD Quietly Halts $1B Plant Progress in Turkey, Formal Announcement Expected: Report," 2026-02-05](https://eletric-vehicles.com/byd/byd-quietly-halts-1b-plant-progress-in-turkey-formal-announcement-expected-report/).
+[^11]: EV (eletric-vehicles.com) — ["Turkey Ends BYD Tax Break, Warns of Repayment Over Stalled $1B Plant," 2026-06-16](https://eletric-vehicles.com/byd/turkey-ends-byd-tax-break-warns-of-repayment-over-stalled-1b-plant/).

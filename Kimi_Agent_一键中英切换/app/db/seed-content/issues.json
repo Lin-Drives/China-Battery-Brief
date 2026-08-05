@@ -195,5 +195,88 @@
         "date": "2026-05-12"
       }
     ]
+  },
+  {
+    "number": 48,
+    "slug": "the-re-export-ring",
+    "title": "The Re-Export Ring: Where China's Factories Change Flags",
+    "dek": "BYD's Rayong hub ships cars to Germany, EVE's Kulim quietly scaled, and in America Chinese capital trades ownership for access — the ring the map forgot.",
+    "publishedAt": "2026-08-06T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "overseas-capacity",
+      "geopolitics"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": null,
+    "contentFile": "issue-048.md",
+    "sources": [
+      {
+        "outlet": "CnEVPost",
+        "title": "BYD Thailand plant reaches 70,000th car production milestone",
+        "url": "https://cnevpost.com/2025/12/03/byd-thailand-plant-70000th-production-milestone/",
+        "date": "2025-12-03"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "BYD exports EVs from Thailand plant to Europe for first time",
+        "url": "https://cnevpost.com/2025/08/26/byd-exports-evs-thailand-plant-to-europe/",
+        "date": "2025-08-26"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "BYD Thailand deliveries surpass 130,000 as local plant marks second anniversary",
+        "url": "https://cnevpost.com/2026/07/14/byd-thailand-deliveries-130000-local-plant-2nd-anniversary/",
+        "date": "2026-07-14"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "Eve Energy plant in Malaysia sees 1st battery unit roll off line",
+        "url": "https://cnevpost.com/2025/02/17/eve-energy-plant-malaysia-1st-battery-off-line/",
+        "date": "2025-02-17"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "Eve Energy plans to build $1.2 billion energy storage battery project in Malaysia",
+        "url": "https://cnevpost.com/2025/06/30/eve-energy-plans-energy-storage-battery-project-malaysia/",
+        "date": "2025-06-30"
+      },
+      {
+        "outlet": "EV (eletric-vehicles.com)",
+        "title": "BYD's $1 Billion Indonesia Plant on Track for Q3 Production Start",
+        "url": "https://eletric-vehicles.com/byd/byds-1-billion-indonesia-plant-on-track-for-q3-production-start/",
+        "date": "2026-05-26"
+      },
+      {
+        "outlet": "China Daily",
+        "title": "Global auto giants plug into China's battery power",
+        "url": "https://global.chinadaily.com.cn/a/202605/12/WS6a029b76a310d6866eb48222.html",
+        "date": "2026-05-12"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "Eve Energy's US JV breaks ground on battery plant in Mississippi",
+        "url": "https://cnevpost.com/2024/07/02/eve-energy-us-jv-breaks-ground-battery-plant/",
+        "date": "2024-07-02"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "BYD to build $1 billion EV plant in Turkey, production to start by end of 2026",
+        "url": "https://cnevpost.com/2024/07/09/byd-to-build-1-billion-ev-plant-in-turkey/",
+        "date": "2024-07-09"
+      },
+      {
+        "outlet": "EV (eletric-vehicles.com)",
+        "title": "BYD Quietly Halts $1B Plant Progress in Turkey, Formal Announcement Expected: Report",
+        "url": "https://eletric-vehicles.com/byd/byd-quietly-halts-1b-plant-progress-in-turkey-formal-announcement-expected-report/",
+        "date": "2026-02-05"
+      },
+      {
+        "outlet": "EV (eletric-vehicles.com)",
+        "title": "Turkey Ends BYD Tax Break, Warns of Repayment Over Stalled $1B Plant",
+        "url": "https://eletric-vehicles.com/byd/turkey-ends-byd-tax-break-warns-of-repayment-over-stalled-1b-plant/",
+        "date": "2026-06-16"
+      }
+    ]
   }
 ]
