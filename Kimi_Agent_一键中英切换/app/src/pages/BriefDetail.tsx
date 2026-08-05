@@ -11,6 +11,7 @@ import IssueCard from '@/components/briefs/IssueCard'
 import PaywallGate from '@/components/briefs/PaywallGate'
 import ReaderMarkdown, {
   extractHeadings,
+  extractKickers,
   stripDanglingFootnoteRefs,
 } from '@/components/briefs/ReaderMarkdown'
 import {
@@ -114,6 +115,7 @@ export default function BriefDetail() {
   }, [issue, lang])
 
   const headings = useMemo(() => extractHeadings(content), [content])
+  const kickers = useMemo(() => extractKickers(content), [content])
   const hasSources = /^\[\^\d+\]:/m.test(content)
 
   // Scrollspy: active = last section whose top has passed the 120px offset
@@ -221,6 +223,7 @@ export default function BriefDetail() {
         activeId={activeId}
         pillars={issue.pillars}
         hasSources={hasSources}
+        kickers={kickers}
       />
       <UtilityDock
         issueId={issue.id}

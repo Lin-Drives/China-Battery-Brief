@@ -5,7 +5,7 @@ import SaveButton from './SaveButton'
 import { cn } from '@/lib/utils'
 import { useLang, tpl } from '@/i18n/lang'
 import { pillarColor } from './pillar'
-import type { TocHeading } from './ReaderMarkdown'
+import type { Kicker, TocHeading } from './ReaderMarkdown'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
@@ -72,11 +72,13 @@ export function TocRail({
   activeId,
   pillars,
   hasSources,
+  kickers,
 }: {
   headings: TocHeading[]
   activeId: string | null
   pillars: string[]
   hasSources: boolean
+  kickers: Map<string, Kicker>
 }) {
   const visible = useScrolledPast(400)
 
@@ -90,15 +92,27 @@ export function TocRail({
   }
 
   const { t } = useLang()
-  const items: { id: string; label: string; num?: string; color?: string }[] = [
+  type TocItem = { id: string; label: string; kicker?: string; color?: string }
+  // Mirror the body's PART signposts: each section takes its part's color, and
+  // the kicker label is shown only at the first section of each part.
+  const items: TocItem[] = [
     { id: 'reader-top', label: t('reading.tocLead') },
-    ...headings.map((h, i) => ({
-      id: h.id,
-      label: h.text.toUpperCase(),
-      num: String(i + 1).padStart(2, '0'),
-      color: pillarColor(pillars[i % Math.max(1, pillars.length)] ?? ''),
-      pillar: pillars[i % Math.max(1, pillars.length)],
-    })),
+    ...(function () {
+      const out: TocItem[] = []
+      let last = ''
+      headings.forEach((h, i) => {
+        const k = kickers.get(h.text)
+        const partStart = !!k && k.label !== last
+        if (k) last = k.label
+        out.push({
+          id: h.id,
+          label: h.text.toUpperCase(),
+          kicker: partStart ? k.label : undefined,
+          color: k?.color ?? pillarColor(pillars[i % Math.max(1, pillars.length)] ?? ''),
+        })
+      })
+      return out
+    })(),
     ...(hasSources ? [{ id: 'sources', label: t('reading.tocSources') }] : []),
   ]
 
@@ -119,14 +133,17 @@ export function TocRail({
                 type="button"
                 onClick={() => jump(item.id)}
                 className={cn(
-                  'flex w-full items-baseline gap-2 border-l-2 py-1.5 pl-3 text-left font-mono text-[11px] leading-[1.5] tracking-[0.08em] transition-all duration-200',
+                  'flex flex-col gap-0.5 border-l-2 py-1.5 pl-3 text-left font-mono text-[11px] leading-[1.45] tracking-[0.08em] transition-all duration-200',
                   active ? 'opacity-100' : 'opacity-40 hover:opacity-80',
                 )}
                 style={{ borderColor: active ? (item.color ?? 'var(--volt)') : 'transparent' }}
               >
-                {item.num && (
-                  <span className="tnum" style={{ color: item.color }}>
-                    {item.num}
+                {item.kicker && (
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-[0.14em]"
+                    style={{ color: item.color }}
+                  >
+                    {item.kicker}
                   </span>
                 )}
                 <span className="text-text">{item.label}</span>
