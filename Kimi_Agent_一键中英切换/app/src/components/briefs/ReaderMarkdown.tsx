@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { dominantPillar, pillarColor, pillarLabel } from './pillar'
 
 export type TocHeading = { id: string; text: string }
 
@@ -110,14 +109,16 @@ const READER_CSS = `
  */
 export default function ReaderMarkdown({
   content,
-  pillars,
   headings,
 }: {
   content: string
-  pillars: string[]
   headings: TocHeading[]
 }) {
   const kickers = useMemo(() => extractKickers(content), [content])
+  const kickerSeq = useMemo(
+    () => headings.map((h) => kickers.get(h.text) ?? undefined),
+    [headings, kickers],
+  )
   const components = useMemo<Components>(() => {
     return {
       h2({ node, children, ...props }) {
@@ -148,21 +149,28 @@ export default function ReaderMarkdown({
         }
         const idx = headings.findIndex((h) => h.text === text)
         const id = idx >= 0 ? headings[idx].id : headingSlug(text)
-        const kicker = kickers.get(text)
-        const color = kicker?.color ?? pillarColor(dominantPillar(pillars))
+        const k = idx >= 0 ? kickerSeq[idx] : undefined
+        const showKicker = !!k && (idx <= 0 || kickerSeq[idx - 1]?.label !== k.label)
         return (
           <h2 id={id} className="cbb-h2 mb-7 mt-14 scroll-mt-28 first:mt-0" {...props}>
-            <span className="mb-3 flex items-center gap-3">
-              <span
-                className="font-mono text-[11px] font-medium uppercase tracking-[0.16em]"
-                style={{ color }}
-              >
-                {kicker
-                  ? kicker.label
-                  : `${idx >= 0 ? String(idx + 1).padStart(2, '0') : '··'} · ${pillarLabel(dominantPillar(pillars))}`}
+            {showKicker ? (
+              <span className="mb-3 flex items-center gap-2.5">
+                <span
+                  className="font-mono text-[12.5px] font-semibold uppercase tracking-[0.14em]"
+                  style={{ color: 'var(--sheet-ink)' }}
+                >
+                  {k!.label}
+                </span>
+                <span aria-hidden className="h-[2px] w-8" style={{ backgroundColor: k!.color }} />
               </span>
-              <span aria-hidden className="h-px w-10" style={{ backgroundColor: color }} />
-            </span>
+            ) : !k ? (
+              <span
+                className="mb-3 block font-mono text-[12.5px] font-semibold uppercase tracking-[0.14em]"
+                style={{ color: 'var(--sheet-muted)' }}
+              >
+                {idx >= 0 ? String(idx + 1).padStart(2, '0') : '··'}
+              </span>
+            ) : null}
             <span
               className="block font-display text-[clamp(1.6rem,2.6vw,1.75rem)] font-medium leading-[1.15]"
               style={{ color: 'var(--sheet-ink)' }}
@@ -320,7 +328,7 @@ export default function ReaderMarkdown({
         return <section {...props}>{children}</section>
       },
     }
-  }, [headings, pillars, kickers])
+  }, [headings, kickerSeq])
 
   return (
     <div className="cbb-reader">

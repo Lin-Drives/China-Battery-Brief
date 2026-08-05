@@ -1,6 +1,6 @@
 Every serious battery roadmap now converges on the same year: 2027. CATL 宁德时代 says small-batch all-solid-state production. BYD 比亚迪 says demo fleets in the thousands. Toyota says mass production — for the third time. Behind them stands a ¥6bn Chinese state fund and the world's first standard defining what "all-solid-state" even means. And yet the chemistry supposedly facing disruption — LFP — just crossed 55% of global EV battery deployment and is learning to charge at 12C. This issue separates the consensus from the physics.
 
-<!-- k:#C9F24B|PART 01 · BEIJING — THE STATE'S SIX -->
+<!-- k:#5F7A1F|PART 01 · BEIJING — THE STATE'S SIX -->
 ## The state has picked its six
 
 China's all-solid-state program is unusually legible for an industrial policy. In 2024, the Ministry of Industry and Information Technology stood up a roughly RMB 6bn R&D special fund supporting exactly six players: CATL, BYD, FAW, SAIC, WeLion and Geely — CATL reportedly receiving more than RMB 2bn, about half. Seven sub-projects span polymer and sulfide routes; a mid-term review was held in September 2025, with a second tranche expected.[^1]
@@ -9,7 +9,7 @@ The scaffolding around the fund matters as much as the money. In May 2025 the Ch
 
 The dissenting voice is worth quoting. Wang Fang, chief scientist at CATARC, told the China Automotive Forum in July 2025 that four problems remain unresolved — ion conduction, process complexity, safety control, and scale manufacturing — and that mass production is "years away." The skeptic sits inside the system, which makes the skepticism more credible, not less.
 
-<!-- k:#F0A832|PART 02 · 2027 — DEFINED DOWN -->
+<!-- k:#8A6110|PART 02 · 2027 — DEFINED DOWN -->
 ## 2027, defined down
 
 Read the company timelines closely and the consensus year conceals three very different commitments:
@@ -26,14 +26,14 @@ The second tier sings from the same sheet. GAC has built what CCTV describes as 
 
 This is the tell: "2027" means pilot lines and demo fleets, not gigawatt-hours. BYD's own framing is the honest one — demonstration fleets around 2027, solid-liquid cost parity around 2030. CATL's chief scientist Wu Kai echoes it: small batches in 2027, commercialization before 2030. Nissan targets 2028, Honda 2030, BMW/Solid Power 2030. The industry is not disagreeing about the destination; it is quietly agreeing that the arrival is 2028–2030 and the press-release year is 2027.
 
-<!-- k:#FF5B45|PART 03 · THE SEMI-SOLID CHECK -->
+<!-- k:#B43A2B|PART 03 · THE SEMI-SOLID CHECK -->
 ## The semi-solid reality check
 
 The strongest evidence against solid-state hype comes from products that actually shipped. SAIC and QingTao's MG4 "Anxin" — a manganese-cathode semi-solid with roughly 5% liquid electrolyte — began deliveries on 18 December 2025, the world's first mass-produced semi-solid compact EV. It is a genuine milestone. It is also, by the new T/CSAE standard, not solid-state.
 
 Then there is NIO. Its WeLion-sourced 150-kWh semi-solid pack (360 Wh/kg cells) entered service in June 2024 and delivered a verified 1,046–1,070 km of real-world range in the ET7. In November 2025, NIO dropped the 150-kWh option again — because the pack cost roughly as much as an entire ET5.[^2] That is the semi-solid lesson in one sentence: the chemistry works, the economics do not. A pack that costs a whole car is not a product; it is a press release with a VIN number. WeLion, notably, began pre-IPO tutoring for ChiNext in December 2025 — the technology demonstrator needs capital precisely because its best customer walked away.
 
-<!-- k:#5ADFC3|PART 04 · WHY LFP WINS -->
+<!-- k:#147A67|PART 04 · WHY LFP WINS -->
 ## Why LFP isn't waiting to be disrupted
 
 While solid-state works through pilot lines, the incumbent chemistry is having its best year. LFP passed roughly 55% of global EV battery deployment in 2025 — up from about 50% in 2024 — within a global market of ~1.2 TWh growing near 30% year-on-year.[^3] Q1 2026 SNE data gives CATL a 40.7% global share; CATL plus BYD hold 54.6% January–May; seven of the top ten makers are Chinese, with 72.2% combined.
@@ -47,7 +47,7 @@ The reasons LFP holds above 55%:
 
 And behind LFP sits a second insurance policy: sodium-ion. CATL's Naxtra (175 Wh/kg, >10,000 cycles, ~30% cheaper than LFP at scale) is already in a mass-produced passenger car — the Changan Nevo A06, unveiled 5 February 2026 — with a record 60 GWh three-year ESS supply deal signed in April and a RMB 5bn, 40 GWh/yr Fuding expansion in May. Sodium-ion attacks LFP from below; solid-state attacks it from above. LFP's response to both is to be cheap, fast and everywhere.
 
-<!-- k:#8E97A8|THE TAKE -->
+<!-- k:#6B6558|THE TAKE -->
 ## The Take
 
 **Solid-state in 2027 is a procurement signal, not a product cycle.** What the MIIT fund, the T/CSAE standard and the synchronized company timelines actually create is an option: by 2027–2028, premium OEMs will be able to *buy* small volumes of real all-solid-state cells — for flagships, for aviation, for demonstrations — at prices that make NIO's 150-kWh pack look frugal. Mass-market substitution is a 2030s question, and BYD's own cost-parity date says so. For investors, the mispricing to avoid is symmetrical: do not short LFP on solid-state headlines — the chemistry just took 55% of a 1.2 TWh market and its fast-charging flank is now the strongest part of the story — and do not pay solid-state multiples for semi-solid revenue. The standard exists precisely so you can tell the difference. Use it.

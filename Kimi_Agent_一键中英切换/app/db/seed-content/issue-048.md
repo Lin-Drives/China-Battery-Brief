@@ -1,39 +1,39 @@
 Every map of Chinese battery globalization shows the same two anchors: Europe, where CATL 宁德时代's Debrecen sold out before it switched on, and America, where access is written in legislation. This issue is about the places in between — and one of them sits on Europe's own doorstep. Southeast Asia has become an export platform: factories that ship to Europe, the Middle East and Africa without ever crossing a Chinese or European border. BYD 比亚迪 has spent a year shipping cars to Germany from a plant in Thailand meant for Bangkok's commuters; EVE 亿纬锂能 turned Malaysia's Kulim into a two-track battery base; BYD's Subang plant in Indonesia is built to export. America is where Chinese capital has had to trade ownership for access. And Turkey, on the EU's southeastern border and inside its customs union, was meant to be a back door into Europe — it never broke ground. Three places, three different strategies. Here is how each one works.
 
-<!-- k:#C9F24B|PART 01 · SOUTHEAST ASIA — THE EXPORT PLATFORM -->
+<!-- k:#5F7A1F|PART 01 · SOUTHEAST ASIA — THE EXPORT PLATFORM -->
 ## Rayong: the plant that outgrew its country
 
 BYD's Thailand plant at WHA Rayong 36 was conceived as a regional answer: 150,000 vehicles a year of designed capacity, BYD's first wholly-owned passenger-car factory outside China, and a right-hand-drive hub for Thailand and its neighbors.[^1] The ambition was regional. The execution went global. In August 2025 the first export shipload left for Europe — more than 900 Dolphins bound for the UK, Germany and Belgium.[^2] By July 2026, on the plant's second anniversary, cumulative Thai deliveries had passed 130,000 vehicles.[^3]
 
 Two things about Rayong matter more than the milestone. First, it is proof of concept for the whole model: a Chinese factory outside China can serve Europe without asking Brussels for permission, simply by changing the origin stamp. Second, it forces the question nobody in a tariff war wants to answer — if Thailand can ship 900 cars to Germany in one batch, what stops that volume from compounding the way every wall hoped it would not?
 
-<!-- k:#C9F24B|PART 01 · SOUTHEAST ASIA — THE EXPORT PLATFORM -->
+<!-- k:#5F7A1F|PART 01 · SOUTHEAST ASIA — THE EXPORT PLATFORM -->
 ## Kulim: two phases, no fanfare
 
 EVE's Kulim base in Kedah is the quietest large thing in Malaysian manufacturing. Phase I — EVE's first overseas plant and its 53rd globally — put its first cell off the line on 16 February 2025, making 21700 cylindrical cells for power tools and e-two-wheelers.[^4] A year later, the company was adding an energy-storage expansion worth up to RMB 8.65bn (~$1.2bn), turning a regional cell plant into a multi-product battery base serving automotive and storage demand across Southeast Asia.[^5]
 
 The pattern is the point: Chinese cell capacity in ASEAN does not wait for an anchor customer to write a letter of intent. It builds general-purpose, tariff-free volume on local soil, staffed with local labor, and lets the market sort itself out. No flagship launch, no fanfare — just lines.
 
-<!-- k:#C9F24B|PART 01 · SOUTHEAST ASIA — THE EXPORT PLATFORM -->
+<!-- k:#5F7A1F|PART 01 · SOUTHEAST ASIA — THE EXPORT PLATFORM -->
 ## Subang: Indonesia's export dividend
 
 BYD's Subang plant in West Java — $1bn, 150,000 vehicles a year, localization of 50–60% — is on track to start mass production in Q3 2026, with stamping dies already shipped from Shenzhen.[^6] It is explicitly positioned as a right-hand-drive export hub for ASEAN, the Middle East and Africa.[^6] Where Rayong proved the model, Subang was built for it from day one: the customers were never planned to be Indonesian first.
 
-<!-- k:#F0A832|PART 02 · AMERICA — THE ACCESS PROBLEM -->
+<!-- k:#8A6110|PART 02 · AMERICA — THE ACCESS PROBLEM -->
 ## America: trading ownership for access
 
 Southeast Asia is where Chinese capital builds factories it owns. America is where it has had to give up ownership to keep the door open. Three workarounds are now running in parallel. The first is licensing: Ford's wholly-owned Marshall, Michigan plant runs on CATL LFP know-how under an LRS structure, extended into storage with the May 2026 launch of "Ford Energy" — a 20 GWh/yr ESS plan built around CATL-licensed 512 Ah cells.[^7] The second is the joint venture: EVE's Amplify Cell Technologies — with Daimler Truck, PACCAR and Accelera/Cummins — broke ground in Mississippi in 2024 for 21 GWh of prismatic LFP, EVE taking roughly a tenth.[^8] The third is the stopgap: GM will import CATL LFP cells for the second-generation Chevrolet Bolt rather than build or license at all.[^7]
 
 OBBBA's licensing clause (№045) is aimed directly at the first model — the Ford-CATL structure. The joint venture is the answer the rules have not yet priced out. The winner of that contest gets the §45X production credit: $35 for every kWh of cells and $10 for every kWh of modules made in America. EVE's Amplify is the live experiment the Ford-CATL structure is no longer allowed to run.
 
-<!-- k:#FF5B45|PART 03 · TURKEY — THE EUROPE SHORTCUT -->
+<!-- k:#B43A2B|PART 03 · TURKEY — THE EUROPE SHORTCUT -->
 ## Turkey: the plant that never broke ground
 
 Turkey sits on the EU's southeastern border, inside its customs union — and that was the entire point of BYD's plan. Build just outside the bloc, ship into Europe duty-free, skip the tariffs that hit China-made cars. The $1bn Manisa plant, signed in July 2024 with the Turkish president in the room, has quietly stopped moving.[^9] By February 2026, industry sources and a parliamentary review pointed to the project being halted; by June, Turkey had suspended the import-tax breaks tied to it and warned BYD it may have to repay what it had already received if the investment does not happen.[^10][^11] BYD's own leadership, meanwhile, has said Hungary is the number one priority.[^11]
 
 The Turkish lesson is the mirror image of Rayong: a host that treats Chinese investment as industrial policy can just as easily stop treating it that way — and the reversal shows up in the incentives before it shows up in the ground.
 
-<!-- k:#8E97A8|THE TAKE -->
+<!-- k:#6B6558|THE TAKE -->
 ## The Take
 
 **Chinese battery and EV capital now runs three kinds of factories, and the fastest-growing kind is the one nobody tracks.** In Southeast Asia it builds, owns and re-exports: general-purpose, tariff-free, politically permissive, scaling on schedules that do not wait for an anchor customer. In America it licenses and joint-ventures, because the subsidy system now prices Chinese equity at zero. And its shortcut into Europe — a factory just outside the EU, inside Turkey's customs union — stalled before it broke ground. For investors, the second-order question has moved: the licensing-versus-JV contest inside America decides who captures the §45X margin, and EVE's Amplify is the test the Ford-CATL structure can no longer run. For everyone else, the conclusion is blunter. Chinese exports to Europe no longer need to cross a border. They just change their flag.

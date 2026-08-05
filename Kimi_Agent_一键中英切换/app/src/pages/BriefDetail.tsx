@@ -414,7 +414,7 @@ export default function BriefDetail() {
 
           {/* S4 · Body (+ S5 paywall gate) */}
           <div className="px-6 pb-14 pt-4 md:px-10">
-            <ReaderMarkdown content={content} pillars={issue.pillars} headings={headings} />
+            <ReaderMarkdown content={content} headings={headings} />
             {issue.paywalled && (
               <PaywallGate
                 slug={issue.slug}
