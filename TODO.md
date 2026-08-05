@@ -17,13 +17,27 @@
 - [x] 开发模式运行中（`npm run dev`，HMR 生效；本地验证基线 `npm run build && npm start` 仍适用）
 
 ## 新方向：多模态模型接入 opencode
-- [ ] 调研 opencode 是否支持 vision/多模态模型（providers 配置、模型支持情况）
-- [ ] 目标：让 AI 能读图——解决截图、封面图、设计稿无法理解的问题
-- [ ] 参考资料：opencode.ai 文档、customize-opencode skill、opencode.json 配置
+- [x] 调研 opencode 是否支持 vision/多模态模型（providers 配置、模型支持情况）
+- [x] 目标：让 AI 能读图——解决截图、封面图、设计稿无法理解的问题
+- [x] 参考资料：opencode.ai 文档、customize-opencode skill、opencode.json 配置
+
+## 读图能力落地（vision 子代理）
+- [x] 新增 `~/.config/opencode/agent/vision.md`：vision 子代理，读图并输出版式/文字/配色/缺陷报告
+- [x] 选定主模型：`opencode/minimax-m3`（Zen 按量，$0.30/$1.20 per 1M，约 $1/千张封面图）
+- [x] 备选模型：`kimi-for-coding/kimi-for-coding`（Kimi K2.7 Code，支持读图）
+- [x] Zen 免费档 `opencode/mimo-v2.5-free` 读图验证通过（受限流影响，仅作演示）
+- [x] 免费档仅 `mimo-v2.5-free` 支持读图，其余 `-free` 后缀模型为纯文本或 401 不可用
+- [x] 全局默认模型切换为 `deepseek/deepseek-v4-flash`（省成本）
+- [x] 结论：Zen/Go 提供 61+ 模型按量或订阅访问，vision 子代理读封面图质量达标（配色、文字逐字、缺陷检测均准确）
+
+## 生图调研（结论：暂缓）
+- [x] 调研 NVIDIA NIM 生图：`qwen-image-edit` 已不在目录；`diffusiongemma-26b-a4b-it` 仅输出文本（离散扩散加速的对话/OCR 模型，非文生图）
+- [x] 备选生图路线（未启用，需额外 key）：阿里百炼 `qwen-image-2.0`、字节 `seedream`、Vercel AI Gateway
+- [x] 维持规范：新刊封面继续程序化 SVG（AGENTS.md 第七节）
 
 ## 暂停（暂不开发付费功能）
 - 付费墙/权限单测、Stripe 支付、邮件群发、去平台化登录 —— 搁置
 
 ## 约定
-- 改动只提交本地，未获允许不 push 远端
+- 改动只提交本地，未获允许不 push 远端（本次已获用户明确授权推送）
 - 信源优先近 3 个月；新刊封面一律程序化 SVG（无生图能力）
