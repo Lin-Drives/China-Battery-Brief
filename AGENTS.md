@@ -90,6 +90,8 @@ Kimi_Agent_一键中英切换.zip    ← 上述目录的打包存档，勿改动
 ## 七、内容工作流与安全注意
 
 - 周刊发布流程：admin 在 `/account` 管理台粘贴 markdown → 发布；或更新 `db/seed-content*/` 后重跑 seed。事实内容必须溯源到 `info.md`（调研事实底座，每条带来源与日期）。
+- **信源时效（内容红线）**：优先选用发布后 3 个月内的信息，时效越高越好。对「当前状态」的断言（在建/投产/搁浅/占比等），必须引用近 3 个月信源；历史事实（签约日、首产下线等）可作背景保留，但须与近期信源分开标注。无法核实真实 URL 的事实不得写入。
+- **封面图**：当前模型不具备位图生成能力；新刊封面一律程序化绘制 `public/cover-<期号>.svg`（4:3、站点色板：ink-900 底 `#0C1017` / 正文纸色 `#F4F0E6` / volt `#C9F24B` / 辅助 `#F0A832`、`#5ADFC3`、`#8E97A8`），`issues.json` 的 `coverAsset` 指向该 SVG；不依赖外部图片。
 - 密钥：`.env` 与 `Kimi_Agent_一键中英切换.zip` 不要读取外传；`api_keys` 表只存哈希。
 - 不要做 git mutation（commit/push/reset 等），除非用户明确要求。
 - 部署由 Kimi Agent 平台服务端构建托管；本地验证以 `npm run build && npm start` 为准。README 中记录的交付基线：`npm run build` ✓、`tsc -b` ✓。

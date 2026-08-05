@@ -1,0 +1,60 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cover 048 — Re-Export Hubs">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#222C40"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.09"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <!-- ghost issue number -->
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.05">048</text>
+
+  <!-- corner ticks -->
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.9">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <!-- masthead -->
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">№048 · THU 06:00 UTC</text>
+
+  <!-- title -->
+  <text x="48" y="196" font-family="Georgia,serif" font-size="82" fill="#F4F0E6">Re-Export</text>
+  <text x="48" y="282" font-family="Georgia,serif" font-size="82" fill="#F4F0E6">Hubs</text>
+  <text x="50" y="326" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#C9F24B">Southeast Asia, China&#8217;s tariff-free back door</text>
+
+  <!-- mini-map: export route -->
+  <g>
+    <rect x="430" y="352" width="322" height="206" fill="none" stroke="#222C40"/>
+    <path d="M 700 470 C 620 440 540 428 500 420" fill="none" stroke="#C9F24B" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.85"/>
+    <path d="M 720 504 C 640 470 560 448 500 420" fill="none" stroke="#C9F24B" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.5"/>
+    <path d="M 738 536 C 660 500 580 462 500 420" fill="none" stroke="#C9F24B" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.35"/>
+
+    <circle cx="500" cy="420" r="6" fill="#C9F24B"/>
+    <text x="500" y="404" text-anchor="middle" font-family="Courier,monospace" font-size="11" letter-spacing="1.5" fill="#C9F24B">EU</text>
+
+    <circle cx="700" cy="470" r="5" fill="#F0A832"/>
+    <text x="700" y="494" text-anchor="middle" font-family="Courier,monospace" font-size="10" letter-spacing="1.5" fill="#8E97A8">RAYONG</text>
+    <circle cx="720" cy="504" r="5" fill="#5ADFC3"/>
+    <text x="720" y="528" text-anchor="middle" font-family="Courier,monospace" font-size="10" letter-spacing="1.5" fill="#8E97A8">KULIM</text>
+    <circle cx="738" cy="536" r="5" fill="#8E97A8"/>
+    <text x="738" y="548" text-anchor="end" font-family="Courier,monospace" font-size="10" letter-spacing="1.5" fill="#8E97A8">SUBANG</text>
+  </g>
+
+  <!-- bottom strip -->
+  <g font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">
+    <text x="48" y="556">RAYONG → GERMANY</text>
+    <text x="306" y="556">KULIM → ASEAN</text>
+    <text x="574" y="556">SUBANG → RHD MARKETS</text>
+  </g>
+</svg>

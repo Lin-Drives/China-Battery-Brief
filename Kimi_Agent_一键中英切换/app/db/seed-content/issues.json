@@ -199,8 +199,8 @@
   {
     "number": 48,
     "slug": "the-re-export-ring",
-    "title": "The Re-Export Ring: Where China's Factories Change Flags",
-    "dek": "BYD's Rayong hub ships cars to Germany, EVE's Kulim quietly scaled, and in America Chinese capital trades ownership for access — the ring the map forgot.",
+    "title": "Re-Export Hubs: Southeast Asia, China's Tariff-Free Back Door",
+    "dek": "BYD's Rayong plant ships cars to Germany, EVE scales Kulim, and in America Chinese capital trades ownership for access — Southeast Asia is now the export floor.",
     "publishedAt": "2026-08-06T06:00:00Z",
     "isFree": false,
     "pillars": [
@@ -208,7 +208,7 @@
       "geopolitics"
     ],
     "readingMinutes": 7,
-    "coverAsset": null,
+    "coverAsset": "/cover-048.svg",
     "contentFile": "issue-048.md",
     "sources": [
       {
