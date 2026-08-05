@@ -2,9 +2,26 @@ import { useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { pillarColor, pillarShort } from './pillar'
+import { dominantPillar, pillarColor, pillarLabel } from './pillar'
 
 export type TocHeading = { id: string; text: string }
+
+/** Optional per-chapter kicker, set in the markdown as a comment directly above
+ *  the heading: `<!-- k:#C9F24B|PART 01 · SOUTHEAST ASIA -->`. When present it
+ *  replaces the auto-generated chapter label. */
+export type Kicker = { label: string; color: string }
+
+export function extractKickers(markdown: string): Map<string, Kicker> {
+  const kickers = new Map<string, Kicker>()
+  const lines = markdown.split('\n')
+  for (let i = 0; i < lines.length - 1; i++) {
+    const m = lines[i].match(/^\s*<!--\s*k:([^|]+?)\|([\s\S]+?)\s*-->\s*$/)
+    if (!m) continue
+    const heading = lines[i + 1].match(/^##\s+(.+)$/)
+    if (heading) kickers.set(heading[1].trim(), { color: m[1].trim(), label: m[2].trim() })
+  }
+  return kickers
+}
 
 /** Slugify a `##` heading for anchor ids (TOC scrollspy). */
 export function headingSlug(text: string): string {
@@ -100,6 +117,7 @@ export default function ReaderMarkdown({
   pillars: string[]
   headings: TocHeading[]
 }) {
+  const kickers = useMemo(() => extractKickers(content), [content])
   const components = useMemo<Components>(() => {
     return {
       h2({ node, children, ...props }) {
@@ -130,7 +148,8 @@ export default function ReaderMarkdown({
         }
         const idx = headings.findIndex((h) => h.text === text)
         const id = idx >= 0 ? headings[idx].id : headingSlug(text)
-        const color = pillarColor(pillars[(idx >= 0 ? idx : 0) % Math.max(1, pillars.length)] ?? '')
+        const kicker = kickers.get(text)
+        const color = kicker?.color ?? pillarColor(dominantPillar(pillars))
         return (
           <h2 id={id} className="cbb-h2 mb-7 mt-14 scroll-mt-28 first:mt-0" {...props}>
             <span className="mb-3 flex items-center gap-3">
@@ -138,8 +157,9 @@ export default function ReaderMarkdown({
                 className="font-mono text-[11px] font-medium uppercase tracking-[0.16em]"
                 style={{ color }}
               >
-                {idx >= 0 ? String(idx + 1).padStart(2, '0') : '··'}{' '}
-                {pillars.length > 0 ? pillarShort(pillars[(idx >= 0 ? idx : 0) % pillars.length] ?? '') : 'FILE'}
+                {kicker
+                  ? kicker.label
+                  : `${idx >= 0 ? String(idx + 1).padStart(2, '0') : '··'} · ${pillarLabel(dominantPillar(pillars))}`}
               </span>
               <span aria-hidden className="h-px w-10" style={{ backgroundColor: color }} />
             </span>
@@ -300,7 +320,7 @@ export default function ReaderMarkdown({
         return <section {...props}>{children}</section>
       },
     }
-  }, [headings, pillars])
+  }, [headings, pillars, kickers])
 
   return (
     <div className="cbb-reader">
