@@ -143,7 +143,7 @@ export default function FactoryTable({
                 </td>
                 <td className="px-4 py-3.5">
                   <span className="rounded-sm border border-line-strong px-1.5 py-0.5 font-mono text-[10.5px] uppercase tracking-[0.08em] text-text-muted">
-                    {f.company}
+                    {t(`company.${f.company}`)}
                   </span>
                 </td>
                 <td className="px-4 py-3.5 font-mono text-[12px] text-text-muted">{f.country}</td>

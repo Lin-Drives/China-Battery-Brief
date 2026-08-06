@@ -30,7 +30,7 @@ export default function IssueRow({
         aria-label={`${fmtIssueNo(issue.number)} — ${title}`}
         className="grid grid-cols-1 gap-3 px-4 py-5 transition-colors duration-200 group-hover:bg-ink-800 lg:grid-cols-[140px_1fr_220px_120px] lg:items-center lg:gap-6 lg:py-0 lg:h-24"
       >
-        {/* № + date */}
+        {/* No. + date */}
         <div className="flex items-baseline gap-2 font-mono text-[12px] tracking-[0.12em] tnum lg:flex-col lg:gap-1">
           <span className="text-text-muted">{fmtIssueNo(issue.number)}</span>
           <span className="text-faint">{fmtDateShort(issue.publishedAt, lang)}</span>

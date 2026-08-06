@@ -12,7 +12,7 @@ import { useLang, tpl } from '@/i18n/lang'
 const EASE_EXPO = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 /**
- * account.md B3 — saved briefs. Rows: № + title + pillar tags + saved date +
+ * account.md B3 — saved briefs. Rows: No. + title + pillar tags + saved date +
  * READ → + ✕ REMOVE (fade+slide out 200ms, undo toast 4s).
  */
 export default function SavedBriefs() {
@@ -75,7 +75,7 @@ export default function SavedBriefs() {
                 className="flex flex-col gap-3 border-b border-line py-4 transition-colors hover:bg-ink-800/50 sm:flex-row sm:items-center sm:gap-6 sm:px-3"
               >
                 <span className="shrink-0 font-mono text-[12px] font-semibold tracking-[0.1em] text-faint">
-                  №{String(issue.number).padStart(3, '0')}
+                  No. {String(issue.number).padStart(3, '0')}
                 </span>
                 <Link
                   to={`/briefs/${issue.slug}`}

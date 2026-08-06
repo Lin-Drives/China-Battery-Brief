@@ -271,7 +271,7 @@ export default function Tech() {
           <RelatedBriefs
             items={[
               {
-                num: '№046',
+                num: 'No. 046',
                 title: t('techRel.046.title'),
                 dek: t('techRel.046.dek'),
                 to: '/briefs/solid-state-2027-consensus',
@@ -279,14 +279,14 @@ export default function Tech() {
                 minutes: 14,
               },
               {
-                num: '№042',
+                num: 'No. 042',
                 title: t('techRel.042.title'),
                 dek: t('techRel.042.dek'),
                 to: '/briefs',
                 minutes: 12,
               },
               {
-                num: '№041',
+                num: 'No. 041',
                 title: t('techRel.041.title'),
                 dek: t('techRel.041.dek'),
                 to: '/briefs/battery-passport-t-minus-200',

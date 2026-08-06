@@ -286,7 +286,7 @@ export default function PolicyTimeline({ events }: { events: PolicyEventRow[] })
                   className="group flex items-baseline gap-3"
                   onClick={() => setActive(null)}
                 >
-                  <span className="font-mono text-[11px] tnum text-volt">№045</span>
+                  <span className="font-mono text-[11px] tnum text-volt">No. 045</span>
                   <span className="flex-1 font-mono text-[11px] tracking-[0.06em] text-text-muted transition-colors group-hover:text-text">
                     T-MINUS 200 DAYS: THE BATTERY PASSPORT IS THE DEADLINE
                   </span>

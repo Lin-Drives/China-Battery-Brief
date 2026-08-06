@@ -24,9 +24,9 @@ const ETHICS = [
 ]
 
 const FIX_LOG = [
-  { issue: '№044', fix: 'HPAL COST FIGURE RESTATED (SOURCE: COMPANY FILING REV.)', date: 'NOV 8' },
-  { issue: '№039', fix: 'GOTION SOP YEAR CORRECTED 2025→2026', date: 'OCT 12' },
-  { issue: '№037', fix: 'WH/KG TYPO FIXED', date: 'SEP 28' },
+  { issue: 'No. 044', fix: 'HPAL COST FIGURE RESTATED (SOURCE: COMPANY FILING REV.)', date: 'NOV 8' },
+  { issue: 'No. 039', fix: 'GOTION SOP YEAR CORRECTED 2025→2026', date: 'OCT 12' },
+  { issue: 'No. 037', fix: 'WH/KG TYPO FIXED', date: 'SEP 28' },
 ]
 
 /** Report-an-error modal. The v1 backend ships no /corrections endpoint, so

@@ -100,7 +100,7 @@ export default function CompanyBets() {
                 )}
               >
                 <td className="px-4 py-4 font-mono text-[12.5px] font-medium tracking-[0.06em] text-text">
-                  {r.company}
+                  {t(`company.${r.company}`)}
                 </td>
                 <td className="px-4 py-4">
                   <span

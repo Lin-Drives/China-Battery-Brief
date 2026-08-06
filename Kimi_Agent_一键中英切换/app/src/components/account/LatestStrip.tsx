@@ -56,7 +56,7 @@ export default function LatestStrip() {
               <div className={isRead ? 'opacity-60 transition-opacity duration-200 group-hover:opacity-100' : undefined}>
                 <div className="flex items-center justify-between gap-2">
                   <span className="font-mono text-[12px] font-semibold tracking-[0.1em] text-text">
-                    №{String(issue.number).padStart(3, '0')}
+                    No. {String(issue.number).padStart(3, '0')}
                   </span>
                   {!isRead ? (
                     <motion.span

@@ -84,7 +84,7 @@ export const zh: Record<string, string> = {
   /* ---------- 行情条（静态回退） ---------- */
   'ticker.f1': 'LFP 电芯 $52/kWh ▼1.9%',
   'ticker.f2': '宁德时代德布勒森一期全部售罄 ▲',
-  'ticker.f3': '№047 期现已发布',
+  'ticker.f3': 'No. 047 期现已发布',
   'ticker.f4': '欧盟电池护照倒计时 200 天',
   'ticker.f5': '国轩盖尼特拉 2026 年三季度投产',
   'ticker.f6': '在跟踪固态中试线：7 条 ▲',
@@ -103,7 +103,7 @@ export const zh: Record<string, string> = {
     '每周一期高密度简报：中国电池企业在何处建厂出海、哪条化学路线胜出——磷酸铁锂还是固态电池——以及 IRA 补贴与欧盟电池护照如何重绘产业版图。执笔人既读得懂专利，也读得懂海关账册',
   'hero.proof': '读者包括整车厂战略部门 · 电池基金 · 政策研究机构 · 贸易行的分析师',
   'hero.scroll': '向下滚动',
-  'hero.cardStamp': '每周简报 №047',
+  'hero.cardStamp': '每周简报 No. 047',
   'hero.cardTitle': '德布勒森进度超前',
   'hero.ch1pillar': '产能',
   'hero.ch1text': '匈牙利产能爬坡达 68%',
@@ -118,10 +118,10 @@ export const zh: Record<string, string> = {
   'latest.titleEm': '欧洲',
   'latest.titleB': '电池之都',
   'latest.body':
-    '№047 期用 3,400 字回答一个问题：宁德时代德布勒森工厂的爬坡速度，为何超过了每一家欧洲对手演示文稿里的承诺？另附：上汽固态电池营销话术解码，以及第二轮 FEOC 指引究竟禁止了什么',
-  'latest.meta': '№047 · 11 月 20 日 周四 · 约 14 分钟 · 3 章 · 21 个来源',
+    'No. 047 期用 3,400 字回答一个问题：宁德时代德布勒森工厂的爬坡速度，为何超过了每一家欧洲对手演示文稿里的承诺？另附：上汽固态电池营销话术解码，以及第二轮 FEOC 指引究竟禁止了什么',
+  'latest.meta': 'No. 047 · 11 月 20 日 周四 · 约 14 分钟 · 3 章 · 21 个来源',
   'latest.cta': '浏览档案库 →',
-  'latest.sheetTag': '№047 · 免费样刊',
+  'latest.sheetTag': 'No. 047 · 免费样刊',
   'latest.sheetTitle': '德布勒森进度超前',
   'latest.r1title': '无人预见的爬坡',
   'latest.r1note': '2 号产线提前十一周产出 A 样',
@@ -201,8 +201,8 @@ export const zh: Record<string, string> = {
   'gap.r4cbb': '$19/月',
 
   /* ---------- 首页 · 写作样本 ---------- */
-  'sample.kicker': '摘自 №045 期',
-  'sample.ctaRead': '阅读 №045 期 →',
+  'sample.kicker': '摘自 No. 045 期',
+  'sample.ctaRead': '阅读 No. 045 期 →',
   'sample.ctaStandards': '查看写作标准',
   'sample.p1':
     '华盛顿刚刚重新定义了“中国”。不看股权——看控制权。在第二轮 FEOC 指引下，一家摩洛哥工厂只要有 40% 的中国股东，仍能让整条供应链失去 §45X 补贴资格',
@@ -251,7 +251,7 @@ export const zh: Record<string, string> = {
   'cta.hrs': '时',
   'cta.min': '分',
   'cta.sec': '秒',
-  'cta.until': '距 №048 · 06:00 UTC',
+  'cta.until': '距 No. 048 · 06:00 UTC',
 }
 
 /* ---------- 简报档案库 ---------- */
@@ -307,6 +307,23 @@ Object.assign(zh, {
   'sidebar.companies': '重点跟踪公司',
   'sidebar.newsletter': '每周四新档案',
   'sidebar.files': '{n} 份档案',
+
+  /* 公司（重点跟踪 chips + 工厂表格/抽屉） */
+  'company.CATL': '宁德时代',
+  'company.CATL (lic.)': '宁德时代（技术授权）',
+  'company.BYD': '比亚迪',
+  'company.CALB': '中创新航',
+  'company.Envision AESC': '远景动力',
+  'company.EVE': '亿纬锂能',
+  'company.Gotion': '国轩高科',
+  'company.Sunwoda': '欣旺达',
+  'company.SVOLT': '蜂巢能源',
+  'company.GOTION': '国轩高科',
+  'company.GANFENG': '赣锋锂业',
+  'company.TOYOTA*': '丰田*',
+  'company.QINGTAO': '清陶能源',
+  'company.SUNWODA': '欣旺达',
+  'company.WELION': '卫蓝新能源',
 
   /* ---------- 阅读页 ---------- */
   'detail.vol': '第 03 卷 · 档案 {no}',
@@ -1094,7 +1111,7 @@ Object.assign(zh, {
   'acct.statEmailSubs': '邮件订阅',
   'acct.statRevenue': '收入',
   'acct.fileNewIssue': '归档新简报',
-  'acct.fIssueNo': '期号 №',
+  'acct.fIssueNo': '期号 No.',
   'acct.fTitle': '标题',
   'acct.fTitlePh': '文件标题',
   'acct.fDek': '摘要',
@@ -1112,7 +1129,7 @@ Object.assign(zh, {
   'acct.freeTag': '免费',
   'acct.delete': '删除',
   'acct.deleting': '删除中……',
-  'acct.filePublished': '文件 №{n} 已发布',
+  'acct.filePublished': '文件 No. {n} 已发布',
   'acct.fileDeleted': '文件已删除',
   'acct.deleteFailed': '删除失败',
   'acct.errNumber': '期号必须为正整数',

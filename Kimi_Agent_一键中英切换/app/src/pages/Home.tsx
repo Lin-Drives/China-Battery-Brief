@@ -9,7 +9,7 @@ import SocialProof from '@/components/home/SocialProof'
 import FinalCTA from '@/components/home/FinalCTA'
 
 /**
- * Home — `/` (home.md). TickerBar + navbar are fixed chrome (Navbar owns them);
+ * Home — `/` (home.md). Navbar is fixed chrome (Navbar owns them);
  * the Hero opts out of Layout's nav offset with -mt-16 (full-bleed).
  */
 export default function Home() {

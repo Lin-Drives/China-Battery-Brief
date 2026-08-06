@@ -30,21 +30,21 @@ export default function ScenarioAccordions() {
       probability: 35,
       impact: 5,
       body: t('scen.s1.body'),
-      brief: { num: '№045', to: '/briefs/battery-passport-t-minus-200' },
+      brief: { num: 'No. 045', to: '/briefs/battery-passport-t-minus-200' },
     },
     {
       title: t('scen.s2.title'),
       probability: 40,
       impact: 3,
       body: t('scen.s2.body'),
-      brief: { num: '№045', to: '/briefs/battery-passport-t-minus-200' },
+      brief: { num: 'No. 045', to: '/briefs/battery-passport-t-minus-200' },
     },
     {
       title: t('scen.s3.title'),
       probability: 25,
       impact: 4,
       body: t('scen.s3.body'),
-      brief: { num: '№045', to: '/briefs/battery-passport-t-minus-200' },
+      brief: { num: 'No. 045', to: '/briefs/battery-passport-t-minus-200' },
     },
   ]
 

@@ -1,5 +1,4 @@
 import { Link } from 'react-router'
-import { motion } from 'framer-motion'
 import EmailCapture from '@/components/EmailCapture'
 import { useAuth } from '@/hooks/useAuth'
 import { useLang, tpl } from '@/i18n/lang'
@@ -18,20 +17,9 @@ const COMPANIES: { name: string; pillar: ApiPillar }[] = [
   { name: 'SUNWODA', pillar: 'overseas-capacity' },
   { name: 'QINGTAO', pillar: 'tech-routes' },
   { name: 'WELION', pillar: 'tech-routes' },
-  { name: '宁德时代', pillar: 'overseas-capacity' },
 ]
 
 /** Deterministic 8-point sparkline data seeded from the pillar index (decorative). */
-function sparkPoints(seed: number): string {
-  const pts: string[] = []
-  let v = 8 + ((seed * 7) % 9)
-  for (let i = 0; i < 8; i++) {
-    v = Math.max(3, Math.min(21, v + ((seed * (i + 3) * 13) % 11) - 5))
-    pts.push(`${i * 10},${24 - v}`)
-  }
-  return pts.join(' ')
-}
-
 function ModuleTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-4 flex items-center gap-3">
@@ -68,7 +56,7 @@ export default function ArchiveSidebar({
       <section aria-label="Pillar index">
         <ModuleTitle>{t('sidebar.pillarIndex')}</ModuleTitle>
         <div className="border-t border-line">
-          {PILLAR_ORDER.map((p, i) => {
+          {PILLAR_ORDER.map((p) => {
             const color = pillarColor(p)
             return (
               <button
@@ -86,22 +74,6 @@ export default function ArchiveSidebar({
                     {t(`pillar.${p}`)} · {tpl(t('sidebar.files'), { n: pillarCounts[p] })}
                   </span>
                 </span>
-                <svg
-                  aria-hidden
-                  viewBox="0 0 70 24"
-                  className="ml-auto h-6 w-[70px] overflow-visible"
-                >
-                  <motion.polyline
-                    points={sparkPoints(i + 3)}
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="1.5"
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
-                  />
-                </svg>
               </button>
             )
           })}
@@ -148,12 +120,12 @@ export default function ArchiveSidebar({
                 key={c.name}
                 type="button"
                 onClick={() => onCompanySelect(c.name)}
-                title={`Search the archive for ${c.name}`}
+                title={`Search the archive for ${t(`company.${c.name}`)}`}
                 className="rounded-sm border border-line px-2.5 py-1.5 font-mono text-[11px] tracking-[0.1em] text-text-muted transition-colors duration-200 hover:text-text"
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${color}1A`)}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '')}
               >
-                {c.name}
+                {t(`company.${c.name}`)}
               </button>
             )
           })}

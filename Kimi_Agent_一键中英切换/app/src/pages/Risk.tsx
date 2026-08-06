@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from '@/lib/gsap'
-import TickerBar from '@/components/TickerBar'
 import KickerLine from '@/components/KickerLine'
 import CBBButton from '@/components/Buttons'
 import RiskMeter from '@/components/intel/RiskMeter'
@@ -178,8 +177,6 @@ export default function Risk() {
         </div>
       </div>
 
-      <TickerBar />
-
       {/* ---------------- S1 · Threat board ---------------- */}
       <section className="border-b border-line">
         <div
@@ -309,7 +306,7 @@ export default function Risk() {
           <RelatedBriefs
             items={[
               {
-                num: '№045',
+                num: 'No. 045',
                 title: t('riskRel.045.title'),
                 dek: t('riskRel.045.dek'),
                 to: '/briefs/battery-passport-t-minus-200',
@@ -317,14 +314,14 @@ export default function Risk() {
                 minutes: 13,
               },
               {
-                num: '№041',
+                num: 'No. 041',
                 title: t('riskRel.041.title'),
                 dek: t('riskRel.041.dek'),
                 to: '/briefs/battery-passport-t-minus-200',
                 minutes: 11,
               },
               {
-                num: '№043',
+                num: 'No. 043',
                 title: t('riskRel.043.title'),
                 dek: t('riskRel.043.dek'),
                 to: '/briefs',

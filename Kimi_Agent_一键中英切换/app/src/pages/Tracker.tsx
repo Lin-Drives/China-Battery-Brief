@@ -2,7 +2,6 @@ import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { useGSAP } from '@gsap/react'
 import { gsap } from '@/lib/gsap'
-import TickerBar from '@/components/TickerBar'
 import StatBlock from '@/components/StatBlock'
 import KickerLine from '@/components/KickerLine'
 import CornerTicks from '@/components/CornerTicks'
@@ -121,8 +120,6 @@ export default function Tracker() {
           </div>
         </div>
       </div>
-
-      <TickerBar />
 
       {/* ---------------- S1 · Stats band ---------------- */}
       <section className="border-b border-line">

@@ -24,7 +24,7 @@ BYD's Subang plant in West Java — $1bn, 150,000 vehicles a year, localization 
 
 Southeast Asia is where Chinese capital builds factories it owns. America is where it has had to give up ownership to keep the door open. Three workarounds are now running in parallel. The first is licensing: Ford's wholly-owned Marshall, Michigan plant runs on CATL LFP know-how under an LRS structure, extended into storage with the May 2026 launch of "Ford Energy" — a 20 GWh/yr ESS plan built around CATL-licensed 512 Ah cells.[^7] The second is the joint venture: EVE's Amplify Cell Technologies — with Daimler Truck, PACCAR and Accelera/Cummins — broke ground in Mississippi in 2024 for 21 GWh of prismatic LFP, EVE taking roughly a tenth.[^8] The third is the stopgap: GM will import CATL LFP cells for the second-generation Chevrolet Bolt rather than build or license at all.[^7]
 
-OBBBA's licensing clause (№045) is aimed directly at the first model — the Ford-CATL structure. The joint venture is the answer the rules have not yet priced out. The winner of that contest gets the §45X production credit: $35 for every kWh of cells and $10 for every kWh of modules made in America. EVE's Amplify is the live experiment the Ford-CATL structure is no longer allowed to run.
+OBBBA's licensing clause (No. 045) is aimed directly at the first model — the Ford-CATL structure. The joint venture is the answer the rules have not yet priced out. The winner of that contest gets the §45X production credit: $35 for every kWh of cells and $10 for every kWh of modules made in America. EVE's Amplify is the live experiment the Ford-CATL structure is no longer allowed to run.
 
 <!-- k:#B43A2B|PART 03 · TURKEY — THE EUROPE SHORTCUT -->
 ## Turkey: the plant that never broke ground

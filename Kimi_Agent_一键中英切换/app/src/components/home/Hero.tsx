@@ -167,7 +167,7 @@ export default function Hero() {
                   <div className="relative mb-4 mt-8 overflow-hidden rounded-[2px]">
                     <img
                       src="/cover-047.png"
-                      alt="Issue №047 cover — Debrecen gigafactory at dusk"
+                      alt="Issue No. 047 cover — Debrecen gigafactory at dusk"
                       className="aspect-[4/3] w-full object-cover"
                     />
                   </div>

@@ -388,7 +388,7 @@ export default function WorldMap({
           <p className="font-display text-[16px] leading-snug text-text">{hover.f.siteName}</p>
           <p className="mt-1.5">
             <span className="rounded-sm border border-line-strong px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-text-muted">
-              {hover.f.company}
+              {tt(`company.${hover.f.company}`)}
             </span>
           </p>
           <p className="mt-2 font-mono text-[11px] tnum text-faint">

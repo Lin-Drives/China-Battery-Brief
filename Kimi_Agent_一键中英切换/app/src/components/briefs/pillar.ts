@@ -96,7 +96,7 @@ export function fmtLongDate(x: Date | string): string {
   return `${DAYS[d.getDay()]} ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
 }
 
-/** `№047` */
+/** `No. 047` */
 export function fmtIssueNo(n: number): string {
-  return `№${String(n).padStart(3, '0')}`
+  return `No. ${String(n).padStart(3, '0')}`
 }

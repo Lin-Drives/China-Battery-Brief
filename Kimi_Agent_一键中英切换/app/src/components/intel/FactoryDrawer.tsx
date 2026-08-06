@@ -59,8 +59,8 @@ function buildTimeline(f: FactoryRow, t: (key: string) => string): Milestone[] {
 }
 
 const RELATED = [
-  { num: '№047', title: 'SOLD OUT IN DEBRECEN: CATL’S EUROPE IS REAL NOW', to: '/briefs/debrecen-sold-out' },
-  { num: '№044', title: 'NICKEL, BLACKLISTS AND KENITRA', to: '/briefs/the-governance-bottleneck' },
+  { num: 'No. 047', title: 'SOLD OUT IN DEBRECEN: CATL’S EUROPE IS REAL NOW', to: '/briefs/debrecen-sold-out' },
+  { num: 'No. 044', title: 'NICKEL, BLACKLISTS AND KENITRA', to: '/briefs/the-governance-bottleneck' },
 ]
 
 export default function FactoryDrawer({
@@ -158,11 +158,11 @@ function DrawerBody({ factory: f, onClose }: { factory: FactoryRow; onClose: () 
             </span>
           </div>
           <h2 className="mt-4 font-display text-[28px] leading-tight text-text">
-            {f.company} {f.siteName}
+            {t(`company.${f.company}`)} {f.siteName}
           </h2>
           <div className="mt-3 flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-[0.1em]">
             <span className="rounded-sm border border-line-strong px-2 py-1 text-text">
-              {f.company.toUpperCase()}
+              {t(`company.${f.company}`).toUpperCase()}
             </span>
             {f.partners && f.partners.length > 0 && (
               <span className="text-faint">{f.partners.join(' · ').toUpperCase()}</span>

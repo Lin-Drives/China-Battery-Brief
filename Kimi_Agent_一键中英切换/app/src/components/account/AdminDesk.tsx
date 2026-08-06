@@ -333,7 +333,7 @@ export default function AdminDesk() {
                   className="flex flex-wrap items-center gap-x-5 gap-y-1 border-b border-line py-3 transition-colors hover:bg-ink-800/50"
                 >
                   <span className="font-mono text-[12px] font-semibold tracking-[0.1em] text-faint">
-                    №{String(issue.number).padStart(3, '0')}
+                    No. {String(issue.number).padStart(3, '0')}
                   </span>
                   <span className="min-w-0 flex-1 truncate font-display text-[15px] text-text">{issue.title}</span>
                   {issue.isFree && (

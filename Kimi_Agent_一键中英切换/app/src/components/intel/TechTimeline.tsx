@@ -56,7 +56,7 @@ export default function TechTimeline() {
       body: t('techTl.n5.body'),
       tag: t('techTl.n5.tag'),
       projected: true,
-      brief: { num: '№046', to: '/briefs/solid-state-2027-consensus' },
+      brief: { num: 'No. 046', to: '/briefs/solid-state-2027-consensus' },
     },
     {
       date: '2027–28',

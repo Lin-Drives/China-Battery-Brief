@@ -84,7 +84,7 @@ export const en: Record<string, string> = {
   /* ---------- Ticker fallback ---------- */
   'ticker.f1': 'LFP CELL $52/kWh ▼1.9%',
   'ticker.f2': 'CATL DEBRECEN P1 FULLY BOOKED ▲',
-  'ticker.f3': 'ISSUE №047 OUT NOW',
+  'ticker.f3': 'ISSUE No. 047 OUT NOW',
   'ticker.f4': 'EU PASSPORT T-200 DAYS',
   'ticker.f5': 'GOTION KENITRA Q3-2026 SOP',
   'ticker.f6': 'SSB PILOT LINES TRACKED: 7 ▲',
@@ -103,7 +103,7 @@ export const en: Record<string, string> = {
     'One dense, English-language brief every week on where Chinese battery makers are building abroad, which chemistry wins — LFP or solid-state — and how IRA subsidies and the EU battery passport redraw the map. Written by people who can read a patent and a customs ledger.',
   'hero.proof': 'READ BY ANALYSTS AT OEM STRATEGY DESKS · BATTERY FUNDS · POLICY UNITS · TRADING HOUSES',
   'hero.scroll': 'SCROLL',
-  'hero.cardStamp': 'WEEKLY BRIEF №047',
+  'hero.cardStamp': 'WEEKLY BRIEF No. 047',
   'hero.cardTitle': 'Debrecen Is Ahead of Schedule',
   'hero.ch1pillar': 'CAPACITY',
   'hero.ch1text': 'Hungary ramp hits 68%',
@@ -118,10 +118,10 @@ export const en: Record<string, string> = {
   'latest.titleEm': 'Europe',
   'latest.titleB': '.',
   'latest.body':
-    'Issue №047 spends 3,400 words on one question: why is CATL’s Debrecen plant ramping faster than every European rival’s slideshow said it would? Plus: SAIC’s solid-state marketing decoded, and what the second round of FEOC guidance actually bans.',
-  'latest.meta': '№047 · THU NOV 20 · 14 MIN READ · 3 CHAPTERS · 21 SOURCES',
+    'Issue No. 047 spends 3,400 words on one question: why is CATL’s Debrecen plant ramping faster than every European rival’s slideshow said it would? Plus: SAIC’s solid-state marketing decoded, and what the second round of FEOC guidance actually bans.',
+  'latest.meta': 'No. 047 · THU NOV 20 · 14 MIN READ · 3 CHAPTERS · 21 SOURCES',
   'latest.cta': 'BROWSE THE ARCHIVE →',
-  'latest.sheetTag': '№047 · FREE ISSUE',
+  'latest.sheetTag': 'No. 047 · FREE ISSUE',
   'latest.sheetTitle': 'Debrecen Is Ahead of Schedule',
   'latest.r1title': 'The ramp nobody forecast',
   'latest.r1note': 'Line 2 is producing A-samples eleven weeks early',
@@ -202,8 +202,8 @@ export const en: Record<string, string> = {
   'gap.r4cbb': '$19/mo',
 
   /* ---------- Home · Writing sample ---------- */
-  'sample.kicker': 'FROM ISSUE №045',
-  'sample.ctaRead': 'READ ISSUE №045 →',
+  'sample.kicker': 'FROM ISSUE No. 045',
+  'sample.ctaRead': 'READ ISSUE No. 045 →',
   'sample.ctaStandards': 'SEE WRITING STANDARDS',
   'sample.p1':
     'Washington just redefined “Chinese”. Not by ownership — by control. Under the second round of FEOC guidance, a factory in Morocco with a 40% Chinese shareholder can still poison an entire supply chain’s eligibility for the §45X credit.',
@@ -252,7 +252,7 @@ export const en: Record<string, string> = {
   'cta.hrs': 'HRS',
   'cta.min': 'MIN',
   'cta.sec': 'SEC',
-  'cta.until': 'UNTIL №048 · 06:00 UTC',
+  'cta.until': 'UNTIL No. 048 · 06:00 UTC',
 }
 
 /* ---------- Briefs archive ---------- */
@@ -312,6 +312,23 @@ Object.assign(en, {
   'sidebar.companies': 'COMPANIES WATCHED',
   'sidebar.newsletter': 'NEW FILES EVERY THURSDAY',
   'sidebar.files': '{n} FILES',
+
+  /* Companies (watched chips + factory table/drawer) */
+  'company.CATL': 'CATL',
+  'company.CATL (lic.)': 'CATL (lic.)',
+  'company.BYD': 'BYD',
+  'company.CALB': 'CALB',
+  'company.Envision AESC': 'Envision AESC',
+  'company.EVE': 'EVE',
+  'company.Gotion': 'Gotion',
+  'company.Sunwoda': 'Sunwoda',
+  'company.SVOLT': 'SVOLT',
+  'company.GOTION': 'GOTION',
+  'company.GANFENG': 'GANFENG',
+  'company.TOYOTA*': 'TOYOTA*',
+  'company.QINGTAO': 'QINGTAO',
+  'company.SUNWODA': 'SUNWODA',
+  'company.WELION': 'WELION',
 
   /* ---------- Brief detail / reader ---------- */
   'detail.vol': 'VOL. 03 · FILE {no}',
@@ -969,7 +986,7 @@ Object.assign(en, {
     'THE DESK REVIEWS EVERY REPORT AGAINST THE SOURCE FILE. IF IT SHIPS AS A FIX, IT APPEARS IN THE PUBLIC LOG.',
   'about.reportTitle': 'Report an error',
   'about.reportDesc': 'GOES STRAIGHT TO THE DESK — NOT A TICKET QUEUE.',
-  'about.reportPhIssue': 'ISSUE № — E.G. 047',
+  'about.reportPhIssue': 'ISSUE No. — E.G. 047',
   'about.reportAriaIssue': 'Issue number',
   'about.reportPhClaim': 'THE CLAIM YOU THINK IS WRONG',
   'about.reportAriaClaim': 'Claim',
@@ -1119,7 +1136,7 @@ Object.assign(en, {
   'acct.statEmailSubs': 'EMAIL SUBS',
   'acct.statRevenue': 'REVENUE',
   'acct.fileNewIssue': 'FILE A NEW ISSUE',
-  'acct.fIssueNo': 'ISSUE №',
+  'acct.fIssueNo': 'ISSUE No.',
   'acct.fTitle': 'TITLE',
   'acct.fTitlePh': "THE FILE'S HEADLINE",
   'acct.fDek': 'DEK',
@@ -1137,10 +1154,10 @@ Object.assign(en, {
   'acct.freeTag': 'FREE',
   'acct.delete': 'DELETE',
   'acct.deleting': 'DELETING…',
-  'acct.filePublished': 'FILE №{n} PUBLISHED',
+  'acct.filePublished': 'FILE No. {n} PUBLISHED',
   'acct.fileDeleted': 'FILE DELETED',
   'acct.deleteFailed': 'DELETE FAILED',
-  'acct.errNumber': 'ISSUE № MUST BE A POSITIVE INTEGER',
+  'acct.errNumber': 'ISSUE No. MUST BE A POSITIVE INTEGER',
   'acct.errSlug': 'SLUG REQUIRED',
   'acct.errTitle': 'TITLE REQUIRED',
   'acct.errPillars': 'PICK AT LEAST ONE PILLAR',
