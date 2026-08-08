@@ -187,8 +187,14 @@
 | Provider | Offering & pricing (as-of) | Source |
 |---|---|---|
 | **Benchmark Mineral Intelligence** | Quote-based enterprise subscriptions (price assessments, gigafactory/lithium-ion supply-chain databases, forecasts, analyst access). No public price list. Reference points: US federal contracts for Benchmark subscriptions ranged **$19,600–$716,190**; DOE sole-source justification describes Benchmark as premium full-supply-chain provider. Acquired **Rho Motion (June 2024, ~$50m)**; backed by Spectrum Equity; ~250-strong combined team. | govtribe.com vendor record (undated, accessed 2026-08); highergov.com DOE notice; FRP Advisory, 2025-10-28 |
+
+**Benchmark 订阅路径实测（2026-08-08，官网核实）**：
+- **无自助下单**：全站（intelligence / plans / battery-gigafactory）只有 "Book a Demo" 与 "Contact Us" 入口，无 Buy Now / 公开价格 → 付费必须对接销售拿定制 quote。
+- **免费账户门槛**：注册表单字段为 "Business Email"（必填，另需 Job Title + Phone），按域名黑名单校验——实测 `outlook.com` 被拒（报错 "This form does not accept addresses from outlook.com"）。行业惯例上 gmail/hotmail/yahoo 等大概率同样被拒；`.edu`/机构域名通常可过；或直接走销售人工开号。
+- **免费额度**：免费账户每月最多 3 篇订阅文章 + 原材料价格简报。
+- **建议采购策略**：以独立分析师/内容创作者身份、只购买 "Battery & Gigafactory" 板块去谈，避免被按企业全套定价（企业价通常每年数万至数十万美元）。
 | **Rho Motion** | Now "a Benchmark Mineral Intelligence company" (EV sales data, battery outlooks, ESS/recycling). Post-acquisition pricing not public — **UNVERIFIED** (bundle into Benchmark subscriptions likely). | FRP Advisory; electrek, 2024-10-15 |
-| **SNE Research** | **Global EV and Battery Monthly Tracker: USD 20,000/yr (12 issues)**; standalone special reports typically **USD 7,000–10,000** each (e.g., 2025–2026 listings at USD 7,000 / 8,000 / 10,000). | GlobalInfoResearch (giiresearch.com) SNE publisher page, listings dated 2024-11–2026-06 |
+| **SNE Research** | **Global EV and Battery Monthly Tracker: USD 20,000/yr (12 issues)**; standalone special reports typically **USD 7,000–10,000** each (e.g., 2025–2026 listings at USD 7,000 / 8,000 / 10,000). **[UNVERIFIED — official site (sneresearch.com) shows "Subscription pricing is available upon request"; the $20k figure comes from GII reseller listings, not confirmed 2026-08-08.]** | GlobalInfoResearch (giiresearch.com) SNE publisher page, listings dated 2024-11–2026-06 |
 | **InfoLink (InfoLink Consulting / PV InfoLink)** | Membership/subscription model for PV + ESS + battery price data and rankings; **no public price list found — UNVERIFIED (quote-based)**. | infolink-group.com via euro-stack directory, accessed 2026-08 |
 | **The Limiting Factor** | Free YouTube channel (Jordan Giesige, battery tech); Patreon support **from $1/month (~526 paid members)**; individual premium posts sold à la carte at **$5**. | patreon.com/thelimitingfactor, visited 2026-08-03 |
 | (Context) energy-storage.news / PV Tech premium | $1 first-month trial converting to annual — typical B2B trade-media funnel; included as adjacent model reference. | energy-storage.news, 2025-02-28 |

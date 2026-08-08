@@ -94,4 +94,5 @@ Kimi_Agent_一键中英切换.zip    ← 上述目录的打包存档，勿改动
 - **封面图**：当前模型不具备位图生成能力；新刊封面一律程序化绘制 `public/cover-<期号>.svg`（4:3、站点色板：ink-900 底 `#0C1017` / 正文纸色 `#F4F0E6` / volt `#C9F24B` / 辅助 `#F0A832`、`#5ADFC3`、`#8E97A8`），`issues.json` 的 `coverAsset` 指向该 SVG；不依赖外部图片。
 - 密钥：`.env` 与 `Kimi_Agent_一键中英切换.zip` 不要读取外传；`api_keys` 表只存哈希。
 - 不要做 git mutation（commit/push/reset 等），除非用户明确要求。
+- **Git 提交规范（用户指定）**：提交信息一律用**中文**，采用简洁的「动作 + 对象」标准格式（如 `修复首页语言切换按钮可读性`、`更新 info.md 竞品定价核实结果`）；允许多文件合并为一个主题提交；push 需用户明确授权。
 - 部署由 Kimi Agent 平台服务端构建托管；本地验证以 `npm run build && npm start` 为准。README 中记录的交付基线：`npm run build` ✓、`tsc -b` ✓。

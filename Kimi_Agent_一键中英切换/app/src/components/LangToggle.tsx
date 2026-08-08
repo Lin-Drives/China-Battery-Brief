@@ -38,8 +38,8 @@ export default function LangToggle({
             aria-pressed={active}
             onClick={() => setLang(opt.value)}
             className={cn(
-              'relative min-w-[30px] px-2 py-1.5 text-center font-mono text-[11px] leading-none transition-colors duration-200',
-              active ? 'text-ink-950' : 'text-text-muted hover:text-text',
+              'relative min-w-[30px] px-2 py-1.5 text-center font-mono text-[12px] leading-none transition-colors duration-200',
+              active ? 'text-ink-950' : 'text-text/80 hover:text-text',
             )}
           >
             {active && (

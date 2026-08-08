@@ -108,7 +108,7 @@ export const en: Record<string, string> = {
   'hero.ch1pillar': 'CAPACITY',
   'hero.ch1text': 'Hungary ramp hits 68%',
   'hero.ch2pillar': 'TECH',
-  'hero.ch2text': 'SAIC’s “solid-state” is semi',
+  'hero.ch2text': 'SAIC’s “solid-state” is semi-solid',
   'hero.ch3pillar': 'RISK',
   'hero.ch3text': 'FEOC round two, decoded',
 
