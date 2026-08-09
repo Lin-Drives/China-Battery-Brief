@@ -20,3 +20,5 @@ coverage/
 .nyc_output/
 # Logs
 *.log
+# Scan output (weekly fetch artifacts — regenerable, don't commit)
+scan/*/

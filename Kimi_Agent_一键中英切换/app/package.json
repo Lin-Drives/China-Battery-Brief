@@ -16,6 +16,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:seed": "tsx db/seed.ts",
+    "scan:sources": "tsx scan/run.ts",
     "db:start": "../.local-mysql/start.sh",
     "db:stop": "../.local-mysql/stop.sh"
   },
