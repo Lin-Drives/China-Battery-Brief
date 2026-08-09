@@ -58,3 +58,19 @@
 - 合并分支、种子数据入库、整体构建、端到端检查
 - `mshtools-website_version_manager`（type: dynamic）保存版本交付
 - 产出：可预览的网站版本 + 项目说明（README）
+
+## 7. 当前主线后续任务（2026-08-09 记录）
+
+> 已完成：四大支柱（含 MARKETS）上线、`/policy` 替换 `/risk`、049 期、policy_events 去重。以下为后续开发队列。
+
+### 队列 A — MARKETS 板块深化（待数据累积后触发）
+- **独立 MARKETS 归档视图**：等 MARKETS 出到 5~6 期后，在 `/markets` 内或 `/markets/archive` 用铜色卡片列出全部 markets 期，不复用通用 IssueRow。
+- **`markets` 真 API**：新建 `markets.overview` tRPC 接口 + 市场数据表，`Markets.tsx` 改 `useQuery`。价值：改数字不发版、数据可溯源带日期、能算周环比差异。触发条件：MARKETS 累积几期数据，或需支持 admin 台编辑市场数据。
+
+### 队列 B — 平台真实化（README §五）
+- 模拟支付 → Stripe Checkout + Webhook（`api/billing-router.ts` 替换点已预留）
+- 邮件服务：周四 06:00 UTC 群发 + 事务邮件（当前 `subscribe.email` 只落库）
+- 独立 `/admin` 路由 + 富文本编辑器
+
+### 已否决
+- Ticker 跑马灯增加 markets 行情项（主编明确不喜欢 Ticker）

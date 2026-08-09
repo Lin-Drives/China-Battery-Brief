@@ -72,9 +72,9 @@ MARKETS 的独特生态位：**跨语言情报差**。雪球、券商研报、MI
 
 ## 八、后续可做（未实施）
 
-- `/briefs` 档案页已自动支持 MARKETS 过滤（PILLAR_ORDER 驱动），但暂无独立「MARKETS 归档」视图。
-- Ticker 可增加一条 markets 行情项（如 `NA+ LFP CELL $52/kWh`），需更新 `db/seed.ts` ticker 数组。
-- Desk 档 REST API 的 `markets` 数据源（当前无专门 markets API；数据为静态策展）。
+- `/briefs` 档案页已自动支持 MARKETS 过滤（PILLAR_ORDER 驱动），但暂无独立「MARKETS 归档」视图。**待 MARKETS 累积到 5~6 期后做**：在 `/markets` 页内（或独立 `/markets/archive` 路由）用铜色卡片列出所有 `pillars` 含 `markets` 的期数，而非复用通用 IssueRow。
+- Desk 档 REST API 的 `markets` 数据源（当前无专门 markets API；数据为静态策展）。**待 MARKETS 累积几期数据或需支持 admin 台编辑市场数据时做**：新建 `markets.overview` tRPC 接口 + 市场数据表，前端 `Markets.tsx` 改 `useQuery`，让份额/价格/资金动向可溯源、可更新、可做周环比差异，无需每次改数字都发版。
+- Ticker 可增加一条 markets 行情项（如 `NA+ LFP CELL $52/kWh`），需更新 `db/seed.ts` ticker 数组。**已决策：不做**——主编明确不喜欢 Ticker 跑马灯。
 - 若未来要做「含估值判断」档位，需先引入合规审核流程与免责声明体系。
 
 ---
