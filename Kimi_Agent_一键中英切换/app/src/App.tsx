@@ -9,7 +9,8 @@ import Briefs from '@/pages/Briefs'
 import BriefDetail from '@/pages/BriefDetail'
 import Tracker from '@/pages/Tracker'
 import Tech from '@/pages/Tech'
-import Risk from '@/pages/Risk'
+import Policy from '@/pages/Policy'
+import Markets from '@/pages/Markets'
 import Pricing from '@/pages/Pricing'
 import About from '@/pages/About'
 import Account from '@/pages/Account'
@@ -47,7 +48,8 @@ export default function App() {
           <Route path="briefs/:slug" element={<BriefDetail />} />
           <Route path="tracker" element={<Tracker />} />
           <Route path="tech" element={<Tech />} />
-          <Route path="risk" element={<Risk />} />
+          <Route path="policy" element={<Policy />} />
+          <Route path="markets" element={<Markets />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="about" element={<About />} />
           <Route path="account" element={<Account />} />

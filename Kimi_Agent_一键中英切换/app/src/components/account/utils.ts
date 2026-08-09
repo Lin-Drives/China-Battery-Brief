@@ -1,14 +1,15 @@
 import type { Pillar } from '@/components/PillarTag'
 
 /** Backend pillar slugs ↔ design.md §4.3 pillar system */
-export type PillarSlug = 'overseas-capacity' | 'tech-routes' | 'geopolitics'
+export type PillarSlug = 'overseas-capacity' | 'tech-routes' | 'geopolitics' | 'markets'
 
-export const PILLAR_ORDER: PillarSlug[] = ['overseas-capacity', 'tech-routes', 'geopolitics']
+export const PILLAR_ORDER: PillarSlug[] = ['overseas-capacity', 'tech-routes', 'geopolitics', 'markets']
 
 export const PILLAR_META: Record<PillarSlug, { tag: Pillar; label: string; color: string }> = {
   'overseas-capacity': { tag: 'capacity', label: 'CAPACITY', color: '#C9F24B' },
   'tech-routes': { tag: 'tech', label: 'TECH', color: '#5ADFC3' },
   geopolitics: { tag: 'risk', label: 'GEOPOLITICS', color: '#FF5B45' },
+  markets: { tag: 'markets', label: 'MARKETS', color: '#F0A832' },
 }
 
 export function pillarMeta(slug: string) {

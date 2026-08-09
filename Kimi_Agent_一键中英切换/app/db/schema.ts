@@ -144,17 +144,27 @@ export const factories = mysqlTable(
 
 export type Factory = typeof factories.$inferSelect;
 
-/** Policy events for the Risk Radar timeline. */
-export const policyEvents = mysqlTable("policy_events", {
-  id: serial("id").primaryKey(),
-  region: varchar("region", { length: 50 }).notNull(), // US | EU | CN | GLOBAL
-  title: varchar("title", { length: 500 }).notNull(),
-  date: timestamp("date").notNull(),
-  severity: int("severity").notNull(), // 1-100
-  category: mysqlEnum("category", ["ira", "passport", "tariff", "export", "other"]).notNull(),
-  summary: text("summary"),
-  link: varchar("link", { length: 500 }),
-});
+/** Policy events for the Policy Desk timeline. */
+export const policyEvents = mysqlTable(
+  "policy_events",
+  {
+    id: serial("id").primaryKey(),
+    region: varchar("region", { length: 50 }).notNull(), // US | EU | CN | GLOBAL
+    title: varchar("title", { length: 500 }).notNull(),
+    /** Chinese translations (nullable — policy events ship EN first, ZH backfilled). */
+    titleZh: varchar("titleZh", { length: 500 }),
+    date: timestamp("date").notNull(),
+    severity: int("severity").notNull(), // 1-100
+    category: mysqlEnum("category", ["ira", "passport", "tariff", "export", "other"]).notNull(),
+    summary: text("summary"),
+    /** Chinese translation of summary (nullable). */
+    summaryZh: text("summaryZh"),
+    link: varchar("link", { length: 500 }),
+  },
+  (t) => ({
+    uniqEvent: unique("uniq_policy_title_date").on(t.title, t.date),
+  }),
+);
 
 export type PolicyEvent = typeof policyEvents.$inferSelect;
 
@@ -163,7 +173,7 @@ export const tickerItems = mysqlTable("ticker_items", {
   id: serial("id").primaryKey(),
   label: varchar("label", { length: 500 }).notNull(),
   delta: mysqlEnum("delta", ["up", "down", "none"]).default("none").notNull(),
-  pillar: mysqlEnum("pillar", ["overseas-capacity", "tech-routes", "geopolitics", "none"])
+  pillar: mysqlEnum("pillar", ["overseas-capacity", "tech-routes", "geopolitics", "markets", "none"])
     .default("none")
     .notNull(),
   sortOrder: int("sortOrder").default(0).notNull(),
@@ -185,7 +195,7 @@ export const alerts = mysqlTable(
   {
     id: serial("id").primaryKey(),
     userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
-    pillar: mysqlEnum("pillar", ["overseas-capacity", "tech-routes", "geopolitics"]).notNull(),
+    pillar: mysqlEnum("pillar", ["overseas-capacity", "tech-routes", "geopolitics", "markets"]).notNull(),
     channel: mysqlEnum("channel", ["email", "web"]).default("email").notNull(),
     enabled: boolean("enabled").default(true).notNull(),
   },

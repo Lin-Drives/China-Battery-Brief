@@ -27,6 +27,8 @@ export default function StatBlock({
   const rootRef = useRef<HTMLDivElement>(null)
   const numRef = useRef<HTMLSpanElement>(null)
 
+  const decimals = Number.isInteger(value) ? 0 : 1
+
   useGSAP(
     () => {
       if (!numRef.current) return
@@ -38,12 +40,15 @@ export default function StatBlock({
         scrollTrigger: { trigger: rootRef.current, start: 'top 85%', once: true },
         onUpdate: () => {
           if (numRef.current) {
-            numRef.current.textContent = Math.round(counter.v).toLocaleString('en-US')
+            numRef.current.textContent = counter.v.toLocaleString('en-US', {
+              maximumFractionDigits: decimals,
+              minimumFractionDigits: decimals,
+            })
           }
         },
       })
     },
-    { scope: rootRef, dependencies: [value] },
+    { scope: rootRef, dependencies: [value, decimals] },
   )
 
   return (

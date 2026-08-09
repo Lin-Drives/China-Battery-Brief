@@ -27,7 +27,7 @@
 
 ## 三、数据库（12 表，已灌种子）
 
-users · issues(4 期英文样刊 №044–047，基于调研事实底座) · plans(5 档) · subscriptions · payments · factories(19 站点) · policy_events(12 条) · ticker_items(8) · saved_briefs · alerts · api_keys · email_subscribers
+users · issues(6 期英文样刊 No. 044–049，基于调研事实底座) · plans(5 档) · subscriptions · payments · factories(19 站点) · policy_events(12 条) · ticker_items(8) · saved_briefs · alerts · api_keys · email_subscribers
 
 ## 四、真实 vs 模拟（边界诚实清单）
 

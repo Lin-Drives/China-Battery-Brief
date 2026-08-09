@@ -1,9 +1,9 @@
 import type { Pillar } from '@/components/PillarTag'
 
 /** API pillar slugs (db/schema.ts) → design system pillar identities (design.md §4.3). */
-export type ApiPillar = 'overseas-capacity' | 'tech-routes' | 'geopolitics'
+export type ApiPillar = 'overseas-capacity' | 'tech-routes' | 'geopolitics' | 'markets'
 
-export const PILLAR_ORDER: ApiPillar[] = ['overseas-capacity', 'tech-routes', 'geopolitics']
+export const PILLAR_ORDER: ApiPillar[] = ['overseas-capacity', 'tech-routes', 'geopolitics', 'markets']
 
 const pillarMeta: Record<
   ApiPillar,
@@ -29,6 +29,13 @@ const pillarMeta: Record<
     label: 'Geopolitics',
     color: '#FF5B45',
     cjk: '地缘风险',
+  },
+  markets: {
+    tag: 'markets',
+    short: 'MARKETS',
+    label: 'Markets',
+    color: '#F0A832',
+    cjk: '市场财务',
   },
 }
 

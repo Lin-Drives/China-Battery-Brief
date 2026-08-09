@@ -200,7 +200,7 @@
     "number": 48,
     "slug": "the-re-export-ring",
     "title": "Re-Export Hubs: Southeast Asia, China's Tariff-Free Back Door",
-    "dek": "BYD's Rayong plant ships cars to Germany, EVE scales Kulim, and in America Chinese capital trades ownership for access — Southeast Asia is now the export floor.",
+    "dek": "BYD's Rayong plant ships cars to Germany, EVE scales Kulim, and in America Chinese capital trades ownership for access — Southeast Asia is now the export base.",
     "publishedAt": "2026-08-06T06:00:00Z",
     "isFree": false,
     "pillars": [
@@ -276,6 +276,82 @@
         "title": "Turkey Ends BYD Tax Break, Warns of Repayment Over Stalled $1B Plant",
         "url": "https://eletric-vehicles.com/byd/turkey-ends-byd-tax-break-warns-of-repayment-over-stalled-1b-plant/",
         "date": "2026-06-16"
+      }
+    ]
+  },
+  {
+    "number": 49,
+    "slug": "the-scoreboard",
+    "title": "The Scoreboard: Two Firms, Half a Market",
+    "dek": "CATL takes 40.7% of Q1 2026 deployment, CATL+Byd pass 54.6% of the year to date, and the capex trail shows where the next capacity cycle will be built.",
+    "publishedAt": "2026-08-13T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "markets"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": "/cover-049.svg",
+    "contentFile": "issue-049.md",
+    "sources": [
+      {
+        "outlet": "SNE Research (via evseekers / CnEVPost)",
+        "title": "Q1 2026 global EV battery usage — CATL 40.7%, BYD -8.0%, Korean trio 15.6%",
+        "url": "https://evseekers.com/global-ev-battery-market-share/",
+        "date": "2026-05-06"
+      },
+      {
+        "outlet": "IEA Global EV Outlook 2026 (via evseekers.com)",
+        "title": "LFP ~55% of 2025 global EV battery deployment; total ~1.2 TWh",
+        "url": "https://evseekers.com/global-ev-battery-market-share/",
+        "date": "2026-07-20"
+      },
+      {
+        "outlet": "C2ES",
+        "title": "The 30D & 45X Tax Credits Explained",
+        "url": "https://www.c2es.org/2025/09/the-30d-45x-tax-credits-explained/",
+        "date": "2025-09-05"
+      },
+      {
+        "outlet": "Arnold & Porter",
+        "title": "From IRA to OBBBA: A New Era for Clean Energy Tax Credits",
+        "url": "https://www.arnoldporter.com/en/perspectives/advisories/2025/07/from-ira-to-obbba-a-new-era-for-clean-energy-tax-credits",
+        "date": "2025-07-22"
+      },
+      {
+        "outlet": "Electrichybridvehicletechnology.com",
+        "title": "CATL Naxtra sodium-ion: 175 Wh/kg, ~30% below LFP at scale, GB 38031-2025 certified",
+        "url": "https://electrichybridvehicletechnology.com",
+        "date": "2026-05-11"
+      },
+      {
+        "outlet": "Xinhua (via china-ceec.org)",
+        "title": "CATL's Hungary battery plant ready to launch, capacity fully booked",
+        "url": "http://www.china-ceec.org/eng/jmhz/202512/t20251210_11770280.htm",
+        "date": "2025-12-04"
+      },
+      {
+        "outlet": "BatteryTech Online",
+        "title": "CATL launches $6B Indonesia Battery Integration Project for EV ecosystem growth",
+        "url": "https://www.batterytechonline.com/battery-manufacturing/catl-launches-6b-indonesia-battery-integration-project-for-ev-ecosystem-growth",
+        "date": "2025-07-16"
+      },
+      {
+        "outlet": "ess-news",
+        "title": "CALB Sines — €350m incentives formalized, phase-1 construction launched",
+        "url": "https://ess-news.com",
+        "date": "2026-01-28"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "Eve Energy plans to build $1.2 billion energy storage battery project in Malaysia",
+        "url": "https://cnevpost.com/2025/06/30/eve-energy-plans-energy-storage-battery-project-malaysia/",
+        "date": "2025-06-30"
+      },
+      {
+        "outlet": "China Daily",
+        "title": "Global auto giants plug into China's battery power",
+        "url": "https://global.chinadaily.com.cn/a/202605/12/WS6a029b76a310d6866eb48222.html",
+        "date": "2026-05-12"
       }
     ]
   }

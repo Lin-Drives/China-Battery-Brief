@@ -7,7 +7,7 @@ import { createRouter, authedQuery } from "./middleware";
 import { getDb } from "./queries/connection";
 import { getActiveSubscription } from "./lib/entitlement";
 
-const PILLARS = ["overseas-capacity", "tech-routes", "geopolitics"] as const;
+const PILLARS = ["overseas-capacity", "tech-routes", "geopolitics", "markets"] as const;
 
 export const meRouter = createRouter({
   /* ----- Saved briefs ----- */

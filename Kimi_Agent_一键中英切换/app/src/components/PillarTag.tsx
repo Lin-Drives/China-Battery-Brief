@@ -1,11 +1,12 @@
 import { cn } from '@/lib/utils'
 
-export type Pillar = 'capacity' | 'tech' | 'risk'
+export type Pillar = 'capacity' | 'tech' | 'risk' | 'markets'
 
 const pillarColor: Record<Pillar, string> = {
   capacity: '#C9F24B', // volt
   tech: '#5ADFC3', // lithium
   risk: '#FF5B45', // signal
+  markets: '#F0A832', // amber (copper)
 }
 
 /**

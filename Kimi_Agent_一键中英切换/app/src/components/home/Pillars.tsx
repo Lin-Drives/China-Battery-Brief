@@ -61,7 +61,22 @@ const PANELS: Panel[] = [
       { value: 2027, labelKey: 'beat3.s2' },
       { value: 25, labelKey: 'beat3.s3', suffix: '%' },
     ],
-    to: '/risk',
+    to: '/policy',
+  },
+  {
+    index: '04',
+    beatKey: 'beat4.kicker',
+    color: 'var(--amber)',
+    hAKey: 'beat4.hA',
+    hEmKey: 'beat4.hEm',
+    hBKey: 'beat4.hB',
+    bodyKey: 'beat4.body',
+    stats: [
+      { value: 40.7, labelKey: 'beat4.s1', suffix: '%' },
+      { value: 55, labelKey: 'beat4.s2', suffix: '%' },
+      { value: 52, labelKey: 'beat4.s3', prefix: '$' },
+    ],
+    to: '/markets',
   },
 ]
 

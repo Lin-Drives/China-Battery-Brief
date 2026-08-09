@@ -26,7 +26,7 @@
 
   <!-- masthead -->
   <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
-  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">№048 · THU 06:00 UTC</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 048 · THU 06:00 UTC</text>
   <line x1="48" y1="72" x2="752" y2="72" stroke="#222C40" stroke-width="1"/>
 
   <!-- title -->

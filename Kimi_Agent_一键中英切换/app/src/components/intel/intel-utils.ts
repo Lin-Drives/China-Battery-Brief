@@ -112,29 +112,6 @@ export function formatGwh(gwh: number | null): string {
   return gwh % 1 === 0 ? String(gwh) : gwh.toFixed(1)
 }
 
-/* ---------- Risk gauge zones (geopolitics.md S1) ---------- */
-
-export function zoneColor(score: number): string {
-  if (score < 40) return 'var(--volt)'
-  if (score <= 70) return 'var(--amber)'
-  return 'var(--signal)'
-}
-
-export function severityLabel(score: number): string {
-  if (score < 40) return 'LOW'
-  if (score < 70) return 'ELEVATED'
-  if (score < 85) return 'HIGH'
-  return 'SEVERE'
-}
-
-/** Dictionary key for the score-zone label (see severity.* in i18n dicts). */
-export function severityKey(score: number): string {
-  if (score < 40) return 'severity.low'
-  if (score < 70) return 'severity.elevated'
-  if (score < 85) return 'severity.high'
-  return 'severity.severe'
-}
-
 /* ---------- Tracker filter state (tracker.md S4) ---------- */
 
 export interface TrackerFilters {

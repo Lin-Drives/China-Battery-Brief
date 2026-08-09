@@ -12,7 +12,8 @@ const LINKS = [
   { key: 'nav.briefs', to: '/briefs' },
   { key: 'nav.tracker', to: '/tracker' },
   { key: 'nav.tech', to: '/tech' },
-  { key: 'nav.risk', to: '/risk' },
+  { key: 'nav.policy', to: '/policy' },
+  { key: 'nav.markets', to: '/markets' },
   { key: 'nav.pricing', to: '/pricing' },
   { key: 'nav.about', to: '/about' },
 ]
