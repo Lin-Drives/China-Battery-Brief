@@ -44,15 +44,15 @@ export const SOURCES: SourceConfig[] = [
   { key: "gasgoo", name: "盖世汽车", kind: "rsshub", url: "", rsshubRoute: "gasgoo/news", layer: "S2", pillar: "overseas-capacity", enabled: true, note: "整车/供应链出海（RSSHub 源不稳定，可能失败）" },
 
   /* 公司官方（S0） */
-  { key: "catl", name: "宁德时代 CATL", kind: "html", url: "https://www.catl.com/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网新闻中心，无 RSS，待接入 HTML 解析" },
-  { key: "byd", name: "比亚迪 BYD", kind: "html", url: "https://www.byd.com", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "待接入 HTML 解析" },
-  { key: "eve", name: "亿纬锂能 EVE", kind: "html", url: "https://www.evebattery.com/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "待接入 HTML 解析" },
-  { key: "gotion", name: "国轩高科 Gotion", kind: "rss", url: "https://www.gotion.com/feed/", layer: "S0", pillar: "overseas-capacity", enabled: true },
+  { key: "catl", name: "宁德时代 CATL", kind: "html", url: "https://www.catl.com/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网新闻中心，/news/<id>.html 列表" },
+  { key: "byd", name: "比亚迪 BYD", kind: "html", url: "https://www.byd.com/cn/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "JS 渲染，通用解析保底" },
+  { key: "eve", name: "亿纬锂能 EVE", kind: "html", url: "https://www.evebattery.com/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网新闻中心，/news-<id> 列表" },
+  { key: "gotion", name: "国轩高科 Gotion", kind: "html", url: "https://www.gotion.com/news/", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "RSS 坏（只有 2018 测试帖），改 HTML" },
   { key: "svolt", name: "蜂巢能源 SVOLT", kind: "rss", url: "https://www.svolt.cn/rss.xml", layer: "S0", pillar: "overseas-capacity", enabled: true },
-  { key: "sunwoda", name: "欣旺达 Sunwoda", kind: "html", url: "https://www.sunwoda.com", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "待接入 HTML 解析" },
-  { key: "huayou", name: "华友钴业 Huayou", kind: "html", url: "https://www.huayou.com", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "待接入 HTML 解析" },
-  { key: "calb", name: "中创新航 CALB (HKEX)", kind: "html", url: "https://www1.hkexnews.hk", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "3931.HK，待接入公告抓取" },
-  { key: "cngr", name: "中伟股份 CNGR (SZ)", kind: "html", url: "http://www.cninfo.com.cn", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "300919，待接入公告抓取" },
+  { key: "sunwoda", name: "欣旺达 Sunwoda", kind: "html", url: "https://www.sunwoda.com/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "JS 渲染，通用解析保底" },
+  { key: "huayou", name: "华友钴业 Huayou", kind: "html", url: "https://www.huayou.com/news/corporate-news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网企业新闻，/news/corporate-news/<id> 列表" },
+  { key: "calb", name: "中创新航 CALB (HKEX)", kind: "html", url: "https://www1.hkexnews.hk", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "3931.HK，交易所公告，待专项" },
+  { key: "cngr", name: "中伟股份 CNGR (SZ)", kind: "html", url: "http://www.cninfo.com.cn", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "300919，深交所公告，待专项" },
 
   /* ---------- ② 政策追踪 ---------- */
   { key: "mofcom", name: "商务部 MOFCOM", kind: "html", url: "https://www.mofcom.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, note: "出口管制/两步许可/反制第一手，待接入" },

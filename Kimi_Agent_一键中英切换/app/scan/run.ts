@@ -16,6 +16,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { RSSHUB_INSTANCES, enabledSources } from "./config";
 import type { SourceConfig } from "./config";
+import { parseForSource, htmlItemsToScanned } from "./parse-html";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "scan");
@@ -148,19 +149,25 @@ async function fetchHtmlRaw(src: SourceConfig): Promise<ScannedItem[]> {
   const rawDir = join(ROOT, todayDir(), "raw-html")
   mkdirSync(rawDir, { recursive: true })
   writeFileSync(join(rawDir, `${src.key}.html`), html)
-  return [
-    {
-      id: hashUrl(`html:${src.key}:${todayDir()}`),
-      title: `[HTML] ${src.name} — 原始页面已存档`,
-      url: src.url,
-      source: src.key,
-      layer: src.layer,
-      pillar: src.pillar,
-      publishedAt: null,
-      discoveredAt: stamp(),
-      summary: `已抓取 ${html.length} 字节到 scan/${todayDir()}/raw-html/${src.key}.html，待整理层解析`,
-    } satisfies ScannedItem,
-  ]
+
+  const parsed = parseForSource(src, html)
+  if (parsed.length === 0) {
+    // 无解析规则或解析为空：落一个占位记录，标注待处理
+    return [
+      {
+        id: hashUrl(`html:${src.key}:${todayDir()}`),
+        title: `[HTML] ${src.name} — 列表页已存档，解析未命中`,
+        url: src.url,
+        source: src.key,
+        layer: src.layer,
+        pillar: src.pillar,
+        publishedAt: null,
+        discoveredAt: stamp(),
+        summary: `已抓取 ${html.length} 字节到 scan/${todayDir()}/raw-html/${src.key}.html，待补充解析规则`,
+      } satisfies ScannedItem,
+    ]
+  }
+  return htmlItemsToScanned(src, parsed)
 }
 
 async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[] }> {
