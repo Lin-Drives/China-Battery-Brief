@@ -32,6 +32,10 @@
 - Model expansion: Dec 2025 Ford confirmed it will use CATL-licensed LFP tech for **stationary storage** at the retooled ex-BlueOval SK Kentucky (Glendale) plant; May 13 2026 Ford launched "**Ford Energy**" (20 GWh/yr ESS plan, $2bn/2yr investment, 512 Ah LFP cells licensed from CATL); May 18 2026 EDF Power Solutions signed framework for up to 20 GWh over 5 years (up to 4 GWh/yr from 2028). Ford stock +13.18% on launch. [China Daily, 2026-05-12; goodcarbadcar.net, 2026-05-18 — low-authority source on Ford Energy details, cross-check advised]（福特将CATL技术授权从车用扩展到储能，LRS模式在美国落地）
 - Related: GM confirmed (Aug 2025) it will **import CATL LFP cells** for the 2nd-gen Chevrolet Bolt (Fairfax, KS; production late 2025, ~$30k, 2026 dealerships) as a stopgap. [China Daily, 2026-05-12]
 
+**Europe — storage orders & ecosystem (2026-07/08)**
+- **2026-07-21**: CATL–**Solarpro**（保加利亚可再生能源开发商）**2 GWh Na-ion** storage agreement; **2026-07-16**: CATL–**Alfen**（荷兰电网方案商）**5 GWh Na-ion** storage deal. Two European Na-ion ESS orders in one month signal CATL Na-ion storage going overseas. [catl.com/news/10110, 2026-07-21; catl.com/news/10075, 2026-07-16]
+- **2026-08-04**: Czech Republic's **largest grid-scale BESS commissioned**, supplied by **CATL-backed CNTE**（宁德时代参股企业）. [Energy-Storage.News, 2026-08-04]
+
 ### 1.2 BYD
 
 **Brazil — Camaçari, Bahia (ex-Ford site)**

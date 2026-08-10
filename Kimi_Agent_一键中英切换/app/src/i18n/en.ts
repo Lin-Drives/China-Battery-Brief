@@ -557,6 +557,8 @@ Object.assign(en, {
   'policyRel.049.dek': 'Two firms, half a market — and the capex trail that decides the next cycle.',
   'policyRel.048.title': 'THE RE-EXPORT RING',
   'policyRel.048.dek': 'Southeast Asia is China’s tariff-free back door — and the arbitrage is real.',
+  'policyRel.044.title': 'NICKEL, BLACKLISTS AND KENITRA: THE REAL COST OF GOING GLOBAL',
+  'policyRel.044.dek': "CATL's $6bn Indonesia chain, BYD's Brazil dirty-listing and Gotion's Morocco gigafactory show governance, not capital, is the new bottleneck.",
 })
 
 /* ---------- Policy Desk · rulebook fronts ---------- */
@@ -663,6 +665,10 @@ Object.assign(en, {
   'marketsRel.047.dek': 'Capacity is the new currency: 40 GWh booked before the first cell shipped.',
   'marketsRel.048.title': 'THE RE-EXPORT RING',
   'marketsRel.048.dek': 'Southeast Asia is China’s tariff-free back door — and the arbitrage is real.',
+  'marketsRel.049.title': 'THE SCOREBOARD: TWO FIRMS, HALF A MARKET',
+  'marketsRel.049.dek': 'CATL takes 40.7% of Q1 2026 deployment, CATL+Byd pass 54.6% of the year to date, and the capex trail shows where the next capacity cycle will be built.',
+  'marketsRel.050.title': 'HALF THE STORAGE NOW LEAVES CHINA',
+  'marketsRel.050.dek': 'H1 2026 ESS shipments hit 461.3 GWh (up 71%), non-China markets take 56% for the first time, and residential storage becomes the new margin battleground.',
 })
 
 /* ---------- Account (/account) ---------- */

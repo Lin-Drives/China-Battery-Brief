@@ -383,9 +383,15 @@
       },
       {
         "outlet": "CATL official news",
-        "title": "CATL-Solarpro 2GWh Na-ion storage agreement; CATL-Alfen 5GWh Na-ion storage deal",
+        "title": "CATL-Solarpro 2 GWh Na-ion storage agreement",
         "url": "https://www.catl.com/news/10110.html",
         "date": "2026-07-21"
+      },
+      {
+        "outlet": "CATL official news",
+        "title": "CATL-Alfen 5 GWh Na-ion storage deal",
+        "url": "https://www.catl.com/news/10075.html",
+        "date": "2026-07-16"
       },
       {
         "outlet": "Energy-Storage.News",

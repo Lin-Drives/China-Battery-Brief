@@ -278,20 +278,6 @@ export default function Tech() {
                 cover: '/cover-046.png',
                 minutes: 14,
               },
-              {
-                num: 'No. 042',
-                title: t('techRel.042.title'),
-                dek: t('techRel.042.dek'),
-                to: '/briefs',
-                minutes: 12,
-              },
-              {
-                num: 'No. 041',
-                title: t('techRel.041.title'),
-                dek: t('techRel.041.dek'),
-                to: '/briefs/battery-passport-t-minus-200',
-                minutes: 11,
-              },
             ]}
           />
         </div>

@@ -199,6 +199,14 @@ export default function Policy() {
           <RelatedBriefs
             items={[
               {
+                num: 'No. 048',
+                title: t('policyRel.048.title'),
+                dek: t('policyRel.048.dek'),
+                to: '/briefs/the-re-export-ring',
+                cover: '/cover-048.svg',
+                minutes: 14,
+              },
+              {
                 num: 'No. 045',
                 title: t('policyRel.045.title'),
                 dek: t('policyRel.045.dek'),
@@ -207,20 +215,12 @@ export default function Policy() {
                 minutes: 13,
               },
               {
-                num: 'No. 049',
-                title: t('policyRel.049.title'),
-                dek: t('policyRel.049.dek'),
-                to: '/briefs/the-scoreboard',
-                cover: '/cover-049.svg',
-                minutes: 14,
-              },
-              {
-                num: 'No. 048',
-                title: t('policyRel.048.title'),
-                dek: t('policyRel.048.dek'),
-                to: '/briefs/the-re-export-ring',
-                cover: '/cover-048.svg',
-                minutes: 14,
+                num: 'No. 044',
+                title: t('policyRel.044.title'),
+                dek: t('policyRel.044.dek'),
+                to: '/briefs/the-governance-bottleneck',
+                cover: '/cover-044.png',
+                minutes: 6,
               },
             ]}
           />

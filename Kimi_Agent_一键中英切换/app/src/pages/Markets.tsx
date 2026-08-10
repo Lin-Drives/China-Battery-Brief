@@ -290,28 +290,20 @@ export default function Markets() {
           <RelatedBriefs
             items={[
               {
-                num: 'No. 046',
-                title: t('marketsRel.046.title'),
-                dek: t('marketsRel.046.dek'),
-                to: '/briefs/solid-state-2027-consensus',
-                cover: '/cover-046.png',
-                minutes: 14,
+                num: 'No. 050',
+                title: t('marketsRel.050.title'),
+                dek: t('marketsRel.050.dek'),
+                to: '/briefs/storage-shift-non-china-majority',
+                cover: '/cover-050.svg',
+                minutes: 8,
               },
               {
-                num: 'No. 047',
-                title: t('marketsRel.047.title'),
-                dek: t('marketsRel.047.dek'),
-                to: '/briefs/debrecen-sold-out',
-                cover: '/cover-047.png',
-                minutes: 12,
-              },
-              {
-                num: 'No. 048',
-                title: t('marketsRel.048.title'),
-                dek: t('marketsRel.048.dek'),
-                to: '/briefs/the-re-export-ring',
-                cover: '/cover-048.svg',
-                minutes: 14,
+                num: 'No. 049',
+                title: t('marketsRel.049.title'),
+                dek: t('marketsRel.049.dek'),
+                to: '/briefs/the-scoreboard',
+                cover: '/cover-049.svg',
+                minutes: 7,
               },
             ]}
           />
