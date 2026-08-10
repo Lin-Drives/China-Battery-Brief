@@ -64,16 +64,16 @@ export default function FeaturedIssue({ issue }: { issue: IssueMeta }) {
       onClick={open}
     >
       <div className="grid lg:grid-cols-[380px_1fr]">
-        {/* Cover */}
-        <div className="relative min-h-[280px] overflow-hidden border-b border-line lg:border-b-0 lg:border-r">
+        {/* Cover — tall column, contain the 4:3 SVG so it is never cropped sideways */}
+        <div className="relative min-h-[280px] overflow-hidden bg-ink-950 border-b border-line lg:border-b-0 lg:border-r">
           {issue.coverAsset ? (
             <motion.img
               src={issue.coverAsset}
               alt={`Cover art for issue ${fmtIssueNo(issue.number)}`}
-              initial={{ scale: 1.06, filter: 'grayscale(20%)' }}
+              initial={{ scale: 1.02, filter: 'grayscale(20%)' }}
               animate={{ scale: 1, filter: 'grayscale(0%)' }}
               transition={{ duration: 0.8, ease: EASE }}
-              className="absolute inset-0 h-full w-full object-cover transition-[filter] duration-300 hover:brightness-110"
+              className="absolute inset-0 m-auto h-full max-h-[100%] w-full max-w-[100%] object-contain transition-[filter] duration-300 hover:brightness-110"
             />
           ) : (
             <GhostCover number={issue.number} pillars={issue.pillars} className="absolute inset-0" />
