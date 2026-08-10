@@ -40,14 +40,18 @@
 launchctl load ~/Library/LaunchAgents/com.cbb.scan.plist
 ```
 
-### 抓取层已知失败源（需后续处理）
-- 盖世汽车（gasgoo）：RSSHub 全实例 403，待接入官网/其他路由
-- Benchmark：feed 超时（免费内容有限，优先级低）
-- CALB/中伟：交易所公告站反爬，待接入专用抓取
-- Reuters：401（需登录/额度）
-- SNE：fetch failed（站墙境外）
-- Global Trade Alert：超时（数据量大，待专项处理）
-- 财联社电报：RSSHub 返回 0 条（路由 200 但无条目，待换路由）
+### 抓取层信源状态（2026-08-10 定稿）
+
+**已接入（正常产出）**：CnEVPost / 华尔街见闻 / 东方财富 / CNBC / Energy-Storage.News（RSS）+ 财联社电报（RSSHub）+ CATL / EVE / 华友 / 中国储能网 / SNE（HTML 专用解析）。
+
+**已修复（2026-08-10）**：SNE——原 URL 302 跳转 + 缺 `/en/insight/release/` 路径，改对后抓到 12 条全球份额/装机数据。
+
+**判定跳过（不做专项）**：
+- **JS 渲染源**：比亚迪、Gotion、欣旺达、盖世汽车——新闻由 JS 动态加载，静态抓取拿不到；需浏览器渲染（playwright），成本高且有反爬风险，跳过。
+- **Reuters**：401 需登录/JS challenge，无免费公开 feed，跳过。
+- **Global Trade Alert**：Angular 应用，路径全 404，需 API 逆向，跳过。
+- **财联社电报**：RSSHub 返回 0 条（路由 200 但无条目），内容经财联社官网电报页可查，暂以官网为主。
+- **Benchmark / CALB / 中伟**：Benchmark feed 超时（免费内容有限）；CALB/中伟交易所公告站反爬，优先级低，跳过。
 
 ---
 
