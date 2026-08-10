@@ -27,9 +27,9 @@ const PANELS: Panel[] = [
     hBKey: 'beat1.hB',
     bodyKey: 'beat1.body',
     stats: [
-      { value: 47, labelKey: 'beat1.s1' },
-      { value: 1240, labelKey: 'beat1.s2' },
-      { value: 23, labelKey: 'beat1.s3' },
+      { value: 19, labelKey: 'beat1.s1' },
+      { value: 464, labelKey: 'beat1.s2' },
+      { value: 11, labelKey: 'beat1.s3' },
     ],
     to: '/tracker',
   },

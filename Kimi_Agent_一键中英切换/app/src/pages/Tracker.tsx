@@ -86,8 +86,8 @@ export default function Tracker() {
     { scope: headerRef },
   )
 
-  const totalSites = stats?.totalSites ?? 47
-  const totalGwh = Math.round(stats?.totalGwh ?? 1240)
+  const totalSites = stats?.totalSites ?? 19
+  const totalGwh = Math.round(stats?.totalGwh ?? 464)
 
   return (
     <>
@@ -127,7 +127,7 @@ export default function Tracker() {
           {[
             <StatBlock key="a" value={totalSites} label={t('tracker.stat1')} />,
             <StatBlock key="b" value={totalGwh} label={t('tracker.stat2')} />,
-            <StatBlock key="c" value={countryCount || 23} label={t('tracker.stat3')} />,
+            <StatBlock key="c" value={countryCount || 11} label={t('tracker.stat3')} />,
             <StatBlock key="d" value={61} prefix="$" suffix="B" label={t('tracker.stat4')} />,
           ].map((el, i) => (
             <div key={i} className="bg-ink-950 px-6 py-8">
