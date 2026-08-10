@@ -37,7 +37,7 @@ export const RSSHUB_INSTANCES = [
 ]
 
 export const SOURCES: SourceConfig[] = [
-  /* ---------- ① 海外建厂要闻 ---------- */
+  /* ---------- ① 产能地图 ---------- */
   { key: "cnevpost", name: "CnEVPost", kind: "rss", url: "https://cnevpost.com/feed/", layer: "S2", pillar: "overseas-capacity", enabled: true, note: "中国巨头海外动态当日全覆盖，首选时效源" },
   { key: "benchmark", name: "Benchmark Mineral", kind: "rss", url: "https://www.benchmarkminerals.com/feed", layer: "S1", pillar: "mixed", enabled: false, note: "feed 超时，免费内容有限，跳过" },
   { key: "cls", name: "财联社电报", kind: "rsshub", url: "", rsshubRoute: "cls/telegraph", layer: "S3", pillar: "mixed", enabled: true, note: "分钟级快讯，最先抓到建厂/扩产公告" },
@@ -62,7 +62,7 @@ export const SOURCES: SourceConfig[] = [
   { key: "gta", name: "Global Trade Alert", kind: "html", url: "https://globaltradealert.org", layer: "S1", pillar: "geopolitics", enabled: false, note: "Angular 应用，路径 404，跳过" },
   { key: "xinhua", name: "新华社（新华网）", kind: "html", url: "https://www.xinhuanet.com", layer: "S0", pillar: "geopolitics", enabled: true, note: "官方口径与通稿，待接入（403 反爬）" },
 
-  /* ---------- ③ 市场财务 ---------- */
+  /* ---------- ③ 市场信号 ---------- */
   { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com/en/insight/release/", layer: "S1", pillar: "markets", enabled: true, note: "Press Release 列表，含全球装机份额" },
   { key: "eastmoney", name: "东方财富", kind: "rsshub", url: "", rsshubRoute: "eastmoney/report/industry", layer: "S3", pillar: "markets", enabled: true, note: "财报/研报/公告聚合" },
   { key: "wallstreetcn", name: "华尔街见闻", kind: "rsshub", url: "", rsshubRoute: "wallstreetcn/live", layer: "S3", pillar: "markets", enabled: true },

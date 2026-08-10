@@ -263,9 +263,9 @@ function buildSummary(items: ScannedItem[]): string {
     ;(byPillar[i.pillar] ??= []).push(i)
   }
   const pillarName: Record<string, string> = {
-    "overseas-capacity": "① 海外建厂要闻",
+    "overseas-capacity": "① 产能地图",
     geopolitics: "② 政策追踪",
-    markets: "③ 市场财务",
+    markets: "③ 市场信号",
     storage: "④ 储能（筛电池出口相关）",
     mixed: "（综合/待分类）",
   }

@@ -13,7 +13,7 @@
 | `/tracker` | 全球工厂追踪 | `factories.list/stats` | d3-geo 可缩放暗夜世界地图、19 个真实站点、时间轴 scrubber、详情抽屉 |
 | `/tech` | 技术路线 LFP vs SSB | 静态策展 | 6 指标 pinned "对战" 滚动场景、时间线、公司押注表、术语表 |
 | `/policy` | 政策追踪 | `policy.list` | 中国规则手册四条战线 + 12 条政策时间线（2024→2027）+ 编辑台解读（原 `/risk` 已废弃） |
-| `/markets` | 市场财务 | 静态策展 | 记分牌（SNE 份额）、LFP/钠电/关税价格卡、资金动向表、The Take |
+| `/markets` | 市场信号 | 静态策展 | 格局（SNE 份额）、LFP/钠电/关税价格卡、资金动向表、The Take |
 | `/pricing` | 定价转化页 | `billing.checkout` | $0 / $19 / $499 三档、月/年切换、对比表、FAQ |
 | `/about` | 关于与方法论 | 静态 | 宣言、"missing middle" 商业透明、信源管线、团队、勘误日志 |
 | `/account` | 订阅者仪表盘 | `billing.my/history` + `me.*` | 订阅状态、收藏、告警矩阵、API Keys（Desk 档）、账单；admin 角色额外见 DESK CONTROL 管理台（发刊/删刊/统计） |

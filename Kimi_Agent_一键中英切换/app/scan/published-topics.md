@@ -8,7 +8,7 @@
 
 ## No.049 — The Scoreboard: Two Firms, Half a Market（2026-08-13）
 
-- **主题**：全球 EV 电池份额记分牌 + 资金流向（MARKETS）
+- **主题**：全球 EV 电池份额格局 + 资金流向（MARKETS）
 - **关键词**：CATL 40.7% Q1、CATL+BYD 54.6%、七家中企 72.2%、LFP $52/kWh、钠离子、Debrecen 售罄、印尼 Dragon、CALB Sines、EVE Kulim、双寡头
 - **一句话结论**：双寡头赢在"已花掉 capex、签下 offtake、放好股权"，跟钱走比跟炒作走有用。
 
@@ -49,7 +49,7 @@
 当周 story 命中以下信号时标 `[已覆盖]`：
 - 提到 **Debrecen 售罄 / Zaragoza / Stellantis 合资** → No.047
 - 提到 **东南亚再出口 / Rayong / Kulim / Subang** → No.048
-- 提到 **全球份额 / 双寡头 / 资金流向记分牌** → No.049
+- 提到 **全球份额 / 双寡头 / 资金流向格局** → No.049
 - 提到 **固态 2027 / LFP 份额 / 钠离子经济性** → No.046
 - 提到 **电池护照 / PFE / FEOC / §45X** → No.045
 - 提到 **印尼镍 / 巴西脏名单 / 摩洛哥** → No.044

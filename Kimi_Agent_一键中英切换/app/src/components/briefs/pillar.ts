@@ -14,7 +14,7 @@ const pillarMeta: Record<
     short: 'CAPACITY',
     label: 'Overseas Capacity',
     color: '#C9F24B',
-    cjk: '海外建厂',
+    cjk: '产能地图',
   },
   'tech-routes': {
     tag: 'tech',
@@ -28,14 +28,14 @@ const pillarMeta: Record<
     short: 'GEOPOLITICS',
     label: 'Geopolitics',
     color: '#FF5B45',
-    cjk: '地缘风险',
+    cjk: '政策追踪',
   },
   markets: {
     tag: 'markets',
     short: 'MARKETS',
     label: 'Markets',
     color: '#F0A832',
-    cjk: '市场财务',
+    cjk: '市场信号',
   },
 }
 
