@@ -125,6 +125,21 @@ const escnParser: HtmlParser = (_html, $) => {
   return out
 }
 
+/** SNE Research /en/insight/release/ — Press Release 列表，条目 `a[href*='release_view']`，标题 `p.font-score`，日期 `span.list-day`。 */
+const sneParser: HtmlParser = (_html, $) => {
+  const out: HtmlParsedItem[] = []
+  $("a[href*='release_view']").each((_i, el) => {
+    const $a = $(el)
+    const href = $a.attr("href") ?? ""
+    const title = $a.find("p.font-score").first().text().replace(/\s+/g, " ").trim()
+    if (!title || title.length < 10) return
+    const dateRaw = $a.find("span.list-day").first().text().trim()
+    const abs = href.startsWith("http") ? href : `https://www.sneresearch.com${href}`
+    out.push({ title, url: abs, publishedAt: parseDate(dateRaw) })
+  })
+  return out
+}
+
 /** 解析入口：按源 key 分发。无专用解析的源返回空（run.ts 落占位记录）。 */
 export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[] {
   const $ = load(html)
@@ -137,6 +152,8 @@ export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[
       return huayouParser(html, $, src)
     case "escn":
       return escnParser(html, $, src)
+    case "sne":
+      return sneParser(html, $, src)
     default:
       return []
   }

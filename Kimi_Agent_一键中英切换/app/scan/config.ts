@@ -63,7 +63,7 @@ export const SOURCES: SourceConfig[] = [
   { key: "xinhua", name: "新华社（新华网）", kind: "html", url: "https://www.xinhuanet.com", layer: "S0", pillar: "geopolitics", enabled: true, note: "官方口径与通稿，待接入（403 反爬）" },
 
   /* ---------- ③ 市场财务 ---------- */
-  { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com", layer: "S1", pillar: "markets", enabled: true, note: "全球装机份额，免费 PR，待接入" },
+  { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com/en/insight/release/", layer: "S1", pillar: "markets", enabled: true, note: "Press Release 列表，含全球装机份额" },
   { key: "eastmoney", name: "东方财富", kind: "rsshub", url: "", rsshubRoute: "eastmoney/report/industry", layer: "S3", pillar: "markets", enabled: true, note: "财报/研报/公告聚合" },
   { key: "wallstreetcn", name: "华尔街见闻", kind: "rsshub", url: "", rsshubRoute: "wallstreetcn/live", layer: "S3", pillar: "markets", enabled: true },
   { key: "reuters", name: "Reuters Markets", kind: "html", url: "https://www.reuters.com/markets/", layer: "S1", pillar: "markets", enabled: true, note: "Deals/融资/合资一手，免费额度有限，待接入" },
