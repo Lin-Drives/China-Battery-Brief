@@ -233,16 +233,28 @@ async function main() {
   const workers = Array.from({ length: Math.min(CONCURRENCY, sources.length) }, () => worker())
   await Promise.all(workers)
 
-  // 汇总 fresh（仅今日新增）
-  const allFresh = fresh.filter((i) => i.discoveredAt.startsWith(date))
-  writeFileSync(join(outDir, "_all.json"), JSON.stringify(allFresh, null, 2))
-  writeFileSync(join(outDir, "_summary.txt"), buildSummary(allFresh))
+  // 汇总：_all.json 写当日抓到的全量（供整理层），_all_new.json 写当日新增
+  const allToday = fresh.filter((i) => i.discoveredAt.startsWith(date))
+  const todayFull: ScannedItem[] = []
+  for (const src of sources) {
+    try {
+      const items = JSON.parse(readFileSync(join(outDir, `${src.key}.json`), "utf8")) as ScannedItem[]
+      todayFull.push(...items)
+    } catch {
+      /* 该源失败无文件，跳过 */
+    }
+  }
+  // 按 id 去重
+  const seenFull = new Set<string>()
+  const dedupedFull = todayFull.filter((i) => (seenFull.has(i.id) ? false : (seenFull.add(i.id), true)))
+  writeFileSync(join(outDir, "_all.json"), JSON.stringify(dedupedFull, null, 2))
+  writeFileSync(join(outDir, "_all_new.json"), JSON.stringify(allToday, null, 2))
+  writeFileSync(join(outDir, "_summary.txt"), buildSummary(dedupedFull))
 
   console.log(
-    `\nDone: ${sources.length} sources, ${allFresh.length} fresh today (dedup across history), ${fail} failed.`,
+    `\nDone: ${sources.length} sources, ${dedupedFull.length} total today, ${allToday.length} new (dedup across history), ${fail} failed.`,
   )
-  console.log(`Fresh items → scan/${date}/raw/_all.json`)
-  if (allFresh.length === 0) console.log("No new items today — already scanned.")
+  console.log(`Today's items → scan/${date}/raw/_all.json`)
 }
 
 function buildSummary(items: ScannedItem[]): string {
