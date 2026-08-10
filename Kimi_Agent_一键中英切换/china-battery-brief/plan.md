@@ -74,3 +74,30 @@
 
 ### 已否决
 - Ticker 跑马灯增加 markets 行情项（主编明确不喜欢 Ticker）
+
+## 8. 行动计划（2026-08-10 追加）
+
+> 当前进度：全栈 + 4 支柱 + 7 期内容（044–050）+ 信源扫描工作流（17 源零失败 + 定时任务）+ 内容选题横向比对。以下为后续计划，按优先级排列。
+
+### P0 — 收尾（半天）
+- [x] push 待推 commit（封面修复 ce67ed3）
+- [ ] 重启 opencode 启用 `scan:digest` 命令（`.opencode/command/scan:digest.md` 已建，需重启生效）
+
+### P1 — 内容流水线增强（1-2 天）
+- [ ] 跑一次 `scan:digest` 整理 050 之后素材，产出下周选题池
+- [ ] 补政府站 HTML 解析（商务部/工信部/发改委/国务院——目前只有 HTML 存档无解析，政策支柱稳定内容依赖它）
+- [ ] 固化 content-reviewer 复核流程为 opencode 命令（当前每次手动派）
+
+### P2 — MARKETS 深化（等数据累积）
+- [ ] 独立 MARKETS 归档视图（触发条件：MARKETS 出到 5~6 期，现 049/050 两期）
+- [ ] `markets` 真 API（触发条件：需 admin 台编辑市场数据，或数据累积）
+
+### P3 — 平台真实化（大工程，择期）
+- [ ] Stripe 支付接入（`api/billing-router.ts` 替换点已预留）
+- [ ] 邮件服务（周四群发 + 事务邮件，当前 `subscribe.email` 只落库）
+- [ ] 独立 `/admin` 路由 + 富文本编辑器（当前管理台在 `/account` 内）
+
+### 已记录决策
+- 信源收敛：17 源启用，JS 渲染源（BYD/Gotion/欣旺达/盖世）、认证源（Reuters/GTA）、低价值源（Benchmark/CALB/中伟）跳过
+- 四大支柱中文名：产能地图 / 技术路线 / 政策追踪 / 市场信号
+- 封面统一 4:3 SVG 程序化生成；归档精选卡片用 object-contain 防横向裁切
