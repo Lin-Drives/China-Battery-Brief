@@ -1,0 +1,58 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cover 050 — Half the Storage Now Leaves China">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5ADFC3" stop-opacity="0.10"/>
+      <stop offset="0.6" stop-color="#5ADFC3" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <!-- ghost issue number -->
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#5ADFC3" opacity="0.06">050</text>
+
+  <!-- corner ticks -->
+  <g stroke="#5ADFC3" stroke-width="2" opacity="0.9">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <!-- masthead -->
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#5ADFC3">No. 050 · THU 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- title -->
+  <text x="48" y="208" font-family="Georgia,serif" font-size="76" fill="#F4F0E6">Half the</text>
+  <text x="48" y="292" font-family="Georgia,serif" font-size="76" fill="#F4F0E6">Storage Now</text>
+  <text x="48" y="340" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#5ADFC3">Leaves China</text>
+
+  <!-- volt accent block -->
+  <rect x="48" y="384" width="26" height="120" fill="#5ADFC3"/>
+  <rect x="84" y="384" width="3" height="120" fill="#5ADFC3" opacity="0.35"/>
+
+  <!-- shipment listing -->
+  <g font-family="Courier,monospace" font-size="14" letter-spacing="1.5">
+    <text x="128" y="420" fill="#F4F0E6">H1 2026 · GLOBAL</text>
+    <text x="420" y="420" fill="#8E97A8">—</text>
+    <text x="448" y="420" fill="#F4F0E6">461.3 GWH · +71%</text>
+
+    <text x="128" y="456" fill="#F4F0E6">NON-CHINA SHARE</text>
+    <text x="420" y="456" fill="#8E97A8">—</text>
+    <text x="448" y="456" fill="#F4F0E6">56% · FIRST TIME</text>
+
+    <text x="128" y="492" fill="#F4F0E6">CATL · GLOBAL</text>
+    <text x="420" y="492" fill="#8E97A8">—</text>
+    <text x="448" y="492" fill="#F4F0E6">27.1% · 125 GWH</text>
+  </g>
+
+  <line x1="48" y1="548" x2="752" y2="548" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="566" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">CBB · WEEKLY INTELLIGENCE · EVERY THURSDAY 06:00 UTC</text>
+</svg>
