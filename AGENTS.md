@@ -21,8 +21,8 @@ Kimi_Agent_一键中英切换/        ← 项目主目录（目录名即功能�
 │   ├── contracts/             ← 前后端共享常量/类型/错误（constants.ts / types.ts / errors.ts）
 │   ├── public/                ← 静态资源（封面图、logo、头像等）
 │   └── package.json / vite.config.ts / drizzle.config.ts / ...
-├── china-battery-brief/       ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）
-├── seed-content/              ← 4 期英文样刊源稿（№044–047，与 app/db/seed-content 同源副本）
+├── china-battery-brief/       ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ security.md（安全应急手册）
+├── seed-content/              ← 7 期英文样刊源稿（No. 044–050，与 app/db/seed-content 同源副本）
 ├── seed-content-zh/           ← 对应中文译文源稿
 └── info.md                    ← 调研事实底座（所有内容的事实来源，带来源与日期标注）
 Kimi_Agent_一键中英切换.zip    ← 上述目录的打包存档，勿改动

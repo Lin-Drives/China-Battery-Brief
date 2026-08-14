@@ -6,7 +6,7 @@ A bilingual (English/Chinese, one-click toggle) weekly intelligence newsletter a
 - **Tech routes** — LFP vs solid-state, and the chemistry that actually wins
 - **Geopolitics & policy** — IRA / §45X / FEOC, EU Battery Passport, export controls
 
-Business model: paid subscription tiers — Free / Pro ($19/mo) / Desk ($499/mo). The repo ships 4 sample issues (№044–047) in English and Chinese, seeded from a fact-checked research base.
+Business model: paid subscription tiers — Free / Pro ($19/mo) / Desk ($499/mo). The repo ships 7 sample issues (No. 044–050) in English and Chinese, seeded from a fact-checked research base.
 
 ---
 
@@ -51,17 +51,17 @@ Vitest 4 · ESLint 9 (flat config) · Prettier 3 · tsx (seed scripts) · TypeSc
 
 ```
 ├── Kimi_Agent_一键中英切换/
-│   └── app/                  ← the buildable npm project (the actual codebase)
-│       ├── src/              frontend (React SPA)
-│       ├── api/              backend (Hono + tRPC, Node runtime)
-│       ├── db/               Drizzle schema, relations, seed script + seed content
-│       ├── contracts/        shared constants / types / errors (front + back)
-│       ├── public/           static assets (covers, logos)
-│       └── package.json / vite.config.ts / drizzle.config.ts / ...
-│   └── china-battery-brief/  delivery docs: README.md (authoritative) + plan.md
-├── seed-content/             EN issue source copies (№044–047)
-├── seed-content-zh/          ZH issue source copies
-├── info.md                   research fact base (every fact sourced & dated)
+│   ├── app/                  ← the buildable npm project (the actual codebase)
+│   │   ├── src/              frontend (React SPA)
+│   │   ├── api/              backend (Hono + tRPC, Node runtime)
+│   │   ├── db/               Drizzle schema, relations, seed script + seed content
+│   │   ├── contracts/        shared constants / types / errors (front + back)
+│   │   ├── public/           static assets (covers, logos)
+│   │   └── package.json / vite.config.ts / drizzle.config.ts / ...
+│   ├── china-battery-brief/  delivery docs: README.md (authoritative) + plan.md + security.md
+│   ├── seed-content/         EN issue source copies (No. 044–050)
+│   ├── seed-content-zh/      ZH issue source copies (No. 044–050)
+│   └── info.md               research fact base (every fact sourced & dated)
 ├── AGENTS.md                 repo & coding conventions for AI agents
 └── README.md                 this file
 ```
