@@ -1,20 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-function getOAuthUrl() {
-  const kimiAuthUrl = import.meta.env.VITE_KIMI_AUTH_URL;
-  const appID = import.meta.env.VITE_APP_ID;
-  const redirectUri = `${window.location.origin}/api/oauth/callback`;
-  const state = btoa(redirectUri);
-
-  const url = new URL(`${kimiAuthUrl}/api/oauth/authorize`);
-  url.searchParams.set("client_id", appID);
-  url.searchParams.set("redirect_uri", redirectUri);
-  url.searchParams.set("response_type", "code");
-  url.searchParams.set("scope", "profile");
-  url.searchParams.set("state", state);
-
-  return url.toString();
+async function beginOAuth(): Promise<void> {
+  const resp = await fetch("/api/oauth/begin", { credentials: "include" });
+  if (!resp.ok) {
+    throw new Error(`OAuth begin failed (${resp.status})`);
+  }
+  const data = (await resp.json()) as { url: string };
+  window.location.href = data.url;
 }
 
 export default function Login() {
@@ -29,7 +22,9 @@ export default function Login() {
             className="w-full"
             size="lg"
             onClick={() => {
-              window.location.href = getOAuthUrl();
+              beginOAuth().catch((error) => {
+                console.error(error);
+              });
             }}
           >
             Sign in with Kimi

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { emailSubscribers } from "@db/schema";
 import { createRouter, publicQuery } from "./middleware";
 import { getDb } from "./queries/connection";
+import { checkLimit } from "./lib/rate-limit";
 import {
   countIssues,
   factoryStats,
@@ -100,7 +101,18 @@ export const contentRouter = createRouter({
   /* ----- Email capture (footer / free tier) ----- */
   "subscribe.email": publicQuery
     .input(z.object({ email: z.string().email().max(320) }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const { allowed, retryAfter } = checkLimit(
+        `subscribe-email:${ctx.ip}`,
+        60_000,
+        5,
+      );
+      if (!allowed) {
+        throw new TRPCError({
+          code: "TOO_MANY_REQUESTS",
+          message: `Too many subscribe attempts, retry in ${retryAfter}s`,
+        });
+      }
       const db = getDb();
       await db
         .insert(emailSubscribers)

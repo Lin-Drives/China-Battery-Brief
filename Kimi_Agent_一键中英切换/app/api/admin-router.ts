@@ -4,6 +4,7 @@ import { z } from "zod";
 import { emailSubscribers, factories, issues, payments, policyEvents, users } from "@db/schema";
 import { createRouter, adminQuery } from "./middleware";
 import { getDb } from "./queries/connection";
+import { audit } from "./lib/audit";
 
 const issueInput = z.object({
   number: z.number().int().positive(),
@@ -67,24 +68,50 @@ export const adminRouter = createRouter({
   }),
 
   /* ----- Issues CMS ----- */
-  "issues.create": adminQuery.input(issueInput).mutation(async ({ input }) => {
+  "issues.create": adminQuery.input(issueInput).mutation(async ({ ctx, input }) => {
     const db = getDb();
     const [row] = await db.insert(issues).values(input).$returningId();
+    await audit({
+      userId: ctx.user.id,
+      actorName: ctx.user.name,
+      action: "admin.issue.create",
+      targetType: "issue",
+      targetId: row.id,
+      ip: ctx.ip,
+      meta: { number: input.number, slug: input.slug },
+    });
     return { id: row.id };
   }),
 
   "issues.update": adminQuery
     .input(z.object({ id: z.number().int().positive(), data: issueInput.partial() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       const db = getDb();
       await db.update(issues).set(input.data).where(eq(issues.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.issue.update",
+        targetType: "issue",
+        targetId: input.id,
+        ip: ctx.ip,
+        meta: { changed: Object.keys(input.data) },
+      });
       return { ok: true as const };
     }),
 
   "issues.delete": adminQuery
     .input(z.object({ id: z.number().int().positive() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       await getDb().delete(issues).where(eq(issues.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.issue.delete",
+        targetType: "issue",
+        targetId: input.id,
+        ip: ctx.ip,
+      });
       return { ok: true as const };
     }),
 
@@ -94,42 +121,94 @@ export const adminRouter = createRouter({
   }),
 
   /* ----- Factories CMS ----- */
-  "factories.create": adminQuery.input(factoryInput).mutation(async ({ input }) => {
+  "factories.create": adminQuery.input(factoryInput).mutation(async ({ ctx, input }) => {
     const [row] = await getDb().insert(factories).values(input).$returningId();
+    await audit({
+      userId: ctx.user.id,
+      actorName: ctx.user.name,
+      action: "admin.factory.create",
+      targetType: "factory",
+      targetId: row.id,
+      ip: ctx.ip,
+      meta: { company: input.company, siteName: input.siteName },
+    });
     return { id: row.id };
   }),
 
   "factories.update": adminQuery
     .input(z.object({ id: z.number().int().positive(), data: factoryInput.partial() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       await getDb().update(factories).set(input.data).where(eq(factories.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.factory.update",
+        targetType: "factory",
+        targetId: input.id,
+        ip: ctx.ip,
+        meta: { changed: Object.keys(input.data) },
+      });
       return { ok: true as const };
     }),
 
   "factories.delete": adminQuery
     .input(z.object({ id: z.number().int().positive() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       await getDb().delete(factories).where(eq(factories.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.factory.delete",
+        targetType: "factory",
+        targetId: input.id,
+        ip: ctx.ip,
+      });
       return { ok: true as const };
     }),
 
   /* ----- Policy events CMS ----- */
-  "policy.create": adminQuery.input(policyInput).mutation(async ({ input }) => {
+  "policy.create": adminQuery.input(policyInput).mutation(async ({ ctx, input }) => {
     const [row] = await getDb().insert(policyEvents).values(input).$returningId();
+    await audit({
+      userId: ctx.user.id,
+      actorName: ctx.user.name,
+      action: "admin.policy.create",
+      targetType: "policy_event",
+      targetId: row.id,
+      ip: ctx.ip,
+      meta: { title: input.title },
+    });
     return { id: row.id };
   }),
 
   "policy.update": adminQuery
     .input(z.object({ id: z.number().int().positive(), data: policyInput.partial() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       await getDb().update(policyEvents).set(input.data).where(eq(policyEvents.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.policy.update",
+        targetType: "policy_event",
+        targetId: input.id,
+        ip: ctx.ip,
+        meta: { changed: Object.keys(input.data) },
+      });
       return { ok: true as const };
     }),
 
   "policy.delete": adminQuery
     .input(z.object({ id: z.number().int().positive() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       await getDb().delete(policyEvents).where(eq(policyEvents.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.policy.delete",
+        targetType: "policy_event",
+        targetId: input.id,
+        ip: ctx.ip,
+      });
       return { ok: true as const };
     }),
 

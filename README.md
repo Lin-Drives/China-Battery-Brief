@@ -39,7 +39,7 @@ Business model: paid subscription tiers — Free / Pro ($19/mo) / Desk ($499/mo)
 | Layer | Choice |
 |---|---|
 | ORM | Drizzle ORM 0.45 + drizzle-kit (MySQL, `mysql2` driver, planetscale mode) |
-| Database | MySQL 8 · 12 tables: users · issues (with `*Zh` bilingual fields) · plans · subscriptions · payments · factories · policy_events · ticker_items · saved_briefs · alerts · api_keys · email_subscribers |
+| Database | MySQL 8 · 13 tables: users · issues (with `*Zh` bilingual fields) · plans · subscriptions · payments · factories · policy_events · ticker_items · saved_briefs · alerts · api_keys · email_subscribers · audit_logs |
 | Seeding | `db/seed.ts` — idempotent, reads EN (`db/seed-content/`) + ZH (`db/seed-content-zh/`) markdown + JSON metadata |
 
 ### Tooling
@@ -82,6 +82,7 @@ All commands run from `Kimi_Agent_一键中英切换/app/`:
 | `npm run lint` / `format` | ESLint / Prettier |
 | `npm test` | Vitest (currently no tests yet) |
 | `npm run db:start` / `db:seed` | Start bundled MySQL (`../.local-mysql`) / reseed (idempotent) |
+| `npm run db:backup` / `db:restore` | Dump DB + assets snapshot to `../backups/db/` (retain N) / restore from a dump |
 
 Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DATABASE_URL`, `APP_ID`/`APP_SECRET` (Kimi OAuth), `KIMI_AUTH_URL`/`KIMI_OPEN_URL`, `OWNER_UNION_ID` (first log-in becomes admin).
 
@@ -98,6 +99,10 @@ The app is a **single Node process** (Hono serves `dist/public` + the API), so a
 - Suggested free stack: **Render free web service** (Node) + **TiDB Cloud Serverless** (100% MySQL-compatible free tier). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — the schema is standard MySQL and the seed is idempotent.
 
 Beta switch: `OpenAccess.beta` in `contracts/constants.ts` (`true` = every brief free to all readers, paywall/teasers off; flip to `false` to restore the paywall).
+
+## Security
+
+Production-grade hardening is built in (rate limiting, security headers + CSP/HSTS, CSRF Origin check, OAuth state nonces, audit log table, backup scripts, request/error logging). **Deployment-topology items to re-verify once the hosting is chosen** (trusted proxy for `X-Forwarded-For`, HTTPS/HSTS, OAuth redirect allowlist) — see `Kimi_Agent_一键中英切换/china-battery-brief/security.md` (Chinese runbook + incident response).
 
 ---
 
@@ -116,5 +121,6 @@ Beta switch: `OpenAccess.beta` in `contracts/constants.ts` (`true` = every brief
 
 - `Kimi_Agent_一键中英切换/china-battery-brief/README.md` — delivery notes (authoritative, in Chinese)
 - `Kimi_Agent_一键中英切换/china-battery-brief/plan.md` — execution blueprint
+- `Kimi_Agent_一键中英切换/china-battery-brief/security.md` — security architecture + incident response runbook (Chinese)
 - `info.md` — research fact base (sources + dates)
 - `AGENTS.md` — coding & i18n conventions

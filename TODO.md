@@ -39,7 +39,7 @@
 - 付费墙/权限单测、Stripe 支付、邮件群发、去平台化登录 —— 搁置
 
 ## 下一步（待规划）
-- [ ] **安全设计前置**：部署公网后可能面临的网络攻击、数据库泄漏、用户数据泄漏风险，尤其需防范来自中国大陆以外的攻击来源；从设计初期即纳入安全架构（认证/密钥/限流/审计/备份/应急），而非上线后补丁
+- [x] **安全设计前置（已完成一轮，待部署复核）**：认证（Cookie SameSite=Lax、OAuth state 一次性 nonce、APP_SECRET 校验）、限流（内存窗口：tRPC/begin/callback/subscribe）、安全响应头（CSP/HSTS/nosniff/XFO/Referrer/Permissions + API no-store）、CSRF Origin 校验、bodyLimit 2MB、请求日志不落 query、错误掩码、隐藏文件拦截、audit_logs 审计表、db:backup/restore 脚本、security.md 应急手册。**部署方案（域名/服务器/CDN）敲定后需复核**：XFF 可信代理、HTTPS/HSTS、OAuth redirect allowlist（详见 `china-battery-brief/security.md` 第三节）
 - [ ] **内容定位聚焦 + 金融投资方向**：重新梳理目标用户画像、他们想看的内容、与同类网站（Stratechery/终端数据商等）的差异化、品牌记忆点；探索加入金融投资/研报内容作为新支柱方向，评估价值主张与商业化
 - [ ] **部署与内容迭代自动化**：CI/CD 自动部署、内容生产/更新流水线自动化；热点信息获取的策略与算法（信息源采集、去重、价值判断标准）；高价值内容判定模型；国内 vs 国外信源的取舍优先级——均需形成可执行的方案
 

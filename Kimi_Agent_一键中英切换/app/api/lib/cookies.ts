@@ -11,7 +11,10 @@ export function getSessionCookieOptions(headers: Headers): CookieOptions {
   return {
     httpOnly: true,
     path: "/",
-    sameSite: localhost ? "Lax" : "None",
+    // Same-origin SPA + API. "None" previously allowed cross-site POSTs to
+    // carry the session cookie — a CSRF vector. "Lax" keeps auth working
+    // while blocking cross-site state changes.
+    sameSite: "Lax",
     secure: !localhost,
   };
 }

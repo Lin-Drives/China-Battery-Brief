@@ -12,6 +12,7 @@ import {
   double,
   bigint,
   unique,
+  index,
 } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
@@ -217,3 +218,26 @@ export const emailSubscribers = mysqlTable("email_subscribers", {
   email: varchar("email", { length: 320 }).notNull().unique(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
+
+/** Immutable security/compliance audit trail (admin actions, auth events). */
+export const auditLogs = mysqlTable(
+  "audit_logs",
+  {
+    id: serial("id").primaryKey(),
+    userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
+    actorName: varchar("actorName", { length: 255 }),
+    action: varchar("action", { length: 100 }).notNull(),
+    targetType: varchar("targetType", { length: 50 }),
+    targetId: varchar("targetId", { length: 100 }),
+    ip: varchar("ip", { length: 64 }),
+    meta: json("meta").$type<Record<string, unknown>>(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (t) => ({
+    idxAction: index("idx_audit_action").on(t.action),
+    idxCreatedAt: index("idx_audit_created").on(t.createdAt),
+  }),
+);
+
+export type AuditLog = typeof auditLogs.$inferSelect;
+export type InsertAuditLog = typeof auditLogs.$inferInsert;

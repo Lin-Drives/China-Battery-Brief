@@ -4,9 +4,12 @@ import * as jose from "jose";
 import * as cookie from "cookie";
 import { env } from "../lib/env";
 import { getSessionCookieOptions } from "../lib/cookies";
-import { Session } from "@contracts/constants";
+import { getClientIp } from "../lib/rate-limit";
+import { audit } from "../lib/audit";
+import { Session, Paths } from "@contracts/constants";
 import { Errors } from "@contracts/errors";
 import { signSessionToken, verifySessionToken } from "./session";
+import { consumeOAuthState, issueOAuthState } from "./state";
 import { users as kimiUsers } from "./platform";
 import { findUserByUnionId, upsertUser } from "../queries/users";
 import type { TokenResponse } from "./types";
@@ -71,6 +74,27 @@ export async function authenticateRequest(headers: Headers) {
   return user;
 }
 
+export function createOAuthBeginHandler() {
+  return async (c: Context) => {
+    const proto = c.req.header("x-forwarded-proto")?.split(",")[0]?.trim() ?? "http";
+    const host = c.req.header("x-forwarded-host") ?? c.req.header("host");
+    if (!host) {
+      return c.json({ error: "missing host" }, 400);
+    }
+    const redirectUri = `${proto}://${host}${Paths.oauthCallback}`;
+    const state = issueOAuthState(redirectUri);
+
+    const url = new URL(`${env.kimiAuthUrl}/api/oauth/authorize`);
+    url.searchParams.set("client_id", env.appId);
+    url.searchParams.set("redirect_uri", redirectUri);
+    url.searchParams.set("response_type", "code");
+    url.searchParams.set("scope", "profile");
+    url.searchParams.set("state", state);
+
+    return c.json({ url: url.toString() });
+  };
+}
+
 export function createOAuthCallbackHandler() {
   return async (c: Context) => {
     const code = c.req.query("code");
@@ -92,8 +116,17 @@ export function createOAuthCallbackHandler() {
       return c.json({ error: "code and state are required" }, 400);
     }
 
+    const redirectUri = consumeOAuthState(state);
+    if (!redirectUri) {
+      return c.json({ error: "invalid or expired state" }, 400);
+    }
+
+    const callbackHost = `${c.req.header("x-forwarded-host") ?? c.req.header("host")}`;
+    if (new URL(redirectUri).host !== callbackHost) {
+      return c.json({ error: "state does not match this origin" }, 400);
+    }
+
     try {
-      const redirectUri = atob(state);
       const tokenResp = await exchangeAuthCode(code, redirectUri);
       const { userId } = await verifyAccessToken(tokenResp.access_token);
       const userProfile = await kimiUsers.getProfile(tokenResp.access_token);
@@ -119,9 +152,24 @@ export function createOAuthCallbackHandler() {
         maxAge: Session.maxAgeMs / 1000,
       });
 
+      const user = await findUserByUnionId(userId);
+      await audit({
+        userId: user?.id ?? 0,
+        actorName: userProfile.name,
+        action: "auth.login",
+        ip: getClientIp(c),
+        meta: { unionId: userId },
+      });
+
       return c.redirect("/", 302);
     } catch (error) {
       console.error("[OAuth] Callback failed", error);
+      await audit({
+        userId: 0,
+        action: "auth.login_failed",
+        ip: getClientIp(c),
+        meta: { error: error instanceof Error ? error.message : String(error) },
+      });
       return c.json({ error: "OAuth callback failed" }, 500);
     }
   };

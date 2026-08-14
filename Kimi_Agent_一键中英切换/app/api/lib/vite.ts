@@ -9,6 +9,16 @@ type App = Hono<{ Bindings: HttpBindings }>;
 export function serveStaticFiles(app: App) {
   const distPath = path.resolve(import.meta.dirname, "../dist/public");
 
+  // Never expose dotfiles / source maps / tool configs to the public web.
+  app.use("*", async (c, next) => {
+    const url = new URL(c.req.url);
+    const segs = url.pathname.split("/");
+    if (segs.some((s) => s.startsWith(".") || s.startsWith("_"))) {
+      return c.text("Not Found", 404);
+    }
+    await next();
+  });
+
   app.use("*", serveStatic({ root: "./dist/public" }));
 
   app.notFound((c) => {

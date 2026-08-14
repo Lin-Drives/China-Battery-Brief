@@ -5,21 +5,48 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { appRouter } from "./router";
 import { createContext } from "./context";
 import { env } from "./lib/env";
-import { createOAuthCallbackHandler } from "./kimi/auth";
+import { requestLogger } from "./lib/request-log";
+import { securityHeaders } from "./lib/security-headers";
+import { csrfProtect } from "./lib/csrf";
+import { rateLimit, getClientIp } from "./lib/rate-limit";
+import { tagRequestIp } from "./lib/ip-context";
+import { createOAuthBeginHandler, createOAuthCallbackHandler } from "./kimi/auth";
 import { Paths } from "@contracts/constants";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
 
-app.use(bodyLimit({ maxSize: 50 * 1024 * 1024 }));
-app.get(Paths.oauthCallback, createOAuthCallbackHandler());
-app.use("/api/trpc/*", async (c) => {
-  return fetchRequestHandler({
-    endpoint: "/api/trpc",
-    req: c.req.raw,
-    router: appRouter,
-    createContext,
-  });
-});
+app.use(requestLogger);
+app.use(securityHeaders);
+app.use(csrfProtect);
+
+// 2 MB request body cap — issue markdown rarely exceeds a few hundred KB.
+app.use(bodyLimit({ maxSize: 2 * 1024 * 1024 }));
+
+app.get(
+  "/api/oauth/begin",
+  rateLimit({ windowMs: 60_000, max: 30, prefix: "oauth-begin" }),
+  createOAuthBeginHandler(),
+);
+app.get(
+  Paths.oauthCallback,
+  rateLimit({ windowMs: 60_000, max: 20, prefix: "oauth-callback" }),
+  createOAuthCallbackHandler(),
+);
+app.use(
+  "/api/trpc/*",
+  rateLimit({ windowMs: 60_000, max: 600, prefix: "trpc" }),
+  async (c) => {
+    // Resolve the real client IP here (with socket fallback) so tRPC
+    // procedures see a non-spoofable address.
+    tagRequestIp(c.req.raw, getClientIp(c));
+    return fetchRequestHandler({
+      endpoint: "/api/trpc",
+      req: c.req.raw,
+      router: appRouter,
+      createContext,
+    });
+  },
+);
 app.all("/api/*", (c) => c.json({ error: "Not Found" }, 404));
 
 export default app;
