@@ -92,7 +92,7 @@ Kimi_Agent_一键中英切换.zip    ← 上述目录的打包存档，勿改动
 - 周刊发布流程：admin 在 `/account` 管理台粘贴 markdown → 发布；或更新 `db/seed-content*/` 后重跑 seed。事实内容必须溯源到 `info.md`（调研事实底座，每条带来源与日期）。
 - **信源时效（内容红线）**：优先选用发布后 3 个月内的信息，时效越高越好。对「当前状态」的断言（在建/投产/搁浅/占比等），必须引用近 3 个月信源；历史事实（签约日、首产下线等）可作背景保留，但须与近期信源分开标注。无法核实真实 URL 的事实不得写入。
 - **读者背景预设（写作红线）**：预设读者是专业从业者，但**不了解任何特定公司/项目的背景**。新企业、新项目、新专名首次出现时，先用一句简单语言介绍身份（如「安塔姆（Antam，印尼国有镍矿商）」「储能企业 HyperStrong」「商务部两步许可制」），再做具体论述；后续再提可沿用简称。英文同理（first mention 给身份从句）。
-- **内容二次复核（交叉校验）**：新刊/改稿发布前，用 `content-reviewer` 子代理（`~/.config/opencode/agent/content-reviewer.md`，模型 `opencode/minimax-m3`）独立复核一遍，按 AGENTS.md 红线逐条检查（信源时效 / 读者背景预设 / 专业术语 / 中英一致性 / 表述清晰 / 事实溯源）；复核 agent 只读不改，**最终由主模型裁决并修正**。交叉校验利用不同模型互查，降低单一模型盲区。复核流程见第七节各红线条目。
+- **内容二次复核（交叉校验）**：新刊/改稿发布前，用 `content-reviewer` 子代理（`~/.config/opencode/agent/content-reviewer.md`，模型 `opencode/minimax-m3`）独立复核一遍，按 AGENTS.md 红线逐条检查（信源时效 / 读者背景预设 / 专业术语 / 中英一致性 / 表述清晰 / 事实溯源）；复核 agent 只读不改，**最终由主模型裁决并修正**。交叉校验利用不同模型互查，降低单一模型盲区。复核流程见第七节各红线条目。**已固化为命令：`opencode run content:review`**（派 content-reviewer 子代理 → 主模型裁决修正 → 汇总结论）。
 - **封面图**：当前模型不具备位图生成能力；新刊封面一律程序化绘制 `public/cover-<期号>.svg`（4:3、站点色板：ink-900 底 `#0C1017` / 正文纸色 `#F4F0E6` / volt `#C9F24B` / 辅助 `#F0A832`、`#5ADFC3`、`#8E97A8`），`issues.json` 的 `coverAsset` 指向该 SVG；不依赖外部图片。
 - 密钥：`.env` 与 `Kimi_Agent_一键中英切换.zip` 不要读取外传；`api_keys` 表只存哈希。
 - 不要做 git mutation（commit/push/reset 等），除非用户明确要求。
