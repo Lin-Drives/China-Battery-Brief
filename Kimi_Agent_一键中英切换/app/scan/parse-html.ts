@@ -140,6 +140,61 @@ const sneParser: HtmlParser = (_html, $) => {
   return out
 }
 
+/**
+ * 商务部 MOFCOM — 首页要闻/政策栏目。
+ * 条目 `a[href*='/art/2026/...html']`，标题优先取 title 属性，回退链接文本。
+ * 首页抓取即可命中出口管制/反制等政策条目（栏目列表页为 JS 渲染，静态解析不可用）。
+ */
+const mofcomParser: HtmlParser = (_html, $, src) => {
+  const out: HtmlParsedItem[] = []
+  const seen = new Set<string>()
+  $("a[href*='/art/']").each((_i, el) => {
+    const $a = $(el)
+    const href = $a.attr("href") ?? ""
+    if (!/\/art\/(20\d{2})\/[^"]*\.html$/.test(href)) return
+    if (seen.has(href)) return
+    seen.add(href)
+    const title =
+      ($a.attr("title") ?? "").replace(/\s+/g, " ").trim() ||
+      $a.text().replace(/\s+/g, " ").trim()
+    if (!title || title.length < 6) return
+    const abs = href.startsWith("http") ? href : `https://www.${src.key}.gov.cn${href}`
+    out.push({ title, url: abs })
+  })
+  return out
+}
+
+/**
+ * 工信部 MIIT — 首页政务公开/意见征集/工业数据栏目。
+ * 条目 `a[href*='/art/']`，仅保留政策相关栏目路径（zwgk/gzcy/gxsj），过滤时政要闻（xwfb）。
+ * 标题优先 title 属性，日期在条目所在区块（span 可能在链接前或后）。
+ */
+const miitParser: HtmlParser = (_html, $, src) => {
+  const out: HtmlParsedItem[] = []
+  const seen = new Set<string>()
+  const keepCols = ["zwgk", "gzcy", "gxsj"]
+  $("a[href*='/art/']").each((_i, el) => {
+    const $a = $(el)
+    const href = $a.attr("href") ?? ""
+    if (!/\/art\/(20\d{2})\/[^"]*\.html$/.test(href)) return
+    const col = href.startsWith("/") ? href.split("/")[1] : ""
+    if (!keepCols.includes(col)) return
+    if (seen.has(href)) return
+    seen.add(href)
+    const title =
+      ($a.attr("title") ?? "").replace(/\s+/g, " ").trim() ||
+      $a.text().replace(/\s+/g, " ").trim()
+    if (!title || title.length < 6) return
+    // 日期：链接所在 li/p 区块内任一日期文本（span 可能在 a 前或后）
+    const $block = $a.closest("li, p, div")
+    const mDate = $block.text().match(/(20\d{2}-\d{1,2}-\d{1,2})/)
+    const dateRaw = $block.find("span").first().text().trim() || $block.find("em").first().text().trim() || (mDate ? mDate[1] : "")
+    const abs = href.startsWith("http") ? href : `https://www.${src.key}.gov.cn${href}`
+    out.push({ title, url: abs, publishedAt: parseDate(dateRaw) })
+  })
+  return out
+}
+
 /** 解析入口：按源 key 分发。无专用解析的源返回空（run.ts 落占位记录）。 */
 export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[] {
   const $ = load(html)
@@ -154,6 +209,10 @@ export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[
       return escnParser(html, $, src)
     case "sne":
       return sneParser(html, $, src)
+    case "mofcom":
+      return mofcomParser(html, $, src)
+    case "miit":
+      return miitParser(html, $, src)
     default:
       return []
   }

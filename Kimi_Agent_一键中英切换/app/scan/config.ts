@@ -65,8 +65,8 @@ export const SOURCES: SourceConfig[] = [
   { key: "cngr", name: "中伟股份 CNGR (SZ)", kind: "html", url: "http://www.cninfo.com.cn", layer: "S0", pillar: "overseas-capacity", enabled: false, note: "深交所公告反爬，跳过" },
 
   /* ---------- ② 政策追踪 ---------- */
-  { key: "mofcom", name: "商务部 MOFCOM", kind: "html", url: "https://www.mofcom.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "出口管制/两步许可/反制第一手，待接入" },
-  { key: "miit", name: "工信部 MIIT", kind: "html", url: "https://www.miit.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "国标/回收/行业准入，待接入" },
+  { key: "mofcom", name: "商务部 MOFCOM", kind: "html", url: "https://www.mofcom.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "出口管制/反制公告第一手，首页 art 详情解析已接入" },
+  { key: "miit", name: "工信部 MIIT", kind: "html", url: "https://www.miit.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "国标/回收/行业准入，首页 art 详情解析已接入" },
   { key: "ndrc", name: "发改委 NDRC", kind: "html", url: "https://www.ndrc.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "规划与补贴细则，待接入" },
   { key: "govcn", name: "国务院（中国政府网）", kind: "html", url: "https://www.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "政策文件库与官方解读，待接入" },
   { key: "gta", name: "Global Trade Alert", kind: "html", url: "https://globaltradealert.org", layer: "S1", pillar: "geopolitics", enabled: false, note: "Angular 应用，路径 404，跳过" },

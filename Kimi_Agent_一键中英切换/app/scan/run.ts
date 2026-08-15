@@ -194,11 +194,37 @@ function cachedHtmlItems(src: SourceConfig): ScannedItem[] | null {
   return best
 }
 
+/** 最近一次该源存档的原始 HTML 文件路径（用于冷却期内重跑解析器，无需新请求）。 */
+function latestHtmlArchive(src: SourceConfig): { html: string; date: string } | null {
+  let best: { html: string; date: string } | null = null
+  let bestAt = 0
+  for (const d of readdirSync(ROOT)) {
+    const p = join(ROOT, d, "raw-html", `${src.key}.html`)
+    if (!existsSync(p)) continue
+    const t = statSync(p).mtimeMs
+    if (t <= bestAt) continue
+    best = { html: readFileSync(p, "utf8"), date: d }
+    bestAt = t
+  }
+  return best
+}
+
 async function fetchHtmlRaw(src: SourceConfig): Promise<ScannedItem[]> {
-  // 冷却期检查：距上次抓取不足 cooldownDays 天 → 不发起请求，复用缓存
+  // 冷却期检查：距上次抓取不足 cooldownDays 天 → 不发起新请求。
   if (src.cooldownDays && src.cooldownDays > 0) {
     const last = lastHtmlFetchAt(src)
     if (last > 0 && Date.now() - last < src.cooldownDays * 24 * 3600 * 1000) {
+      // 优先：用最近存档的原始 HTML 重跑解析器（解析规则升级后无需等冷却期即可生效）
+      const archive = latestHtmlArchive(src)
+      if (archive) {
+        const parsed = parseForSource(src, archive.html)
+        const items = parsed.length > 0 ? htmlItemsToScanned(src, parsed) : null
+        if (items) {
+          console.log(`  ∿ ${src.key.padEnd(14)} ${src.name.padEnd(20)} COOLDOWN — reparse cached (${items.length} items)`)
+          return items
+        }
+      }
+      // 兜底：复用已落盘的条目
       const cached = cachedHtmlItems(src)
       if (cached) {
         console.log(`  ∿ ${src.key.padEnd(14)} ${src.name.padEnd(20)} COOLDOWN — reuse cached (${cached.length} items)`)
