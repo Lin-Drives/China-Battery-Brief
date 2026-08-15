@@ -55,20 +55,20 @@
 
 ---
 
-## 三、部署时必复核的三项配置（部署方案未定时先搁置）
+## 三、部署时必复核的三项配置
 
-> 这三项和「你最终用什么域名/服务器/CDN」绑定。部署敲定后逐项核对；在此之前**不影响**本地与内网使用。
+> 部署形态已定（自有 VPS + Nginx + Cloudflare CDN，方案见 `deploy.md`，分支 `deploy/self-hosted`）。执行 `deploy.md` Step 4/5/8 时逐项落实以下三项；主线（Kimi Agent 平台托管）另行按平台网关行为核对。
 
 1. **X-Forwarded-For 可信性**（最重要）
    限流和审计都靠 XFF 的第一个 IP 认人。前提是它由**你信得过的反向代理**（Nginx / Cloudflare / 平台网关）写入，并且代理会**覆盖**而非追加客户端传来的 XFF。
-   - 核对方法：在代理配置里确认 `X-Forwarded-For` 由代理生成、并清空客户端自带值。
+   - 核对方法：在 Nginx 配置 `set_real_ip_from`（只信任 Cloudflare IP 段）+ `real_ip_recursive on`，确认 `X-Forwarded-For` 由代理生成、并清空客户端自带值。
    - 如果不做：攻击者每换一个 XFF 值就能绕开限流、污染审计里的 IP。
 
 2. **HTTPS / HSTS**
-   HSTS 头只在请求走 HTTPS（`x-forwarded-proto: https`）时才下发，纯 HTTP 阶段不会误发。证书/平台 TLS 就绪后，用 `curl -I` 看到 `Strict-Transport-Security` 即生效；稳定运行后再考虑加进 HSTS preload。
+   HSTS 头只在请求走 HTTPS（`x-forwarded-proto: https`）时才下发，纯 HTTP 阶段不会误发。证书/平台 TLS 就绪后，用 `curl -I` 看到 `Strict-Transport-Security` 即生效；稳定运行后再考虑加进 HSTS preload。自托管形态：Let's Encrypt / Cloudflare 自动续期，见 `deploy.md` Step 5。
 
 3. **OAuth 回调地址**
-   `/api/oauth/begin` 按「访问 Host」拼出回调地址。**换域名 = 换回调地址**，必须同步去 Kimi OAuth 应用后台更新 redirect 白名单，并回归「点登录 → 授权 → 跳回首页」全流程。
+   `/api/oauth/begin` 按「访问 Host」拼出回调地址。**换域名 = 换回调地址**，必须同步去 Kimi OAuth 应用后台更新 redirect 白名单，并回归「点登录 → 授权 → 跳回首页」全流程。自托管形态用新购域名时，见 `deploy.md` Step 8。
 
 ---
 

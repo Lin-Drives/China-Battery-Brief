@@ -89,9 +89,12 @@
 - 重新梳理目标用户画像、想看的内容、与同类网站（Stratechery/终端数据商等）的差异化、品牌记忆点
 - 探索加入金融投资/研报内容作为新支柱方向，评估价值主张与商业化
 
-### 队列 E — 部署自动化（未做）
-> 内容生产/更新链路已自动化（见队列 C）。此处只剩部署侧缺口。
-- [ ] CI/CD 自动部署（本地验证基线 `npm run build && npm start` 已固化，缺服务端流水线）
+### 队列 E — 部署自动化（分支 `deploy/self-hosted` 开发中）
+> 内容生产/更新链路已自动化（见队列 C）。此处为部署侧。
+> **方案已定**：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，权威文档 `china-battery-brief/deploy.md`（分支 `deploy/self-hosted`）。主线保持 Kimi Agent 平台托管。
+- [ ] 购买 VPS + 域名，按 `deploy.md` Step 0–8 执行
+- [ ] 部署后过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
+- [ ] CI/CD 自动部署（本方案先手动部署 + systemd 常驻 + cron 备份，CI/CD 后置）
 - [ ] （可选）热点「价值判断」模型化——已有 S0–S4 分层 + published-topics 人工比对，判定模型可后置
 
 ### 已记录决策

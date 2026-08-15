@@ -51,7 +51,8 @@
 - [x] 跑一次 `scan:digest` 整理 No. 050 之后素材，产出下周选题池（2026-08-15，303 新增 → 10 story，见 scan/2026-08-15/digest.md；补登记 No.050 主题画像至 published-topics.md）
 - [x] 补政府站 HTML 解析（商务部/工信部已接入首页 art 详情解析；发改委/国务院/新华社首页无列表结构，维持存档占位）
 - [x] 固化 content-reviewer 复核流程为 opencode 命令（`.opencode/command/content:review.md`，已更新 AGENTS.md 引用）
-- [ ] 部署方案（域名/服务器/CDN）敲定后：按 `china-battery-brief/security.md` 第三节复核 XFF 可信代理、HTTPS/HSTS、OAuth redirect allowlist（安全加固已完成，见 44d95db）
+- [x] 部署方案敲定：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，方案文档 `china-battery-brief/deploy.md`，在分支 `deploy/self-hosted` 开发（主线保持平台托管）
+- [ ] 购买 VPS + 域名后：按 `deploy.md` Step 0–8 部署，过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
 
 ## 暂停（暂不开发付费功能）
 - 付费墙/权限单测、去平台化登录 —— 搁置
