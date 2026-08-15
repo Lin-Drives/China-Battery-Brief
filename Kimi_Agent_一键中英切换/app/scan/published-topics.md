@@ -6,6 +6,12 @@
 
 ---
 
+## No.050 — Half the Storage Now Leaves China（2026-08-10）
+
+- **主题**：全球储能电池市场格局（MARKETS）
+- **关键词**：H1 2026 ESS 461.3GWh、CATL 27.1%、亿纬 10.4%、海辰 10.0%、非中国市场 56%、北美 CATL 38.8%、户储、钠电储能、Solarpro 2GWh、Alfen 5GWh、CNTE 捷克
+- **一句话结论**：一半储能如今离开中国——非中国市场首次过半，中国储能电芯的竞争从国内卷到海外与户储。
+
 ## No.049 — The Scoreboard: Two Firms, Half a Market（2026-08-13）
 
 - **主题**：全球 EV 电池份额格局 + 资金流向（MARKETS）
@@ -50,6 +56,7 @@
 - 提到 **Debrecen 售罄 / Zaragoza / Stellantis 合资** → No.047
 - 提到 **东南亚再出口 / Rayong / Kulim / Subang** → No.048
 - 提到 **全球份额 / 双寡头 / 资金流向格局** → No.049
+- 提到 **储能份额 / 非中国市场 / 户储 / 钠电储能订单** → No.050
 - 提到 **固态 2027 / LFP 份额 / 钠离子经济性** → No.046
 - 提到 **电池护照 / PFE / FEOC / §45X** → No.045
 - 提到 **印尼镍 / 巴西脏名单 / 摩洛哥** → No.044

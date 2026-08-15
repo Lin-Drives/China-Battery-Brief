@@ -47,8 +47,8 @@
 - [x] 维持规范：新刊封面继续程序化 SVG（AGENTS.md 第七节）
 
 ## 当前迭代（短期，可动手）
-- [ ] 重启 opencode 启用 `scan:digest` 命令（`.opencode/command/scan:digest.md` 已建，需重启生效）
-- [ ] 跑一次 `scan:digest` 整理 No. 050 之后素材，产出下周选题池
+- [x] 重启 opencode 启用 `scan:digest` 命令（`.opencode/command/scan:digest.md` 已建，需重启生效）
+- [x] 跑一次 `scan:digest` 整理 No. 050 之后素材，产出下周选题池（2026-08-15，303 新增 → 10 story，见 scan/2026-08-15/digest.md；补登记 No.050 主题画像至 published-topics.md）
 - [ ] 补政府站 HTML 解析（商务部/工信部/发改委/国务院——目前只有 HTML 存档无解析，政策支柱稳定内容依赖它）
 - [ ] 固化 content-reviewer 复核流程为 opencode 命令（当前每次手动派）
 - [ ] 部署方案（域名/服务器/CDN）敲定后：按 `china-battery-brief/security.md` 第三节复核 XFF 可信代理、HTTPS/HSTS、OAuth redirect allowlist（安全加固已完成，见 44d95db）

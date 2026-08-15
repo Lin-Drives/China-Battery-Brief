@@ -9,7 +9,7 @@
  * 设计：并发（默认 4）+ 边抓边写——即使部分源失败，已完成的结果也已落盘。
  */
 
-import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync } from "fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "fs";
 import { join } from "path";
 import { createHash } from "crypto";
 import { dirname } from "path";
@@ -22,6 +22,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..", "scan");
 const CONCURRENCY = 4;
 const FETCH_TIMEOUT_MS = 12000;
+/** 慢速源（政府站等敏感站点）串行请求之间的最小间隔（毫秒），避免突发访问。 */
+const SLOW_GAP_MS = 6000;
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36";
 
@@ -144,7 +146,67 @@ async function fetchRsshub(src: SourceConfig): Promise<ScannedItem[]> {
   throw new Error(`${src.key}: all RSSHub instances failed — ${String(lastErr)}`)
 }
 
+/** 慢速源串行队列：同一时刻只允许一个慢速请求在执行，且相邻请求间隔 SLOW_GAP_MS。 */
+let slowTail: Promise<void> = Promise.resolve()
+function enqueueSlow<T>(task: () => Promise<T>): Promise<T> {
+  const run = slowTail.then(async () => {
+    // 间隔（错峰）：队头请求完成后等一个 gap 再发下一个
+    await new Promise((r) => setTimeout(r, SLOW_GAP_MS))
+    return task()
+  })
+  // 保证链式串行：即使本次失败也继续队列
+  slowTail = run.then(
+    () => undefined,
+    () => undefined,
+  )
+  return run
+}
+
+/** 该源最近一次抓取时间戳（从 scan/<date>/raw-html/<key>.html 的 mtime 推断）。 */
+function lastHtmlFetchAt(src: SourceConfig): number {
+  let latest = 0
+  for (const d of readdirSync(ROOT)) {
+    const p = join(ROOT, d, "raw-html", `${src.key}.html`)
+    if (!existsSync(p)) continue
+    const t = statSync(p).mtimeMs
+    if (t > latest) latest = t
+  }
+  return latest
+}
+
+/** 复用最近一次该源抓取的条目（用于冷却期内跳过请求时，不丢内容）。 */
+function cachedHtmlItems(src: SourceConfig): ScannedItem[] | null {
+  let best: ScannedItem[] | null = null
+  let bestAt = 0
+  for (const d of readdirSync(ROOT)) {
+    const p = join(ROOT, d, "raw", `${src.key}.json`)
+    if (!existsSync(p)) continue
+    const t = statSync(p).mtimeMs
+    if (t <= bestAt) continue
+    try {
+      const items = JSON.parse(readFileSync(p, "utf8")) as ScannedItem[]
+      best = items
+      bestAt = t
+    } catch {
+      /* 坏文件忽略 */
+    }
+  }
+  return best
+}
+
 async function fetchHtmlRaw(src: SourceConfig): Promise<ScannedItem[]> {
+  // 冷却期检查：距上次抓取不足 cooldownDays 天 → 不发起请求，复用缓存
+  if (src.cooldownDays && src.cooldownDays > 0) {
+    const last = lastHtmlFetchAt(src)
+    if (last > 0 && Date.now() - last < src.cooldownDays * 24 * 3600 * 1000) {
+      const cached = cachedHtmlItems(src)
+      if (cached) {
+        console.log(`  ∿ ${src.key.padEnd(14)} ${src.name.padEnd(20)} COOLDOWN — reuse cached (${cached.length} items)`)
+        return cached
+      }
+    }
+  }
+
   const html = await fetchText(src.url)
   const rawDir = join(ROOT, todayDir(), "raw-html")
   mkdirSync(rawDir, { recursive: true })
@@ -173,6 +235,8 @@ async function fetchHtmlRaw(src: SourceConfig): Promise<ScannedItem[]> {
 async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[] }> {
   if (src.kind === "rss") return { src, items: await fetchRss(src) }
   if (src.kind === "rsshub") return { src, items: await fetchRsshub(src) }
+  // 慢速源（政府站等）串行 + 间隔，避免并发突发
+  if (src.slow) return { src, items: await enqueueSlow(() => fetchHtmlRaw(src)) }
   return { src, items: await fetchHtmlRaw(src) }
 }
 
