@@ -64,13 +64,15 @@
 ## 7. 长期战略队列（2026-08-09 建档 · 2026-08-15 整理去重）
 
 > 定位：本文件只登记「方向 / 触发条件 / 队列」；本周可动手的具体任务在仓库根 `TODO.md`「当前迭代」。
-> 基线：全栈 + 4 支柱 + 7 期内容（No. 044–050）+ 信源扫描工作流（17 源零失败 + 定时任务）+ 内容选题横向比对 + 安全加固一轮（44d95db）。
+> 基线：全栈 + 4 支柱 + 7 期内容（No. 044–050）+ 信源扫描工作流（17 源零失败 + 定时任务）+ 内容选题横向比对 + 安全加固一轮（44d95db）+ 去平台化登录第一步（分支 `deploy/self-hosted`：移除 Kimi OAuth、demo 免登录、auth 接口预留）。
 
 ### 队列 A — MARKETS 板块深化（触发式）
 - [ ] **独立 MARKETS 归档视图**：等 MARKETS 出到 5~6 期后，在 `/markets` 内或 `/markets/archive` 用铜色卡片列出全部 markets 期，不复用通用 IssueRow（现 No. 049/050 两期）
 - [ ] **`markets` 真 API**：新建 `markets.overview` tRPC 接口 + 市场数据表，`Markets.tsx` 改 `useQuery`。价值：改数字不发版、数据可溯源带日期、能算周环比差异。触发条件：MARKETS 累积几期数据，或需支持 admin 台编辑市场数据
 
 ### 队列 B — 平台真实化（README §五，大工程择期）
+> **已完成（分支 `deploy/self-hosted`）**：去平台化登录第一步——移除 Kimi OAuth，demo 免登录全站可读，`auth.*` 接口预留 stub（`api/auth-router.ts` / `api/context.ts`）。
+- [ ] 邮箱+密码认证（在 stub 上填实现：scrypt 哈希、注册/登录、JWT session、OWNER_EMAIL 首登 admin）
 - [ ] 模拟支付 → Stripe Checkout + Webhook（`api/billing-router.ts` 替换点已预留）
 - [ ] 邮件服务：周四 06:00 UTC 群发 + 事务邮件（当前 `subscribe.email` 只落库）
 - [ ] 独立 `/admin` 路由 + 富文本编辑器

@@ -10,8 +10,6 @@ import { securityHeaders } from "./lib/security-headers";
 import { csrfProtect } from "./lib/csrf";
 import { rateLimit, getClientIp } from "./lib/rate-limit";
 import { tagRequestIp } from "./lib/ip-context";
-import { createOAuthBeginHandler, createOAuthCallbackHandler } from "./kimi/auth";
-import { Paths } from "@contracts/constants";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
 
@@ -22,16 +20,6 @@ app.use(csrfProtect);
 // 2 MB request body cap — issue markdown rarely exceeds a few hundred KB.
 app.use(bodyLimit({ maxSize: 2 * 1024 * 1024 }));
 
-app.get(
-  "/api/oauth/begin",
-  rateLimit({ windowMs: 60_000, max: 30, prefix: "oauth-begin" }),
-  createOAuthBeginHandler(),
-);
-app.get(
-  Paths.oauthCallback,
-  rateLimit({ windowMs: 60_000, max: 20, prefix: "oauth-callback" }),
-  createOAuthCallbackHandler(),
-);
 app.use(
   "/api/trpc/*",
   rateLimit({ windowMs: 60_000, max: 600, prefix: "trpc" }),

@@ -52,10 +52,13 @@
 - [x] 补政府站 HTML 解析（商务部/工信部已接入首页 art 详情解析；发改委/国务院/新华社首页无列表结构，维持存档占位）
 - [x] 固化 content-reviewer 复核流程为 opencode 命令（`.opencode/command/content:review.md`，已更新 AGENTS.md 引用）
 - [x] 部署方案敲定：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，方案文档 `china-battery-brief/deploy.md`，在分支 `deploy/self-hosted` 开发（主线保持平台托管）
-- [ ] 购买 VPS + 域名后：按 `deploy.md` Step 0–8 部署，过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
+- [x] **去平台化登录第一步**（分支 `deploy/self-hosted`）：移除 Kimi OAuth 全部代码（`api/kimi/`、`boot.ts` 路由、env 变量），demo 免登录全站可读，`auth.*` 接口预留 stub，cookie 改 `cbb_sid`，Login 页改占位
+- [ ] 购买 VPS 已办（DigitalOcean 161.35.120.114）→ 部署进行中：Step 3 MariaDB+seed、Step 6 systemd、Step 7 备份 cron、Step 1/4/5 DNS 迁 Cloudflare + Nginx + HTTPS
+- [ ] 域名 `chinabatterybrief.com` 已注册 → DNS 迁 Cloudflare（A 记录指向 VPS）
 
 ## 暂停（暂不开发付费功能）
-- 付费墙/权限单测、去平台化登录 —— 搁置
+- 邮箱+密码认证（demo 免登录，接口已预留 stub）—— 队列 B
+- 付费墙/权限单测 —— 搁置
 - Stripe 支付、邮件群发、独立 /admin 属长期方向，登记在 plan.md「队列 B — 平台真实化」
 
 ## 约定

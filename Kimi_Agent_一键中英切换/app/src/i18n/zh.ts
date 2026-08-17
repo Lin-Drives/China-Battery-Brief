@@ -1254,4 +1254,10 @@ Object.assign(zh, {
   'acct.errPillars': '至少选择一个板块',
   'acct.errContent': '必须填写正文',
   'acct.errDate': '发布日期无效',
+
+  /* ---------- Login（预留认证占位）---------- */
+  'login.title': '登录',
+  'login.comingSoon': '账号与登录功能即将上线',
+  'login.body': '当前所有简报对所有读者免费开放，无需账号。订阅功能上线后，将在此登录。',
+  'login.backHome': '返回首页',
 })

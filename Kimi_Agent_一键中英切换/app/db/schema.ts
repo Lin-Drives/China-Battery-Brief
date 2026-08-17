@@ -17,6 +17,8 @@ import {
 
 export const users = mysqlTable("users", {
   id: serial("id").primaryKey(),
+  // Reserved: was the Kimi OAuth union id. Kept NOT NULL for now; the
+  // upcoming email+password auth (plan.md) will migrate this column away.
   unionId: varchar("unionId", { length: 255 }).notNull().unique(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 320 }),

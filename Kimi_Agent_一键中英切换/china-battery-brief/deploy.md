@@ -1,8 +1,8 @@
 # China Battery Brief — 部署方案（自有 VPS + Nginx 形态）
 
 > 定位：**自托管部署形态的权威方案**。主线（Kimi Agent 平台托管）见根 README；本方案在 git 分支 `deploy/self-hosted` 上开发，敲定并验证后决定是否合并主线。
-> 依据：`security.md` 第三节「部署时必复核的三项配置」——XFF 可信性 / HTTPS+HSTS / OAuth 回调白名单。
-> 状态：🟡 方案已定，待购买资源（VPS + 域名）后按本文档逐步执行。
+> 依据：`security.md` 第三节「部署时必复核的三项配置」——XFF 可信性 / HTTPS+HSTS / 应用内配置。
+> 状态：🟢 部署进行中（VPS 已购买、Step 0–3 已执行）。本分支已完成**去平台化登录**改造：站点不再依赖 Kimi OAuth，demo 免登录全可读，认证接口预留。
 
 ---
 
@@ -10,10 +10,11 @@
 
 | 项 | 选择 | 理由 |
 |---|---|---|
-| 托管形态 | 自有 VPS + Nginx 反向代理 | 能完整落实 security.md 三项：Nginx 作为可信反代覆盖 XFF、签发 HTTPS/HSTS、可控 OAuth 回调域名 |
+| 托管形态 | 自有 VPS + Nginx 反向代理 | 能完整落实 security.md 三项：Nginx 作为可信反代覆盖 XFF、签发 HTTPS/HSTS |
 | 应用运行 | 单进程 Node（`npm start`，Hono 托管静态 + tRPC） | 现状零改造，本地验证基线一致 |
 | 数据库 | VPS 同机安装 MariaDB | 零额外成本、`db:backup` 脚本直接复用、单人维护足够；后续可迁 PlanetScale（代码已对齐 `mode: planetscale`） |
-| 域名 | 新购独立域名（如 `chinabatterybrief.com`） | OAuth 回调地址直接绑定最终域名；换域名=换回调需回 Kimi 后台 |
+| 域名 | 新购独立域名（如 `chinabatterybrief.com`） | 站点最终绑定域名；换域名仅需改 DNS |
+| 认证 | **无登录（demo）**：全站免登录可读，`auth.*` 接口预留为 stub | 彻底摆脱 Kimi OAuth；正式上线时在此填邮箱+密码认证 |
 | 部署方式 | 手动部署 + systemd 常驻 + cron 备份（先不接 CI/CD） | 冷启动阶段单人可控；CI/CD 留到队列 E |
 
 **不选**：PaaS（XFF/HSTS 受平台控制）、云 RDS（过度配置）、PlanetScale 起步（有按量费用，先同机省成本）。
@@ -81,17 +82,19 @@ mkdir -p /opt/cbb && cd /opt/cbb
 git clone <你的私有仓库> app
 cd app
 
-# 生产环境变量（照抄本地 app/.env 结构，改这三处）
+# 生产环境变量（当前 demo 免登录，只需 DATABASE_URL）
 #   DATABASE_URL = 指向本机 MariaDB（见 Step 3）
-#   APP_SECRET   = 重新生成 ≥32 字符（不要复用本地！）
-#   OWNER_UNION_ID = 你的 Union ID（首个登录成为 admin）
-# 复制模板开始编辑：
-cp .env.example .env && vim .env
+# `.env.example` 被 gitignore，不随仓库走；直接在 app/ 下手写 `.env`：
+cat > .env <<'EOF'
+DATABASE_URL=mysql://cbb:<强密码>@localhost:3306/cbb
+EOF
 
 # 安装依赖 + 构建
 npm ci
 npm run build
 ```
+
+> 认证说明：demo 阶段全站免登录，`APP_SECRET` 不设置（预留）。正式开启邮箱+密码认证后再填（≥32 字符），届时 `auth.*` stub 换为真实实现。
 
 ### Step 3 — 初始化数据库
 
@@ -210,11 +213,13 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 0 3 * * * cd /opt/cbb/app && /usr/bin/npm run db:backup >> /opt/cbb/app/backup.log 2>&1
 ```
 
-### Step 8 — OAuth 回调白名单（对应 security.md 第三节第 3 条）
+### Step 8 — 认证状态核对（对应 security.md 第三节第 3 条）
 
-1. 在 Kimi OAuth 应用后台，把回调/重定向地址更新为 `https://chinabatterybrief.com/api/oauth/callback`
-2. 确认 `.env` 里 `KIMI_AUTH_URL` 指向 Kimi 授权服务器
-3. 回归验证：清 cookie → 点「Sign in with Kimi」→ 授权 → 跳回首页 → 首登者成为 admin
+当前 demo 为**免登录**形态（`auth.*` 接口 stub），无外部认证依赖，此步只需确认：
+
+1. `.env` 未设置 `APP_SECRET`（或设置了也无妨，demo 阶段不使用）
+2. 回归验证：匿名访问首页 + 任意期刊 → 全量可读（无付费墙）
+3. 预留：正式上线邮箱+密码认证时，此步改为「配置 APP_SECRET + 首个管理员邮箱」，并回归注册/登录全流程
 
 ---
 
@@ -224,7 +229,7 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 |---|---|---|---|
 | 1 | XFF 可信性 | Nginx 配置 `set_real_ip_from` + `real_ip_recursive`；请求日志 `ip` 字段显示真实访客 IP | 伪造 XFF 无法改变限流/审计所见 IP |
 | 2 | HTTPS/HSTS | `curl -I https://<domain>` | 看到 `Strict-Transport-Security` + 应用 CSP |
-| 3 | OAuth 回调 | 全流程登录回归 | 授权后能跳回首页，会话建立 |
+| 3 | 认证状态 | 匿名访问首页 + 期刊全量可读 | demo 免登录无外部依赖；`/api/oauth/begin` 返回 404 |
 
 ---
 
@@ -233,7 +238,7 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 1. **数据**：`npm run db:backup` 在本地出 `.sql.gz`，scp 到 VPS 后 `npm run db:restore -- <file>` 灌入（或直接 `db:seed` 重灌种子）。
 2. **内容**：issues/factories/policy 以种子为基线；发刊走 admin 台（生产库直接写入）。
 3. **扫描定时任务**：本机 launchd 继续跑（数据在本机 MySQL）；如需在生产侧跑，把 `scan/` 与 MariaDB 迁移后改 systemd timer。
-4. **验证**：`npm run build && npm start` 生产基线 → curl 首页 200 + tRPC ping 通 → 登录全流程。
+4. **验证**：`npm run build && npm start` 生产基线 → curl 首页 200 + tRPC ping 通 → 匿名访问期刊全量可读。
 
 ---
 
@@ -259,8 +264,12 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 
 ## 八、待办清单（本文档外部）
 
-- [ ] 购买 VPS（DigitalOcean/Vultr/Hetzner）+ 记下 IP/root 凭据
-- [ ] 购买域名 + 迁 Cloudflare DNS
-- [ ] 按 Step 0–8 逐步执行
+- [x] 购买 VPS（DigitalOcean）+ 配置 SSH key（`~/.ssh/cbb_vps`）
+- [ ] 购买域名 + 迁 Cloudflare DNS（域名 `chinabatterybrief.com` 已注册，DNS 尚未迁）
+- [x] Step 0 基础准备（apt/Node 20/ufw/swap/MariaDB/Nginx/certbot）
+- [x] Step 2 部署代码（`/opt/cbb/app`，分支 `deploy/self-hosted`）
+- [ ] Step 3 初始化 MariaDB + seed（尚未执行）
+- [ ] Step 6 systemd 常驻 + Step 7 备份 cron
+- [ ] Step 1/4/5 DNS 迁 Cloudflare + Nginx 反代 + HTTPS
 - [ ] 完成安全三项核对清单
 - [ ] 决策：验证后分支合并 or 双轨保留

@@ -14,7 +14,7 @@ export function planCodeFor(tier: 'pro' | 'desk', billing: Billing): PlanCode {
 
 /**
  * Mock-checkout flow (pricing.md §Checkout):
- * - anon  → navigate to LOGIN_PATH (OAuth auto-provisions on first login),
+ * - anon  → navigate to LOGIN_PATH (reserved auth placeholder for now),
  *           preserving plan + `from` in the query for continuity.
  * - authed → trpc.billing.checkout mutation { planCode, from } → server
  *           returns `/account?welcome=1[&from=…]` and we navigate there.

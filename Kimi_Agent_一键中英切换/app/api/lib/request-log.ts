@@ -4,7 +4,7 @@ import { getClientIp } from "./rate-limit";
 
 /**
  * Structured request log. Logs the pathname only — never the query string,
- * so the OAuth `code` / `state` never reaches the logs.
+ * so sensitive params (auth codes, state nonces, tokens) never reach logs.
  */
 export async function requestLogger(c: Context, next: Next) {
   if (!env.isProduction) {
