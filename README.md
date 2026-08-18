@@ -6,6 +6,8 @@ A bilingual (English/Chinese, one-click toggle) weekly intelligence newsletter a
 - **Tech routes** — LFP vs solid-state, and the chemistry that actually wins
 - **Geopolitics & policy** — IRA / §45X / FEOC, EU Battery Passport, export controls
 
+> 🔗 **Live site: https://chinabatterybrief.com** — self-hosted (VPS + Nginx + Cloudflare + MariaDB). See [Deployment](#deployment).
+
 Business model: paid subscription tiers — Free / Pro ($19/mo) / Desk ($499/mo). The repo ships 7 sample issues (No. 044–050) in English and Chinese, seeded from a fact-checked research base.
 
 ---
@@ -31,7 +33,7 @@ Business model: paid subscription tiers — Free / Pro ($19/mo) / Desk ($499/mo)
 | RPC | tRPC 11 (`@trpc/server` fetch adapter) · superjson serialization |
 | Routers | `auth` · `content` · `billing` · `me` · `admin` · `ping` |
 | Authz | `publicQuery` → `authedQuery` → `adminQuery` (`api/middleware.ts`) |
-| Auth | Platform Kimi OAuth: auth-code → JWKS verify (jose) → JWT session cookie `kimi_sid` |
+| Auth | **No login (demo)**: whole site anonymous-readable, `auth.*` reserved as stubs — legacy Kimi OAuth removed (email+password auth is queue B in `plan.md`) |
 | Validation | zod 4 |
 | Paywall | **Server-enforced**: `content.issues.bySlug` returns only ~40% of body to unauthorized readers (server-side truncation, not a client overlay) |
 
@@ -84,7 +86,7 @@ All commands run from `Kimi_Agent_一键中英切换/app/`:
 | `npm run db:start` / `db:seed` | Start bundled MySQL (`../.local-mysql`) / reseed (idempotent) |
 | `npm run db:backup` / `db:restore` | Dump DB + assets snapshot to `../backups/db/` (retain N) / restore from a dump |
 
-Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DATABASE_URL`, `APP_ID`/`APP_SECRET` (Kimi OAuth), `KIMI_AUTH_URL`/`KIMI_OPEN_URL`, `OWNER_UNION_ID` (first log-in becomes admin).
+Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BIN`/`BACKUP_ROOT` (backup overrides), `APP_SECRET` (reserved for the upcoming email+password auth).
 
 > `.env` contains secrets — never commit it.
 
@@ -92,10 +94,7 @@ Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DA
 
 ## Deployment
 
-Two forms are in play:
-
-- **Main line (default)**: Kimi Agent platform build + host (`main` branch). Dynamic builds on the platform server; local gate `npm run build && npm start` verified.
-- **Self-hosted form (in development)**: branch `deploy/self-hosted` — own VPS + Nginx + new domain + on-box MariaDB. Authoritative plan: `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` (covers VPS/domain selection, Nginx XFF trust, HTTPS/HSTS, OAuth redirect allowlist, backup cron, migration & rollback).
+**Live now (self-hosted)**: VPS (DigitalOcean) + Nginx reverse proxy + Cloudflare CDN + on-box MariaDB. Topology and runbook: `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` (DNS, Nginx XFF trust, HTTPS/HSTS, backup cron, migration & rollback). Note the SSL mode is **Flexible** (CF↔VPS leg is plain HTTP) — full end-to-end HTTPS upgrade is tracked in `plan.md` queue E.
 
 The app itself is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works: build with `npm run build`, run with `npm start` (set `DATABASE_URL`, run `npm run db:seed` once). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — schema is standard MySQL and the seed is idempotent.
 
@@ -122,7 +121,8 @@ Production-grade hardening is built in (rate limiting, security headers + CSP/HS
 
 - `Kimi_Agent_一键中英切换/china-battery-brief/README.md` — delivery notes (authoritative, in Chinese)
 - `Kimi_Agent_一键中英切换/china-battery-brief/plan.md` — execution blueprint
-- `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` — self-hosted deployment plan (VPS + Nginx, branch `deploy/self-hosted`)
+- `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` — self-hosted deployment runbook (VPS + Nginx + Cloudflare, live)
 - `Kimi_Agent_一键中英切换/china-battery-brief/security.md` — security architecture + incident response runbook (Chinese)
 - `info.md` — research fact base (sources + dates)
 - `AGENTS.md` — coding & i18n conventions
+- `devboard.mjs` — dev-progress visual board generator (`node devboard.mjs` → `devboard.html`)
