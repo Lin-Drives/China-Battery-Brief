@@ -267,11 +267,11 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 ## 八、待办清单（本文档外部）
 
 - [x] 购买 VPS（DigitalOcean）+ 配置 SSH key（`~/.ssh/cbb_vps`）
-- [ ] 购买域名 + 迁 Cloudflare DNS（域名 `chinabatterybrief.com` 已注册，DNS 尚未迁）
+- [x] 购买域名 + 迁 Cloudflare DNS（`chinabatterybrief.com` A 记录 @/www → `161.35.120.114`，Proxied）
 - [x] Step 0 基础准备（apt/Node 20/ufw/swap/MariaDB/Nginx/certbot）
 - [x] Step 2 部署代码（`/opt/cbb/app`，分支 `deploy/self-hosted`）
 - [x] Step 3 初始化 MariaDB + seed（已完成：加固 + 建库建用户 + `db:push` + 种子 7 EN/7 ZH 期；schema `serial→bigint` 修复兼容 MariaDB）
-- [x] Step 6 systemd 常驻（`cbb.service`，www-data 运行，3000 端口） + Step 7 备份 cron（每日 03:00 `db:backup` → `/opt/cbb/backups/`）
-- [ ] Step 1/4/5 DNS 迁 Cloudflare + Nginx 反代 + HTTPS
+- [x] Step 6 systemd 常驻（`cbb.service`，www-data 运行，3000 端口） + Step 7 备份 cron（每日北京时间 03:00 = UTC 19:00 `db:backup` → `/opt/cbb/backups/`）
+- [x] Step 1/4/5 DNS 迁 Cloudflare + Nginx 反代 + HTTPS（✅ **已上线**：https://chinabatterybrief.com 200，广东网络访问正常；SSL 模式 Flexible——访客↔CF 加密，CF↔VPS 走 80，全链路 HTTPS 升级登记在 plan.md 队列 E）
 - [ ] 完成安全三项核对清单
 - [ ] 决策：验证后分支合并 or 双轨保留
