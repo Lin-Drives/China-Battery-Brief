@@ -92,17 +92,18 @@ Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DA
 
 ## Deployment
 
-The app is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works:
+Two forms are in play:
 
-- Build: `npm run build`
-- Run: `npm start` (set `DATABASE_URL` to a reachable MySQL, run `npm run db:seed` once)
-- Suggested free stack: **Render free web service** (Node) + **TiDB Cloud Serverless** (100% MySQL-compatible free tier). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — the schema is standard MySQL and the seed is idempotent.
+- **Main line (default)**: Kimi Agent platform build + host (`main` branch). Dynamic builds on the platform server; local gate `npm run build && npm start` verified.
+- **Self-hosted form (in development)**: branch `deploy/self-hosted` — own VPS + Nginx + new domain + on-box MariaDB. Authoritative plan: `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` (covers VPS/domain selection, Nginx XFF trust, HTTPS/HSTS, OAuth redirect allowlist, backup cron, migration & rollback).
+
+The app itself is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works: build with `npm run build`, run with `npm start` (set `DATABASE_URL`, run `npm run db:seed` once). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — schema is standard MySQL and the seed is idempotent.
 
 Beta switch: `OpenAccess.beta` in `contracts/constants.ts` (`true` = every brief free to all readers, paywall/teasers off; flip to `false` to restore the paywall).
 
 ## Security
 
-Production-grade hardening is built in (rate limiting, security headers + CSP/HSTS, CSRF Origin check, OAuth state nonces, audit log table, backup scripts, request/error logging). **Deployment-topology items to re-verify once the hosting is chosen** (trusted proxy for `X-Forwarded-For`, HTTPS/HSTS, OAuth redirect allowlist) — see `Kimi_Agent_一键中英切换/china-battery-brief/security.md` (Chinese runbook + incident response).
+Production-grade hardening is built in (rate limiting, security headers + CSP/HSTS, CSRF Origin check, OAuth state nonces, audit log table, backup scripts, request/error logging). **Deployment-topology items to re-verify once the hosting is chosen** (trusted proxy for `X-Forwarded-For`, HTTPS/HSTS, OAuth redirect allowlist) — see `Kimi_Agent_一键中英切换/china-battery-brief/security.md` (Chinese runbook + incident response). Self-hosted form: checklist in `china-battery-brief/deploy.md` §四.
 
 ---
 
@@ -121,6 +122,7 @@ Production-grade hardening is built in (rate limiting, security headers + CSP/HS
 
 - `Kimi_Agent_一键中英切换/china-battery-brief/README.md` — delivery notes (authoritative, in Chinese)
 - `Kimi_Agent_一键中英切换/china-battery-brief/plan.md` — execution blueprint
+- `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` — self-hosted deployment plan (VPS + Nginx, branch `deploy/self-hosted`)
 - `Kimi_Agent_一键中英切换/china-battery-brief/security.md` — security architecture + incident response runbook (Chinese)
 - `info.md` — research fact base (sources + dates)
 - `AGENTS.md` — coding & i18n conventions

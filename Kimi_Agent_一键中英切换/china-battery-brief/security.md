@@ -13,7 +13,7 @@
 | **CSP（内容安全策略）** | 告诉浏览器「页面只允许加载哪些来源的脚本/图片/字体」，防止别人往你页面里塞代码 | `security-headers.ts` |
 | **限流（Rate Limit）** | 一个 IP 一分钟最多访问 N 次，超出返回 429，防爆破/刷库/爬虫 | `rate-limit.ts` |
 | **X-Forwarded-For（XFF）** | HTTP 头，代理链上记录「真实访客 IP」。**只有可信代理写入才可信** | `rate-limit.ts`、`ip-context.ts` |
-| **JWT** | 一种「盖章的通行证」字符串，服务器验证签名即认账，本身不存服务器端 | `kimi/session.ts` |
+| **JWT** | 一种「盖章的通行证」字符串，服务器验证签名即认账，本身不存服务器端 | `api/lib/session.ts`（预留） |
 | **审计（Audit）** | 敏感操作永久留痕：谁、何时、从哪、做了什么，事后可查可追责 | `audit_logs` 表、`audit.ts` |
 | **HSTS** | 告诉浏览器「以后只准用 HTTPS 访问本站」，防止降级成明文 HTTP | `security-headers.ts` |
 | **Origin 校验** | 看请求头里的「来源网址」和「本站网址」是否一致，不一致就拒绝（防 CSRF） | `csrf.ts` |
@@ -41,34 +41,34 @@
 | 模块 | 措施 | 位置 |
 |---|---|---|
 | 认证 | 会话 Cookie `httpOnly` + `SameSite=Lax` + `Secure`（非本地），杜绝跨站携带凭证 | `api/lib/cookies.ts` |
-| 认证 | OAuth 授权链接由后端签发：`GET /api/oauth/begin` 生成一次性 state nonce，回调时消费校验，并核对 `redirect_uri` 与访问 Host 一致（防登录 CSRF 与回调地址被篡改） | `api/kimi/auth.ts`、`api/kimi/state.ts` |
+| 认证 | **demo 免登录**：`context.ts` 不解析用户，`auth.me`/`auth.logout` 为 stub，`/api/oauth/begin` 已移除（404）。邮箱+密码认证为预留项 | `api/context.ts`、`api/auth-router.ts` |
 | 认证 | 客户端真实 IP 由 Hono 层解析后注入 tRPC 请求（`api/lib/ip-context.ts`），审计 `ip` 字段与订阅限流都依赖它，无法靠伪造请求头冒充 | `api/lib/ip-context.ts`、`api/boot.ts` |
 | 密钥 | 生产环境强制 `APP_SECRET ≥ 32 字符`；启动时校验必需密钥最短长度，缺了直接拒绝启动 | `api/lib/env.ts` |
-| 限流 | 内存固定窗口限流，按 IP：`/api/trpc` 600/min、OAuth begin 30/min、callback 20/min、`subscribe.email` 5/min；超限返回 429 并带 `Retry-After` | `api/lib/rate-limit.ts`、`boot.ts`、`content-router.ts` |
+| 限流 | 内存固定窗口限流，按 IP：`/api/trpc` 600/min、`subscribe.email` 5/min；超限返回 429 并带 `Retry-After` | `api/lib/rate-limit.ts`、`boot.ts`、`content-router.ts` |
 | 响应头 | `X-Content-Type-Options`/`X-Frame-Options`/`Referrer-Policy`/`Permissions-Policy`；生产加 CSP 与 HSTS；API 响应 `Cache-Control: no-store` | `api/lib/security-headers.ts` |
 | CSRF | 对状态变更方法（POST/PUT/PATCH/DELETE）校验 Origin 与 Host 一致，不一致直接 403 | `api/lib/csrf.ts` |
 | 载荷 | 请求体上限 `bodyLimit` 50MB → 2MB，防大包撑爆内存 | `api/boot.ts` |
-| 日志 | 结构化请求日志**只记 pathname 不记 query**（OAuth 的 `code`/`state` 永不落日志）；生产环境把非预期的内部错误替换为通用文案，不外泄报错细节 | `api/lib/request-log.ts`、`api/middleware.ts` |
+| 日志 | 结构化请求日志**只记 pathname 不记 query**（认证参数等敏感值永不落日志）；生产环境把非预期的内部错误替换为通用文案，不外泄报错细节 | `api/lib/request-log.ts`、`api/middleware.ts` |
 | 静态安全 | 静态目录下**任何以 `.` 或 `_` 开头的路径段**一律 404（`/.env`、`/.git/config`、`/_app`、`/_next` 等扫描目标全被拦） | `api/lib/vite.ts` |
-| 审计 | `audit_logs` 表 + stdout 双写：admin 增删改、登录成功/失败；写库失败自动降级为只打日志、不影响请求 | `api/lib/audit.ts`、`admin-router.ts`、`kimi/auth.ts` |
+| 审计 | `audit_logs` 表 + stdout 双写：admin 增删改、登录成功/失败；写库失败自动降级为只打日志、不影响请求 | `api/lib/audit.ts`、`admin-router.ts` |
 | 备份 | `npm run db:backup`：mysqldump 一致性快照 + assets 打包 + 自动保留最近 N 份 | `scripts/backup.sh` |
 
 ---
 
-## 三、部署时必复核的三项配置（部署方案未定时先搁置）
+## 三、部署时必复核的三项配置
 
-> 这三项和「你最终用什么域名/服务器/CDN」绑定。部署敲定后逐项核对；在此之前**不影响**本地与内网使用。
+> 部署形态已定（自有 VPS + Nginx + Cloudflare CDN，方案见 `deploy.md`，分支 `deploy/self-hosted`）。执行 `deploy.md` Step 4/5/8 时逐项落实以下三项；主线（Kimi Agent 平台托管）另行按平台网关行为核对。
 
 1. **X-Forwarded-For 可信性**（最重要）
    限流和审计都靠 XFF 的第一个 IP 认人。前提是它由**你信得过的反向代理**（Nginx / Cloudflare / 平台网关）写入，并且代理会**覆盖**而非追加客户端传来的 XFF。
-   - 核对方法：在代理配置里确认 `X-Forwarded-For` 由代理生成、并清空客户端自带值。
+   - 核对方法：在 Nginx 配置 `set_real_ip_from`（只信任 Cloudflare IP 段）+ `real_ip_recursive on`，确认 `X-Forwarded-For` 由代理生成、并清空客户端自带值。
    - 如果不做：攻击者每换一个 XFF 值就能绕开限流、污染审计里的 IP。
 
 2. **HTTPS / HSTS**
-   HSTS 头只在请求走 HTTPS（`x-forwarded-proto: https`）时才下发，纯 HTTP 阶段不会误发。证书/平台 TLS 就绪后，用 `curl -I` 看到 `Strict-Transport-Security` 即生效；稳定运行后再考虑加进 HSTS preload。
+   HSTS 头只在请求走 HTTPS（`x-forwarded-proto: https`）时才下发，纯 HTTP 阶段不会误发。证书/平台 TLS 就绪后，用 `curl -I` 看到 `Strict-Transport-Security` 即生效；稳定运行后再考虑加进 HSTS preload。自托管形态：Let's Encrypt / Cloudflare 自动续期，见 `deploy.md` Step 5。
 
-3. **OAuth 回调地址**
-   `/api/oauth/begin` 按「访问 Host」拼出回调地址。**换域名 = 换回调地址**，必须同步去 Kimi OAuth 应用后台更新 redirect 白名单，并回归「点登录 → 授权 → 跳回首页」全流程。
+3. **认证状态（demo 免登录）**
+   当前为免登录形态：`api/context.ts` 不解析用户，`auth.*` 接口为 stub，`/api/oauth/begin` 已移除（404）。部署后确认站点无外部认证依赖；正式上线邮箱+密码认证时，此条改为「配置 APP_SECRET（≥32）+ 首个管理员邮箱，回归注册/登录/权限全流程」。见 `deploy.md` Step 8。
 
 ---
 
@@ -96,8 +96,9 @@ cd app
 npm run db:restore -- ../backups/db/cbb-db-20260815-090000.sql.gz
 ```
 
-### 4.3 密钥轮换（APP_SECRET / Kimi OAuth secret）
-1. 在 Kimi OAuth 应用后台生成新 secret，更新 `app/.env` 的 `APP_SECRET`（≥32 字符）。
+### 4.3 密钥轮换（APP_SECRET）
+> demo 免登录阶段不签发 JWT，此节待邮箱+密码认证上线后生效。
+1. 生成新 `APP_SECRET`（≥32 字符），更新 `app/.env`。
 2. 重启服务。**所有已登录会话立即失效**，用户需重新登录——这是预期行为，不是故障。
 3. 确认审计表里有新的 `auth.login` 记录后，再废弃旧 secret。
 
@@ -106,7 +107,7 @@ npm run db:restore -- ../backups/db/cbb-db-20260815-090000.sql.gz
 - 管理员兜底：直接删 `api_keys` 表里对应行即可。库里只存哈希，反推不出明文，删除即永久失效。
 
 ### 4.5 限流调整
-阈值集中在两个文件：`boot.ts`（全局 / begin / callback）与 `content-router.ts`（subscribe.email）。
+阈值集中在两个文件：`boot.ts`（全局）与 `content-router.ts`（subscribe.email）。
 调高之前先看 429 出现频率与来源 IP，确认是「真用户被误伤」而非「攻击在刷」，再动手。
 
 ### 4.6 审计复核

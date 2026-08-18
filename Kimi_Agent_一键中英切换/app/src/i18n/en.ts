@@ -1279,4 +1279,11 @@ Object.assign(en, {
   'acct.errPillars': 'PICK AT LEAST ONE PILLAR',
   'acct.errContent': 'CONTENT REQUIRED',
   'acct.errDate': 'PUBLISH DATE INVALID',
+
+  /* ---------- Login (reserved auth placeholder) ---------- */
+  'login.title': 'SIGN IN',
+  'login.comingSoon': 'ACCOUNTS & LOGIN ARE COMING SOON',
+  'login.body':
+    'Every brief is currently open to all readers, no account needed. When subscriptions arrive, this is where you will sign in.',
+  'login.backHome': 'BACK TO HOME',
 })
