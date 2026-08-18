@@ -108,26 +108,26 @@ const deployMd = readMd(path.join(ROOT, "Kimi_Agent_一键中英切换/china-bat
 
 /* deploy.md 的 Step 状态（依据 Step 行的勾选 + 末尾待办清单） */
 const deploySteps = ["Step 0", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Step 6", "Step 7", "Step 8"];
+const todoSections = deployMd.split("## ").find((sec) => sec.startsWith("八、")) || "";
+// 待办清单里所有已勾选行（支持 "Step 1/4/5" 合并写法 → 展开为多个 Step）
+const doneStepNums = new Set();
+for (const l of todoSections.split("\n")) {
+  if (!l.includes("[x]")) continue;
+  const m = l.match(/Step\s+([0-9/]+)/g);
+  if (!m) continue;
+  for (const token of m) {
+    for (const n of token.replace(/^Step\s*/, "").split("/")) {
+      if (n) doneStepNums.add(parseInt(n, 10));
+    }
+  }
+}
 const stepStatus = deploySteps.map((s) => {
-  const inPlan = deployMd.includes(`${s} 初始化数据库`);
   const headerLine = deployMd.split("\n").find((l) => l.startsWith(`### ${s}`)) || "";
   const name = headerLine.replace(`### ${s} — `, "").replace(`### ${s} —`, "").trim();
-  // 末尾待办清单里对应行是否勾选
-  const todoSections = deployMd.split("## ").find((sec) => sec.startsWith("八、")) || "";
-  const markLine = todoSections.split("\n").find((l) => l.includes(s));
-  let state = "pending";
-  if (markLine) {
-    if (markLine.includes("[x]")) state = "done";
-    else if (s === "Step 4") state = "paused"; // 用户明确暂停
-    else state = "pending";
-  }
+  const num = parseInt(s.replace("Step ", ""), 10);
+  const state = doneStepNums.has(num) ? "done" : "pending";
   return { step: s, name, state };
 });
-// Step 3 实际已执行（本会话完成），Step 4/5 用户暂停，Step 6/7 待办
-for (const st of stepStatus) {
-  if (st.step === "Step 3") st.state = "done";
-  if (st.step === "Step 4" || st.step === "Step 5") st.state = "paused";
-}
 
 /* plan.md 队列勾选 */
 const queues = ["A", "B", "C", "D", "E"].map((q) => {
