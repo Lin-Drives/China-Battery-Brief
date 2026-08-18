@@ -1,7 +1,7 @@
 import {
   mysqlTable,
   mysqlEnum,
-  serial,
+  bigint,
   varchar,
   text,
   longtext,
@@ -10,13 +10,12 @@ import {
   boolean,
   json,
   double,
-  bigint,
   unique,
   index,
 } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   unionId: varchar("unionId", { length: 255 }).notNull().unique(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 320 }),
@@ -45,7 +44,7 @@ export interface SourceRef {
 
 /** Weekly newsletter issues (long-form markdown content). */
 export const issues = mysqlTable("issues", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   number: int("number").notNull().unique(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   title: varchar("title", { length: 500 }).notNull(),
@@ -73,7 +72,7 @@ export type InsertIssue = typeof issues.$inferInsert;
 
 /** Subscription catalog. */
 export const plans = mysqlTable("plans", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   code: varchar("code", { length: 50 }).notNull().unique(), // free | pro-monthly | pro-annual | desk-monthly | desk-annual
   name: varchar("name", { length: 100 }).notNull(),
   tier: mysqlEnum("tier", ["free", "pro", "desk"]).notNull(),
@@ -86,7 +85,7 @@ export const plans = mysqlTable("plans", {
 export type Plan = typeof plans.$inferSelect;
 
 export const subscriptions = mysqlTable("subscriptions", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
   planId: bigint("planId", { mode: "number", unsigned: true }).notNull(),
   status: mysqlEnum("status", ["active", "canceled", "past_due", "trialing"]).notNull(),
@@ -102,7 +101,7 @@ export type Subscription = typeof subscriptions.$inferSelect;
 
 /** Mock-checkout payment records (Stripe-shaped for later swap-in). */
 export const payments = mysqlTable("payments", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
   planId: bigint("planId", { mode: "number", unsigned: true }).notNull(),
   amountCents: int("amountCents").notNull(),
@@ -118,7 +117,7 @@ export type Payment = typeof payments.$inferSelect;
 export const factories = mysqlTable(
   "factories",
   {
-    id: serial("id").primaryKey(),
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
     company: varchar("company", { length: 100 }).notNull(),
     siteName: varchar("siteName", { length: 255 }).notNull(),
     country: varchar("country", { length: 100 }).notNull(),
@@ -149,7 +148,7 @@ export type Factory = typeof factories.$inferSelect;
 export const policyEvents = mysqlTable(
   "policy_events",
   {
-    id: serial("id").primaryKey(),
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
     region: varchar("region", { length: 50 }).notNull(), // US | EU | CN | GLOBAL
     title: varchar("title", { length: 500 }).notNull(),
     /** Chinese translations (nullable — policy events ship EN first, ZH backfilled). */
@@ -171,7 +170,7 @@ export type PolicyEvent = typeof policyEvents.$inferSelect;
 
 /** TickerBar items. */
 export const tickerItems = mysqlTable("ticker_items", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   label: varchar("label", { length: 500 }).notNull(),
   delta: mysqlEnum("delta", ["up", "down", "none"]).default("none").notNull(),
   pillar: mysqlEnum("pillar", ["overseas-capacity", "tech-routes", "geopolitics", "markets", "none"])
@@ -183,7 +182,7 @@ export const tickerItems = mysqlTable("ticker_items", {
 export const savedBriefs = mysqlTable(
   "saved_briefs",
   {
-    id: serial("id").primaryKey(),
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
     userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
     issueId: bigint("issueId", { mode: "number", unsigned: true }).notNull(),
     savedAt: timestamp("savedAt").defaultNow().notNull(),
@@ -194,7 +193,7 @@ export const savedBriefs = mysqlTable(
 export const alerts = mysqlTable(
   "alerts",
   {
-    id: serial("id").primaryKey(),
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
     userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
     pillar: mysqlEnum("pillar", ["overseas-capacity", "tech-routes", "geopolitics", "markets"]).notNull(),
     channel: mysqlEnum("channel", ["email", "web"]).default("email").notNull(),
@@ -204,7 +203,7 @@ export const alerts = mysqlTable(
 );
 
 export const apiKeys = mysqlTable("api_keys", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
   keyHash: varchar("keyHash", { length: 255 }).notNull(),
   label: varchar("label", { length: 255 }),
@@ -214,7 +213,7 @@ export const apiKeys = mysqlTable("api_keys", {
 });
 
 export const emailSubscribers = mysqlTable("email_subscribers", {
-  id: serial("id").primaryKey(),
+  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
   email: varchar("email", { length: 320 }).notNull().unique(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
@@ -223,7 +222,7 @@ export const emailSubscribers = mysqlTable("email_subscribers", {
 export const auditLogs = mysqlTable(
   "audit_logs",
   {
-    id: serial("id").primaryKey(),
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
     userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
     actorName: varchar("actorName", { length: 255 }),
     action: varchar("action", { length: 100 }).notNull(),
