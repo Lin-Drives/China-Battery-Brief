@@ -98,6 +98,7 @@
 - [ ] 部署后过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
 - [ ] CI/CD 自动部署（本方案先手动部署 + systemd 常驻 + cron 备份，CI/CD 后置）
 - [ ] （可选）热点「价值判断」模型化——已有 S0–S4 分层 + published-topics 人工比对，判定模型可后置
+- [ ] **HTTPS 加密现状升级**：Cloudflare SSL 模式当前为 **Flexible**（访客↔Cloudflare 加密，Cloudflare↔VPS 走 HTTP 80 不加密，Nginx 未监听 443、无源站证书）。触发条件：正式上线前升级为 Full / Full(strict)——VPS 签发 Let's Encrypt 或 Cloudflare Origin 证书 + Nginx 监听 443 + 回源走 HTTPS，落实 security.md 的 HSTS 全链路
 
 ### 已记录决策
 - 内容流水线自动化链路与记录位置：`app/scan/`（config/run/digest/published-topics）+ `sources-list.md`；定时任务 `~/Library/LaunchAgents/com.cbb.scan.plist`
