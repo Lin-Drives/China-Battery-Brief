@@ -3,6 +3,8 @@
 > 定位：**短期执行台账**——本次会话任务、当前迭代动作、调试/调研记录。长期方向与队列见 `Kimi_Agent_一键中英切换/china-battery-brief/plan.md`「长期战略队列」；**一个任务只登记一处**（能本周动手的放这里，有触发条件/未到时机的放 plan.md）。
 
 ## 已完成（未推送）
+- [x] 开发进度可视化展板：`devboard.mjs`（扫描 git/TODO/plan/deploy + 代码统计 → 生成纯 SVG/CSS 静态 `devboard.html`，暗色编辑部风，`node devboard.mjs` 重建）
+- [x] VPS 部署 Step 3：MariaDB 加固 + 建库建用户 + `db:push` 建表 + 种子灌入（7 EN + 7 ZH 期）已验证；生产构建完成（schema 因 MariaDB 不兼容 `serial` 改为 `bigint().autoincrement()`，未提交）
 - [x] No. 048《再出口枢纽》EN + ZH（真实信源、SVG 程序化封面）
 - [x] No. 049 / No. 050 EN + ZH（真实信源、SVG 程序化封面）
 - [x] 四大支柱中文命名统一：产能地图 / 技术路线 / 政策追踪 / 市场信号

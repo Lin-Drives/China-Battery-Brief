@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CBB DevBoard</title>
+<style>
+  :root { color-scheme: dark; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0C1017; color:#F4F0E6; font-family:-apple-system,"SF Pro SC","PingFang SC","Helvetica Neue",sans-serif; line-height:1.5; }
+  .wrap { max-width:1200px; margin:0 auto; padding:36px 28px 80px; }
+  .top { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid #232D3D; padding-bottom:20px; margin-bottom:28px; }
+  .top h1 { font-size:22px; letter-spacing:0.05em; font-weight:800; }
+  .top h1 span { color:#C9F24B; }
+  .top .meta { color:#8E97A8; font-size:12px; text-align:right; }
+  .gauge-row { display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; margin-bottom:34px; }
+  .gauge-row > div { flex:1 1 130px; display:flex; justify-content:center; }
+  section { margin-bottom:34px; }
+  .panel { background:#131A24; border:1px solid #232D3D; border-radius:16px; padding:22px; }
+  .panel h2 { font-size:15px; margin-bottom:18px; font-weight:700; letter-spacing:0.02em; }
+  .panel h2 em { color:#8E97A8; font-style:normal; font-size:12px; font-weight:400; margin-left:8px; }
+  .rings { display:grid; gap:14px; }
+  .ring-cell { display:flex; justify-content:center; }
+  .stack-wrap { margin-bottom:16px; }
+  .stack-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; font-size:13px; }
+  .stack-head .dim { color:#8E97A8; font-size:11px; }
+  .stack-bar { background:#1A222F; border-radius:6px; overflow:hidden; height:26px; width:100%; display:flex; }
+  .stack-seg { height:100%; }
+  .stack-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; font-size:11px; color:#8E97A8; }
+  .legend { display:inline-flex; align-items:center; gap:5px; }
+  .legend i { width:9px; height:9px; border-radius:2px; display:inline-block; }
+  .pillars { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .pillar { background:#1A222F; border:1px solid #232D3D; border-left-width:3px; border-radius:12px; padding:16px; }
+  .pillar-head { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .pillar-dot { width:12px; height:12px; border-radius:3px; }
+  .pillar-head b { display:block; font-size:15px; }
+  .pillar-head .dim { font-size:11px; }
+  .pillar-facts { display:flex; gap:18px; }
+  .pillar-facts b { font-size:20px; display:block; color:#F4F0E6; }
+  .pillar-facts span { font-size:11px; color:#8E97A8; }
+  .queues { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:14px; }
+  .queue-cell { background:#1A222F; border-radius:12px; padding:14px; text-align:center; }
+  .q-gauge { width:64px; height:64px; margin:0 auto 8px; border-radius:50%;
+    background:conic-gradient(#C9F24B calc(var(--pct)*1%), #131A24 0); display:grid; place-items:center; }
+  .q-inner { width:50px; height:50px; border-radius:50%; background:#1A222F; display:grid; place-items:center; }
+  .q-inner b { font-size:15px; }
+  .q-meta b { display:block; font-size:13px; }
+  .q-meta span { color:#8E97A8; font-size:11px; }
+  .foot { color:#4A5568; font-size:11px; margin-top:30px; text-align:center; }
+  .foot code { background:#1A222F; padding:2px 6px; border-radius:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>CBB <span>DEVBOARD</span></h1>
+    <div class="meta">生成于 2026-08-18 11:44 UTC<br/>分支 deploy/self-hosted</div>
+  </div>
+
+  <div class="gauge-row">
+    <div>
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#C9F24B" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="389.55748904513433 389.55748904513433" transform="rotate(-90 75 75)"/>
+    <text x="75" y="71" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">39</text>
+    <text x="75" y="97" text-anchor="middle" fill="#8E97A8" font-size="12">提交</text>
+    <text x="75" y="115" text-anchor="middle" fill="#C9F24B" font-size="10">8 活跃日</text>
+  </svg></div>
+    <div>
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#C08552" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="327.22829079791285 389.55748904513433" transform="rotate(-90 75 75)"/>
+    <text x="75" y="71" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">25,143</text>
+    <text x="75" y="97" text-anchor="middle" fill="#8E97A8" font-size="12">代码行</text>
+    <text x="75" y="115" text-anchor="middle" fill="#C08552" font-size="10">NaN 文件</text>
+  </svg></div>
+    <div>
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#5ADFC3" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="389.55748904513433 389.55748904513433" transform="rotate(-90 75 75)"/>
+    <text x="75" y="71" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">7</text>
+    <text x="75" y="97" text-anchor="middle" fill="#8E97A8" font-size="12">期刊内容</text>
+    <text x="75" y="115" text-anchor="middle" fill="#5ADFC3" font-size="10">7 期中译</text>
+  </svg></div>
+    <div>
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#F0A832" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="389.55748904513433 389.55748904513433" transform="rotate(-90 75 75)"/>
+    <text x="75" y="71" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">123</text>
+    <text x="75" y="97" text-anchor="middle" fill="#8E97A8" font-size="12">前端组件</text>
+    <text x="75" y="115" text-anchor="middle" fill="#F0A832" font-size="10">12 页面 · 11 路由</text>
+  </svg></div>
+    <div>
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#8E97A8" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="389.55748904513433 389.55748904513433" transform="rotate(-90 75 75)"/>
+    <text x="75" y="71" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">13</text>
+    <text x="75" y="97" text-anchor="middle" fill="#8E97A8" font-size="12">数据表</text>
+    <text x="75" y="115" text-anchor="middle" fill="#8E97A8" font-size="10">0 信源</text>
+  </svg></div>
+    <div>
+  <svg viewBox="0 0 150 150" width="150" height="150">
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="75" cy="75" r="62" fill="none" stroke="#C9F24B" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="128.5539713848943 389.55748904513433" transform="rotate(-90 75 75)"/>
+    <text x="75" y="71" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">33%</text>
+    <text x="75" y="97" text-anchor="middle" fill="#8E97A8" font-size="12">部署</text>
+    <text x="75" y="115" text-anchor="middle" fill="#C9F24B" font-size="10">Step 0–8</text>
+  </svg></div>
+  </div>
+
+  <section class="panel">
+    <svg viewBox="0 0 334 150" width="100%" height="150">
+    <text x="46" y="34" fill="#F4F0E6" font-size="15" font-weight="700">Git 活跃度 · 8 个活跃日</text>
+    <line x1="46" y1="78" x2="324" y2="78" stroke="#232D3D" stroke-width="1"/>
+    <circle cx="46" cy="78" r="7.769230769230769" fill="#F0A832" opacity="0.85">
+      <title>2026-08-04 · 2 commits</title></circle><text x="46" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-04</text><circle cx="82" cy="78" r="12" fill="#C9F24B" opacity="0.85">
+      <title>2026-08-05 · 13 commits</title></circle><text x="82" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-05</text><circle cx="118" cy="78" r="7.769230769230769" fill="#F0A832" opacity="0.85">
+      <title>2026-08-06 · 2 commits</title></circle><text x="118" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-06</text><circle cx="154" cy="78" r="7.384615384615385" fill="#F0A832" opacity="0.85">
+      <title>2026-08-08 · 1 commit</title></circle><text x="154" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-08</text><circle cx="190" cy="78" r="8.153846153846153" fill="#F0A832" opacity="0.85">
+      <title>2026-08-09 · 3 commits</title></circle><text x="190" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-09</text><circle cx="226" cy="78" r="11.23076923076923" fill="#C9F24B" opacity="0.85">
+      <title>2026-08-10 · 11 commits</title></circle><text x="226" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-10</text><circle cx="262" cy="78" r="9.307692307692308" fill="#C08552" opacity="0.85">
+      <title>2026-08-15 · 6 commits</title></circle><text x="262" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-15</text><circle cx="298" cy="78" r="7.384615384615385" fill="#F0A832" opacity="0.85">
+      <title>2026-08-17 · 1 commit</title></circle><text x="298" y="116" text-anchor="middle" fill="#8E97A8" font-size="10">08-17</text>
+  </svg>
+  </section>
+
+  <section class="panel">
+    <h2>工作流完成度<em>按近期提交关键词归类</em></h2>
+    <div class="rings" style="grid-template-columns:repeat(3,1fr)"><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#C9F24B" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="84.94866535306801 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">26%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">内容</text>
+    <text x="65" y="105" text-anchor="middle" fill="#C9F24B" font-size="10">10 提交</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#C08552" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="16.336281798666924 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">5%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">前端</text>
+    <text x="65" y="105" text-anchor="middle" fill="#C08552" font-size="10">2 提交</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#5ADFC3" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="9.801769079200156 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">3%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">安全</text>
+    <text x="65" y="105" text-anchor="middle" fill="#5ADFC3" font-size="10">1 提交</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#F0A832" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="16.336281798666924 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">5%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">部署</text>
+    <text x="65" y="105" text-anchor="middle" fill="#F0A832" font-size="10">2 提交</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#8E97A8" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="16.336281798666924 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">5%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">流水线</text>
+    <text x="65" y="105" text-anchor="middle" fill="#8E97A8" font-size="10">2 提交</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#E5694B" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="42.474332676534004 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">13%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">文档</text>
+    <text x="65" y="105" text-anchor="middle" fill="#E5694B" font-size="10">5 提交</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#C9F24B" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="143.75927982826894 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">44%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">其他</text>
+    <text x="65" y="105" text-anchor="middle" fill="#C9F24B" font-size="10">17 提交</text>
+  </svg></div></div>
+  </section>
+
+  <section class="panel">
+    <h2>任务台账<em>TODO.md</em></h2>
+    <div class="rings" style="grid-template-columns:repeat(2,1fr)"><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#C9F24B" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="310.38935417467155 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">95%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">已完成</text>
+    <text x="65" y="105" text-anchor="middle" fill="#C9F24B" font-size="10">40 项</text>
+  </svg></div><div class="ring-cell">
+  <svg viewBox="0 0 130 130" width="130" height="130">
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#1A222F" stroke-width="10"/>
+    <circle cx="65" cy="65" r="52" fill="none" stroke="#F0A832" stroke-width="10"
+      stroke-linecap="round" stroke-dasharray="16.336281798666924 326.7256359733385" transform="rotate(-90 65 65)"/>
+    <text x="65" y="61" text-anchor="middle" fill="#F4F0E6" font-size="30" font-weight="700">5%</text>
+    <text x="65" y="87" text-anchor="middle" fill="#8E97A8" font-size="12">待办</text>
+    <text x="65" y="105" text-anchor="middle" fill="#F0A832" font-size="10">2 项</text>
+  </svg></div></div>
+  </section>
+
+  <section class="panel">
+    <svg viewBox="0 0 864 110" width="100%">
+    <text x="0" y="18" fill="#F4F0E6" font-size="15" font-weight="700">VPS 部署轨道</text>
+    
+    <g>
+      <line x1="48" y1="52" x2="144" y2="52" stroke="#232D3D" stroke-width="6"/>
+      <circle cx="48" cy="52" r="9" fill="#C9F24B" opacity="0.9">
+        <title>Step 0 — 基础准备 [done]</title></circle>
+      <text x="48" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">●</text>
+      <text x="48" y="84" text-anchor="middle" fill="#F4F0E6" font-size="11" font-weight="700">Step 0</text>
+    </g>
+    <g>
+      <line x1="144" y1="52" x2="240" y2="52" stroke="#232D3D" stroke-width="6"/>
+      <circle cx="144" cy="52" r="9" fill="#4A5568" opacity="0.9">
+        <title>Step 1 — DNS 指向 VPS [pending]</title></circle>
+      <text x="144" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">○</text>
+      <text x="144" y="84" text-anchor="middle" fill="#4A5568" font-size="11" font-weight="400">Step 1</text>
+    </g>
+    <g>
+      <line x1="240" y1="52" x2="336" y2="52" stroke="#C08552" stroke-width="6"/>
+      <circle cx="240" cy="52" r="9" fill="#C9F24B" opacity="0.9">
+        <title>Step 2 — 部署代码 + 配置环境 [done]</title></circle>
+      <text x="240" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">●</text>
+      <text x="240" y="84" text-anchor="middle" fill="#F4F0E6" font-size="11" font-weight="700">Step 2</text>
+    </g>
+    <g>
+      <line x1="336" y1="52" x2="432" y2="52" stroke="#C08552" stroke-width="6"/>
+      <circle cx="336" cy="52" r="9" fill="#C9F24B" opacity="0.9">
+        <title>Step 3 — 初始化数据库 [done]</title></circle>
+      <text x="336" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">●</text>
+      <text x="336" y="84" text-anchor="middle" fill="#F4F0E6" font-size="11" font-weight="700">Step 3</text>
+    </g>
+    <g>
+      <line x1="432" y1="52" x2="528" y2="52" stroke="#232D3D" stroke-width="6"/>
+      <circle cx="432" cy="52" r="12" fill="#F0A832" opacity="0.9">
+        <title>Step 4 — Nginx 反向代理（落实 XFF + HTTPS） [paused]</title></circle>
+      <text x="432" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">‖</text>
+      <text x="432" y="84" text-anchor="middle" fill="#F4F0E6" font-size="11" font-weight="400">Step 4</text>
+    </g>
+    <g>
+      <line x1="528" y1="52" x2="624" y2="52" stroke="#232D3D" stroke-width="6"/>
+      <circle cx="528" cy="52" r="12" fill="#F0A832" opacity="0.9">
+        <title>Step 5 — 免费 HTTPS 证书（Let's Encrypt via Cloudflare） [paused]</title></circle>
+      <text x="528" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">‖</text>
+      <text x="528" y="84" text-anchor="middle" fill="#F4F0E6" font-size="11" font-weight="400">Step 5</text>
+    </g>
+    <g>
+      <line x1="624" y1="52" x2="720" y2="52" stroke="#232D3D" stroke-width="6"/>
+      <circle cx="624" cy="52" r="9" fill="#4A5568" opacity="0.9">
+        <title>Step 6 — 应用常驻（systemd） [pending]</title></circle>
+      <text x="624" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">○</text>
+      <text x="624" y="84" text-anchor="middle" fill="#4A5568" font-size="11" font-weight="400">Step 6</text>
+    </g>
+    <g>
+      <line x1="720" y1="52" x2="816" y2="52" stroke="#232D3D" stroke-width="6"/>
+      <circle cx="720" cy="52" r="9" fill="#4A5568" opacity="0.9">
+        <title>Step 7 — 备份 cron（落实 security.md 4.1） [pending]</title></circle>
+      <text x="720" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">○</text>
+      <text x="720" y="84" text-anchor="middle" fill="#4A5568" font-size="11" font-weight="400">Step 7</text>
+    </g>
+    <g>
+      
+      <circle cx="816" cy="52" r="9" fill="#4A5568" opacity="0.9">
+        <title>Step 8 — 认证状态核对（对应 security.md 第三节第 3 条） [pending]</title></circle>
+      <text x="816" y="52" text-anchor="middle" dominant-baseline="central" fill="#0C1017" font-size="10" font-weight="700">○</text>
+      <text x="816" y="84" text-anchor="middle" fill="#4A5568" font-size="11" font-weight="400">Step 8</text>
+    </g>
+  </svg>
+  </section>
+
+  <section class="panel">
+    <h2>内容支柱<em>四大板块</em></h2>
+    <div class="pillars">
+      <div class="pillar" style="border-color:#C9F24B">
+        <div class="pillar-head"><span class="pillar-dot" style="background:#C9F24B"></span>
+          <div><b>产能地图</b><span class="dim">Tracker</span></div></div>
+        <div class="pillar-facts">
+          <div><b>19</b><span>站点</span></div><div><b>11</b><span>国家</span></div><div><b>464</b><span>GWh</span></div>
+        </div>
+      </div>
+      <div class="pillar" style="border-color:#C08552">
+        <div class="pillar-head"><span class="pillar-dot" style="background:#C08552"></span>
+          <div><b>技术路线</b><span class="dim">Tech</span></div></div>
+        <div class="pillar-facts">
+          <div><b>LFP</b><span>vs</span></div><div><b>固态</b><span>SSB</span></div>
+        </div>
+      </div>
+      <div class="pillar" style="border-color:#5ADFC3">
+        <div class="pillar-head"><span class="pillar-dot" style="background:#5ADFC3"></span>
+          <div><b>政策追踪</b><span class="dim">Policy</span></div></div>
+        <div class="pillar-facts">
+          <div><b>12</b><span>事件</span></div><div><b>IRA /</b><span>护照</span></div>
+        </div>
+      </div>
+      <div class="pillar" style="border-color:#F0A832">
+        <div class="pillar-head"><span class="pillar-dot" style="background:#F0A832"></span>
+          <div><b>市场信号</b><span class="dim">Markets</span></div></div>
+        <div class="pillar-facts">
+          <div><b>2</b><span>期</span></div><div><b>044–050</b><span>全覆盖</span></div>
+        </div>
+      </div></div>
+  </section>
+
+  <section class="panel">
+    <h2>代码构成<em>按目录</em></h2>
+    
+    <div class="stack-wrap">
+      <div class="stack-head"><b>TypeScript / React 代码分布</b><span class="dim">25,143 行</span></div>
+      <div class="stack-bar"><div class="stack-seg" style="width:90.24%;background:#C9F24B" title="前端 src · 22,688 行"></div><div class="stack-seg" style="width:5.17%;background:#C08552" title="后端 api · 1,299 行"></div><div class="stack-seg" style="width:1.68%;background:#5ADFC3" title="数据库 db · 422 行"></div><div class="stack-seg" style="width:0.16%;background:#F0A832" title="契约 contracts · 40 行"></div><div class="stack-seg" style="width:2.76%;background:#8E97A8" title="扫描 scan · 694 行"></div></div>
+      <div class="stack-legend"><span class="legend"><i style="background:#C9F24B"></i>前端 src 22,688</span><span class="legend"><i style="background:#C08552"></i>后端 api 1,299</span><span class="legend"><i style="background:#5ADFC3"></i>数据库 db 422</span><span class="legend"><i style="background:#F0A832"></i>契约 contracts 40</span><span class="legend"><i style="background:#8E97A8"></i>扫描 scan 694</span></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>长期战略队列<em>plan.md</em></h2>
+    <div class="queues"><div class="queue-cell">
+    <div class="q-gauge" style="--pct:0">
+      <div class="q-inner"><b>0%</b></div>
+    </div>
+    <div class="q-meta"><b>队列 A</b><span>0/2 项</span></div>
+  </div><div class="queue-cell">
+    <div class="q-gauge" style="--pct:0">
+      <div class="q-inner"><b>0%</b></div>
+    </div>
+    <div class="q-meta"><b>队列 B</b><span>0/4 项</span></div>
+  </div><div class="queue-cell">
+    <div class="q-gauge" style="--pct:0">
+      <div class="q-inner"><b>0%</b></div>
+    </div>
+    <div class="q-meta"><b>队列 C</b><span>0/0 项</span></div>
+  </div><div class="queue-cell">
+    <div class="q-gauge" style="--pct:0">
+      <div class="q-inner"><b>0%</b></div>
+    </div>
+    <div class="q-meta"><b>队列 D</b><span>0/0 项</span></div>
+  </div><div class="queue-cell">
+    <div class="q-gauge" style="--pct:0">
+      <div class="q-inner"><b>0%</b></div>
+    </div>
+    <div class="q-meta"><b>队列 E</b><span>0/4 项</span></div>
+  </div></div>
+  </section>
+
+  <div class="foot">
+    DevBoard · 数据自动扫描 <code>node devboard.mjs</code> 重建 · deploy/self-hosted 分支 · 已关联 GitHub 远端 · 分支：deploy/self-hosted / main
+  </div>
+</div>
+</body>
+</html>
