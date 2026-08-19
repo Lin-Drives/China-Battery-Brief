@@ -29,7 +29,7 @@
   <array>
     <string>/bin/zsh</string>
     <string>-lc</string>
-    <string>cd /Users/hpp/Work/03_Projects/China-Battery-Brief/Kimi_Agent_一键中英切换/app &amp;&amp; npm run scan:sources</string>
+    <string>cd /Users/hpp/Work/03_Projects/China-Battery-Brief/app &amp;&amp; npm run scan:sources</string>
   </array>
   <key>StartCalendarInterval</key>
   <dict><key>Weekday</key><integer>0</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>0</integer></dict>

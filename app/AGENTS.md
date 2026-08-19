@@ -23,8 +23,8 @@ npm run db:restore -- <file.sql.gz>   # 从备份恢复（覆盖当前库，谨�
 - 安全响应头在 `api/lib/security-headers.ts`（CSP/HSTS 仅生产生效）；CSRF Origin 校验在 `api/lib/csrf.ts`。
 - 请求日志只记 pathname，**禁止记录 query**（OAuth `code`/`state` 不得入日志）。
 - 审计：admin 增删改与登录事件写 `audit_logs`（`api/lib/audit.ts`），写库失败自动降级 stdout，不得让审计调用影响业务响应。
-- 部署形态（域名/服务器/CDN）未定前，`X-Forwarded-For` 可信性、HTTPS/HSTS、OAuth redirect allowlist 三项按 `china-battery-brief/security.md` 第三节在部署时复核。
-- 完整应急手册见 `china-battery-brief/security.md`。
+- 部署形态（域名/服务器/CDN）未定前，`X-Forwarded-For` 可信性、HTTPS/HSTS、OAuth redirect allowlist 三项按 `../docs/security.md` 第三节在部署时复核。
+- 完整应急手册见 `../docs/security.md`。
 
 ## i18n 工作方式
 

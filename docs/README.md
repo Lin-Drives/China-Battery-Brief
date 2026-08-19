@@ -49,8 +49,9 @@ users · issues(6 期英文样刊 No. 044–049，基于调研事实底座) · p
 
 ## 六、工程结构
 
-- 共享仓库：`/mnt/agents/output/app`（master = 交付版本）
-- 设计稿：`/mnt/agents/output/design/`（10 份）
-- 调研事实底座：`/mnt/agents/output/info.md`
-- 样刊源稿：`/mnt/agents/output/seed-content/`
-- 构建：动态版本由平台服务端构建；本地构建门禁已通过（`npm run build` ✓ `tsc -b` ✓）
+- 代码库：`app/`（npm 项目根，`src/` 前端 + `api/` 后端 + `db/` 种子）
+- 项目文档：`docs/`（本文件 + plan.md + deploy.md + security.md）
+- 调研事实底座：`info.md`
+- 样刊源稿：`app/db/seed-content/`（EN）+ `app/db/seed-content-zh/`（ZH）
+- 开发工具与笔记：`dev/`（devboard、workspace）
+- 构建：自托管 VPS 构建（见 deploy.md）；本地构建门禁已通过（`npm run build` ✓ `tsc -b` ✓）

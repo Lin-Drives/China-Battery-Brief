@@ -10,30 +10,28 @@
 
 ### 仓库顶层结构（工作目录根）
 
-注意：真正的代码库**不在仓库根目录**，而在子目录中：
-
 ```
-Kimi_Agent_一键中英切换/        ← 项目主目录（目录名即功能："一键中英切换"）
-├── app/                       ← 唯一可构建的应用代码库（npm 项目根）
-│   ├── src/                   ← 前端（React SPA）
-│   ├── api/                   ← 后端（Hono + tRPC，Node 运行时）
-│   ├── db/                    ← Drizzle schema、relations、seed 脚本与种子内容
-│   ├── contracts/             ← 前后端共享常量/类型/错误（constants.ts / types.ts / errors.ts）
-│   ├── public/                ← 静态资源（封面图、logo、头像等）
-│   └── package.json / vite.config.ts / drizzle.config.ts / ...
-├── china-battery-brief/       ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ security.md（安全应急手册）
-├── seed-content/              ← 7 期英文样刊源稿（No. 044–050，与 app/db/seed-content 同源副本）
-├── seed-content-zh/           ← 对应中文译文源稿
-└── info.md                    ← 调研事实底座（所有内容的事实来源，带来源与日期标注）
-Kimi_Agent_一键中英切换.zip    ← 上述目录的打包存档，勿改动
+app/                       ← 唯一可构建的应用代码库（npm 项目根，命令都在此执行）
+├── src/                   ← 前端（React SPA）
+├── api/                   ← 后端（Hono + tRPC，Node 运行时）
+├── db/                    ← Drizzle schema、relations、seed 脚本与种子内容（含 seed-content[-zh]/ 双语源稿）
+├── contracts/             ← 前后端共享常量/类型/错误（constants.ts / types.ts / errors.ts）
+├── public/                ← 静态资源（封面图、logo、头像等）
+└── package.json / vite.config.ts / drizzle.config.ts / ...
+docs/                      ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ deploy.md（部署手册）+ security.md（安全应急手册）
+dev/                       ← 开发工具与笔记：devboard.mjs/html、homepage-review-notes.md、VS Code workspace
+info.md                    ← 调研事实底座（所有内容的事实来源，带来源与日期标注）
+.local-mysql/              ← 本地绿色版 MySQL 运行时（gitignore，不提交）
+backups/                   ← 本地备份落点（backups/db/）+ 历史存档 zip
+Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，勿改动（不随部署使用）
 ```
 
-- 所有构建/测试命令都在 `Kimi_Agent_一键中英切换/app/` 下执行。
-- `app/README.md` 是 Vite 脚手架默认 README，**没有信息量**；真正的项目说明在 `china-battery-brief/README.md`。
+- 所有构建/测试命令都在 `app/` 下执行。
+- `app/README.md` 是 Vite 脚手架默认 README，**没有信息量**；真正的项目说明在 `docs/README.md`。
 
 ## 二、构建与运行
 
-在 `Kimi_Agent_一键中英切换/app/` 目录下（依赖未安装时先 `npm install`）：
+在 `app/` 目录下（依赖未安装时先 `npm install`）：
 
 | 命令 | 说明 |
 |---|---|
@@ -97,4 +95,4 @@ Kimi_Agent_一键中英切换.zip    ← 上述目录的打包存档，勿改动
 - 密钥：`.env` 与 `Kimi_Agent_一键中英切换.zip` 不要读取外传；`api_keys` 表只存哈希。
 - 不要做 git mutation（commit/push/reset 等），除非用户明确要求。
 - **Git 提交规范（用户指定）**：提交信息一律用**中文**，采用简洁的「动作 + 对象」标准格式（如 `修复首页语言切换按钮可读性`、`更新 info.md 竞品定价核实结果`）；允许多文件合并为一个主题提交；push 需用户明确授权。
-- 部署由 Kimi Agent 平台服务端构建托管；本地验证以 `npm run build && npm start` 为准。README 中记录的交付基线：`npm run build` ✓、`tsc -b` ✓。
+- 生产部署：自托管 VPS（`docs/deploy.md`），`app/` 直接位于仓库根（VPS 上 `/opt/cbb/app/app`）；本地验证以 `npm run build && npm start` 为准。README 中记录的交付基线：`npm run build` ✓、`tsc -b` ✓。

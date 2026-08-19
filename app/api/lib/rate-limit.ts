@@ -44,7 +44,7 @@ export function checkLimit(
 /**
  * Best-effort client IP. Trusts X-Forwarded-For when present — only safe when
  * a trusted reverse proxy/CDN strips client-supplied XFF; revisit once the
- * deployment topology is fixed (see china-battery-brief/security.md).
+ * deployment topology is fixed (see ../../docs/security.md).
  */
 export function getClientIpFromRequest(
   req: Request,

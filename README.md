@@ -52,18 +52,16 @@ Vitest 4 · ESLint 9 (flat config) · Prettier 3 · tsx (seed scripts) · TypeSc
 ## Repository layout
 
 ```
-├── Kimi_Agent_一键中英切换/
-│   ├── app/                  ← the buildable npm project (the actual codebase)
-│   │   ├── src/              frontend (React SPA)
-│   │   ├── api/              backend (Hono + tRPC, Node runtime)
-│   │   ├── db/               Drizzle schema, relations, seed script + seed content
-│   │   ├── contracts/        shared constants / types / errors (front + back)
-│   │   ├── public/           static assets (covers, logos)
-│   │   └── package.json / vite.config.ts / drizzle.config.ts / ...
-│   ├── china-battery-brief/  delivery docs: README.md (authoritative) + plan.md + security.md
-│   ├── seed-content/         EN issue source copies (No. 044–050)
-│   ├── seed-content-zh/      ZH issue source copies (No. 044–050)
-│   └── info.md               research fact base (every fact sourced & dated)
+├── app/                      ← the buildable npm project (the actual codebase)
+│   ├── src/                  frontend (React SPA)
+│   ├── api/                  backend (Hono + tRPC, Node runtime)
+│   ├── db/                   Drizzle schema, relations, seed script + seed content
+│   ├── contracts/            shared constants / types / errors (front + back)
+│   ├── public/               static assets (covers, logos)
+│   └── package.json / vite.config.ts / drizzle.config.ts / ...
+├── docs/                     delivery docs: README.md (authoritative) + plan.md + deploy.md + security.md
+├── dev/                      dev tooling & notes: devboard.mjs/html, workspace file
+├── info.md                   research fact base (every fact sourced & dated)
 ├── AGENTS.md                 repo & coding conventions for AI agents
 └── README.md                 this file
 ```
@@ -72,7 +70,7 @@ Vitest 4 · ESLint 9 (flat config) · Prettier 3 · tsx (seed scripts) · TypeSc
 
 ## Development
 
-All commands run from `Kimi_Agent_一键中英切换/app/`:
+All commands run from `app/`:
 
 | Command | Description |
 |---|---|
@@ -86,7 +84,7 @@ All commands run from `Kimi_Agent_一键中英切换/app/`:
 | `npm run db:start` / `db:seed` | Start bundled MySQL (`../.local-mysql`) / reseed (idempotent) |
 | `npm run db:backup` / `db:restore` | Dump DB + assets snapshot to `../backups/db/` (retain N) / restore from a dump |
 
-Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BIN`/`BACKUP_ROOT` (backup overrides), `APP_SECRET` (reserved for the upcoming email+password auth).
+Environment: see `app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BIN`/`BACKUP_ROOT` (backup overrides), `APP_SECRET` (reserved for the upcoming email+password auth).
 
 > `.env` contains secrets — never commit it.
 
@@ -94,7 +92,7 @@ Environment: see `Kimi_Agent_一键中英切换/app/.env.example`. Key vars: `DA
 
 ## Deployment
 
-**Live now (self-hosted)**: VPS (DigitalOcean) + Nginx reverse proxy + Cloudflare CDN + on-box MariaDB. Topology and runbook: `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` (DNS, Nginx XFF trust, HTTPS/HSTS, backup cron, migration & rollback). Note the SSL mode is **Flexible** (CF↔VPS leg is plain HTTP) — full end-to-end HTTPS upgrade is tracked in `plan.md` queue E.
+**Live now (self-hosted)**: VPS (DigitalOcean) + Nginx reverse proxy + Cloudflare CDN + on-box MariaDB. Topology and runbook: `docs/deploy.md` (DNS, Nginx XFF trust, HTTPS/HSTS, backup cron, migration & rollback). Note the SSL mode is **Flexible** (CF↔VPS leg is plain HTTP) — full end-to-end HTTPS upgrade is tracked in `plan.md` queue E.
 
 The app itself is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works: build with `npm run build`, run with `npm start` (set `DATABASE_URL`, run `npm run db:seed` once). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — schema is standard MySQL and the seed is idempotent.
 
@@ -102,7 +100,7 @@ Beta switch: `OpenAccess.beta` in `contracts/constants.ts` (`true` = every brief
 
 ## Security
 
-Production-grade hardening is built in (rate limiting, security headers + CSP/HSTS, CSRF Origin check, OAuth state nonces, audit log table, backup scripts, request/error logging). **Deployment-topology items to re-verify once the hosting is chosen** (trusted proxy for `X-Forwarded-For`, HTTPS/HSTS, OAuth redirect allowlist) — see `Kimi_Agent_一键中英切换/china-battery-brief/security.md` (Chinese runbook + incident response). Self-hosted form: checklist in `china-battery-brief/deploy.md` §四.
+Production-grade hardening is built in (rate limiting, security headers + CSP/HSTS, CSRF Origin check, OAuth state nonces, audit log table, backup scripts, request/error logging). **Deployment-topology items to re-verify once the hosting is chosen** (trusted proxy for `X-Forwarded-For`, HTTPS/HSTS, OAuth redirect allowlist) — see `docs/security.md` (Chinese runbook + incident response). Self-hosted form: checklist in `docs/deploy.md` §四.
 
 ---
 
@@ -119,10 +117,10 @@ Production-grade hardening is built in (rate limiting, security headers + CSP/HS
 
 ## Docs
 
-- `Kimi_Agent_一键中英切换/china-battery-brief/README.md` — delivery notes (authoritative, in Chinese)
-- `Kimi_Agent_一键中英切换/china-battery-brief/plan.md` — execution blueprint
-- `Kimi_Agent_一键中英切换/china-battery-brief/deploy.md` — self-hosted deployment runbook (VPS + Nginx + Cloudflare, live)
-- `Kimi_Agent_一键中英切换/china-battery-brief/security.md` — security architecture + incident response runbook (Chinese)
+- `docs/README.md` — delivery notes (authoritative, in Chinese)
+- `docs/plan.md` — execution blueprint
+- `docs/deploy.md` — self-hosted deployment runbook (VPS + Nginx + Cloudflare, live)
+- `docs/security.md` — security architecture + incident response runbook (Chinese)
 - `info.md` — research fact base (sources + dates)
 - `AGENTS.md` — coding & i18n conventions
-- `devboard.mjs` — dev-progress visual board generator (`node devboard.mjs` → `devboard.html`)
+- `dev/devboard.mjs` — dev-progress visual board generator (`node dev/devboard.mjs` → `dev/devboard.html`)

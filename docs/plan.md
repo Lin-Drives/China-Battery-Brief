@@ -93,7 +93,7 @@
 
 ### 队列 E — 部署自动化（分支 `deploy/self-hosted` 开发中）
 > 内容生产/更新链路已自动化（见队列 C）。此处为部署侧。
-> **方案已定**：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，权威文档 `china-battery-brief/deploy.md`（分支 `deploy/self-hosted`）。主线保持 Kimi Agent 平台托管。
+> **方案已定**：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，权威文档 `docs/deploy.md`（分支 `deploy/self-hosted`）。主线保持 Kimi Agent 平台托管。
 - [ ] 购买 VPS + 域名，按 `deploy.md` Step 0–8 执行
 - [ ] 部署后过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
 - [ ] CI/CD 自动部署（本方案先手动部署 + systemd 常驻 + cron 备份，CI/CD 后置）

@@ -11,9 +11,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = __dirname;
-const APP = path.join(ROOT, "Kimi_Agent_一键中英切换", "app");
-const OUT = process.argv[2] || path.join(ROOT, "devboard.html");
+const ROOT = path.join(__dirname, "..");
+const APP = path.join(ROOT, "app");
+const OUT = process.argv[2] || path.join(__dirname, "devboard.html");
 
 /* ── 调色板 ─────────────────────────────────────────────── */
 const C = {
@@ -103,8 +103,8 @@ const countChecks = (txt) => {
 };
 const todoMd = readMd(path.join(ROOT, "TODO.md"));
 const todoChecks = countChecks(todoMd);
-const planMd = readMd(path.join(ROOT, "Kimi_Agent_一键中英切换/china-battery-brief/plan.md"));
-const deployMd = readMd(path.join(ROOT, "Kimi_Agent_一键中英切换/china-battery-brief/deploy.md"));
+const planMd = readMd(path.join(ROOT, "docs/plan.md"));
+const deployMd = readMd(path.join(ROOT, "docs/deploy.md"));
 
 /* deploy.md 的 Step 状态（依据 Step 行的勾选 + 末尾待办清单） */
 const deploySteps = ["Step 0", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Step 6", "Step 7", "Step 8"];

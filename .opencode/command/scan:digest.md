@@ -7,12 +7,12 @@ agent: build
 
 ## 完整指令
 
-先读取 `/Users/hpp/Work/03_Projects/China-Battery-Brief/Kimi_Agent_一键中英切换/app/scan/digest.md`，其中定义了整理层的完整任务规范（多源聚类、四大分类、强制溯源、输出格式），严格按它执行。
+先读取 `/Users/hpp/Work/03_Projects/China-Battery-Brief/app/scan/digest.md`，其中定义了整理层的完整任务规范（多源聚类、四大分类、强制溯源、输出格式），严格按它执行。
 
-**工作目录**：`Kimi_Agent_一键中英切换/app/scan/`
+**工作目录**：`app/scan/`
 
 **步骤**：
-1. 找到 `scan/<最新日期>/raw/` 目录，确认里面有 `_all.json`（当日新增条目）。若 `_all.json` 为空或缺失，先运行 `npm run scan:sources`（在 `Kimi_Agent_一键中英切换/app/` 下）再继续。
+1. 找到 `scan/<最新日期>/raw/` 目录，确认里面有 `_all.json`（当日新增条目）。若 `_all.json` 为空或缺失，先运行 `npm run scan:sources`（在 `app/` 下）再继续。
 2. 按 `digest.md` 规范，把当日 raw 素材整理成 `scan/<日期>/digest.md`：
    - 多源聚类：同一事件多源报道聚合为一个 story，标 `[多源]`/`[单源]`
    - 四大分类：① 海外建厂要闻 ② 政策追踪 ③ 市场财务 ④ 储能（只筛电池出口相关，其余丢弃并记录）

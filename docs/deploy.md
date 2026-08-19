@@ -80,7 +80,7 @@ ufw allow OpenSSH && ufw allow 'Nginx Full' && ufw enable
 # 在 VPS 建部署目录
 mkdir -p /opt/cbb && cd /opt/cbb
 git clone <你的私有仓库> app
-cd app
+cd app/app
 
 # 生产环境变量（当前 demo 免登录，只需 DATABASE_URL）
 #   DATABASE_URL = 指向本机 MariaDB（见 Step 3）
@@ -93,6 +93,8 @@ EOF
 npm ci
 npm run build
 ```
+
+> 说明：仓库根 `/opt/cbb/app` 下是 `app/`（npm 项目）、`docs/`、`dev/` 等；所有构建/运行命令都在 `/opt/cbb/app/app/` 内执行。
 
 > 认证说明：demo 阶段全站免登录，`APP_SECRET` 不设置（预留）。正式开启邮箱+密码认证后再填（≥32 字符），届时 `auth.*` stub 换为真实实现。
 
@@ -119,7 +121,7 @@ DATABASE_URL=mysql://cbb:<强密码>@localhost:3306/cbb
 
 建表 + 灌种子（首次）：
 ```bash
-cd /opt/cbb/app
+cd /opt/cbb/app/app
 # 库结构直接推（本项目用 db:push，不用 migrate）
 npx drizzle-kit push
 # 灌种子内容（English + 中文）
@@ -131,7 +133,6 @@ npm run db:seed
 > MYSQL_BIN=/usr/bin
 > BACKUP_ROOT=/opt/cbb/backups
 > ```
-
 ### Step 4 — Nginx 反向代理（落实 XFF + HTTPS）
 
 新建 `/etc/nginx/sites-available/cbb`：
@@ -188,7 +189,7 @@ Description=China Battery Brief
 After=network.target mariadb.service
 
 [Service]
-WorkingDirectory=/opt/cbb/app
+WorkingDirectory=/opt/cbb/app/app
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/node dist/boot.js
 Restart=always
@@ -208,11 +209,11 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 
 ### Step 7 — 备份 cron（落实 security.md 4.1）
 
-> cron 走系统时区 UTC。**北京时间凌晨 3:00 = UTC 19:00**，下述任务因此写 `0 19 * * *`。VPS 已执行（实际部署路径 `/opt/cbb/app/Kimi_Agent_一键中英切换/app`，比下方示例多一层中文子目录）。
+> cron 走系统时区 UTC。**北京时间凌晨 3:00 = UTC 19:00**，下述任务因此写 `0 19 * * *`。VPS 已执行（实际应用路径 `/opt/cbb/app/app`，比下方示例多一层目录）。
 
 ```bash
 # 每天 03:00（北京时间）自动备份数据库 + 静态资源快照
-0 19 * * * cd /opt/cbb/app && /usr/bin/npm run db:backup >> /opt/cbb/app/backup.log 2>&1
+0 19 * * * cd /opt/cbb/app/app && /usr/bin/npm run db:backup >> /opt/cbb/app/app/backup.log 2>&1
 ```
 
 ### Step 8 — 认证状态核对（对应 security.md 第三节第 3 条）

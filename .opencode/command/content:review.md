@@ -7,7 +7,7 @@ agent: build
 
 ## 完整指令
 
-**输入**：一期稿件，默认取 `Kimi_Agent_一键中英切换/app/db/seed-content/` 与 `seed-content-zh/` 中最新一期（如 issue-051.md / issue-051-zh.md），或用户指定的期号/文件路径。
+**输入**：一期稿件，默认取 `app/db/seed-content/` 与 `seed-content-zh/` 中最新一期（如 issue-051.md / issue-051-zh.md），或用户指定的期号/文件路径。
 
 **步骤**：
 1. 读取 `AGENTS.md` 第七节「内容工作流与安全注意」，明确红线：信源时效（近 3 个月）、读者背景预设（first mention 身份从句）、专业术语、中英一致性、事实溯源。

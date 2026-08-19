@@ -1,5 +1,5 @@
 /* China Battery Brief — 信源抓取配置
- * 与 china-battery-brief/sources-list.md 保持同步（该文档为人工确认版，本文件为机器可读版）。
+ * 与 ../docs/sources-list.md 保持同步（该文档为人工确认版，本文件为机器可读版）。
  *
  * kind:
  *   rss      — 直接 RSS/Atom URL

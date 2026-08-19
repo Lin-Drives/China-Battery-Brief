@@ -5,7 +5,7 @@ backups/
 Kimi_Agent_一键中英切换.zip
 
 # Local MySQL runtime data
-Kimi_Agent_一键中英切换/.local-mysql/
+.local-mysql/
 
 # Redundant safety (already covered by app/.gitignore)
 node_modules/
