@@ -1,7 +1,8 @@
 #!/bin/bash
 # Backup the project MySQL database + static assets snapshot.
 # Usage: npm run db:backup   (or: bash scripts/backup.sh)
-# Retention: keep the newest N backups (default 14), prune the rest.
+# Retention: DB dumps keep the newest N (default 7, short fast-recovery window);
+# assets snapshots keep the newest M (default 3, regenerable from git). Prune rest.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -20,7 +21,8 @@ eval "$(node "$SCRIPT_DIR/db-env.mjs")"
 
 MYSQL_BIN="${MYSQL_BIN:-$PROJECT_ROOT/.local-mysql/mysql/bin}"
 DUMP="$MYSQL_BIN/mysqldump"
-RETENTION="${BACKUP_RETENTION:-14}"
+RETENTION="${BACKUP_RETENTION:-7}"
+ASSET_RETENTION="${ASSET_RETENTION:-3}"
 BACKUP_DIR="${BACKUP_ROOT:-$PROJECT_ROOT/backups/db}"
 
 if [ ! -x "$DUMP" ]; then
@@ -40,14 +42,21 @@ MYSQL_PWD="$DB_PASS" "$DUMP" --no-defaults \
 
 echo "Backup written: $OUT ($(du -h "$OUT" | cut -f1))"
 
-# Prune old backups.
+# Prune old DB backups (fast-recovery layer, short window).
 ls -1t "$BACKUP_DIR"/cbb-db-*.sql.gz 2>/dev/null | tail -n +$((RETENTION + 1)) |
   while read -r old; do
     echo "Pruning $old"
     rm -f "$old"
   done
 
-# Snapshot public assets (regenerable, but cheap insurance alongside the DB).
+# Snapshot public assets (regenerable, cheap insurance alongside the DB).
 ASSET_OUT="$BACKUP_DIR/cbb-assets-$TS.tar.gz"
 tar -czf "$ASSET_OUT" -C "$APP_DIR" public 2>/dev/null || true
 echo "Assets snapshot: $ASSET_OUT"
+
+# Prune old assets snapshots (tight retention: regenerateable from git).
+ls -1t "$BACKUP_DIR"/cbb-assets-*.tar.gz 2>/dev/null | tail -n +$((ASSET_RETENTION + 1)) |
+  while read -r old; do
+    echo "Pruning assets $old"
+    rm -f "$old"
+  done

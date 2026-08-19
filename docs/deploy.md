@@ -210,11 +210,25 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 ### Step 7 — 备份 cron（落实 security.md 4.1）
 
 > cron 走系统时区 UTC。**北京时间凌晨 3:00 = UTC 19:00**，下述任务因此写 `0 19 * * *`。VPS 已执行（实际应用路径 `/opt/cbb/app/app`，比下方示例多一层目录）。
+>
+> 保留策略（`scripts/backup.sh`）：DB dump 默认保留最近 7 份（`BACKUP_RETENTION`），assets 快照默认保留最近 3 份（`ASSET_RETENTION`，可从 git 重建，短保留）。assets 快照 ~30MB/份，是 VPS 磁盘的主要消耗，**必须靠该保留策略封顶**。
 
 ```bash
-# 每天 03:00（北京时间）自动备份数据库 + 静态资源快照
+# 每天 03:00（北京时间）自动备份数据库 + 静态资源快照（自动清理旧档）
 0 19 * * * cd /opt/cbb/app/app && /usr/bin/npm run db:backup >> /opt/cbb/app/app/backup.log 2>&1
 ```
+
+**双轨之二——本地异地归档**（VPS 整机报废时的最后保险）：开发机 launchd 每天 21:00（北京时间）拉取 VPS 最新备份到本地 `backups/pull/`，保留最近 90 天（`PULL_RETENTION_DAYS`）。
+
+```bash
+# 开发机上执行一次（首次安装）：
+plutil -lint ~/Library/LaunchAgents/com.cbb.pull-backup.plist
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.cbb.pull-backup.plist
+launchctl kickstart -k gui/$(id -u)/com.cbb.pull-backup   # 立即跑一次验证
+# 手动拉取：cd app && bash scripts/pull-backup.sh
+```
+
+> 注意：本地 launchd 计划任务在机器睡眠时会顺延到唤醒后补跑，不保证每天准点；漏拉几天没关系，VPS 轨兜底 7 天窗口。拉取依赖 `~/.ssh/cbb_vps` 免密与 VPS 在线。
 
 ### Step 8 — 认证状态核对（对应 security.md 第三节第 3 条）
 
