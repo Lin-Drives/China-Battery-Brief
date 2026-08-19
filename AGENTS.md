@@ -22,7 +22,7 @@ docs/                      ← 项目文档：README.md（交付说明，权威�
 dev/                       ← 开发工具与笔记：devboard.mjs/html、homepage-review-notes.md、VS Code workspace
 info.md                    ← 调研事实底座（所有内容的事实来源，带来源与日期标注）
 .local-mysql/              ← 本地绿色版 MySQL 运行时（gitignore，不提交）
-backups/                   ← 本地备份落点（backups/db/）+ 历史存档 zip
+backups/                   ← 备份落点：本地开发备份（backups/db/）+ 生产异地归档（backups/pull/）+ 历史存档 zip
 Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，勿改动（不随部署使用）
 ```
 
