@@ -65,6 +65,11 @@
 - 付费墙/权限单测 —— 搁置
 - Stripe 支付、邮件群发、独立 /admin 属长期方向，登记在 plan.md「队列 B — 平台真实化」
 
+## 部署注意事项（2026-08-19 目录重构时发现）
+- VPS 仅 454MB 内存，`npm run build` 全量构建会 OOM 崩溃（已临时加 2GB swap，治标）。**发版流程改为：本地 `npm run build` → `scp -r app/dist root@<VPS>:/opt/cbb/app/app/` → `systemctl restart cbb`**（dist 是平台无关纯 JS，直接可跑）。
+- 可选根治：VPS 升档至 1GB RAM（约 +$2/月），或限制 `NODE_OPTIONS='--max-old-space-size=256'`（强制 V8 更早 GC，不保证够用）。
+- VPS 侧目录已从 `deploy/self-hosted` 切到 `main` 分支；systemd `WorkingDirectory` 与备份 cron 均已指向 `/opt/cbb/app/app`。
+
 ## 约定
 - 改动只提交本地，未获允许不 push 远端（本次已获用户明确授权推送）
 - 信源优先近 3 个月；新刊封面一律程序化 SVG（无生图能力）
