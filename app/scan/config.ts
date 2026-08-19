@@ -30,6 +30,10 @@ export interface SourceConfig {
   fcQuery?: string
   /** firecrawl 专属：URL 必须匹配的正则（如含日期段）才算文章，用于过滤频道导航。 */
   fcUrlPattern?: string
+  /** firecrawl 专属：从 URL 可解析出发布日期的条目，超过该天数（默认 90）丢弃（内容红线：3 个月内信源）。 */
+  fcMaxAgeDays?: number
+  /** firecrawl-search 专属：只保留 URL 含这些域名的结果（如搜索串入第三方站时限定本源）。 */
+  fcAllowDomains?: string[]
   /**
    * 冷却期（天）：距上次抓取不足该天数则跳过本次请求，复用缓存条目。
    * 面向高频敏感站点（如政府站），避免 ad-hoc 手动扫描时反复打扰。
@@ -76,13 +80,13 @@ export const SOURCES: SourceConfig[] = [
   { key: "ndrc", name: "发改委 NDRC", kind: "html", url: "https://www.ndrc.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "规划与补贴细则，待接入" },
   { key: "govcn", name: "国务院（中国政府网）", kind: "html", url: "https://www.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "政策文件库与官方解读，待接入" },
   { key: "gta", name: "Global Trade Alert", kind: "firecrawl", url: "https://www.globaltradealert.org/", layer: "S1", pillar: "geopolitics", enabled: true, note: "Firecrawl 实验：Angular SPA" },
-  { key: "xinhua", name: "新华社（新华网）", kind: "firecrawl", url: "https://www.news.cn/energy/", layer: "S0", pillar: "geopolitics", enabled: true, fcUrlPattern: "\\d{8}", note: "Firecrawl 实验：403 已解锁；URL 含 8 位日期段才算文章" },
+  { key: "xinhua", name: "新华社（新华网）", kind: "firecrawl", url: "https://www.news.cn/energy/", layer: "S0", pillar: "geopolitics", enabled: true, fcUrlPattern: "\\d{8}", fcMaxAgeDays: 90, note: "Firecrawl 实验：403 已解锁；URL 日期段过滤导航 + 90 天时效" },
 
   /* ---------- ③ 市场信号 ---------- */
   { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com/en/insight/release/", layer: "S1", pillar: "markets", enabled: true, note: "Press Release 列表，含全球装机份额" },
   { key: "eastmoney", name: "东方财富", kind: "rsshub", url: "", rsshubRoute: "eastmoney/report/industry", layer: "S3", pillar: "markets", enabled: true, note: "财报/研报/公告聚合" },
   { key: "wallstreetcn", name: "华尔街见闻", kind: "rsshub", url: "", rsshubRoute: "wallstreetcn/live", layer: "S3", pillar: "markets", enabled: true },
-  { key: "reuters", name: "Reuters Markets", kind: "firecrawl-search", url: "", fcQuery: "reuters battery electric vehicle supply chain markets", layer: "S1", pillar: "markets", enabled: true, note: "Firecrawl 实验：401 反爬，改用搜索" },
+  { key: "reuters", name: "Reuters Markets", kind: "firecrawl-search", url: "", fcQuery: "reuters battery electric vehicle supply chain markets", layer: "S1", pillar: "markets", enabled: true, fcMaxAgeDays: 90, fcAllowDomains: ["reuters.com"], note: "Firecrawl 实验：401 反爬，改搜索；90 天时效 + 限定本源域名" },
   { key: "cnbc", name: "CNBC Energy", kind: "rss", url: "https://www.cnbc.com/id/100003114/device/rss/rss.html", layer: "S3", pillar: "markets", enabled: true, note: "美股/财报/能源/EV 供应链" },
 
   /* ---------- ④ 储能（广泛扫描，筛电池出口相关后归入已有内容） ---------- */

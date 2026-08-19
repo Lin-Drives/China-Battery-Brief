@@ -301,6 +301,29 @@ function isArticleLike(url: string, text: string): boolean {
   return true
 }
 
+/** 从 URL 提取发布日期：兼容 reuters 的 -2026-07-01- 与 xinhua 的 20260701 段，取不到返回 null。 */
+function dateFromUrl(url: string): Date | null {
+  const dashed = /(20\d{2})[-/](\d{2})[-/](\d{2})/.exec(url)
+  if (dashed) {
+    const d = new Date(`${dashed[1]}-${dashed[2]}-${dashed[3]}`)
+    if (!isNaN(d.getTime())) return d
+  }
+  const compact = /(?<!\d)(20\d{2})(\d{2})(\d{2})(?!\d)/.exec(url)
+  if (compact) {
+    const d = new Date(`${compact[1]}-${compact[2]}-${compact[3]}`)
+    if (!isNaN(d.getTime())) return d
+  }
+  return null
+}
+
+/** 内容红线时效门禁：URL 可解析日期且超过 fcMaxAgeDays 天 → 丢弃（无法解析日期的条目不拦）。 */
+function withinMaxAge(src: SourceConfig, url: string): boolean {
+  if (!src.fcMaxAgeDays) return true
+  const d = dateFromUrl(url)
+  if (!d) return true
+  return (Date.now() - d.getTime()) / 86400000 <= src.fcMaxAgeDays
+}
+
 async function fcScrape(src: SourceConfig): Promise<ScannedItem[]> {
   const json = await fcRequest<{
     success: boolean
@@ -328,7 +351,9 @@ async function fcScrape(src: SourceConfig): Promise<ScannedItem[]> {
     seen.add(url)
     // 按源 URL 规则：命中频道导航类链接直接排除（如新华网文章 URL 含日期段）
     if (src.fcUrlPattern && !new RegExp(src.fcUrlPattern).test(url)) continue
+    if (!withinMaxAge(src, url)) continue
     if (!isArticleLike(url, text)) continue
+    const pub = dateFromUrl(url)
     items.push({
       id: hashUrl(url),
       title: text,
@@ -336,7 +361,7 @@ async function fcScrape(src: SourceConfig): Promise<ScannedItem[]> {
       source: src.key,
       layer: src.layer,
       pillar: src.pillar,
-      publishedAt: null,
+      publishedAt: pub ? pub.toISOString() : null,
       discoveredAt: discovered,
       summary: null,
     })
@@ -353,19 +378,28 @@ async function fcSearch(src: SourceConfig): Promise<ScannedItem[]> {
   if (!json.success || !json.data) throw new Error(`Firecrawl search failed for ${src.key}`)
   const discovered = stamp()
   return json.data
-    .filter((d) => d.url && d.title)
+    .filter(
+      (d) =>
+        d.url &&
+        d.title &&
+        withinMaxAge(src, d.url!) &&
+        (!src.fcAllowDomains || src.fcAllowDomains.some((dom) => d.url!.includes(dom))),
+    )
     .slice(0, 10)
-    .map((d) => ({
-      id: hashUrl(d.url!),
-      title: d.title!.trim(),
-      url: d.url!,
-      source: src.key,
-      layer: src.layer,
-      pillar: src.pillar,
-      publishedAt: null,
-      discoveredAt: discovered,
-      summary: d.description?.slice(0, 200) ?? null,
-    }))
+    .map((d) => {
+      const pub = dateFromUrl(d.url!)
+      return {
+        id: hashUrl(d.url!),
+        title: d.title!.trim(),
+        url: d.url!,
+        source: src.key,
+        layer: src.layer,
+        pillar: src.pillar,
+        publishedAt: pub ? pub.toISOString() : null,
+        discoveredAt: discovered,
+        summary: d.description?.slice(0, 200) ?? null,
+      }
+    })
 }
 
 async function fetchFirecrawl(src: SourceConfig): Promise<ScannedItem[]> {
