@@ -10,10 +10,6 @@ A bilingual (English/Chinese, one-click toggle) weekly intelligence newsletter a
 - **Tech routes** — LFP vs solid-state, and the chemistry that actually wins
 - **Geopolitics & policy** — IRA / §45X / FEOC, EU Battery Passport, export controls
 
-<p align="center">
-  <img src="docs/assets/pillars.svg" width="640" alt="Three content pillars: overseas expansion, tech routes, geopolitics and policy" />
-</p>
-
 > 🔗 **Live site: https://chinabatterybrief.com** — self-hosted (VPS + Nginx + Cloudflare + MariaDB). See [Deployment](#deployment).
 
 Business model: paid subscription tiers — Free / Pro ($19/mo) / Desk ($499/mo). The repo ships 7 sample issues (No. 044–050) in English and Chinese, seeded from a fact-checked research base.
