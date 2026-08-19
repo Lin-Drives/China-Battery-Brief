@@ -28,6 +28,8 @@ export interface SourceConfig {
   htmlSelector?: string
   /** firecrawl-search 专属：搜索查询词。 */
   fcQuery?: string
+  /** firecrawl 专属：URL 必须匹配的正则（如含日期段）才算文章，用于过滤频道导航。 */
+  fcUrlPattern?: string
   /**
    * 冷却期（天）：距上次抓取不足该天数则跳过本次请求，复用缓存条目。
    * 面向高频敏感站点（如政府站），避免 ad-hoc 手动扫描时反复打扰。
@@ -74,7 +76,7 @@ export const SOURCES: SourceConfig[] = [
   { key: "ndrc", name: "发改委 NDRC", kind: "html", url: "https://www.ndrc.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "规划与补贴细则，待接入" },
   { key: "govcn", name: "国务院（中国政府网）", kind: "html", url: "https://www.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "政策文件库与官方解读，待接入" },
   { key: "gta", name: "Global Trade Alert", kind: "firecrawl", url: "https://www.globaltradealert.org/", layer: "S1", pillar: "geopolitics", enabled: true, note: "Firecrawl 实验：Angular SPA" },
-  { key: "xinhua", name: "新华社（新华网）", kind: "firecrawl", url: "https://www.news.cn/energy/", layer: "S0", pillar: "geopolitics", enabled: true, note: "Firecrawl 实验：403 已解锁；待加 URL 规则过滤频道导航" },
+  { key: "xinhua", name: "新华社（新华网）", kind: "firecrawl", url: "https://www.news.cn/energy/", layer: "S0", pillar: "geopolitics", enabled: true, fcUrlPattern: "\\d{8}", note: "Firecrawl 实验：403 已解锁；URL 含 8 位日期段才算文章" },
 
   /* ---------- ③ 市场信号 ---------- */
   { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com/en/insight/release/", layer: "S1", pillar: "markets", enabled: true, note: "Press Release 列表，含全球装机份额" },

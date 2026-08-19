@@ -326,6 +326,8 @@ async function fcScrape(src: SourceConfig): Promise<ScannedItem[]> {
     if (!/^https?:\/\//i.test(url)) continue
     if (seen.has(url)) continue
     seen.add(url)
+    // 按源 URL 规则：命中频道导航类链接直接排除（如新华网文章 URL 含日期段）
+    if (src.fcUrlPattern && !new RegExp(src.fcUrlPattern).test(url)) continue
     if (!isArticleLike(url, text)) continue
     items.push({
       id: hashUrl(url),
