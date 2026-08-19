@@ -1,10 +1,18 @@
 # China Battery Brief
 
+<p align="center">
+  <img src="docs/assets/hero-banner.svg" width="900" alt="China Battery Brief — weekly intelligence on China's battery industry going global" />
+</p>
+
 A bilingual (English/Chinese, one-click toggle) weekly intelligence newsletter about China's battery industry going global. Every issue covers three pillars:
 
 - **Overseas expansion** — where Chinese battery makers are building factories abroad
 - **Tech routes** — LFP vs solid-state, and the chemistry that actually wins
 - **Geopolitics & policy** — IRA / §45X / FEOC, EU Battery Passport, export controls
+
+<p align="center">
+  <img src="docs/assets/pillars.svg" width="640" alt="Three content pillars: overseas expansion, tech routes, geopolitics and policy" />
+</p>
 
 > 🔗 **Live site: https://chinabatterybrief.com** — self-hosted (VPS + Nginx + Cloudflare + MariaDB). See [Deployment](#deployment).
 
@@ -60,6 +68,7 @@ Vitest 4 · ESLint 9 (flat config) · Prettier 3 · tsx (seed scripts) · TypeSc
 │   ├── public/               static assets (covers, logos)
 │   └── package.json / vite.config.ts / drizzle.config.ts / ...
 ├── docs/                     delivery docs: README.md (authoritative) + plan.md + deploy.md + security.md
+│   └── assets/               README illustrations (SVG, brand-styled diagrams)
 ├── dev/                      dev tooling & notes: devboard.mjs/html, workspace file
 ├── backups/                  backup dumps: local dev (db/) + offsite prod archive (pull/)
 ├── info.md                   research fact base (every fact sourced & dated)
@@ -95,7 +104,15 @@ Environment: see `app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BI
 
 **Live now (self-hosted)**: VPS (DigitalOcean) + Nginx reverse proxy + Cloudflare CDN + on-box MariaDB. Topology and runbook: `docs/deploy.md` (DNS, Nginx XFF trust, HTTPS/HSTS, backup cron, migration & rollback). Note the SSL mode is **Flexible** (CF↔VPS leg is plain HTTP) — full end-to-end HTTPS upgrade is tracked in `plan.md` queue E.
 
+<p align="center">
+  <img src="docs/assets/architecture.svg" width="760" alt="Architecture: Cloudflare CDN, Nginx reverse proxy, single Node process with Hono and tRPC, Drizzle ORM and MySQL" />
+</p>
+
 **Backups (dual track)**: VPS cron backs up daily (DB retain 7, assets retain 3 — short fast-recovery window, `/opt/cbb/backups`), and this machine's launchd job (`com.cbb.pull-backup`, 21:00 local) pulls the newest artifacts to `backups/pull/` (retain 90 days) as the offsite archive. Manual: `bash app/scripts/pull-backup.sh`.
+
+<p align="center">
+  <img src="docs/assets/backup.svg" width="720" alt="Backup dual track: VPS fast-recovery window plus local offsite archive" />
+</p>
 
 The app itself is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works: build with `npm run build`, run with `npm start` (set `DATABASE_URL`, run `npm run db:seed` once). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — schema is standard MySQL and the seed is idempotent.
 

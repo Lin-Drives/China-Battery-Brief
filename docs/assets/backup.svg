@@ -1,0 +1,49 @@
+<svg width="1120" height="380" viewBox="0 0 1120 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Backup dual track: VPS keeps a short fast-recovery window, the local machine pulls an offsite archive">
+  <defs>
+    <pattern id="bDots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <marker id="barr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8E97A8"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="380" fill="#0C1017"/>
+  <rect width="1120" height="360" fill="url(#bDots)"/>
+
+  <text x="64" y="36" font-family="Courier, monospace" font-size="12" letter-spacing="3" fill="#8E97A8">BACKUPS — DUAL TRACK</text>
+  <line x1="64" y1="46" x2="1056" y2="46" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- Lane A -->
+  <text x="64" y="80" font-family="Courier, monospace" font-size="11" letter-spacing="2.5" fill="#5ADFC3">LANE A · FAST RECOVERY (ON-VPS)</text>
+
+  <rect x="60" y="94" width="240" height="84" fill="#0C1017" stroke="#5ADFC3" stroke-width="1.5"/>
+  <text x="84" y="122" font-family="Courier, monospace" font-size="13" letter-spacing="2" fill="#5ADFC3">VPS · UBUNTU 24.04</text>
+  <text x="84" y="146" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">MariaDB + app</text>
+  <text x="84" y="166" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">systemd: cbb.service</text>
+
+  <rect x="420" y="94" width="380" height="84" fill="#0C1017" stroke="#5ADFC3" stroke-width="1.5"/>
+  <text x="444" y="122" font-family="Courier, monospace" font-size="13" letter-spacing="2" fill="#F4F0E6">/opt/cbb/backups/</text>
+  <text x="444" y="146" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">DB dumps ×7 · assets ×3</text>
+  <text x="444" y="166" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">cron 03:00 BJT · auto-prune</text>
+
+  <path d="M300 136 L416 136" stroke="#8E97A8" stroke-width="1.5" fill="none" marker-end="url(#barr)"/>
+
+  <!-- Lane B -->
+  <text x="64" y="244" font-family="Courier, monospace" font-size="11" letter-spacing="2.5" fill="#C9F24B">LANE B · OFFSITE ARCHIVE (LOCAL)</text>
+
+  <rect x="60" y="258" width="240" height="84" fill="#0C1017" stroke="#C9F24B" stroke-width="1.5"/>
+  <text x="84" y="286" font-family="Courier, monospace" font-size="13" letter-spacing="2" fill="#C9F24B">DEV MACHINE · MACOS</text>
+  <text x="84" y="310" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">launchd: com.cbb.pull-backup</text>
+  <text x="84" y="330" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">~/.ssh/cbb_vps</text>
+
+  <rect x="420" y="258" width="380" height="84" fill="#0C1017" stroke="#C9F24B" stroke-width="1.5"/>
+  <text x="444" y="286" font-family="Courier, monospace" font-size="13" letter-spacing="2" fill="#F4F0E6">backups/pull/</text>
+  <text x="444" y="310" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">retain 90 days · auto-prune</text>
+  <text x="444" y="330" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">21:00 BJT · daily</text>
+
+  <path d="M300 300 L416 300" stroke="#8E97A8" stroke-width="1.5" stroke-dasharray="6 4" fill="none" marker-end="url(#barr)"/>
+  <text x="328" y="292" font-family="Courier, monospace" font-size="10" letter-spacing="1" fill="#8E97A8">ssh · scp</text>
+
+  <text x="64" y="368" font-family="Courier, monospace" font-size="10.5" letter-spacing="1.5" fill="#8E97A8">RESTORE: pull latest dump → db:restore on VPS · runbook: docs/deploy.md §五</text>
+</svg>

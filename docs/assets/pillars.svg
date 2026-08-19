@@ -1,0 +1,73 @@
+<svg width="1000" height="330" viewBox="0 0 1000 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three content pillars: overseas expansion, tech routes, geopolitics and policy">
+  <defs>
+    <pattern id="pDots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="330" fill="#0C1017"/>
+  <rect width="1000" height="330" fill="url(#pDots)"/>
+
+  <!-- Card 1 — Overseas Expansion (teal) -->
+  <g>
+    <rect x="40" y="30" width="296" height="270" fill="#0E141C" stroke="#2A3A46" stroke-width="1.5"/>
+    <rect x="40" y="30" width="296" height="6" fill="#5ADFC3"/>
+    <text x="64" y="72" font-family="Courier, monospace" font-size="12" letter-spacing="2.5" fill="#5ADFC3">01 · OVERSEAS EXPANSION</text>
+
+    <g stroke="#5ADFC3" stroke-width="2" fill="none">
+      <rect x="128" y="104" width="64" height="48"/>
+      <path d="M120 112 L160 88 L200 112" stroke-linejoin="round"/>
+      <rect x="150" y="74" width="10" height="30"/>
+      <circle cx="141" cy="64" r="4" fill="#5ADFC3" stroke="none" opacity="0.8"/>
+      <circle cx="153" cy="56" r="5" fill="#5ADFC3" stroke="none" opacity="0.55"/>
+      <circle cx="163" cy="66" r="3.5" fill="#5ADFC3" stroke="none" opacity="0.7"/>
+      <rect x="152" y="128" width="16" height="24"/>
+    </g>
+
+    <text x="64" y="200" font-family="Georgia, serif" font-size="23" fill="#F4F0E6">Where the megafactories</text>
+    <text x="64" y="226" font-family="Georgia, serif" font-size="23" fill="#F4F0E6">land</text>
+    <line x1="64" y1="244" x2="312" y2="244" stroke="#1B2A33" stroke-width="1"/>
+    <text x="64" y="266" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">CATL · BYD · EVE · GOTION</text>
+    <text x="64" y="284" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">19 SITES — DEBRECEN TO NEVADA</text>
+  </g>
+
+  <!-- Card 2 — Tech Routes (volt) -->
+  <g>
+    <rect x="352" y="30" width="296" height="270" fill="#0E141C" stroke="#2A3A46" stroke-width="1.5"/>
+    <rect x="352" y="30" width="296" height="6" fill="#C9F24B"/>
+    <text x="376" y="72" font-family="Courier, monospace" font-size="12" letter-spacing="2.5" fill="#C9F24B">02 · TECH ROUTES</text>
+
+    <g stroke="#C9F24B" stroke-width="2" fill="none">
+      <rect x="440" y="100" width="60" height="56" rx="8"/>
+      <rect x="462" y="88" width="16" height="12" rx="2"/>
+      <path d="M462 124 L478 120 L470 132 L486 128" stroke-linejoin="round"/>
+      <path d="M478 120 L486 128" fill="none"/>
+    </g>
+
+    <text x="376" y="200" font-family="Georgia, serif" font-size="23" fill="#F4F0E6">LFP vs solid-state</text>
+    <text x="376" y="226" font-family="Georgia, serif" font-style="italic" font-size="23" fill="#C9F24B">the chemistry that wins</text>
+    <line x1="376" y1="244" x2="624" y2="244" stroke="#1B2A33" stroke-width="1"/>
+    <text x="376" y="266" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">COST CURVES · ENERGY DENSITY</text>
+    <text x="376" y="284" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">FIRST-MOVERS &amp; PILOT LINES</text>
+  </g>
+
+  <!-- Card 3 — Geopolitics & Policy (copper) -->
+  <g>
+    <rect x="664" y="30" width="296" height="270" fill="#0E141C" stroke="#2A3A46" stroke-width="1.5"/>
+    <rect x="664" y="30" width="296" height="6" fill="#F0A832"/>
+    <text x="688" y="72" font-family="Courier, monospace" font-size="12" letter-spacing="2.5" fill="#F0A832">03 · GEOPOLITICS &amp; POLICY</text>
+
+    <g stroke="#F0A832" stroke-width="2" fill="none">
+      <circle cx="812" cy="128" r="30"/>
+      <ellipse cx="812" cy="128" rx="12" ry="30"/>
+      <ellipse cx="812" cy="128" rx="30" ry="12"/>
+      <path d="M812 98 L812 158"/>
+    </g>
+
+    <text x="688" y="200" font-family="Georgia, serif" font-size="23" fill="#F4F0E6">IRA · §45X · FEOC</text>
+    <text x="688" y="226" font-family="Georgia, serif" font-style="italic" font-size="23" fill="#F0A832">the rules that redraw the map</text>
+    <line x1="688" y1="244" x2="936" y2="244" stroke="#1B2A33" stroke-width="1"/>
+    <text x="688" y="266" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">EU BATTERY PASSPORT</text>
+    <text x="688" y="284" font-family="Courier, monospace" font-size="11.5" letter-spacing="1.5" fill="#8E97A8">EXPORT CONTROLS &amp; TARIFFS</text>
+  </g>
+</svg>

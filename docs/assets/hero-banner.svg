@@ -1,0 +1,39 @@
+<svg width="1440" height="460" viewBox="0 0 1440 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="China Battery Brief — weekly intelligence on China's battery industry going global">
+  <defs>
+    <pattern id="hbDots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="1.2" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="hbGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5ADFC3" stop-opacity="0.10"/>
+      <stop offset="0.55" stop-color="#5ADFC3" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="460" fill="#0C1017"/>
+  <rect width="1440" height="460" fill="url(#hbDots)"/>
+  <rect width="1440" height="460" fill="url(#hbGlow)"/>
+
+  <g stroke="#5ADFC3" stroke-width="2" opacity="0.9">
+    <path d="M24 64 V42 a12 12 0 0 1 12 -12 H58" fill="none"/>
+    <path d="M1416 64 V42 a12 12 0 0 0 -12 -12 H1382" fill="none"/>
+    <path d="M24 396 V418 a12 12 0 0 0 12 12 H58" fill="none"/>
+    <path d="M1416 396 V418 a12 12 0 0 1 -12 12 H1382" fill="none"/>
+  </g>
+
+  <text x="64" y="86" font-family="Courier, monospace" font-size="15" letter-spacing="5" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <line x1="64" y1="106" x2="1376" y2="106" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="64" y="204" font-family="Georgia, serif" font-size="56" fill="#F4F0E6">Weekly intelligence on China's battery</text>
+  <text x="64" y="278" font-family="Georgia, serif" font-style="italic" font-size="56" fill="#5ADFC3">industry going global</text>
+
+  <g font-family="Courier, monospace" font-size="13" letter-spacing="2">
+    <rect x="64" y="328" width="206" height="34" fill="#1B2A33" stroke="#5ADFC3" stroke-width="1"/>
+    <text x="167" y="349" text-anchor="middle" fill="#F4F0E6">OVERSEAS EXPANSION</text>
+    <rect x="286" y="328" width="180" height="34" fill="#1B2A33" stroke="#C9F24B" stroke-width="1"/>
+    <text x="376" y="349" text-anchor="middle" fill="#F4F0E6">TECH ROUTES</text>
+    <rect x="482" y="328" width="240" height="34" fill="#1B2A33" stroke="#F0A832" stroke-width="1"/>
+    <text x="602" y="349" text-anchor="middle" fill="#F4F0E6">GEOPOLITICS &amp; POLICY</text>
+  </g>
+
+  <text x="64" y="424" font-family="Courier, monospace" font-size="12" letter-spacing="3" fill="#8E97A8">BILINGUAL · EN/ZH ONE-CLICK · FREE / PRO $19 · DESK $499 · EVERY THURSDAY 06:00 UTC</text>
+</svg>
