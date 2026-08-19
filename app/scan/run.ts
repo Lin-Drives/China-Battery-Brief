@@ -9,6 +9,7 @@
  * 设计：并发（默认 4）+ 边抓边写——即使部分源失败，已完成的结果也已落盘。
  */
 
+import "dotenv/config"
 import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "fs";
 import { join } from "path";
 import { createHash } from "crypto";
@@ -258,9 +259,124 @@ async function fetchHtmlRaw(src: SourceConfig): Promise<ScannedItem[]> {
   return htmlItemsToScanned(src, parsed)
 }
 
+/* Firecrawl —— 无头渲染 + 反爬抓取（经官方 API）。
+ * 用于原 RSS/HTML 抓不到的 JS 渲染、反爬、登录墙类信源。
+ * 依赖环境变量 FIRECRAWL_API_KEY（firecrawl.dev 注册后生成）。
+ */
+
+interface FcLink {
+  url?: string
+  text?: string
+}
+
+async function fcRequest<T>(path: string, body: Record<string, unknown>): Promise<T> {
+  const key = process.env.FIRECRAWL_API_KEY
+  if (!key) throw new Error("FIRECRAWL_API_KEY not set")
+  const res = await fetch(`https://api.firecrawl.dev/v1${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(60000),
+  })
+  if (!res.ok) throw new Error(`Firecrawl ${path} HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`)
+  const json = (await res.json()) as T
+  return json
+}
+
+/** 过滤掉导航/页脚/图片类链接，只保留像文章的条目。 */
+function isArticleLike(url: string, text: string): boolean {
+  const u = url.toLowerCase()
+  if (/(?:\.(?:png|jpe?g|gif|svg|webp|avif|bmp|ico))(?:\?|#|$)/i.test(u)) return false
+  const skipPath = [
+    "/login", "/signup", "/register", "/logout", "/cart", "/account", "/privacy",
+    "/terms", "/contact", "/about", "/careers", "/jobs", "/support", "/help", "/faq",
+    "/cookie", "/advert", "/press", "/tag/", "/author", "/category", "/archive",
+    "/newsletter", "/subscribe", "/search", "/download", "/rss", "/feed", "?page=", "#",
+  ]
+  for (const w of skipPath) if (u.includes(w)) return false
+  const path = u.replace(/^https?:\/\/[^/]+\/?/, "")
+  if (path.length < 12) return false
+  const tl = text.toLowerCase()
+  if (["home", "menu", "login", "sign in", "search", "subscribe", "newsletter", "privacy", "terms", "contact", "more", "read more", "slide image"].includes(tl)) return false
+  return true
+}
+
+async function fcScrape(src: SourceConfig): Promise<ScannedItem[]> {
+  const json = await fcRequest<{
+    success: boolean
+    data?: { markdown?: string; links?: FcLink[]; error?: string }
+  }>("/scrape", {
+    url: src.url,
+    formats: ["markdown", "links"],
+    onlyMainContent: true,
+    waitFor: 4000,
+    timeout: 45000,
+  })
+  if (!json.success || !json.data) throw new Error(`Firecrawl scrape failed: ${json.data?.error ?? "no data"}`)
+  const md = json.data.markdown ?? ""
+  const discovered = stamp()
+  // 从 clean markdown 提取 [text](url) 绝对链接（?<![!] 排除图片语法 ![alt](url)）
+  const linkRe = /(?<![!])\[([^\]]{4,120})\]\((https?:\/\/[^)\s]+)\)/g
+  const items: ScannedItem[] = []
+  const seen = new Set<string>()
+  let m: RegExpExecArray | null
+  while ((m = linkRe.exec(md)) !== null) {
+    const text = m[1].trim()
+    const url = m[2].trim()
+    if (!/^https?:\/\//i.test(url)) continue
+    if (seen.has(url)) continue
+    seen.add(url)
+    if (!isArticleLike(url, text)) continue
+    items.push({
+      id: hashUrl(url),
+      title: text,
+      url,
+      source: src.key,
+      layer: src.layer,
+      pillar: src.pillar,
+      publishedAt: null,
+      discoveredAt: discovered,
+      summary: null,
+    })
+  }
+  return items.slice(0, 20)
+}
+
+async function fcSearch(src: SourceConfig): Promise<ScannedItem[]> {
+  if (!src.fcQuery) throw new Error(`${src.key}: fcQuery missing`)
+  const json = await fcRequest<{
+    success: boolean
+    data?: Array<{ title?: string; url?: string; description?: string }>
+  }>("/search", { query: src.fcQuery, limit: 10 })
+  if (!json.success || !json.data) throw new Error(`Firecrawl search failed for ${src.key}`)
+  const discovered = stamp()
+  return json.data
+    .filter((d) => d.url && d.title)
+    .slice(0, 10)
+    .map((d) => ({
+      id: hashUrl(d.url!),
+      title: d.title!.trim(),
+      url: d.url!,
+      source: src.key,
+      layer: src.layer,
+      pillar: src.pillar,
+      publishedAt: null,
+      discoveredAt: discovered,
+      summary: d.description?.slice(0, 200) ?? null,
+    }))
+}
+
+async function fetchFirecrawl(src: SourceConfig): Promise<ScannedItem[]> {
+  if (src.kind === "firecrawl-search") return fcSearch(src)
+  return fcScrape(src)
+}
+
 async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[] }> {
   if (src.kind === "rss") return { src, items: await fetchRss(src) }
   if (src.kind === "rsshub") return { src, items: await fetchRsshub(src) }
+  if (src.kind === "firecrawl" || src.kind === "firecrawl-search") {
+    return { src, items: await fetchFirecrawl(src) }
+  }
   // 慢速源（政府站等）串行 + 间隔，避免并发突发
   if (src.slow) return { src, items: await enqueueSlow(() => fetchHtmlRaw(src)) }
   return { src, items: await fetchHtmlRaw(src) }
@@ -288,7 +404,15 @@ async function main() {
   const date = todayDir()
   const outDir = join(ROOT, date, "raw")
   mkdirSync(outDir, { recursive: true })
-  const sources = enabledSources()
+  let sources = enabledSources()
+  const noFcKey = !process.env.FIRECRAWL_API_KEY
+  if (noFcKey) {
+    const fcOnes = sources.filter((s) => s.kind === "firecrawl" || s.kind === "firecrawl-search")
+    if (fcOnes.length > 0) {
+      console.log(`ℹ FIRECRAWL_API_KEY 未设置 — 跳过 ${fcOnes.length} 个 firecrawl 源：${fcOnes.map((s) => s.key).join(", ")}`)
+    }
+    sources = sources.filter((s) => s.kind !== "firecrawl" && s.kind !== "firecrawl-search")
+  }
   const seen = await loadSeenIds()
   console.log(`Scanning ${sources.length} enabled sources → scan/${date}/raw/ (concurrency=${CONCURRENCY})\n`)
 
