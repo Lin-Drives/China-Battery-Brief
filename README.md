@@ -61,6 +61,7 @@ Vitest 4 · ESLint 9 (flat config) · Prettier 3 · tsx (seed scripts) · TypeSc
 │   └── package.json / vite.config.ts / drizzle.config.ts / ...
 ├── docs/                     delivery docs: README.md (authoritative) + plan.md + deploy.md + security.md
 ├── dev/                      dev tooling & notes: devboard.mjs/html, workspace file
+├── backups/                  backup dumps: local dev (db/) + offsite prod archive (pull/)
 ├── info.md                   research fact base (every fact sourced & dated)
 ├── AGENTS.md                 repo & coding conventions for AI agents
 └── README.md                 this file
@@ -82,7 +83,7 @@ All commands run from `app/`:
 | `npm run lint` / `format` | ESLint / Prettier |
 | `npm test` | Vitest (currently no tests yet) |
 | `npm run db:start` / `db:seed` | Start bundled MySQL (`../.local-mysql`) / reseed (idempotent) |
-| `npm run db:backup` / `db:restore` | Dump DB + assets snapshot to `../backups/db/` (retain N) / restore from a dump |
+| `npm run db:backup` / `db:restore` | Dump DB + assets snapshot to `../backups/db/` (DB retain 7, assets retain 3) / restore from a dump |
 
 Environment: see `app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BIN`/`BACKUP_ROOT` (backup overrides), `APP_SECRET` (reserved for the upcoming email+password auth).
 
@@ -93,6 +94,8 @@ Environment: see `app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BI
 ## Deployment
 
 **Live now (self-hosted)**: VPS (DigitalOcean) + Nginx reverse proxy + Cloudflare CDN + on-box MariaDB. Topology and runbook: `docs/deploy.md` (DNS, Nginx XFF trust, HTTPS/HSTS, backup cron, migration & rollback). Note the SSL mode is **Flexible** (CF↔VPS leg is plain HTTP) — full end-to-end HTTPS upgrade is tracked in `plan.md` queue E.
+
+**Backups (dual track)**: VPS cron backs up daily (DB retain 7, assets retain 3 — short fast-recovery window, `/opt/cbb/backups`), and this machine's launchd job (`com.cbb.pull-backup`, 21:00 local) pulls the newest artifacts to `backups/pull/` (retain 90 days) as the offsite archive. Manual: `bash app/scripts/pull-backup.sh`.
 
 The app itself is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works: build with `npm run build`, run with `npm start` (set `DATABASE_URL`, run `npm run db:seed` once). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — schema is standard MySQL and the seed is idempotent.
 
