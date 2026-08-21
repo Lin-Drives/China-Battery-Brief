@@ -13,3 +13,9 @@ dist/
 .env
 .env.*
 *.log
+
+# Playwright screenshot artifacts (dev/screenshot.mjs output + local previews)
+dev/shots/
+dev/prod-hero-*.png
+dev/home-hero-live.png
+dev/hero-live-*.png
