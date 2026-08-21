@@ -17,6 +17,12 @@ const issueInput = z.object({
   readingMinutes: z.number().int().min(1).max(120).default(8),
   coverAsset: z.string().max(255).optional(),
   content: z.string().min(1),
+  highlights: z
+    .array(z.object({ tag: z.enum(["capacity", "tech", "risk", "markets"]), text: z.string(), gauge: z.number().optional() }))
+    .default([]),
+  highlightsZh: z
+    .array(z.object({ tag: z.enum(["capacity", "tech", "risk", "markets"]), text: z.string(), gauge: z.number().optional() }))
+    .optional(),
   sources: z
     .array(z.object({ outlet: z.string(), title: z.string(), url: z.string(), date: z.string() }))
     .optional(),

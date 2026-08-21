@@ -3,42 +3,70 @@
     "slug": "the-governance-bottleneck",
     "titleZh": "镍、黑名单与盖尼特拉：出海的真正代价",
     "dekZh": "宁德时代 60 亿美元印尼产业链、比亚迪巴西“脏名单”事件与国轩高科摩洛哥超级工厂共同表明：出海的新瓶颈是治理，而非资本",
-    "contentFileZh": "issue-044-zh.md"
+    "contentFileZh": "issue-044-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "宁德时代 60 亿美元印尼产业链；国轩摩洛哥超级工厂" },
+      { "tag": "risk", "text": "比亚迪巴西遭“脏名单”，163 名工人获救" }
+    ]
   },
   {
     "slug": "battery-passport-t-minus-200",
     "titleZh": "倒计时 200 天：电池护照是不会移动的死线",
     "dekZh": "布鲁塞尔的固定电池护照死线、华盛顿的 PFE 许可条款与北京即将到期的管制休战，把同一条供应链挂在了三本日历上",
-    "contentFileZh": "issue-045-zh.md"
+    "contentFileZh": "issue-045-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "一条供应链，三本日历：布鲁塞尔、华盛顿、北京" },
+      { "tag": "risk", "text": "200 天电池护照死线，纹丝不动" }
+    ]
   },
   {
     "slug": "solid-state-2027-consensus",
     "titleZh": "2027 共识：固态电池的真实时间表，以及磷酸铁锂为何不等待",
     "dekZh": "60 亿元国家基金与整齐划一的 2027 路线图发出的是采购信号，而非产品周期——与此同时，磷酸铁锂已拿下 1.2 TWh 市场的 55%",
-    "contentFileZh": "issue-046-zh.md"
+    "contentFileZh": "issue-046-zh.md",
+    "highlightsZh": [
+      { "tag": "tech", "text": "磷酸铁锂拿下 1.2 TWh 市场的 55%", "gauge": 55 },
+      { "tag": "risk", "text": "2027 路线图：是采购信号，不是产品周期" }
+    ]
   },
   {
     "slug": "debrecen-sold-out",
     "titleZh": "德布勒森售罄：宁德时代的欧洲版图落地",
     "dekZh": "德布勒森一期 40 GWh 售罄，萨拉戈萨破土动工，授权模式深入美国腹地——欧洲的电池未来，正由中国建造",
-    "contentFileZh": "issue-047-zh.md"
+    "contentFileZh": "issue-047-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "德布勒森一期 40 GWh，全部订出", "gauge": 68 },
+      { "tag": "risk", "text": "萨拉戈萨破土；授权深入美国" }
+    ]
   },
   {
     "slug": "the-re-export-ring",
     "titleZh": "再出口枢纽：东南亚，中国免关税的后门",
     "dekZh": "比亚迪罗勇把车卖到德国、亿纬库林悄声扩产，而在美国，中国资本用所有权换准入——东南亚，如今是中国的出口车间",
-    "contentFileZh": "issue-048-zh.md"
+    "contentFileZh": "issue-048-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "比亚迪罗勇工厂把车卖到德国" },
+      { "tag": "risk", "text": "中国资本用所有权换美国准入" }
+    ]
   },
   {
     "slug": "the-scoreboard",
     "titleZh": "两家厂商，半个市场：格局已定",
     "dekZh": "宁德时代拿下 2026 年一季度装机的 40.7%，宁德时代与比亚迪合计年内占比越过 54.6%——而资本开支的轨迹，指向下一个产能周期将建在哪里",
-    "contentFileZh": "issue-049-zh.md"
+    "contentFileZh": "issue-049-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "两家厂商，半个市场", "gauge": 41 },
+      { "tag": "markets", "text": "资本开支轨迹显示下一周期落脚点" }
+    ]
   },
   {
     "slug": "storage-shift-non-china-majority",
     "titleZh": "一半储能，如今离开中国",
     "dekZh": "2026 上半年全球储能出货 461.3 GWh（+71%），非中国市场首次占到 56%——而户储，成了下一块毛利与下一场政策博弈的战场",
-    "contentFileZh": "issue-050-zh.md"
+    "contentFileZh": "issue-050-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "非中国首次占到储能市场的 56%", "gauge": 56 },
+      { "tag": "markets", "text": "户储成为下一块毛利战场" }
+    ]
   }
 ]

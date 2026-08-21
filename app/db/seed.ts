@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import { sql } from "drizzle-orm";
 import { getDb } from "../api/queries/connection";
 import { factories, issues, plans, policyEvents, tickerItems } from "./schema";
-import type { SourceRef } from "./schema";
+import type { Highlight, SourceRef } from "./schema";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -29,10 +29,10 @@ async function seed() {
   const meta = JSON.parse(readFileSync(join(__dirname, "seed-content", "issues.json"), "utf8")) as Array<{
     number: number; slug: string; title: string; dek: string; publishedAt: string;
     isFree: boolean; pillars: string[]; readingMinutes: number; coverAsset: string;
-    contentFile: string; sources: SourceRef[];
+    contentFile: string; sources: SourceRef[]; highlights: Highlight[];
   }>;
   /* Chinese translations (optional — present after i18n backfill). */
-  let zhMeta: Array<{ slug: string; titleZh: string; dekZh: string; contentFileZh: string }> = [];
+  let zhMeta: Array<{ slug: string; titleZh: string; dekZh: string; contentFileZh: string; highlightsZh: Highlight[] }> = [];
   try {
     zhMeta = JSON.parse(readFileSync(join(__dirname, "seed-content-zh", "issues-zh.json"), "utf8"));
   } catch {
@@ -58,6 +58,8 @@ async function seed() {
         coverAsset: m.coverAsset,
         content,
         contentZh,
+        highlights: m.highlights,
+        highlightsZh: zh?.highlightsZh ?? null,
         sources: m.sources,
       })
       .onDuplicateKeyUpdate({
@@ -74,6 +76,8 @@ async function seed() {
           titleZh: zh?.titleZh ?? null,
           dekZh: zh?.dekZh ?? null,
           contentZh,
+          highlights: m.highlights,
+          highlightsZh: zh?.highlightsZh ?? null,
         },
       });
   }

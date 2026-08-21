@@ -109,7 +109,7 @@ export const en: Record<string, string> = {
     'One dense, English-language brief every week on where Chinese battery makers are building abroad, which chemistry wins — LFP or solid-state — and how IRA subsidies and the EU battery passport redraw the map. Written by people who can read a patent and a customs ledger.',
   'hero.proof': 'READ BY ANALYSTS AT OEM STRATEGY DESKS · BATTERY FUNDS · POLICY UNITS · TRADING HOUSES',
   'hero.scroll': 'SCROLL',
-  'hero.cardStamp': 'WEEKLY BRIEF No. 047',
+  'hero.cardStamp': 'WEEKLY BRIEF No. {no}',
   'hero.cardTitle': 'Debrecen Is Ahead of Schedule',
   'hero.ch1pillar': 'CAPACITY',
   'hero.ch1text': 'Hungary ramp hits 68%',
@@ -117,6 +117,7 @@ export const en: Record<string, string> = {
   'hero.ch2text': 'SAIC’s “solid-state” is semi-solid',
   'hero.ch3pillar': 'RISK',
   'hero.ch3text': 'FEOC round two, decoded',
+  'hero.ch4pillar': 'MARKETS',
 
   /* ---------- Home · This week's file ---------- */
   'latest.kicker': 'THIS WEEK',

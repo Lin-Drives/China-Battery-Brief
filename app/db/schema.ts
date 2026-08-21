@@ -44,6 +44,17 @@ export interface SourceRef {
   date: string;
 }
 
+/** One card line on the homepage hero — the issue's editorial pillars (capacity/tech/risk/markets). */
+export type HighlightTag = "capacity" | "tech" | "risk" | "markets";
+export interface Highlight {
+  tag: HighlightTag;
+  /** Short line of editorial copy (EN or ZH, per column). */
+  text: string;
+  /** Optional headline metric that drives the hero card's ChargeGauge (0–100). */
+  gauge?: number;
+}
+
+
 /** Weekly newsletter issues (long-form markdown content). */
 export const issues = mysqlTable("issues", {
   id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
@@ -61,6 +72,9 @@ export const issues = mysqlTable("issues", {
   coverAsset: varchar("coverAsset", { length: 255 }),
   content: longtext("content").notNull(),
   contentZh: longtext("contentZh"),
+  /** Editorial triad lines shown on the homepage hero card (EN / ZH). */
+  highlights: json("highlights").$type<Highlight[]>().notNull(),
+  highlightsZh: json("highlightsZh").$type<Highlight[]>(),
   sources: json("sources").$type<SourceRef[]>(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt")

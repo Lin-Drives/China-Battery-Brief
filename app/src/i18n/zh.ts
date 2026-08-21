@@ -109,7 +109,7 @@ export const zh: Record<string, string> = {
     '每周一期高密度简报：中国电池企业在何处建厂出海、哪条化学路线胜出——磷酸铁锂还是固态电池——以及 IRA 补贴与欧盟电池护照如何重绘产业版图。执笔人既读得懂专利，也读得懂海关账册',
   'hero.proof': '读者包括整车厂战略部门 · 电池基金 · 政策研究机构 · 贸易行的分析师',
   'hero.scroll': '向下滚动',
-  'hero.cardStamp': '每周简报 No. 047',
+  'hero.cardStamp': '每周简报 No. {no}',
   'hero.cardTitle': '德布勒森进度超前',
   'hero.ch1pillar': '产能',
   'hero.ch1text': '匈牙利产能爬坡达 68%',
@@ -117,6 +117,7 @@ export const zh: Record<string, string> = {
   'hero.ch2text': '上汽的“固态”实为半固态',
   'hero.ch3pillar': '风险',
   'hero.ch3text': 'FEOC 第二轮，逐条解码',
+  'hero.ch4pillar': '市场',
 
   /* ---------- 首页 · 本周档案 ---------- */
   'latest.kicker': '本周',

@@ -6,19 +6,35 @@ import CornerTicks from '@/components/CornerTicks'
 import ChargeGauge from '@/components/ChargeGauge'
 import RubberStamp from '@/components/RubberStamp'
 import EmailCapture from '@/components/EmailCapture'
-import { useLang } from '@/i18n/lang'
+import { useLang, tpl } from '@/i18n/lang'
+import { trpc } from '@/providers/trpc'
 
 const HeroCanvas = lazy(() => import('@/components/home/HeroCanvas'))
 
-const CHAPTER_KEYS = [
-  { pillarKey: 'hero.ch1pillar', color: 'var(--volt)', textKey: 'hero.ch1text' },
-  { pillarKey: 'hero.ch2pillar', color: 'var(--lithium)', textKey: 'hero.ch2text' },
-  { pillarKey: 'hero.ch3pillar', color: 'var(--signal)', textKey: 'hero.ch3text' },
-]
+/** Map an issue's editorial tag → card label + accent color (labels stay i18n). */
+const TAG_META: Record<string, { labelKey: string; color: string }> = {
+  capacity: { labelKey: 'hero.ch1pillar', color: 'var(--volt)' },
+  tech: { labelKey: 'hero.ch2pillar', color: 'var(--lithium)' },
+  risk: { labelKey: 'hero.ch3pillar', color: 'var(--signal)' },
+  markets: { labelKey: 'hero.ch4pillar', color: 'var(--amber)' },
+}
 
 /** home.md S2 — "The Night Desk" hero */
 export default function Hero() {
-  const { t } = useLang()
+  const { lang, t } = useLang()
+  // Live latest issue — the floating card must always track the newest file,
+  // never a hand-baked number/cover (see homepage-review-notes:047 drift).
+  const { data: latest } = trpc.content['issues.latest'].useQuery()
+  const cardTitle =
+    latest && (lang === 'zh' ? latest.titleZh ?? latest.title : latest.title) || t('hero.cardTitle')
+  const cardSlug = latest ? `/briefs/${latest.slug}` : '/briefs/debrecen-sold-out'
+  const cardCover = latest?.coverAsset || '/cover-047.png'
+  const cardStamp = latest ? tpl(t('hero.cardStamp'), { no: latest.number }) : t('hero.cardStamp')
+  // Editorial lines come from the issue itself; zh falls back to en highlights.
+  const highlights = (latest ? (lang === 'zh' ? latest.highlightsZh ?? latest.highlights : latest.highlights) : []).filter(
+    (h) => TAG_META[h.tag],
+  )
+  const gaugeItem = highlights.find((h) => h.gauge != null)
   const KICKER = t('hero.kicker')
   const rootRef = useRef<HTMLElement>(null)
   const [showCanvas] = useState(
@@ -154,40 +170,45 @@ export default function Hero() {
             <div className="transition-transform duration-300 ease-out lg:-rotate-4 lg:hover:rotate-0 lg:hover:-translate-y-1.5">
               <div className="hero-card-float">
                 <Link
-                  to="/briefs/debrecen-sold-out"
+                  to={cardSlug}
                   data-cursor="READ"
                   className="paper-grain relative block w-[340px] rounded-sm bg-paper p-5 shadow-paper-hard"
                 >
                   <CornerTicks color="var(--paper-ink)" />
                   <div className="absolute right-3 top-3 z-10">
                     <RubberStamp color="var(--paper-ink)" className="text-[10px]">
-                      {t('hero.cardStamp')}
+                      {cardStamp}
                     </RubberStamp>
                   </div>
                   <div className="relative mb-4 mt-8 overflow-hidden rounded-[2px]">
                     <img
-                      src="/cover-047.png"
-                      alt="Issue No. 047 cover — Debrecen gigafactory at dusk"
+                      src={cardCover}
+                      alt={`Issue No. ${latest?.number ?? ''} — ${latest?.title ?? ''}`}
                       className="aspect-[4/3] w-full object-cover"
                     />
                   </div>
                   <h2 className="font-display text-[24px] leading-tight text-paper-ink">
-                    {t('hero.cardTitle')}
+                    {cardTitle}
                   </h2>
                   <ul className="mt-4 flex flex-col gap-2 border-t border-paper-ink/15 pt-4">
-                    {CHAPTER_KEYS.map((c) => (
-                      <li key={c.pillarKey} className="flex items-baseline gap-2 font-mono text-[11px] tracking-wide text-paper-ink">
-                        <span aria-hidden style={{ color: c.color }}>
-                          ●
-                        </span>
-                        <span className="font-semibold">{t(c.pillarKey)}</span>
-                        <span className="text-paper-muted">— {t(c.textKey)}</span>
-                      </li>
-                    ))}
+                    {highlights.map((h) => {
+                      const meta = TAG_META[h.tag]
+                      return (
+                        <li key={h.tag} className="flex items-baseline gap-2 font-mono text-[11px] tracking-wide text-paper-ink">
+                          <span aria-hidden style={{ color: meta.color }}>
+                            ●
+                          </span>
+                          <span className="font-semibold">{t(meta.labelKey)}</span>
+                          <span className="text-paper-muted">— {h.text}</span>
+                        </li>
+                      )
+                    })}
                   </ul>
-                  <div className="mt-5">
-                    <ChargeGauge value={68} color="var(--volt)" showLabel />
-                  </div>
+                  {gaugeItem ? (
+                    <div className="mt-5">
+                      <ChargeGauge value={gaugeItem.gauge as number} color={TAG_META[gaugeItem.tag].color} showLabel />
+                    </div>
+                  ) : null}
                 </Link>
               </div>
             </div>

@@ -13,6 +13,10 @@
     "readingMinutes": 6,
     "coverAsset": "/cover-044.png",
     "contentFile": "issue-044.md",
+    "highlights": [
+      { "tag": "capacity", "text": "CATL's $6bn Indonesia chain; Gotion's Morocco gigafactory" },
+      { "tag": "risk", "text": "BYD blacklisted in Brazil after 163-worker rescue" }
+    ],
     "sources": [
       {
         "outlet": "BatteryTech Online",
@@ -71,6 +75,10 @@
     "readingMinutes": 6,
     "coverAsset": "/cover-045.png",
     "contentFile": "issue-045.md",
+    "highlights": [
+      { "tag": "capacity", "text": "One supply chain, three calendars: Brussels, Washington, Beijing" },
+      { "tag": "risk", "text": "The 200-day passport deadline won't move" }
+    ],
     "sources": [
       {
         "outlet": "Scantrust",
@@ -123,6 +131,10 @@
     "readingMinutes": 7,
     "coverAsset": "/cover-046.png",
     "contentFile": "issue-046.md",
+    "highlights": [
+      { "tag": "tech", "text": "LFP takes 55% of a 1.2 TWh market", "gauge": 55 },
+      { "tag": "risk", "text": "2027 roadmaps: a procurement signal, not a product cycle" }
+    ],
     "sources": [
       {
         "outlet": "chedongxi 车东西 (citing China Daily)",
@@ -169,6 +181,10 @@
     "readingMinutes": 6,
     "coverAsset": "/cover-047.png",
     "contentFile": "issue-047.md",
+    "highlights": [
+      { "tag": "capacity", "text": "Debrecen phase one, 40 GWh, fully booked", "gauge": 68 },
+      { "tag": "risk", "text": "Zaragoza rising; licensing inside the US" }
+    ],
     "sources": [
       {
         "outlet": "Xinhua (via china-ceec.org)",
@@ -210,6 +226,10 @@
     "readingMinutes": 7,
     "coverAsset": "/cover-048.svg",
     "contentFile": "issue-048.md",
+    "highlights": [
+      { "tag": "capacity", "text": "BYD's Rayong plant ships cars to Germany" },
+      { "tag": "risk", "text": "Chinese capital trades ownership for US access" }
+    ],
     "sources": [
       {
         "outlet": "CnEVPost",
@@ -292,6 +312,10 @@
     "readingMinutes": 7,
     "coverAsset": "/cover-049.svg",
     "contentFile": "issue-049.md",
+    "highlights": [
+      { "tag": "capacity", "text": "Two firms, half the market", "gauge": 41 },
+      { "tag": "markets", "text": "The capex trail shows the next capacity cycle" }
+    ],
     "sources": [
       {
         "outlet": "SNE Research (via evseekers / CnEVPost)",
@@ -368,6 +392,10 @@
     "readingMinutes": 8,
     "coverAsset": "/cover-050.svg",
     "contentFile": "issue-050.md",
+    "highlights": [
+      { "tag": "capacity", "text": "Non-China takes 56% of storage for the first time", "gauge": 56 },
+      { "tag": "markets", "text": "Residential storage is the new margin war" }
+    ],
     "sources": [
       {
         "outlet": "SNE Research",
