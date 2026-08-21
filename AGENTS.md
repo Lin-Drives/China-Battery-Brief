@@ -19,7 +19,7 @@ app/                       ← 唯一可构建的应用代码库（npm 项目根
 ├── public/                ← 静态资源（封面图、logo、头像等）
 └── package.json / vite.config.ts / drizzle.config.ts / ...
 docs/                      ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ deploy.md（部署手册）+ security.md（安全应急手册）
-dev/                       ← 开发工具与笔记：devboard.mjs/html、homepage-review-notes.md、VS Code workspace
+dev/                       ← 开发工具与笔记：devboard.mjs/html、screenshot.mjs、VS Code workspace
 info.md                    ← 调研事实底座（所有内容的事实来源，带来源与日期标注）
 .local-mysql/              ← 本地绿色版 MySQL 运行时（gitignore，不提交）
 backups/                   ← 备份落点：本地开发备份（backups/db/）+ 生产异地归档（backups/pull/）+ 历史存档 zip

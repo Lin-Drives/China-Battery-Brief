@@ -23,7 +23,7 @@ const TAG_META: Record<string, { labelKey: string; color: string }> = {
 export default function Hero() {
   const { lang, t } = useLang()
   // Live latest issue — the floating card must always track the newest file,
-  // never a hand-baked number/cover (see homepage-review-notes:047 drift).
+  // never a hand-baked number/cover (see git history for the old 047 drift fix).
   const { data: latest } = trpc.content['issues.latest'].useQuery()
   const cardTitle =
     latest && (lang === 'zh' ? latest.titleZh ?? latest.title : latest.title) || t('hero.cardTitle')
