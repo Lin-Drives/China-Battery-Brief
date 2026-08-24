@@ -23,6 +23,8 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
 
+  const utils = trpc.useUtils()
+
   const mapError = (code: string | undefined, fallback: string) => {
     if (code === 'CONFLICT') return t('login.errTaken')
     if (code === 'UNAUTHORIZED') return t('login.errInvalid')
@@ -30,13 +32,26 @@ export default function Login() {
     return t('login.errInvalid')
   }
 
+  // On success, wait for `auth.me` to refetch with the new session before
+  // navigating. Otherwise /account mounts with the stale cached `null` (me
+  // already has data so refetch keeps isLoading=false) and
+  // redirectOnUnauthenticated bounces straight back to /login.
+  const goToAccount = async () => {
+    try {
+      await utils.auth.me.invalidate()
+    } catch {
+      /* refetch is best-effort; session is already set server-side */
+    }
+    navigate('/account')
+  }
+
   const login = trpc.auth.login.useMutation({
-    onSuccess: () => navigate('/account'),
+    onSuccess: () => void goToAccount(),
     onError: (e) => setError(mapError(e.data?.code, e.message)),
   })
 
   const register = trpc.auth.register.useMutation({
-    onSuccess: () => navigate('/account'),
+    onSuccess: () => void goToAccount(),
     onError: (e) => setError(mapError(e.data?.code, e.message)),
   })
 

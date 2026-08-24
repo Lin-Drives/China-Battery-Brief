@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { FormEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Trash2 } from 'lucide-react'
+import { Eye, Trash2, X } from 'lucide-react'
 import { trpc } from '@/providers/trpc'
 import RubberStamp from '@/components/RubberStamp'
 import { cn } from '@/lib/utils'
@@ -11,6 +11,7 @@ import { PILLAR_META, PILLAR_ORDER, fmtDate, fmtMoney } from './utils'
 import type { PillarSlug } from './utils'
 import { useLang, tpl } from '@/i18n/lang'
 import EmailDesk from './EmailDesk'
+import ReaderMarkdown, { extractHeadings } from '@/components/briefs/ReaderMarkdown'
 
 const inputCls =
   'w-full rounded-sm border border-line bg-ink-900 px-3.5 py-3 font-mono text-[13px] text-text caret-volt placeholder:uppercase placeholder:tracking-[0.08em] placeholder:text-faint focus:border-volt focus:outline-none'
@@ -84,9 +85,12 @@ export default function AdminDesk() {
 
   const [form, setForm] = useState(initialForm)
   const [error, setError] = useState<string | null>(null)
+  const [showPreview, setShowPreview] = useState(false)
 
   const set = <K extends keyof typeof initialForm>(key: K, value: (typeof initialForm)[K]) =>
     setForm((f) => ({ ...f, [key]: value }))
+
+  const previewHeadings = useMemo(() => extractHeadings(form.content), [form.content])
 
   const invalidateIssues = () => {
     utils.admin['issues.list'].invalidate()
@@ -293,7 +297,40 @@ export default function AdminDesk() {
               value={form.content}
               onChange={(e) => set('content', e.target.value)}
             />
+            <button
+              type="button"
+              onClick={() => setShowPreview((v) => !v)}
+              className="mt-2 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-text-muted transition-colors hover:text-volt"
+            >
+              {showPreview ? <X className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+              {showPreview ? t('acct.hidePreview') : t('acct.showPreview')}
+            </button>
           </Field>
+
+          {showPreview && (
+            <div className="sm:col-span-2">
+              <p className="kicker mb-2 text-faint">{t('acct.preview')}</p>
+              <div
+                style={{
+                  '--sheet-ink': '#F4F0E6',
+                  '--sheet-muted': '#8E97A8',
+                  '--sheet-line': 'rgba(244,240,230,0.16)',
+                  '--sheet-2': '#151A22',
+                  '--dropcap-color': '#C9F24B',
+                  '--reader-body': '19px',
+                } as React.CSSProperties}
+                className="max-h-[480px] overflow-y-auto rounded-sm border border-line bg-ink-900 px-6 py-8"
+              >
+                {form.content.trim() ? (
+                  <ReaderMarkdown content={form.content} headings={previewHeadings} />
+                ) : (
+                  <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
+                    {t('acct.previewEmpty')}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
           <Field label={t('acct.fSources')} span>
             <textarea
               className={cn(inputCls, 'min-h-[72px] resize-y')}
