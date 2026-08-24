@@ -68,5 +68,15 @@
       { "tag": "capacity", "text": "非中国首次占到储能市场的 56%", "gauge": 56 },
       { "tag": "markets", "text": "户储成为下一块毛利战场" }
     ]
+  },
+  {
+    "slug": "japan-cell-ceiling",
+    "titleZh": "三成的天花板：日本的容量市场，在分配谁可以赚钱",
+    "dekZh": "瑞浦兰钧在日本的首个并网储能项目只有 8 MWh，但真正决定中国储能份额上限的，不是产能，而是 LTDA 容量市场里「单一外国电芯 ≤30%」这条全国产化线",
+    "contentFileZh": "issue-051-zh.md",
+    "highlightsZh": [
+      { "tag": "capacity", "text": "瑞浦兰钧日本首个并网储能项目", "gauge": 30 },
+      { "tag": "risk", "text": "日本容量市场单芯 ≤30% 的全国产化封顶" }
+    ]
   }
 ]

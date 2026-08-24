@@ -428,5 +428,56 @@
         "date": "2026-08-04"
       }
     ]
+  },
+  {
+    "number": 51,
+    "slug": "japan-cell-ceiling",
+    "title": "The Thirty-Percent Ceiling: Japan's Capacity Market Does the Allocating",
+    "dek": "Rept Battero's first grid-connected BESS in Japan is only 8 MWh, but the LTDA capacity market's 30% single-foreign-cell cap — not capacity — sets the real ceiling on China's storage share.",
+    "publishedAt": "2026-08-24T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "overseas-capacity",
+      "geopolitics"
+    ],
+    "readingMinutes": 5,
+    "coverAsset": "/cover-051.svg",
+    "contentFile": "issue-051.md",
+    "highlights": [
+      { "tag": "capacity", "text": "Rept Battero's first grid-connected BESS in Japan", "gauge": 30 },
+      { "tag": "risk", "text": "The 30% single-foreign-cell cap in Japan's capacity market" }
+    ],
+    "sources": [
+      {
+        "outlet": "Rept Battero",
+        "title": "REPT BATTERO Delivers Its First Grid-Connected BESS Project in Japan",
+        "url": "https://www.reptbattero.com/news/rept-battero-delivers-its-first-gridconnected-bess-project-in-japan/",
+        "date": "2026-08-20"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Japan's grid operators select 1.25GW of BESS in capacity market auction with 6-hour duration requirement",
+        "url": "https://www.energy-storage.news/japans-grid-operators-select-1-25gw-of-bess-in-capacity-market-auction-with-6-hour-duration-requirement/",
+        "date": "2026-05-19"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "CATL joint venture orders Hitachi Energy BESS for grid-scale project in Japan",
+        "url": "https://www.energy-storage.news/catl-joint-venture-orders-hitachi-energy-bess-for-grid-scale-project-in-japan/",
+        "date": "2023-08"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Gotion enters Japanese large-scale battery storage market with Edison Power agreement",
+        "url": "https://www.energy-storage.news/gotion-enters-japanese-large-scale-battery-storage-market-with-edison-power-agreement/",
+        "date": "2023-03"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Sungrow to deploy 500MWh BESS across Japan with developer Sun Village",
+        "url": "https://www.energy-storage.news/sungrow-to-deploy-500mwh-bess-across-japan-with-developer-sun-village/",
+        "date": "2025-02"
+      }
+    ]
   }
 ]

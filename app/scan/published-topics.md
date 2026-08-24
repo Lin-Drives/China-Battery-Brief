@@ -6,6 +6,12 @@
 
 ---
 
+## No.051 — The Thirty-Percent Ceiling: Japan's Capacity Market Does the Allocating（2026-08-24）
+
+- **主题**：日本容量市场的国产化封顶（OVERSEAS + GEOPOLITICS）
+- **关键词**：瑞浦鹿沼 1.99MW/8.35MWh 日本首并网、LTDA 单芯 ≤30%、6 小时时长、CHC/CATL 参股开发商、国轩 Edison/DEI、阳光 Sun Village 500MWh、调频/现货/容量三层收益
+- **一句话结论**：中国电芯在日本的天花板不是产能，是 LTDA 容量市场的 30% 单芯红线；资本能进，电芯进不了。
+
 ## No.050 — Half the Storage Now Leaves China（2026-08-10）
 
 - **主题**：全球储能电池市场格局（MARKETS）
