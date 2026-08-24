@@ -35,16 +35,6 @@ const TIERS = [
     to: '/pricing',
     featured: true,
   },
-  {
-    name: 'DESK',
-    price: '$499',
-    period: '/MO',
-    dekKey: 'proof.desk.dek',
-    featureKeys: ['proof.desk.f1', 'proof.desk.f2', 'proof.desk.f3', 'proof.desk.f4'],
-    ctaKey: 'proof.desk.cta',
-    to: '/pricing',
-    featured: false,
-  },
 ]
 
 function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -163,7 +153,7 @@ export default function SocialProof() {
             </h2>
           </Reveal>
 
-          <div className="price-grid mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="price-grid mt-14 grid gap-6 lg:grid-cols-2">
             {TIERS.map((tier) => (
               <TiltCard key={tier.name} className="price-card opacity-0">
                 <div

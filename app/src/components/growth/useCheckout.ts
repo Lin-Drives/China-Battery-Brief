@@ -4,11 +4,11 @@ import { useAuth } from '@/hooks/useAuth'
 import { trpc } from '@/providers/trpc'
 import { LOGIN_PATH } from '@/const'
 
-export type PlanCode = 'pro-monthly' | 'pro-annual' | 'desk-monthly' | 'desk-annual'
+export type PlanCode = 'pro-monthly' | 'pro-annual'
 
 export type Billing = 'monthly' | 'annual'
 
-export function planCodeFor(tier: 'pro' | 'desk', billing: Billing): PlanCode {
+export function planCodeFor(tier: 'pro', billing: Billing): PlanCode {
   return `${tier}-${billing}` as PlanCode
 }
 

@@ -16,11 +16,13 @@ import {
 
 export const users = mysqlTable("users", {
   id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  // Reserved: was the Kimi OAuth union id. Kept NOT NULL for now; the
-  // upcoming email+password auth (plan.md) will migrate this column away.
-  unionId: varchar("unionId", { length: 255 }).notNull().unique(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  /**
+   * Password auth credential. Always stored as a scrypt hash (salt:hash hex);
+   * never select it into API responses (see auth-router toPublicUser).
+   */
+  passwordHash: varchar("passwordHash", { length: 255 }),
   name: varchar("name", { length: 255 }),
-  email: varchar("email", { length: 320 }),
   avatar: text("avatar"),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
@@ -89,9 +91,9 @@ export type InsertIssue = typeof issues.$inferInsert;
 /** Subscription catalog. */
 export const plans = mysqlTable("plans", {
   id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  code: varchar("code", { length: 50 }).notNull().unique(), // free | pro-monthly | pro-annual | desk-monthly | desk-annual
+  code: varchar("code", { length: 50 }).notNull().unique(), // free | pro-monthly | pro-annual
   name: varchar("name", { length: 100 }).notNull(),
-  tier: mysqlEnum("tier", ["free", "pro", "desk"]).notNull(),
+  tier: mysqlEnum("tier", ["free", "pro", "desk"]).notNull(), // "desk" retained for historical rows only
   priceCents: int("priceCents").notNull(),
   currency: varchar("currency", { length: 3 }).default("USD").notNull(),
   interval: mysqlEnum("interval", ["month", "year", "forever"]).notNull(),

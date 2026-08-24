@@ -119,7 +119,7 @@ export default function PaywallGate({
           </div>
 
           {/* Plan mini-row */}
-          <div className="mt-8 grid w-full gap-3 sm:grid-cols-2">
+          <div className="mt-8 grid w-full gap-3">
             <div
               className="flex flex-col items-center gap-3 border p-4"
               style={{ borderColor: 'var(--sheet-line)' }}
@@ -134,24 +134,6 @@ export default function PaywallGate({
                 {t('paywall.unlock')}{' '}
                 <ArrowRight className="transition-transform duration-200 group-hover/gate:translate-x-1" />
               </CBBButton>
-            </div>
-            <div
-              className="flex flex-col items-center gap-3 border p-4"
-              style={{ borderColor: 'var(--sheet-line)' }}
-            >
-              <span
-                className="font-mono text-[11px] tracking-[0.16em]"
-                style={{ color: 'var(--sheet-muted)' }}
-              >
-                DESK — $499/MO
-              </span>
-              <Link
-                to={pricing}
-                className="font-mono text-[12px] font-semibold uppercase tracking-[0.1em] underline underline-offset-4 transition-opacity hover:opacity-70"
-                style={{ color: 'var(--sheet-ink)' }}
-              >
-                {t('paywall.forTeams')}
-              </Link>
             </div>
           </div>
 

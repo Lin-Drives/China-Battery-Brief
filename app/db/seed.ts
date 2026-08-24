@@ -19,8 +19,6 @@ async function seed() {
       { code: "free", name: "The Sample", tier: "free", priceCents: 0, interval: "forever", features: ["One open brief every month", "Weekly headline digest email", "Tracker: browse all sites"] },
       { code: "pro-monthly", name: "The Brief", tier: "pro", priceCents: 1900, interval: "month", features: ["Every weekly brief, full, Thursday 06:00 UTC", "Complete archive", "Full tracker: timelines, sources, CSV export", "Risk radar email alerts", "Save & annotate briefs"] },
       { code: "pro-annual", name: "The Brief (Annual)", tier: "pro", priceCents: 19000, interval: "year", features: ["Everything in Pro monthly", "2 months free"] },
-      { code: "desk-monthly", name: "The Desk", tier: "desk", priceCents: 49900, interval: "month", features: ["Everything in Pro", "5 seats, shared workspace", "REST API — issues, factories, policy feed", "Quarterly bespoke memo", "Monthly analyst call"] },
-      { code: "desk-annual", name: "The Desk (Annual)", tier: "desk", priceCents: 499000, interval: "year", features: ["Everything in Desk monthly", "2 months free"] },
     ])
     .onDuplicateKeyUpdate({ set: { name: sql`values(name)` } });
   console.log("plans ✓");

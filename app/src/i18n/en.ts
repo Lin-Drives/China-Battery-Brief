@@ -254,12 +254,6 @@ export const en: Record<string, string> = {
   'proof.pro.f3': 'Full tracker + CSV',
   'proof.pro.f4': 'Risk alerts',
   'proof.pro.cta': 'START WITH PRO →',
-  'proof.desk.dek': 'The Terminal, Minus the Terminal',
-  'proof.desk.f1': '5 seats',
-  'proof.desk.f2': 'API access',
-  'proof.desk.f3': 'Quarterly bespoke memo',
-  'proof.desk.f4': 'Analyst call',
-  'proof.desk.cta': 'TALK TO US',
   'proof.pfoot': 'VS $3,000–15,000/YR FOR INDUSTRY TERMINALS · NO LOCK-IN',
 
   /* ---------- Home · Final CTA ---------- */
@@ -403,7 +397,6 @@ Object.assign(en, {
   'paywall.teaser1a': 'THE REAL BOTTLENECK:',
   'paywall.teaser2a': 'WHAT CLIENTS PAID FOR:',
   'paywall.unlock': 'UNLOCK THIS FILE',
-  'paywall.forTeams': 'FOR TEAMS & FUNDS →',
   'paywall.already': 'ALREADY A SUBSCRIBER? SIGN IN →',
 
   /* Save button */
@@ -699,7 +692,7 @@ Object.assign(en, {
   'tf.countryChip': 'COUNTRY: {v}',
   'tf.exportProK': 'EXPORT IS A PRO FEATURE',
   'tf.exportProB':
-    'The full dataset — all {total} sites, timelines and source links — exports to CSV on the Pro and Desk tiers.',
+    'The full dataset — all {total} sites, timelines and source links — exports to CSV on the Pro tier.',
   'tf.region.europe': 'EUROPE',
   'tf.region.se-asia': 'SE ASIA',
   'tf.region.n-america': 'N. AMERICA',
@@ -898,7 +891,6 @@ Object.assign(en, {
   'pricing.toggleAria': 'Toggle annual billing',
   'pricing.processing': 'PROCESSING…',
   'pricing.checkoutFailed': 'CHECKOUT FAILED — NO CHARGE. TRY AGAIN.',
-  'pricing.bookCall': 'OR BOOK A CALL — DESK@CBBRIEF.COM',
   'pricing.unitMo': '/MO',
   'pricing.unitYr': '/YR',
 
@@ -926,18 +918,6 @@ Object.assign(en, {
   'pricing.pro.f6': 'SEATS & API',
   'pricing.pro.cta': 'SUBSCRIBE TO PRO',
 
-  'pricing.desk.name': 'Desk',
-  'pricing.desk.epithet': '“The Desk”',
-  'pricing.desk.noteMo': 'BILLED MONTHLY · 5 SEATS INCLUDED',
-  'pricing.desk.noteYr': 'BILLED ANNUALLY · 2 MONTHS FREE',
-  'pricing.desk.f1': 'EVERYTHING IN PRO',
-  'pricing.desk.f2': '5 SEATS, SHARED WORKSPACE',
-  'pricing.desk.f3': 'REST API — ISSUES, FACTORIES, POLICY FEED',
-  'pricing.desk.f4': 'QUARTERLY BESPOKE MEMO (YOUR QUESTION, OUR DESK)',
-  'pricing.desk.f5': 'MONTHLY ANALYST CALL',
-  'pricing.desk.f6': 'PRIORITY CORRECTION CHANNEL',
-  'pricing.desk.cta': 'TALK TO THE DESK',
-
   'pricing.compareKicker': 'EVERYTHING, SIDE BY SIDE',
   'pricing.compareHA': 'The tiers, ',
   'pricing.compareHEm': 'line by line',
@@ -945,7 +925,6 @@ Object.assign(en, {
   'pricing.compareFeature': 'FEATURE',
   'pricing.col.free': 'FREE',
   'pricing.col.pro': 'PRO',
-  'pricing.col.desk': 'DESK',
   'pricing.cg.content': 'CONTENT',
   'pricing.cg.data': 'DATA',
   'pricing.cg.alerts': 'ALERTS & TOOLS',
@@ -957,14 +936,10 @@ Object.assign(en, {
   'pricing.cf.trackerBrowse': 'Tracker browse',
   'pricing.cf.timelines': 'Site timelines & sources',
   'pricing.cf.csv': 'CSV export',
-  'pricing.cf.api': 'REST API',
-  'pricing.cf.memo': 'Quarterly bespoke memo',
   'pricing.cf.digest': 'Headline digest',
   'pricing.cf.riskAlerts': 'Risk radar alerts',
   'pricing.cf.factoryAlerts': 'Factory status alerts',
   'pricing.cf.seats': 'Seats',
-  'pricing.cf.analystCall': 'Analyst call',
-  'pricing.cf.priorityCorrections': 'Priority corrections',
 
   'pricing.trust1T': 'NO LOCK-IN',
   'pricing.trust1B':
@@ -1137,7 +1112,6 @@ Object.assign(en, {
   'acct.nav.latest': 'LATEST',
   'acct.nav.saved': 'SAVED',
   'acct.nav.alerts': 'ALERTS',
-  'acct.nav.api': 'API KEYS',
   'acct.nav.billing': 'BILLING',
   'acct.nav.desk': 'DESK CONTROL',
   'acct.latestFiles': 'LATEST FILES',
@@ -1209,9 +1183,6 @@ Object.assign(en, {
   'acct.alertsAria': '{p} {c} alerts',
   'acct.alertsNote': 'ALERTS SHIP SAME-DAY · DIGEST OPTION: WEEKLY',
   'acct.alertsPro': 'ALERTS ARE PRO — $19/MO',
-
-  'acct.apiDeskOnly': 'THE REST FEED — ISSUES, FACTORIES, POLICY — SHIPS WITH THE DESK TIER.',
-  'acct.seeDesk': 'SEE DESK — $499/MO →',
   'acct.newKey': 'NEW KEY',
   'acct.noKeys': 'NO KEYS YET — MINT ONE TO PULL THE FEED.',
   'acct.colLabel': 'LABEL',
@@ -1311,10 +1282,22 @@ Object.assign(en, {
   'acct.subiLang': 'LANG',
   'acct.subiJoined': 'JOINED',
 
-  /* ---------- Login (reserved auth placeholder) ---------- */
+  /* ---------- Login / register (email + password auth) ---------- */
   'login.title': 'SIGN IN',
-  'login.comingSoon': 'ACCOUNTS & LOGIN ARE COMING SOON',
-  'login.body':
-    'Every brief is currently open to all readers, no account needed. When subscriptions arrive, this is where you will sign in.',
+  'login.createTitle': 'CREATE ACCOUNT',
+  'login.email': 'EMAIL',
+  'login.emailPh': 'YOU@EXAMPLE.COM',
+  'login.password': 'PASSWORD',
+  'login.name': 'NAME (OPTIONAL)',
+  'login.namePh': 'HOW WE ADDRESS YOU',
+  'login.signin': 'SIGN IN',
+  'login.createAccount': 'CREATE ACCOUNT',
+  'login.submitting': 'PLEASE WAIT…',
+  'login.switchToSignup': "NO ACCOUNT? CREATE ONE",
+  'login.switchToSignin': 'HAVE AN ACCOUNT? SIGN IN',
+  'login.errEmail': 'PLEASE ENTER A VALID EMAIL',
+  'login.errWeak': 'PASSWORD MUST BE AT LEAST 8 CHARACTERS',
+  'login.errInvalid': 'WRONG EMAIL OR PASSWORD',
+  'login.errTaken': 'THAT EMAIL IS ALREADY REGISTERED',
   'login.backHome': 'BACK TO HOME',
 })

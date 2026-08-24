@@ -16,7 +16,7 @@
 | `/markets` | 市场信号 | 静态策展 | 格局（SNE 份额）、LFP/钠电/关税价格卡、资金动向表、The Take |
 | `/pricing` | 定价转化页 | `billing.checkout` | $0 / $19 / $499 三档、月/年切换、对比表、FAQ |
 | `/about` | 关于与方法论 | 静态 | 宣言、"missing middle" 商业透明、信源管线、团队、勘误日志 |
-| `/account` | 订阅者仪表盘 | `billing.my/history` + `me.*` | 订阅状态、收藏、告警矩阵、API Keys（Desk 档）、账单；admin 角色额外见 DESK CONTROL 管理台（发刊/删刊/统计） |
+| `/account` | 订阅者仪表盘 | `billing.my/history` + `me.*` | 订阅状态、收藏、告警矩阵、账单；admin 角色额外见 DESK CONTROL 管理台（发刊/删刊/统计） |
 
 ## 二、后端（tRPC 路由一览）
 
@@ -28,7 +28,7 @@
 
 ## 三、数据库（12 表，已灌种子）
 
-users · issues(6 期英文样刊 No. 044–049，基于调研事实底座) · plans(5 档) · subscriptions · payments · factories(19 站点) · policy_events(12 条，title+date 唯一约束防 seed 重复) · ticker_items(8) · saved_briefs · alerts · api_keys · email_subscribers
+users · issues(6 期英文样刊 No. 044–049，基于调研事实底座) · plans(3 档) · subscriptions · payments · factories(19 站点) · policy_events(12 条，title+date 唯一约束防 seed 重复) · ticker_items(8) · saved_briefs · alerts · api_keys · email_subscribers
 
 ## 四、真实 vs 模拟（边界诚实清单）
 

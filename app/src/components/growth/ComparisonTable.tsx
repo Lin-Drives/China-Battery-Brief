@@ -8,47 +8,43 @@ const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 type Cell = '+' | '-' | string
 
-type Group = { labelKey: string; rows: { featureKey: string; cells: [Cell, Cell, Cell] }[] }
+type Group = { labelKey: string; rows: { featureKey: string; cells: [Cell, Cell] }[] }
 
 const GROUPS: Group[] = [
   {
     labelKey: 'pricing.cg.content',
     rows: [
-      { featureKey: 'pricing.cf.weeklyBrief', cells: ['-', '+', '+'] },
-      { featureKey: 'pricing.cf.openMonthly', cells: ['+', '+', '+'] },
-      { featureKey: 'pricing.cf.archive', cells: ['-', '+', '+'] },
-      { featureKey: 'pricing.cf.annotations', cells: ['-', '+', '+'] },
+      { featureKey: 'pricing.cf.weeklyBrief', cells: ['-', '+'] },
+      { featureKey: 'pricing.cf.openMonthly', cells: ['+', '+'] },
+      { featureKey: 'pricing.cf.archive', cells: ['-', '+'] },
+      { featureKey: 'pricing.cf.annotations', cells: ['-', '+'] },
     ],
   },
   {
     labelKey: 'pricing.cg.data',
     rows: [
-      { featureKey: 'pricing.cf.trackerBrowse', cells: ['+', '+', '+'] },
-      { featureKey: 'pricing.cf.timelines', cells: ['-', '+', '+'] },
-      { featureKey: 'pricing.cf.csv', cells: ['-', '+', '+'] },
-      { featureKey: 'pricing.cf.api', cells: ['-', '-', '+'] },
-      { featureKey: 'pricing.cf.memo', cells: ['-', '-', '+'] },
+      { featureKey: 'pricing.cf.trackerBrowse', cells: ['+', '+'] },
+      { featureKey: 'pricing.cf.timelines', cells: ['-', '+'] },
+      { featureKey: 'pricing.cf.csv', cells: ['-', '+'] },
     ],
   },
   {
     labelKey: 'pricing.cg.alerts',
     rows: [
-      { featureKey: 'pricing.cf.digest', cells: ['+', '+', '+'] },
-      { featureKey: 'pricing.cf.riskAlerts', cells: ['-', '+', '+'] },
-      { featureKey: 'pricing.cf.factoryAlerts', cells: ['-', '+', '+'] },
+      { featureKey: 'pricing.cf.digest', cells: ['+', '+'] },
+      { featureKey: 'pricing.cf.riskAlerts', cells: ['-', '+'] },
+      { featureKey: 'pricing.cf.factoryAlerts', cells: ['-', '+'] },
     ],
   },
   {
     labelKey: 'pricing.cg.team',
     rows: [
-      { featureKey: 'pricing.cf.seats', cells: ['1', '1', '5'] },
-      { featureKey: 'pricing.cf.analystCall', cells: ['-', '-', '+'] },
-      { featureKey: 'pricing.cf.priorityCorrections', cells: ['-', '-', '+'] },
+      { featureKey: 'pricing.cf.seats', cells: ['1', '1'] },
     ],
   },
 ]
 
-const COLUMNS = ['pricing.col.free', 'pricing.col.pro', 'pricing.col.desk'] as const
+const COLUMNS = ['pricing.col.free', 'pricing.col.pro'] as const
 
 function Mark({ cell }: { cell: Cell }) {
   if (cell === '+') {
@@ -114,7 +110,7 @@ export default function ComparisonTable() {
                 <Fragment key={group.labelKey}>
                   {/* Group label row — hairline draws */}
                   <tr>
-                    <td colSpan={4} className="border-b border-line pb-2 pt-8">
+                    <td colSpan={3} className="border-b border-line pb-2 pt-8">
                       <motion.span
                         className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-faint"
                         initial={{ opacity: 0 }}

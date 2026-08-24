@@ -12,7 +12,6 @@ import OverviewSection from '@/components/account/OverviewSection'
 import LatestStrip from '@/components/account/LatestStrip'
 import SavedBriefs from '@/components/account/SavedBriefs'
 import AlertsMatrix from '@/components/account/AlertsMatrix'
-import ApiKeysSection from '@/components/account/ApiKeysSection'
 import BillingHistory from '@/components/account/BillingHistory'
 import AdminDesk from '@/components/account/AdminDesk'
 import { firstNameOf, timeGreetingKey } from '@/components/account/utils'
@@ -62,7 +61,6 @@ function Dashboard() {
     { id: 'latest', label: t('acct.nav.latest') },
     { id: 'saved', label: t('acct.nav.saved') },
     { id: 'alerts', label: t('acct.nav.alerts') },
-    { id: 'api', label: t('acct.nav.api') },
     { id: 'billing', label: t('acct.nav.billing') },
     ...(isAdmin ? [{ id: 'desk-control', label: t('acct.nav.desk') }] : []),
   ]
@@ -196,17 +194,6 @@ function Dashboard() {
           >
             <p className="kicker mb-5 text-text-muted">{t('acct.alertsControl')}</p>
             <AlertsMatrix />
-          </motion.section>
-
-          <motion.section
-            id="api"
-            className="scroll-mt-32"
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.6, ease: EASE_EXPO }}
-          >
-            <ApiKeysSection />
           </motion.section>
 
           <motion.section

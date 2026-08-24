@@ -14,7 +14,7 @@ type Feature = { labelKey: string; included: boolean }
 
 type Tier = {
   code: string
-  tierKey: 'free' | 'pro' | 'desk'
+  tierKey: 'free' | 'pro'
   nameKey: string
   epithetKey: string
   monthly: { price: string; unitKey: string; noteKey: string }
@@ -65,29 +65,6 @@ const TIERS: Tier[] = [
     ],
     ctaKey: 'pricing.pro.cta',
     featured: true,
-  },
-  {
-    code: 'T-03',
-    tierKey: 'desk',
-    nameKey: 'pricing.desk.name',
-    epithetKey: 'pricing.desk.epithet',
-    monthly: { price: '$499', unitKey: 'pricing.unitMo', noteKey: 'pricing.desk.noteMo' },
-    annual: {
-      price: '$4,990',
-      unitKey: 'pricing.unitYr',
-      noteKey: 'pricing.desk.noteYr',
-      struck: '$499/MO',
-    },
-    features: [
-      { labelKey: 'pricing.desk.f1', included: true },
-      { labelKey: 'pricing.desk.f2', included: true },
-      { labelKey: 'pricing.desk.f3', included: true },
-      { labelKey: 'pricing.desk.f4', included: true },
-      { labelKey: 'pricing.desk.f5', included: true },
-      { labelKey: 'pricing.desk.f6', included: true },
-    ],
-    ctaKey: 'pricing.desk.cta',
-    featured: false,
   },
 ]
 
@@ -302,15 +279,6 @@ function PriceCard({
             {t('pricing.checkoutFailed')}
           </p>
         )}
-
-        {tier.tierKey === 'desk' && (
-          <a
-            href="mailto:desk@cbbrief.com?subject=Desk%20inquiry"
-            className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.12em] text-faint transition-colors hover:text-volt"
-          >
-            {t('pricing.bookCall')}
-          </a>
-        )}
       </motion.div>
     </motion.div>
   )
@@ -366,7 +334,7 @@ export default function TierCards({
       </motion.div>
 
       {/* S2 — tier cards */}
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+      <div className="mt-14 grid gap-6 lg:grid-cols-2">
         {TIERS.map((tier, i) => (
           <PriceCard key={tier.code} tier={tier} billing={billing} index={i} onFreeCta={scrollToCapture} />
         ))}

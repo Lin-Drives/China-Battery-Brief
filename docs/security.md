@@ -41,7 +41,8 @@
 | 模块 | 措施 | 位置 |
 |---|---|---|
 | 认证 | 会话 Cookie `httpOnly` + `SameSite=Lax` + `Secure`（非本地），杜绝跨站携带凭证 | `api/lib/cookies.ts` |
-| 认证 | **demo 免登录**：`context.ts` 不解析用户，`auth.me`/`auth.logout` 为 stub，`/api/oauth/begin` 已移除（404）。邮箱+密码认证为预留项 | `api/context.ts`、`api/auth-router.ts` |
+| 认证 | 邮箱+密码认证：密码用**scrypt**哈希（salt:hash，恒时比较），会话靠 **JWT（HS256，`APP_SECRET` 签名）** 存于 `cbb_sid` cookie；`context.ts` 每请求解析 cookie 载入用户。`auth.me` 只回公有字段（不含 `passwordHash`）；登录失败统一报「邮箱或密码错误」避免泄露已注册邮箱 | `api/lib/passwords.ts`、`api/lib/jwt.ts`、`api/context.ts`、`api/auth-router.ts` |
+| 认证 | 角色授权：`admin` 仅由 `OWNER_EMAIL` 首登自动授予；`adminQuery` 服务端按 `role` 拦截，前端隐藏不作为保障 | `api/auth-router.ts`、`api/middleware.ts` |
 | 认证 | 客户端真实 IP 由 Hono 层解析后注入 tRPC 请求（`api/lib/ip-context.ts`），审计 `ip` 字段与订阅限流都依赖它，无法靠伪造请求头冒充 | `api/lib/ip-context.ts`、`api/boot.ts` |
 | 密钥 | 生产环境强制 `APP_SECRET ≥ 32 字符`；启动时校验必需密钥最短长度，缺了直接拒绝启动 | `api/lib/env.ts` |
 | 限流 | 内存固定窗口限流，按 IP：`/api/trpc` 600/min、`subscribe.email` 5/min、确认/退订链接 30/min；超限返回 429 并带 `Retry-After` | `api/lib/rate-limit.ts`、`boot.ts`、`content-router.ts`、`mail-routes.ts` |
@@ -68,8 +69,8 @@
 2. **HTTPS / HSTS**
    HSTS 头只在请求走 HTTPS（`x-forwarded-proto: https`）时才下发，纯 HTTP 阶段不会误发。证书/平台 TLS 就绪后，用 `curl -I` 看到 `Strict-Transport-Security` 即生效；稳定运行后再考虑加进 HSTS preload。自托管形态：Let's Encrypt / Cloudflare 自动续期，见 `deploy.md` Step 5。
 
-3. **认证状态（demo 免登录）**
-   当前为免登录形态：`api/context.ts` 不解析用户，`auth.*` 接口为 stub，`/api/oauth/begin` 已移除（404）。部署后确认站点无外部认证依赖；正式上线邮箱+密码认证时，此条改为「配置 APP_SECRET（≥32）+ 首个管理员邮箱，回归注册/登录/权限全流程」。见 `deploy.md` Step 8。
+3. **认证状态（邮箱 + 密码）**
+   已实现邮箱+密码认证：`api/auth-router.ts`（register/login/logout）、密码 scrypt 哈希（`api/lib/passwords.ts`）、JWT session（`api/lib/jwt.ts`，`APP_SECRET` HS256）、`api/context.ts` 每请求解析 cookie 载入用户。部署后确认：`APP_SECRET` 已设且 ≥32 字符、注册/登录/权限全流程回归、`OWNER_EMAIL` 注册时被授予 admin。见 `deploy.md` Step 8。
 
 ---
 
@@ -98,12 +99,12 @@ npm run db:restore -- ../backups/db/cbb-db-20260815-090000.sql.gz
 ```
 
 ### 4.3 密钥轮换（APP_SECRET）
-> demo 免登录阶段不签发 JWT，此节待邮箱+密码认证上线后生效。
+> 会话 JWT 用 `APP_SECRET` 签名，轮换会令所有已登录会话失效（预期行为）。
 1. 生成新 `APP_SECRET`（≥32 字符），更新 `app/.env`。
 2. 重启服务。**所有已登录会话立即失效**，用户需重新登录——这是预期行为，不是故障。
 3. 确认审计表里有新的 `auth.login` 记录后，再废弃旧 secret。
 
-### 4.4 API Key 撤销（Desk 档）
+### 4.4 API Key 撤销
 - 用户自助：`/account` → API Keys → 删除。
 - 管理员兜底：直接删 `api_keys` 表里对应行即可。库里只存哈希，反推不出明文，删除即永久失效。
 
