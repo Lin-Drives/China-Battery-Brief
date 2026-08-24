@@ -71,6 +71,7 @@
 - [ ] **`markets` 真 API**：新建 `markets.overview` tRPC 接口 + 市场数据表，`Markets.tsx` 改 `useQuery`。价值：改数字不发版、数据可溯源带日期、能算周环比差异。触发条件：MARKETS 累积几期数据，或需支持 admin 台编辑市场数据
 
 ### 队列 B — 平台真实化（README §五，大工程择期）
+> **已决策**：Desk 档（$499/月，含席位、REST API、季度备忘录、分析师电话会）**暂缓**——当前开发体量不足以支撑该企业级套餐，且把定价页撑得臃肿。现阶段只保留 Free / Pro 两档；等订阅体系与 API/席位能力成熟后再评估是否恢复。相关代码已随 `6bddb2c` 移除（seed、定价展示、对比表、付费墙、API Keys 区块、Checkout 计划码）。
 - [x] 邮箱+密码认证（`api/auth-router.ts`：scrypt 哈希 `api/lib/passwords.ts`、注册/登录、JWT session `api/lib/jwt.ts`、`OWNER_EMAIL` 首登 admin、`context.ts` 解析 cookie 载入用户）
 - [ ] 模拟支付 → Stripe Checkout + Webhook（`api/billing-router.ts` 替换点已预留）
 - [x] 邮件服务：SMTP 通道 + 双重确认 + 每周群发框架（`api/lib/mailer.ts` / `subscribe.ts` / `newsletter.ts`；`npm run email:blast -- <期号>` 发刊，周四 06:00 UTC 由 cron/launchd 触发；未配置 SMTP 时 log-mode 不发送）

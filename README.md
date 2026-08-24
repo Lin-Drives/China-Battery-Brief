@@ -12,7 +12,7 @@ A bilingual (English/Chinese, one-click toggle) weekly intelligence newsletter a
 
 > 🔗 **Live site: https://chinabatterybrief.com** — self-hosted (VPS + Nginx + Cloudflare + MariaDB). See [Deployment](#deployment).
 
-Business model: paid subscription tiers — Free / Pro ($19/mo). The repo ships 7 sample issues (No. 044–050) in English and Chinese, seeded from a fact-checked research base.
+Business model: paid subscription tiers — Free / Pro ($19/mo). (The earlier $499/mo Desk tier was dropped in development: it bloated the pricing page and promised an unrealistic enterprise bundle — seats, REST feed, bespoke memos — that the current build can't yet support.) The repo ships 7 sample issues (No. 044–050) in English and Chinese, seeded from a fact-checked research base.
 
 ---
 
