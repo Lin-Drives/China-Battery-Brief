@@ -1269,6 +1269,7 @@ Object.assign(en, {
   'acct.testSent': 'TEST EMAIL SENT',
   'acct.testFailed': 'TEST FAILED — CHECK SMTP CONFIG',
   'acct.testLogMode': 'NO SMTP — LOG MODE (NOT SENT)',
+  'acct.testLogModeHint': 'SET SMTP_HOST / SMTP_USER / SMTP_PASS / MAIL_FROM IN app/.env, THEN RESTART DEV TO SEND FOR REAL',
   'acct.weeklyBlast': 'WEEKLY BLAST',
   'acct.blastHint': 'SENDS THE ISSUE TO ALL VERIFIED SUBSCRIBERS IN THEIR LANGUAGE',
   'acct.blastIssue': 'ISSUE',

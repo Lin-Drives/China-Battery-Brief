@@ -1245,6 +1245,7 @@ Object.assign(zh, {
   'acct.testSent': '测试邮件已发送',
   'acct.testFailed': '测试失败——请检查 SMTP 配置',
   'acct.testLogMode': '未配置 SMTP——仅记录（未发送）',
+  'acct.testLogModeHint': '在 app/.env 设置 SMTP_HOST / SMTP_USER / SMTP_PASS / MAIL_FROM，再重启 dev 即可真发',
   'acct.weeklyBlast': '每周群发',
   'acct.blastHint': '将简报按各自语言发送给全部已确认订阅者',
   'acct.blastIssue': '简报',

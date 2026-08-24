@@ -51,6 +51,7 @@ export default function EmailDesk() {
 
   const [testEmail, setTestEmail] = useState('')
   const [testError, setTestError] = useState<string | null>(null)
+  const [testLogMode, setTestLogMode] = useState(false)
   const [blastIssueId, setBlastIssueId] = useState<number | null>(null)
 
   const invalidate = () => {
@@ -60,9 +61,16 @@ export default function EmailDesk() {
 
   const test = trpc.admin['email.test'].useMutation({
     onSuccess: (res) => {
-      if (res.sent) toast(t('acct.testSent'))
-      else if (res.error) toast(t('acct.testFailed'), { tone: 'signal' })
-      else toast(t('acct.testLogMode'), { tone: 'amber' })
+      if (res.sent) {
+        setTestLogMode(false)
+        toast(t('acct.testSent'))
+      } else if (res.error) {
+        setTestLogMode(false)
+        toast(t('acct.testFailed'), { tone: 'signal' })
+      } else {
+        setTestLogMode(true)
+        toast(t('acct.testLogMode'), { tone: 'amber' })
+      }
       invalidate()
     },
     onError: (e) => setTestError(e.message.toUpperCase()),
@@ -143,6 +151,11 @@ export default function EmailDesk() {
             </button>
           </div>
           {testError && <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.12em] text-signal">{testError}</p>}
+          {testLogMode && (
+            <p className="mt-3 border border-signal/50 bg-signal/10 px-3 py-2.5 font-mono text-[10.5px] uppercase leading-relaxed tracking-[0.08em] text-signal">
+              {t('acct.testLogMode')} — {t('acct.testLogModeHint')}
+            </p>
+          )}
         </form>
 
         <div className="border border-line p-4">
