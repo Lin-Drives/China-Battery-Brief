@@ -2,7 +2,7 @@
 
 > 定位：**短期执行台账**——本次会话任务、当前迭代动作、调试/调研记录。长期方向与队列见 `docs/plan.md`「长期战略队列」；**一个任务只登记一处**（能本周动手的放这里，有触发条件/未到时机的放 plan.md）。
 
-## 已完成（未推送）
+## 已完成
 - [x] 开发进度可视化展板：`dev/devboard.mjs`（扫描 git/TODO/plan/deploy + 代码统计 → 生成纯 SVG/CSS 静态 `dev/devboard.html`，暗色编辑部风，`node dev/devboard.mjs` 重建）
 - [x] VPS 部署 Step 3：MariaDB 加固 + 建库建用户 + `db:push` 建表 + 种子灌入（7 EN + 7 ZH 期）已验证；生产构建完成（schema 因 MariaDB 不兼容 `serial` 改为 `bigint().autoincrement()`，未提交）
 - [x] VPS 部署 Step 6/7：VPS 同步到 `9d61cf0`（移除 Kimi OAuth）+ 重建；systemd `cbb.service` 常驻（www-data，3000 端口，`ping` + 期刊全量可读已验证）+ 备份 cron（每日 03:00，`/opt/cbb/backups/`）
@@ -20,6 +20,10 @@
 - [x] 根 README（技术栈/部署/边界）、Git 初始化推送初始版
 - [x] 安全设计前置一轮（44d95db）：限流 / 安全响应头+CSRF / OAuth state / 审计表 / 备份脚本 / security.md 应急手册；部署方案敲定后需复核 XFF、HTTPS/HSTS、OAuth redirect allowlist
 - [x] 确认 scan 抓取定时任务已启动并运行正常：launchd `com.cbb.scan`（每周日 09:00），最近一次 17 源全跑、0 失败（整理层 `scan:digest` 仍需手动触发）
+- [x] 整理层 `scan:digest` 跑 2026-08-23：529 原始 → 6 story（0 多源，1 已覆盖 No.046），见 scan/2026-08-23/digest.md
+- [x] 选题跟进（No.051 背景）：调研中国电池/储能厂商在日落地全景（CATL 借 CHC 松山 12MW/35.8MWh、国轩 Edison/DEI 1GWh、阳光 Sun Village 500MWh、BYD 仅汽车、海辰/晶科仅有布局），骨架见 scan/2026-08-23/draft-rept-japan.md
+- [x] 新增 No. 051 EN + ZH（真实信源）：瑞浦兰钧日本首并网 + LTDA 容量市场单芯 ≤30% 国产化红线（方向 A「政策定份额」），registration 入 issues.json / issues-zh.json + published-topics.md
+- [x] No. 051 双语文稿经 content:review 子代理复核并修正（30% 引用层级加固、ZH 走样、首字专名身份、Marubeni 误报更正），已提交 `d658e0d` 并推送
 
 ## 调试记录（No. 048 阅读页专项，已提交）
 - [x] 修复 markdown HTML 注释泄漏（`skipHtml`）：PART 签注注释不再显示为正文文本
