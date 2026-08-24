@@ -44,7 +44,8 @@
 | 认证 | **demo 免登录**：`context.ts` 不解析用户，`auth.me`/`auth.logout` 为 stub，`/api/oauth/begin` 已移除（404）。邮箱+密码认证为预留项 | `api/context.ts`、`api/auth-router.ts` |
 | 认证 | 客户端真实 IP 由 Hono 层解析后注入 tRPC 请求（`api/lib/ip-context.ts`），审计 `ip` 字段与订阅限流都依赖它，无法靠伪造请求头冒充 | `api/lib/ip-context.ts`、`api/boot.ts` |
 | 密钥 | 生产环境强制 `APP_SECRET ≥ 32 字符`；启动时校验必需密钥最短长度，缺了直接拒绝启动 | `api/lib/env.ts` |
-| 限流 | 内存固定窗口限流，按 IP：`/api/trpc` 600/min、`subscribe.email` 5/min；超限返回 429 并带 `Retry-After` | `api/lib/rate-limit.ts`、`boot.ts`、`content-router.ts` |
+| 限流 | 内存固定窗口限流，按 IP：`/api/trpc` 600/min、`subscribe.email` 5/min、确认/退订链接 30/min；超限返回 429 并带 `Retry-After` | `api/lib/rate-limit.ts`、`boot.ts`、`content-router.ts`、`mail-routes.ts` |
+| 邮件 | 双重确认：`subscribe.email` 只落 pending + 发确认信，链接激活（token 一次性逻辑，`createdAt`/`status` 追踪）；未配置 SMTP 时 log-mode 不发送；`MAIL_DISABLED=1` 强制失发 | `api/lib/subscribe.ts`、`api/lib/mailer.ts`、`api/mail-routes.ts` |
 | 响应头 | `X-Content-Type-Options`/`X-Frame-Options`/`Referrer-Policy`/`Permissions-Policy`；生产加 CSP 与 HSTS；API 响应 `Cache-Control: no-store` | `api/lib/security-headers.ts` |
 | CSRF | 对状态变更方法（POST/PUT/PATCH/DELETE）校验 Origin 与 Host 一致，不一致直接 403 | `api/lib/csrf.ts` |
 | 载荷 | 请求体上限 `bodyLimit` 50MB → 2MB，防大包撑爆内存 | `api/boot.ts` |
@@ -107,7 +108,7 @@ npm run db:restore -- ../backups/db/cbb-db-20260815-090000.sql.gz
 - 管理员兜底：直接删 `api_keys` 表里对应行即可。库里只存哈希，反推不出明文，删除即永久失效。
 
 ### 4.5 限流调整
-阈值集中在两个文件：`boot.ts`（全局）与 `content-router.ts`（subscribe.email）。
+阈值集中在三个文件：`boot.ts`（全局）、`content-router.ts`（subscribe.email）与 `mail-routes.ts`（确认/退订链接）。
 调高之前先看 429 出现频率与来源 IP，确认是「真用户被误伤」而非「攻击在刷」，再动手。
 
 ### 4.6 审计复核

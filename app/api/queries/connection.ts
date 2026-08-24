@@ -16,3 +16,17 @@ export function getDb() {
   }
   return instance;
 }
+
+/**
+ * Tear down the underlying MySQL client so a CLI script (blast / prune / test)
+ * can let the event loop drain and exit instead of hanging on an open pool.
+ * Safe no-op when the DB was never initialised in this process.
+ */
+export function closeDb(done?: () => void): void {
+  const client = (instance as { $client?: { end?: (cb?: () => void) => void } } | undefined)?.$client;
+  if (client?.end) {
+    client.end(done);
+  } else {
+    done?.();
+  }
+}

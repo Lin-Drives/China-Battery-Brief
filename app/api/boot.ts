@@ -10,6 +10,7 @@ import { securityHeaders } from "./lib/security-headers";
 import { csrfProtect } from "./lib/csrf";
 import { rateLimit, getClientIp } from "./lib/rate-limit";
 import { tagRequestIp } from "./lib/ip-context";
+import { mailRoutes } from "./mail-routes";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
 
@@ -35,6 +36,9 @@ app.use(
     });
   },
 );
+// Email confirm/unsubscribe links (standalone HTML pages from emailed URLs).
+app.route("/", mailRoutes);
+
 app.all("/api/*", (c) => c.json({ error: "Not Found" }, 404));
 
 export default app;

@@ -74,7 +74,7 @@
 > **已完成（分支 `deploy/self-hosted`）**：去平台化登录第一步——移除 Kimi OAuth，demo 免登录全站可读，`auth.*` 接口预留 stub（`api/auth-router.ts` / `api/context.ts`）。
 - [ ] 邮箱+密码认证（在 stub 上填实现：scrypt 哈希、注册/登录、JWT session、OWNER_EMAIL 首登 admin）
 - [ ] 模拟支付 → Stripe Checkout + Webhook（`api/billing-router.ts` 替换点已预留）
-- [ ] 邮件服务：周四 06:00 UTC 群发 + 事务邮件（当前 `subscribe.email` 只落库）
+- [x] 邮件服务：SMTP 通道 + 双重确认 + 每周群发框架（`api/lib/mailer.ts` / `subscribe.ts` / `newsletter.ts`；`npm run email:blast -- <期号>` 发刊，周四 06:00 UTC 由 cron/launchd 触发；未配置 SMTP 时 log-mode 不发送）
 - [ ] 独立 `/admin` 路由 + 富文本编辑器
 
 ### 队列 C — 内容生产流水线（链路已落地，补缺口）

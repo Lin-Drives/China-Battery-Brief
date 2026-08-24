@@ -1,9 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { emailSubscribers } from "@db/schema";
 import { createRouter, publicQuery } from "./middleware";
-import { getDb } from "./queries/connection";
 import { checkLimit } from "./lib/rate-limit";
+import { subscribeEmail } from "./lib/subscribe";
 import {
   countIssues,
   factoryStats,
@@ -98,9 +97,14 @@ export const contentRouter = createRouter({
   /* ----- Ticker ----- */
   "ticker.items": publicQuery.query(() => listTickerItems()),
 
-  /* ----- Email capture (footer / free tier) ----- */
+  /* ----- Email capture (footer / free tier) — double opt-in ----- */
   "subscribe.email": publicQuery
-    .input(z.object({ email: z.string().email().max(320) }))
+    .input(
+      z.object({
+        email: z.string().email().max(320),
+        lang: z.enum(["en", "zh"]).default("en"),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
       const { allowed, retryAfter } = checkLimit(
         `subscribe-email:${ctx.ip}`,
@@ -113,11 +117,6 @@ export const contentRouter = createRouter({
           message: `Too many subscribe attempts, retry in ${retryAfter}s`,
         });
       }
-      const db = getDb();
-      await db
-        .insert(emailSubscribers)
-        .values({ email: input.email })
-        .onDuplicateKeyUpdate({ set: { email: input.email } });
-      return { ok: true as const };
+      return subscribeEmail(input.email, input.lang);
     }),
 });

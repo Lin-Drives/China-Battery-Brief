@@ -71,6 +71,7 @@ export const en: Record<string, string> = {
   'email.aria': 'Email address',
   'email.error': "THAT EMAIL DOESN'T LOOK RIGHT — TRY AGAIN.",
   'email.successNote': 'CONFIRMATION SENT — CHECK YOUR INBOX',
+  'email.alreadyNote': 'YOU ARE ALREADY ON THE LIST',
 
   /* ---------- Pillars ---------- */
   'pillar.all': 'ALL',
@@ -1280,6 +1281,35 @@ Object.assign(en, {
   'acct.errPillars': 'PICK AT LEAST ONE PILLAR',
   'acct.errContent': 'CONTENT REQUIRED',
   'acct.errDate': 'PUBLISH DATE INVALID',
+
+  /* ---------- Email desk (admin newsletter delivery) ---------- */
+  'acct.emailDesk': 'EMAIL DESK',
+  'acct.emailPending': 'PENDING',
+  'acct.emailVerified': 'VERIFIED',
+  'acct.emailUnsubscribed': 'UNSUBSCRIBED',
+  'acct.emailTotal': 'TOTAL',
+  'acct.sendKindConfirm': 'CONFIRM',
+  'acct.sendKindWelcome': 'WELCOME',
+  'acct.sendKindWeekly': 'WEEKLY',
+  'acct.sendKindTest': 'TEST',
+  'acct.sendTest': 'SEND TEST EMAIL',
+  'acct.testEmailPh': 'RECIPIENT@EXAMPLE.COM',
+  'acct.testSending': 'SENDING…',
+  'acct.testSent': 'TEST EMAIL SENT',
+  'acct.testFailed': 'TEST FAILED — CHECK SMTP CONFIG',
+  'acct.testLogMode': 'NO SMTP — LOG MODE (NOT SENT)',
+  'acct.weeklyBlast': 'WEEKLY BLAST',
+  'acct.blastHint': 'SENDS THE ISSUE TO ALL VERIFIED SUBSCRIBERS IN THEIR LANGUAGE',
+  'acct.blastIssue': 'ISSUE',
+  'acct.blastSend': 'SEND BLAST →',
+  'acct.blastSending': 'SENDING…',
+  'acct.blastDone': 'BLAST: {sent} SENT / {failed} FAILED / {skipped} SKIPPED',
+  'acct.subscribers': 'SUBSCRIBERS — LATEST 500',
+  'acct.noSubscribers': 'NO SUBSCRIBERS YET',
+  'acct.subiEmail': 'EMAIL',
+  'acct.subiStatus': 'STATUS',
+  'acct.subiLang': 'LANG',
+  'acct.subiJoined': 'JOINED',
 
   /* ---------- Login (reserved auth placeholder) ---------- */
   'login.title': 'SIGN IN',

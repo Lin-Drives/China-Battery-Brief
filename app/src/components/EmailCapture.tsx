@@ -19,13 +19,17 @@ export default function EmailCapture({
   buttonLabel?: string
   className?: string
 }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const micro = microcopy ?? t('email.microcopy')
   const label = buttonLabel ?? t('email.button')
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'error' | 'done'>('idle')
+  const [already, setAlready] = useState(false)
   const subscribe = trpc.content['subscribe.email'].useMutation({
-    onSuccess: () => setState('done'),
+    onSuccess: (data) => {
+      setAlready(data.state === 'already')
+      setState('done')
+    },
     onError: () => setState('error'),
   })
 
@@ -36,7 +40,7 @@ export default function EmailCapture({
       setState('error')
       return
     }
-    subscribe.mutate({ email })
+    subscribe.mutate({ email, lang })
   }
 
   if (state === 'done') {
@@ -45,7 +49,9 @@ export default function EmailCapture({
         <RubberStamp color="var(--volt)" rotate={-4}>
           {t('stamp.onTheList')}
         </RubberStamp>
-        <p className="font-mono text-[12px] tracking-wide text-text-muted">{t('email.successNote')}</p>
+        <p className="font-mono text-[12px] tracking-wide text-text-muted">
+          {already ? t('email.alreadyNote') : t('email.successNote')}
+        </p>
       </div>
     )
   }

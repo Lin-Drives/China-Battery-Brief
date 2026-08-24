@@ -228,11 +228,52 @@ export const apiKeys = mysqlTable("api_keys", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
-export const emailSubscribers = mysqlTable("email_subscribers", {
-  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  email: varchar("email", { length: 320 }).notNull().unique(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+export const emailSubscribers = mysqlTable(
+  "email_subscribers",
+  {
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
+    email: varchar("email", { length: 320 }).notNull().unique(),
+    /** Double opt-in lifecycle: pending → verified → unsubscribed. */
+    status: mysqlEnum("status", ["pending", "verified", "unsubscribed"]).default("pending").notNull(),
+    /** One-time confirmation token (opaque, for the emailed link). */
+    confirmToken: varchar("confirmToken", { length: 64 }),
+    /** Opaque unsubscribe token, stable for the life of the subscription. */
+    unsubToken: varchar("unsubToken", { length: 64 }),
+    verifiedAt: timestamp("verifiedAt"),
+    unsubscribedAt: timestamp("unsubscribedAt"),
+    /** Subscriber locale captured at signup (en | zh) for email copy. */
+    lang: varchar("lang", { length: 5 }).default("en").notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (t) => ({
+    uniqConfirmToken: unique("uniq_confirm_token").on(t.confirmToken),
+    uniqUnsubToken: unique("uniq_unsub_token").on(t.unsubToken),
+    idxEmailStatus: index("idx_email_status").on(t.status),
+  }),
+);
+
+export type EmailSubscriber = typeof emailSubscribers.$inferSelect;
+
+/** Audit trail of outbound emails (confirm / welcome / weekly blast / test). */
+export const emailSends = mysqlTable(
+  "email_sends",
+  {
+    id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
+    subscriberId: bigint("subscriberId", { mode: "number", unsigned: true }),
+    email: varchar("email", { length: 320 }).notNull(),
+    kind: mysqlEnum("kind", ["confirm", "welcome", "weekly", "test"]).notNull(),
+    status: mysqlEnum("status", ["sent", "failed", "skipped"]).default("sent").notNull(),
+    error: varchar("error", { length: 500 }),
+    issueId: bigint("issueId", { mode: "number", unsigned: true }),
+    sentAt: timestamp("sentAt").defaultNow().notNull(),
+  },
+  (t) => ({
+    idxEmailSendsKind: index("idx_email_sends_kind").on(t.kind),
+    idxEmailSendsCreated: index("idx_email_sends_created").on(t.sentAt),
+  }),
+);
+
+export type EmailSend = typeof emailSends.$inferSelect;
 
 /** Immutable security/compliance audit trail (admin actions, auth events). */
 export const auditLogs = mysqlTable(

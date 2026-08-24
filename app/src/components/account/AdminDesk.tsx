@@ -10,6 +10,7 @@ import { SectionSkeleton } from './Skeletons'
 import { PILLAR_META, PILLAR_ORDER, fmtDate, fmtMoney } from './utils'
 import type { PillarSlug } from './utils'
 import { useLang, tpl } from '@/i18n/lang'
+import EmailDesk from './EmailDesk'
 
 const inputCls =
   'w-full rounded-sm border border-line bg-ink-900 px-3.5 py-3 font-mono text-[13px] text-text caret-volt placeholder:uppercase placeholder:tracking-[0.08em] placeholder:text-faint focus:border-volt focus:outline-none'
@@ -313,6 +314,9 @@ export default function AdminDesk() {
           {create.isPending ? t('acct.filing') : t('acct.publishIssue')}
         </button>
       </form>
+
+      {/* Email desk (subscriber stats + test + weekly blast, admin-only) */}
+      <EmailDesk />
 
       {/* Issues index */}
       <div className="px-6 py-6">

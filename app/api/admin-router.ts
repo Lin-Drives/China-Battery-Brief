@@ -1,10 +1,11 @@
 import { TRPCError } from "@trpc/server";
-import { count, eq, sql } from "drizzle-orm";
+import { count, desc, eq, sql } from "drizzle-orm";
 import { z } from "zod";
-import { emailSubscribers, factories, issues, payments, policyEvents, users } from "@db/schema";
+import { emailSubscribers, emailSends, factories, issues, payments, policyEvents, users } from "@db/schema";
 import { createRouter, adminQuery } from "./middleware";
 import { getDb } from "./queries/connection";
 import { audit } from "./lib/audit";
+import { sendTestEmail, sendWeeklyBlast, pruneEmailSends } from "./lib/newsletter";
 
 const issueInput = z.object({
   number: z.number().int().positive(),
@@ -220,6 +221,75 @@ export const adminRouter = createRouter({
 
   "factories.list": adminQuery.query(() => getDb().select().from(factories)),
   "policy.list": adminQuery.query(() => getDb().select().from(policyEvents)),
+
+  /* ----- Email subscribers (double opt-in) ----- */
+  "email.stats": adminQuery.query(async () => {
+    const db = getDb();
+    const byStatus = await db
+      .select({ status: emailSubscribers.status, n: count() })
+      .from(emailSubscribers)
+      .groupBy(emailSubscribers.status);
+    const sends = await db
+      .select({ kind: emailSends.kind, n: count() })
+      .from(emailSends)
+      .groupBy(emailSends.kind);
+    const statusMap: Record<string, number> = {};
+    for (const r of byStatus) statusMap[r.status] = r.n;
+    const sendMap: Record<string, number> = {};
+    for (const r of sends) sendMap[r.kind] = r.n;
+    return { byStatus: statusMap, sends: sendMap };
+  }),
+
+  "email.list": adminQuery.query(async () => {
+    return getDb()
+      .select({
+        id: emailSubscribers.id,
+        email: emailSubscribers.email,
+        status: emailSubscribers.status,
+        lang: emailSubscribers.lang,
+        verifiedAt: emailSubscribers.verifiedAt,
+        unsubscribedAt: emailSubscribers.unsubscribedAt,
+        createdAt: emailSubscribers.createdAt,
+      })
+      .from(emailSubscribers)
+      .orderBy(desc(emailSubscribers.createdAt))
+      .limit(500);
+  }),
+
+  "email.test": adminQuery
+    .input(z.object({ email: z.string().email() }))
+    .mutation(async ({ ctx, input }) => {
+      const result = await sendTestEmail(input.email);
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.email.test",
+        targetType: "email",
+        meta: { email: input.email, sent: result.sent },
+      });
+      return result;
+    }),
+
+  "email.blast": adminQuery
+    .input(z.object({ issueId: z.number().int().positive() }))
+    .mutation(async ({ ctx, input }) => {
+      const summary = await sendWeeklyBlast(input.issueId);
+      // Opportunistic audit-log hygiene: never let a prune failure fail the blast.
+      try {
+        await pruneEmailSends();
+      } catch (error) {
+        console.error("[email-sends] prune failed after blast", error);
+      }
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.email.blast",
+        targetType: "issue",
+        targetId: input.issueId,
+        meta: summary,
+      });
+      return summary;
+    }),
 });
 
 // Unused-import guard (keeps TS happy if TRPCError not thrown in future edits)

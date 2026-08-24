@@ -62,7 +62,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 
 - 内容/工厂/政策数据、登录、权限、付费墙截断：**真实实现**。
 - 支付 checkout：**模拟**（平台不支持第三方支付；接口形状对齐 Stripe，替换点在 `api/billing-router.ts` 的 `checkout`）。
-- 邮件群发/事务邮件：**未实现**（`subscribe.email` 只落库）。
+- 邮件群发/事务邮件：**已实现**（SMTP 通道，`api/lib/mailer.ts`；双重确认 + 欢迎信 + 每周群发框架 `api/lib/newsletter.ts`；未配置 SMTP 时 log-mode 不发送，见 `MAIL_DISABLED=1`）。
 - CSV 导出、阅读进度：前端门禁/本地存储占位。
 
 ## 四、前端组织与国际化（核心特性）

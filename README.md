@@ -126,7 +126,7 @@ Production-grade hardening is built in (rate limiting, security headers + CSP/HS
 |---|---|
 | Content / factory / policy data, login, permissions, paywall truncation | **Real** (DB-backed, seeded from researched facts) |
 | Payment checkout | **Mock** — Stripe-shaped interface; swap point: `checkout` in `api/billing-router.ts` |
-| Email delivery (weekly blast / transactional) | **Not implemented** (`subscribe.email` only persists) |
+| Email delivery (weekly blast / transactional) | **Real** — SMTP transport (`api/lib/mailer.ts`): double opt-in confirm + welcome + weekly blast; log-mode fallback when `SMTP_*` is unset |
 | CSV export, reading progress | Frontend gate / localStorage placeholders |
 
 ---

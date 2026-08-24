@@ -71,6 +71,7 @@ export const zh: Record<string, string> = {
   'email.aria': '邮箱地址',
   'email.error': '邮箱格式似乎有误——请重试',
   'email.successNote': '确认邮件已发送——请查收收件箱',
+  'email.alreadyNote': '你已在订阅名单上',
 
   /* ---------- 主线 ---------- */
   'pillar.all': '全部',
@@ -1255,6 +1256,35 @@ Object.assign(zh, {
   'acct.errPillars': '至少选择一个板块',
   'acct.errContent': '必须填写正文',
   'acct.errDate': '发布日期无效',
+
+  /* ---------- 邮件台（管理员群发） ---------- */
+  'acct.emailDesk': '邮件台',
+  'acct.emailPending': '待确认',
+  'acct.emailVerified': '已确认',
+  'acct.emailUnsubscribed': '已退订',
+  'acct.emailTotal': '总数',
+  'acct.sendKindConfirm': '确认信',
+  'acct.sendKindWelcome': '欢迎信',
+  'acct.sendKindWeekly': '周刊',
+  'acct.sendKindTest': '测试',
+  'acct.sendTest': '发送测试邮件',
+  'acct.testEmailPh': '收件人@example.com',
+  'acct.testSending': '发送中……',
+  'acct.testSent': '测试邮件已发送',
+  'acct.testFailed': '测试失败——请检查 SMTP 配置',
+  'acct.testLogMode': '未配置 SMTP——仅记录（未发送）',
+  'acct.weeklyBlast': '每周群发',
+  'acct.blastHint': '将简报按各自语言发送给全部已确认订阅者',
+  'acct.blastIssue': '简报',
+  'acct.blastSend': '开始群发 →',
+  'acct.blastSending': '群发中……',
+  'acct.blastDone': '群发完成：{sent} 发送 / {failed} 失败 / {skipped} 跳过',
+  'acct.subscribers': '订阅者——最近 500',
+  'acct.noSubscribers': '暂无订阅者',
+  'acct.subiEmail': '邮箱',
+  'acct.subiStatus': '状态',
+  'acct.subiLang': '语言',
+  'acct.subiJoined': '加入时间',
 
   /* ---------- Login（预留认证占位）---------- */
   'login.title': '登录',
