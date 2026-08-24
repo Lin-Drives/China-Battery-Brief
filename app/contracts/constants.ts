@@ -6,6 +6,10 @@ export const Session = {
 export const ErrorMessages = {
   unauthenticated: "Authentication required",
   insufficientRole: "Insufficient permissions",
+  invalidCredentials: "Wrong email or password",
+  emailTaken: "That email is already registered",
+  weakPassword: "Password must be at least 8 characters",
+  invalidEmail: "Please enter a valid email address",
 } as const;
 
 export const Paths = {

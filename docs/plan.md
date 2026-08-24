@@ -71,8 +71,7 @@
 - [ ] **`markets` 真 API**：新建 `markets.overview` tRPC 接口 + 市场数据表，`Markets.tsx` 改 `useQuery`。价值：改数字不发版、数据可溯源带日期、能算周环比差异。触发条件：MARKETS 累积几期数据，或需支持 admin 台编辑市场数据
 
 ### 队列 B — 平台真实化（README §五，大工程择期）
-> **已完成（分支 `deploy/self-hosted`）**：去平台化登录第一步——移除 Kimi OAuth，demo 免登录全站可读，`auth.*` 接口预留 stub（`api/auth-router.ts` / `api/context.ts`）。
-- [ ] 邮箱+密码认证（在 stub 上填实现：scrypt 哈希、注册/登录、JWT session、OWNER_EMAIL 首登 admin）
+- [x] 邮箱+密码认证（`api/auth-router.ts`：scrypt 哈希 `api/lib/passwords.ts`、注册/登录、JWT session `api/lib/jwt.ts`、`OWNER_EMAIL` 首登 admin、`context.ts` 解析 cookie 载入用户）
 - [ ] 模拟支付 → Stripe Checkout + Webhook（`api/billing-router.ts` 替换点已预留）
 - [x] 邮件服务：SMTP 通道 + 双重确认 + 每周群发框架（`api/lib/mailer.ts` / `subscribe.ts` / `newsletter.ts`；`npm run email:blast -- <期号>` 发刊，周四 06:00 UTC 由 cron/launchd 触发；未配置 SMTP 时 log-mode 不发送）
 - [ ] 独立 `/admin` 路由 + 富文本编辑器

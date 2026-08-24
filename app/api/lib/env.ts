@@ -15,9 +15,31 @@ function optional(name: string): string {
 export const env = {
   isProduction: process.env.NODE_ENV === "production",
   databaseUrl: required("DATABASE_URL"),
-  // Reserved for the upcoming email+password auth (see plan.md). The demo
-  // runs without login, so the secret is optional until that lands.
+  /**
+   * Secret used to sign/verify the auth session JWT (HS256). Production must
+   * set APP_SECRET to ≥32 chars or the app refuses to boot. In dev the secret
+   * may be omitted — a throwaway fallback keeps local login working, but it
+   * is never safe for a real deployment.
+   */
   appSecret: process.env.APP_SECRET ?? "",
+  /**
+   * Resolved signing secret for the session JWT. Enforces the ≥32 char rule in
+   * production (fail-fast at boot); in dev an empty value falls back to a
+   * throwaway string so local login still works without a real secret.
+   */
+  sessionSecret: (() => {
+    const secret = process.env.APP_SECRET ?? "";
+    if (secret.length >= 32) return secret;
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("APP_SECRET must be at least 32 characters in production");
+    }
+    return secret || "dev-insecure-session-secret";
+  })(),
+  /**
+   * Email that is auto-promoted to the admin role on first registration. Leave
+   * unset to disable automatic admin bootstrapping (defaults to a reader).
+   */
+  ownerEmail: optional("OWNER_EMAIL").toLowerCase(),
   /**
    * Absolute base URL used to build emailed confirm/unsubscribe links.
    * Production MUST set PUBLIC_BASE_URL; dev falls back to the dev server.

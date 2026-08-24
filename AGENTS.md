@@ -50,9 +50,9 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 
 ## 三、运行时架构
 
-- **单进程全栈**：dev 与 prod 都是「Hono 服务挂 tRPC + 静态文件」。入口 `api/boot.ts`：注册 OAuth 回调路由（`/api/oauth/callback`），把 `/api/trpc/*` 交给 `@trpc/server/adapters/fetch`，其余 `/api/*` 返回 404 JSON。
+- **单进程全栈**：dev 与 prod 都是「Hono 服务挂 tRPC + 静态文件」。入口 `api/boot.ts`：把 `/api/trpc/*` 交给 `@trpc/server/adapters/fetch`，挂邮件确认/退订路由（`api/mail-routes.ts`），其余 `/api/*` 返回 404 JSON。
 - **tRPC 路由**（`api/router.ts` 聚合）：`auth` / `content` / `billing` / `me` / `admin` + `ping`。过程分级定义在 `api/middleware.ts`：`publicQuery` → `authedQuery`（需登录）→ `adminQuery`（需 admin 角色）。序列化用 superjson。
-- **认证**：平台内置 Kimi OAuth（`api/kimi/`：授权码换 token → JWKS 验签 → 签发 JWT session cookie `kimi_sid`，常量见 `contracts/constants.ts`）。`api/context.ts` 在每个请求上尝试解析用户，解析失败不报错（公开接口可用）。
+- **认证**：平台内置**邮箱+密码**（`api/auth-router.ts`：注册/登录签发 JWT session cookie `cbb_sid`，常量见 `contracts/constants.ts`；密码 scrypt 哈希 `api/lib/passwords.ts`；JWT `api/lib/jwt.ts`）。`api/context.ts` 在每个请求上解析 cookie 载入用户，解析失败不报错（公开接口可用）；`OWNER_EMAIL` 首登自动授予 admin。
 - **付费墙（服务端强制）**：`content.issues.bySlug` 对未授权用户只返回约 40% 内容（服务端截断，不是前端遮挡）。授权判定在 `api/lib/entitlement.ts`：admin 永远放行；普通用户需存在 status ∈ {active, canceled, trialing} 且 `currentPeriodEnd` 在未来的订阅。
 - **数据库**：`api/queries/connection.ts` 用 drizzle-orm/mysql2 单例（`mode: "planetscale"`）。Schema 在 `db/schema.ts`，共 12 表：users / issues（含 titleZh、dekZh、contentZh 中文字段）/ plans / subscriptions / payments / factories / policy_events / ticker_items / saved_briefs / alerts / api_keys / email_subscribers。种子脚本 `db/seed.ts` 从 `db/seed-content/`（英文）与 `db/seed-content-zh/`（中文）读 markdown + JSON 元数据灌库（幂等，onDuplicateKeyUpdate）。
 - **前端路由**（`src/App.tsx`，react-router 7 嵌套在 `Layout` 下）：`/`、`/briefs`、`/briefs/:slug`、`/tracker`、`/tech`、`/risk`、`/pricing`、`/about`、`/account`、`/login`、`*`（404）。无独立 `/admin` 路由——管理台（发刊/删刊/统计）内嵌在 `/account` 页面对 admin 角色可见。

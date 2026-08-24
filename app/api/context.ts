@@ -1,7 +1,13 @@
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import * as cookie from "cookie";
+import { eq } from "drizzle-orm";
+import { Session } from "@contracts/constants";
 import type { User } from "@db/schema";
+import { users } from "@db/schema";
+import { getDb } from "./queries/connection";
 import { getClientIpFromRequest } from "./lib/rate-limit";
 import { getTaggedIp } from "./lib/ip-context";
+import { readSessionToken } from "./lib/jwt";
 
 export type TrpcContext = {
   req: Request;
@@ -13,13 +19,25 @@ export type TrpcContext = {
 export async function createContext(
   opts: FetchCreateContextFnOptions,
 ): Promise<TrpcContext> {
-  // Auth is reserved for the upcoming email+password system (see plan.md).
-  // Until then every request is anonymous: no session resolution, no Kimi
-  // dependency. `user` stays undefined so `authedQuery`/`adminQuery`
-  // procedures are rejected with UNAUTHORIZED, keeping the API surface intact.
+  const req = opts.req;
+
+  // Resolve the `cbb_sid` session cookie (if any) into a full user row. A
+  // missing/expired token leaves `user` undefined, so `authedQuery`/`adminQuery`
+  // correctly reject with UNAUTHORIZED.
+  let user: User | undefined;
+  const jar = cookie.parse(req.headers.get("cookie") ?? "");
+  const token = jar[Session.cookieName];
+  if (token) {
+    const userId = await readSessionToken(token);
+    if (userId) {
+      user = (await getDb().select().from(users).where(eq(users.id, userId)))[0];
+    }
+  }
+
   return {
-    req: opts.req,
+    req,
     resHeaders: opts.resHeaders,
-    ip: getTaggedIp(opts.req) ?? getClientIpFromRequest(opts.req),
+    user,
+    ip: getTaggedIp(req) ?? getClientIpFromRequest(req),
   };
 }
