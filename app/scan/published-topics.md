@@ -6,7 +6,7 @@
 
 ---
 
-## No.051 — The Thirty-Percent Ceiling: Japan's Capacity Market Does the Allocating（2026-08-24）
+## No.051 — The Thirty-Percent Ceiling: Japan's Capacity Market Does the Allocating（2026-08-27）
 
 - **主题**：日本容量市场的国产化封顶（OVERSEAS + GEOPOLITICS）
 - **关键词**：瑞浦鹿沼 1.99MW/8.35MWh 日本首并网、LTDA 单芯 ≤30%、6 小时时长、CHC/CATL 参股开发商、国轩 Edison/DEI、阳光 Sun Village 500MWh、调频/现货/容量三层收益
