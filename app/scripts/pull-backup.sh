@@ -20,9 +20,26 @@ PULL_RETENTION_DAYS="${PULL_RETENTION_DAYS:-90}"
 
 log() { echo "[$(date '+%F %T')] $*"; }
 
+# Common SSH options. ConnectTimeout only covers connection establishment;
+# ServerAliveInterval/CountMax let ssh/scp detect a dead peer mid-transfer and
+# abort instead of hanging forever (the cause of prior hung daily runs).
+SSH_OPTS=(
+  -i "$PULL_KEY"
+  -o BatchMode=yes
+  -o ConnectTimeout=15
+  -o ServerAliveInterval=10
+  -o ServerAliveCountMax=3
+  -o TCPKeepAlive=yes
+)
+
 # BatchMode: fail fast on missing key instead of hanging on a password prompt.
 remote() {
-  ssh -i "$PULL_KEY" -o BatchMode=yes -o ConnectTimeout=15 "$PULL_HOST" "$@"
+  ssh "${SSH_OPTS[@]}" "$PULL_HOST" "$@"
+}
+
+# Scp with keepalive so a dropped connection exits (or times out) cleanly.
+pull() {
+  scp "${SSH_OPTS[@]}" "$PULL_HOST:$1" "$PULL_LOCAL_DIR/"
 }
 
 mkdir -p "$PULL_LOCAL_DIR"
@@ -34,12 +51,10 @@ DB_FILE="$(remote "ls -1t $PULL_REMOTE_DIR/cbb-db-*.sql.gz | head -1")"
 ASSET_FILE="$(remote "ls -1t $PULL_REMOTE_DIR/cbb-assets-*.tar.gz | head -1")"
 
 log "Pulling newest DB dump: $DB_FILE"
-scp -i "$PULL_KEY" -o BatchMode=yes -o ConnectTimeout=15 \
-  "$PULL_HOST:$DB_FILE" "$PULL_LOCAL_DIR/"
+pull "$DB_FILE"
 
 log "Pulling newest assets snapshot: $ASSET_FILE"
-scp -i "$PULL_KEY" -o BatchMode=yes -o ConnectTimeout=15 \
-  "$PULL_HOST:$ASSET_FILE" "$PULL_LOCAL_DIR/"
+pull "$ASSET_FILE"
 
 # Prune the local offsite archive (keep recent N days only).
 find "$PULL_LOCAL_DIR" -type f \( -name 'cbb-db-*.sql.gz' -o -name 'cbb-assets-*.tar.gz' \) \
