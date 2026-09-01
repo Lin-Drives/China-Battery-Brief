@@ -96,7 +96,7 @@
 > **方案已定**：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，权威文档 `docs/deploy.md`（分支 `deploy/self-hosted`）。主线保持 Kimi Agent 平台托管。
 - [ ] 购买 VPS + 域名，按 `deploy.md` Step 0–8 执行
 - [ ] 部署后过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
-- [ ] CI/CD 自动部署（本方案先手动部署 + systemd 常驻 + cron 备份，CI/CD 后置）
+- [x] 每周自动发版工作流：`app/scripts/deploy-release.sh`（本地 build → rsync dist/ + seed-content → VPS `db:seed` → `systemctl restart cbb` → 校验 200 + DB max 期号），launchd `com.cbb.release` 每周四 00:05 触发（提前一次发布准备，新刊 publishedAt 周四 06:00 UTC 可见）。No.052 已用该链路首次自动上线验证通过（DB max=52）
 - [ ] （可选）热点「价值判断」模型化——已有 S0–S4 分层 + published-topics 人工比对，判定模型可后置
 - [ ] **HTTPS 加密现状升级**：Cloudflare SSL 模式当前为 **Flexible**（访客↔Cloudflare 加密，Cloudflare↔VPS 走 HTTP 80 不加密，Nginx 未监听 443、无源站证书）。触发条件：正式上线前升级为 Full / Full(strict)——VPS 签发 Let's Encrypt 或 Cloudflare Origin 证书 + Nginx 监听 443 + 回源走 HTTPS，落实 security.md 的 HSTS 全链路
 
