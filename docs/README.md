@@ -56,3 +56,4 @@ users · issues(6 期英文样刊 No. 044–049，基于调研事实底座) · p
 - 开发工具与笔记：`dev/`（devboard、workspace）
 - 备份双轨：VPS `/opt/cbb/backups`（DB 7 份 + assets 3 份，快速恢复）+ 本地 `backups/pull/`（90 天异地归档，每日 21:00 launchd 拉取，见 deploy.md Step 7）
 - 构建：自托管 VPS 构建（见 deploy.md）；本地构建门禁已通过（`npm run build` ✓ `tsc -b` ✓）
+- **每周自动发版**：`app/scripts/deploy-release.sh`（本地 build → `rsync` dist/ + seed-content → VPS `db:seed` 灌库 → `systemctl restart cbb` → 校验 200 + DB 最大期号）；launchd `com.cbb.release` 每周四 00:05 触发。无新一期时自动跳过（DB 最大值 ≥ 本地最新即 no-op）。用 rsync 而非 scp（增量、可续传、更快）

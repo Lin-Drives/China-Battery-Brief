@@ -4,15 +4,16 @@
 #
 # Flow (keep the VPS's own seed.ts/schema.ts — they are AHEAD of the repo and
 #       already match the live MariaDB schema; we ONLY push build output + issue data):
+#   0. Guard: if local newest issue <= DB max, there is NOTHING new -> no-op (skip).
 #   1. Local: npm run build            (dist/ = static + API bundle, platform-free JS)
-#   2. scp dist/       -> VPS app/dist/
-#   3. scp seed-content(+zh) -> VPS app/db/   (new issue markdown + issues.json/-zh)
+#   2. rsync dist/       -> VPS app/dist/
+#   3. rsync seed-content(+zh) -> VPS app/db/   (new issue markdown + issues.json/-zh)
 #   4. VPS: npm run db:seed            (VPS's own seed.ts; idempotent onDuplicateKeyUpdate)
 #   5. VPS: chown www-data + systemctl restart cbb
 #   6. Verify: curl 200 + newest issue number present in DB
 #
 # Config (env): DEPLOY_HOST (default root@161.35.120.114), DEPLOY_KEY (default $HOME/.ssh/cbb_vps),
-#               DEPLOY_REMOTE (=/opt/cbb/app/app), DEPLOY_ALLOW_MISSING (=1 to skip DB-max guard)
+#               DEPLOY_REMOTE (=/opt/cbb/app/app), DEPLOY_FORCE (=1 to bypass the no-new-issue guard)
 # Run: bash scripts/deploy-release.sh
 set -euo pipefail
 
@@ -22,6 +23,8 @@ APP_DIR="$(dirname "$SCRIPT_DIR")"
 DEPLOY_HOST="${DEPLOY_HOST:-root@161.35.120.114}"
 DEPLOY_KEY="${DEPLOY_KEY:-$HOME/.ssh/cbb_vps}"
 DEPLOY_REMOTE="${DEPLOY_REMOTE:-/opt/cbb/app/app}"
+DEPLOY_FORCE="${DEPLOY_FORCE:-0}"
+SKIP_FORCE="${DEPLOY_SKIP_FORCE:-0}"
 
 log() { echo "[$(date '+%F %T')] $*"; }
 
@@ -36,7 +39,21 @@ SSH_OPTS=(
 )
 remote() { ssh "${SSH_OPTS[@]}" "$DEPLOY_HOST" "$@"; }
 
-ALLOW_MISSING="${DEPLOY_ALLOW_MISSING:-0}"
+is_num() { case "$1" in ''|*[!0-9]*) return 1;; *) return 0;; esac; }
+
+# --- Step 0 · guard: nothing new -> no-op (so an empty week does not relaunch) ---
+NEWEST_LOCAL="$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print(max(x["number"] for x in d))' "$APP_DIR/db/seed-content/issues.json" 2>/dev/null || echo '')"
+DB_MAX="$(remote "mysql -u root cbb -N -e 'SELECT COALESCE(MAX(number),0) FROM issues'" 2>/dev/null || echo '')"
+
+if [ "$DEPLOY_FORCE" = "1" ]; then
+  log "== Step 0 · DEPLOY_FORCE=1 — bypassing no-new-issue guard =="
+elif is_num "$NEWEST_LOCAL" && is_num "$DB_MAX"; then
+  log "Local newest issue: $NEWEST_LOCAL · DB max: $DB_MAX"
+  if [ "$DB_MAX" -ge "$NEWEST_LOCAL" ]; then
+    log "== Skip. No new issue to publish (DB already at #$DB_MAX). Nothing to do. =="
+    exit 0
+  fi
+fi
 
 log "== Step 1/6 · local build =="
 ( cd "$APP_DIR" && npm run build )
@@ -58,6 +75,7 @@ remote "cd '$DEPLOY_REMOTE' && npm run db:seed"
 log "== Step 5/6 · chown www-data + restart cbb =="
 remote "chown -R www-data:www-data '$DEPLOY_REMOTE/dist' '$DEPLOY_REMOTE/db' && systemctl restart cbb"
 
+# Verify the deploy actually printed a running app.
 log "== Step 6/6 · verify =="
 sleep 5
 HTTP_CODE="$(remote "curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000")"
@@ -68,17 +86,11 @@ if [ "$HTTP_CODE" != "200" ]; then
   exit 1
 fi
 
-# Verify the newest issue made it into the DB (if we know what to check).
-NEWEST_LOCAL="$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print(max(x["number"] for x in d))' "$APP_DIR/db/seed-content/issues.json" 2>/dev/null || echo '')"
-if [ -n "$NEWEST_LOCAL" ]; then
-  DB_MAX="$(remote "mysql -u root cbb -N -e 'SELECT COALESCE(MAX(number),0) FROM issues'" 2>/dev/null || echo '')"
-  if [ -n "$DB_MAX" ]; then
-    log "DB max issue number: $DB_MAX (local newest: $NEWEST_LOCAL)"
-    if [ "$DB_MAX" -lt "$NEWEST_LOCAL" ]; then
-      log "WARNING: DB max ($DB_MAX) < local newest ($NEWEST_LOCAL) — seed may not have run fully."
-      [ "$ALLOW_MISSING" = "1" ] && log "(DEPLOY_ALLOW_MISSING=1, continuing)" || exit 1
-    fi
-  fi
+# Post-seed sanity: DB max should now reach the local newest.
+DB_MAX_AFTER="$(remote "mysql -u root cbb -N -e 'SELECT COALESCE(MAX(number),0) FROM issues'" 2>/dev/null || echo '')"
+log "DB max after seed: $DB_MAX_AFTER (local newest: $NEWEST_LOCAL)"
+if is_num "$NEWEST_LOCAL" && is_num "$DB_MAX_AFTER" && [ "$DB_MAX_AFTER" -lt "$NEWEST_LOCAL" ]; then
+  log "WARNING: DB max ($DB_MAX_AFTER) still < local newest ($NEWEST_LOCAL) — seed did not fully apply."
 fi
 
 log "== Done. Release live on https://chinabatterybrief.com =="
