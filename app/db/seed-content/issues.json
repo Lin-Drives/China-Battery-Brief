@@ -14,8 +14,14 @@
     "coverAsset": "/cover-044.png",
     "contentFile": "issue-044.md",
     "highlights": [
-      { "tag": "capacity", "text": "CATL's $6bn Indonesia chain; Gotion's Morocco gigafactory" },
-      { "tag": "risk", "text": "BYD blacklisted in Brazil after 163-worker rescue" }
+      {
+        "tag": "capacity",
+        "text": "CATL's $6bn Indonesia chain; Gotion's Morocco gigafactory"
+      },
+      {
+        "tag": "risk",
+        "text": "BYD blacklisted in Brazil after 163-worker rescue"
+      }
     ],
     "sources": [
       {
@@ -76,8 +82,14 @@
     "coverAsset": "/cover-045.png",
     "contentFile": "issue-045.md",
     "highlights": [
-      { "tag": "capacity", "text": "One supply chain, three calendars: Brussels, Washington, Beijing" },
-      { "tag": "risk", "text": "The 200-day passport deadline won't move" }
+      {
+        "tag": "capacity",
+        "text": "One supply chain, three calendars: Brussels, Washington, Beijing"
+      },
+      {
+        "tag": "risk",
+        "text": "The 200-day passport deadline won't move"
+      }
     ],
     "sources": [
       {
@@ -132,8 +144,15 @@
     "coverAsset": "/cover-046.png",
     "contentFile": "issue-046.md",
     "highlights": [
-      { "tag": "tech", "text": "LFP takes 55% of a 1.2 TWh market", "gauge": 55 },
-      { "tag": "risk", "text": "2027 roadmaps: a procurement signal, not a product cycle" }
+      {
+        "tag": "tech",
+        "text": "LFP takes 55% of a 1.2 TWh market",
+        "gauge": 55
+      },
+      {
+        "tag": "risk",
+        "text": "2027 roadmaps: a procurement signal, not a product cycle"
+      }
     ],
     "sources": [
       {
@@ -182,8 +201,15 @@
     "coverAsset": "/cover-047.png",
     "contentFile": "issue-047.md",
     "highlights": [
-      { "tag": "capacity", "text": "Debrecen phase one, 40 GWh, fully booked", "gauge": 68 },
-      { "tag": "risk", "text": "Zaragoza rising; licensing inside the US" }
+      {
+        "tag": "capacity",
+        "text": "Debrecen phase one, 40 GWh, fully booked",
+        "gauge": 68
+      },
+      {
+        "tag": "risk",
+        "text": "Zaragoza rising; licensing inside the US"
+      }
     ],
     "sources": [
       {
@@ -227,8 +253,14 @@
     "coverAsset": "/cover-048.svg",
     "contentFile": "issue-048.md",
     "highlights": [
-      { "tag": "capacity", "text": "BYD's Rayong plant ships cars to Germany" },
-      { "tag": "risk", "text": "Chinese capital trades ownership for US access" }
+      {
+        "tag": "capacity",
+        "text": "BYD's Rayong plant ships cars to Germany"
+      },
+      {
+        "tag": "risk",
+        "text": "Chinese capital trades ownership for US access"
+      }
     ],
     "sources": [
       {
@@ -313,8 +345,15 @@
     "coverAsset": "/cover-049.svg",
     "contentFile": "issue-049.md",
     "highlights": [
-      { "tag": "capacity", "text": "Two firms, half the market", "gauge": 41 },
-      { "tag": "markets", "text": "The capex trail shows the next capacity cycle" }
+      {
+        "tag": "capacity",
+        "text": "Two firms, half the market",
+        "gauge": 41
+      },
+      {
+        "tag": "markets",
+        "text": "The capex trail shows the next capacity cycle"
+      }
     ],
     "sources": [
       {
@@ -393,8 +432,15 @@
     "coverAsset": "/cover-050.svg",
     "contentFile": "issue-050.md",
     "highlights": [
-      { "tag": "capacity", "text": "Non-China takes 56% of storage for the first time", "gauge": 56 },
-      { "tag": "markets", "text": "Residential storage is the new margin war" }
+      {
+        "tag": "capacity",
+        "text": "Non-China takes 56% of storage for the first time",
+        "gauge": 56
+      },
+      {
+        "tag": "markets",
+        "text": "Residential storage is the new margin war"
+      }
     ],
     "sources": [
       {
@@ -444,8 +490,15 @@
     "coverAsset": "/cover-051.svg",
     "contentFile": "issue-051.md",
     "highlights": [
-      { "tag": "capacity", "text": "Rept Battero's first grid-connected BESS in Japan", "gauge": 30 },
-      { "tag": "risk", "text": "The 30% single-foreign-cell cap in Japan's capacity market" }
+      {
+        "tag": "capacity",
+        "text": "Rept Battero's first grid-connected BESS in Japan",
+        "gauge": 30
+      },
+      {
+        "tag": "risk",
+        "text": "The 30% single-foreign-cell cap in Japan's capacity market"
+      }
     ],
     "sources": [
       {
@@ -477,6 +530,71 @@
         "title": "Sungrow to deploy 500MWh BESS across Japan with developer Sun Village",
         "url": "https://www.energy-storage.news/sungrow-to-deploy-500mwh-bess-across-japan-with-developer-sun-village/",
         "date": "2025-02"
+      }
+    ]
+  },
+  {
+    "number": 52,
+    "slug": "market-is-the-ceiling",
+    "title": "The Market Is the Ceiling: Australia Lets the Cells In, Then Prices Them Out",
+    "dek": "CATL supplies all three stages of Supernode, Australia's largest BESS, but the NEM's collapsing spreads, dying FCAS market and 13-14% return demands — not any rule — set the real ceiling.",
+    "publishedAt": "2026-09-03T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "overseas-capacity",
+      "markets",
+      "geopolitics"
+    ],
+    "readingMinutes": 5,
+    "coverAsset": "/cover-052.svg",
+    "contentFile": "issue-052.md",
+    "highlights": [
+      {
+        "tag": "capacity",
+        "text": "CATL supplies all three stages of Australia's largest BESS, Supernode",
+        "gauge": 3075
+      },
+      {
+        "tag": "risk",
+        "text": "NEM battery price spreads fall 85% in a year; FCAS heading toward zero"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Quinbrook taps GE Vernova and CATL for the third stage of Australia's largest battery storage system",
+        "url": "https://www.energy-storage.news/quinbrook-taps-ge-vernova-and-catl-for-the-third-stage-of-australias-largest-battery-storage-system/",
+        "date": "2026-08-24"
+      },
+      {
+        "outlet": "CATL",
+        "title": "超3GWh！宁德时代天恒储能系统独供澳洲NEM最大在运储能项目",
+        "url": "https://www.catl.com/news/10148.html",
+        "date": "2026-08-14"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "'One market into many': AER says battery storage systems are reshaping Australia's NEM",
+        "url": "https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
+        "date": "2026-08-20"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Australia's battery storage contracts shift from 'physical tolls' toward commoditised products",
+        "url": "https://www.energy-storage.news/australias-battery-storage-contracts-shift-from-physical-tolls-toward-commoditised-products/",
+        "date": "2026-08-25"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Battery storage investors 'feeling the pinch' as arbitrage spreads narrow across Australia's NEM",
+        "url": "https://www.energy-storage.news/battery-storage-investors-feeling-the-pinch-as-arbitrage-spreads-narrow-across-australias-nem/",
+        "date": "2026-08-25"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Reliability outlook improves, but Australia's NEM still needs system security investment, AEMO finds",
+        "url": "https://www.energy-storage.news/reliability-outlook-improves-but-australias-nem-still-needs-system-security-investment-aemo-finds/",
+        "date": "2026-08-27"
       }
     ]
   }

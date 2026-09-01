@@ -6,6 +6,12 @@
 
 ---
 
+## No.052 — The Market Is the Ceiling: Australia Lets the Cells In, Then Prices Them Out（2026-09-03）
+
+- **主题**：澳洲储能 = 自由市场化考场的残酷算术（OVERSEAS + MARKETS + GEOPOLITICS）
+- **关键词**：Supernode 三期 780MW/3,075MWh、Quinbrook + GE Vernova + 宁德时代（EnerC Plus→天恒 TENER S）、一、二期 520MW/1,858MWh 商运、NEM 装机 261MW(2021)→6.1GW(2025)、价差一年降 85% 至 AU$51/MWh、FCAS 归零、系统强度合同、回报要求 8–10%→13–14%、CIS 普遍负面、AEMO 系统安全缺口、8 小时长时 + grid-forming
+- **一句话结论**：澳洲没有关税墙、没有 FEOC 红线、没有补贴——只有市场；中国电芯能进最大的项目，但必须靠长时 + 电网构型 + 撬动基建债的全生命周期服务，而不是便宜兆瓦。
+
 ## No.051 — The Thirty-Percent Ceiling: Japan's Capacity Market Does the Allocating（2026-08-27）
 
 - **主题**：日本容量市场的国产化封顶（OVERSEAS + GEOPOLITICS）
@@ -66,5 +72,6 @@
 - 提到 **固态 2027 / LFP 份额 / 钠离子经济性** → No.046
 - 提到 **电池护照 / PFE / FEOC / §45X** → No.045
 - 提到 **印尼镍 / 巴西脏名单 / 摩洛哥** → No.044
+- 提到 **澳洲 / Supernode / 昆州储能 / NEM / grid-forming / 长时储能 + 系统强度** → No.052
 
 > 注意：`[已覆盖]` ≠ 弃用。同一主题若有**新数据/新进展**（如份额更新、新订单）可作为既有叙事的跟进，但应显式关联期号，避免当作全新选题重复铺陈。

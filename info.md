@@ -1,5 +1,5 @@
 # China Battery Brief — Fact Base (调研事实底座)
-**Compiled: 2026-08-03. All facts sourced via web search; each item carries source + as-of date. Items without reliable sourcing are marked UNVERIFIED. 中文注释附于关键条目后。**
+**Compiled: 2026-08-03; Australia section added 2026-08-29. All facts sourced via web search; each item carries source + as-of date. Items without reliable sourcing are marked UNVERIFIED. 中文注释附于关键条目后。**
 
 ---
 
@@ -109,6 +109,28 @@
 - **CATL sodium-ion**: 40 GWh Fuding expansion (May 2026, see §2.3).
 - **Envision AESC**: 30 GWh Bowling Green KY plant under construction (supply Nissan; Apr 2026 status). [map.engineered-vision.com, Apr 2026]
 - Ford Energy (CATL-licensed ESS, Kentucky) — see 1.1.
+
+### 1.8 Australia — NEM BESS market & Chinese player entry (2026 澳洲储能市场与中国电池博弈)
+
+**Market scale/结构 (AER Wholesale Electricity Market Performance Report 2026, pub 2026-08)**
+- 澳洲 NEM 从「一个市场」变成「区域内许多市场」：批发电价与收入 2025 年全面低于 2024，但晚峰/夜间仍显著高于 2022 前水平，仅昆州例外。储能成为晚峰降价的推手之一。
+- **机队规模**：2021 年初全 NEM 仅 5 座大型 BESS、合计 261MW，收入主要来自 FCAS（频率控制辅助服务）；到 2025 年底装机达 **6.1GW**（当年从年初 2.2GW 涨起），近三分之二装机时长 ≥2 小时。储能电量市场占电能量现货收入 ~80%（2025），远高于早年以 FCAS 为主。
+- 2025 年储能「发电+充电负荷」合计定价 NEM 批发价 **16.3%** 的时间（2021 年 ~1%）；昆州晚峰储能定价占比 25.5%。FCAS 成本降至 2016 年来最低。首个 8 小时储能 2026-06 并网（NSW Energy Road Map 支持）。
+- **电池价差崩塌**：NEM 宽口径电池价差一年降 85%，2026 Q2 均值 AU$51/MWh（~US$35/MWh），同期 NEM 电网级 BESS 装机首破 9,000MW（AEMO Quarterly Energy Dynamics）。储能放电在晚峰 46% 的出清间隔内定电价。
+- FY26 新增并网 **9.1GW**（远超 FY25 的 ~两倍），储能占 75.4GW 并网管道 52%（AEMO）；2026-08-11 全网电池放电创纪录 **4,325MW**，日间充/晚峰放循环摆动约 8.3GW。Ember 报告称澳 2025 年新增日间太阳能的 60% 被储能挪移到其他时段（全球仅次于保加利亚、智利）。
+- **结构转型压力**：未来三年 ~6GW 煤电计划退出 NEM；AEMO 2026 ESOO（pub 2026-08-27）显示未来十年 ~15GW 煤/气退役，电力消费预计 +40%（电气化+数据中心），数据中心用电从 5TWh(25-26)→34TWh(35-36，约占总消费 13%)。AEMO 敦促投资系统安全服务（惯量/电压支撑）以配合逆变器型电源增长；UNSW 获 AU$6.52m（ARENA）研究电网构型储能与继保互动。家储：联邦 Cheaper Home Batteries Program 自 2025-07-01 起补助已超 50 万套，累计新增 2.4GW/7.4GWh 家储，平均时长 ~3 小时，仅 ~14% 通过 VPP 协同。
+
+**Supernode 工程（昆州，中国电芯+美国变流）**
+- **进度**：Quinbrook 主开发商主导的 Supernode BESS（昆州，布里斯班北部 South Pine 变电站旁），**Stage 2 已于 2026-07 商运，成当时 NEM 最大在运储能**；Stage 1/2 由** Origin Energy 持 tolling（过网费）协议**。
+- **Stage 3（2026-08-24 官宣）**：GE Vernova 选供功率变换/控制/集成（澳洲首个电网构型储能项目，为其 grid-forming 里程碑），CATL 供电池系统（Stage 1/2 用 EnerC Plus，Stage 3 用更新型 **TENER S**）。Stage 3 增 **260MW/1,216MWh（4 小时）**，建成后全园 **780MW/3,075MWh**。Stage 3 已获 GPS（Generator Performance Standards）接入验收。**CATL 三段全程供电池**；另有 EnerQB 18 小时级技术为未来阶段备用。与 Stanwell（昆州国有发电）另签 1,010MWh offtake。2026-08 关单 AU$469m 债务融资，全园融资累计约 **AU$1.2bn**。 [Energy-Storage.News, 2026-08-24; 2026-08-06]
+- 工厂级注：EnerC Plus 支持背靠背安装，较前代省 ~20% 占地（对受约束工业用地关键）；CATL 另签长期生命周期服务协议（状态监测/性能跟踪/故障响应/预防性维护）。
+
+**澳洲「物理 toll → 商品化」合同转型（业界共识）**
+- Eku Energy 市场总监 Thomas Dargue（BAMS 澳洲 2026，2026-08-25）：储能正从『建一座电站、吃满市场风险』的物理 toll，转向**可互换、可在市场里更易流转的商品化合同**；买方池显著拓宽——Ascera Energy 的 Riverina 项目 market sounding 中 **70% 受访方并非用能方**，指向金融/中间商买家。系统强度（system strength）合同因不与电能量收益相互蚕食而更持久；FCAS 结构性依赖「惩罚部分参与者来奖励别人」。
+- **回报要求上升**：Torgoman 称 Riverina 这类项目此前 8–10% 回报即达标，如今投资者期望 **13–14%**（部分源于债务成本上升）；Neoen 的 Jeremy Lloyd 称 FCAS 价值随新电池涌入而衰减，新一波开发都把既有辅助服务收益价值推向零。
+- Fluence Matt Grover（2026-08-25）：套利价差收窄、收益下滑是**周期性**而非结构性——「现在的问题，不是下周，而是未来几年会回来」；痛点源是煤电退役推迟（如 Eraring、Yallourn）未兑现 3 年前的商业预期。Aquila Clean Energy APAC 的 Thomas Schmitz：电池≈调峰电站（峰厂历史容量因子仅 1–2%），问题在项目融资结构而非电池经济性；警告勿依赖 FCAS 长测预测。对联邦 **Capacity Investment Scheme (CIS)** 普遍负面，倾向「监管确定性」优于政府干预。近 2–3 年合同里 30–40% 已从物理转虚拟类型（Pacifico Energy 的 Behrangrad）。Home battery 渗透（>50 万套）带来户储「运营可视性」缺口，但被广泛认为无法直接替代电网侧服务（户用不提供系统强度/高峰套利）。
+
+**结论一句话（供选题）**：澳洲是给「自由市场化储能」设计的市场——中国电芯（CATL）进来的是最系统性的大型项目，但澳洲 NEM 的收益逻辑（套利价差崩塌、FCAS 消亡、煤电退役推迟）正在把一个看似无限的市场，压成一个比想象残酷得多的、要看「谁拿到商品化合同和系统强度收益」的市场。
 
 ---
 
