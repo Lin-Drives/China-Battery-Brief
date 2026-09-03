@@ -58,7 +58,16 @@ fi
 log "== Step 1/6 · local build =="
 ( cd "$APP_DIR" && npm run build )
 
-rsync_cmd() { rsync -az -e "ssh -i $DEPLOY_KEY -o BatchMode=yes -o ConnectTimeout=20 -o ServerAliveInterval=10 -o ServerAliveCountMax=3" "$@"; }
+# Prefer the full GNU rsync (Homebrew) over Apple's openrsync (protocol 29, fewer flags).
+# --partial keeps partially-transferred bytes so a dropped connection resumes instead of
+# restarting; -c checksum-syncs (preserving -a semantics via --archive) so a truncated-but-
+# same-size payload is still caught; --timeout aborts a stalled transfer instead of hanging.
+if command -v /opt/homebrew/bin/rsync >/dev/null 2>&1; then
+  RSYNC="${DEPLOY_RSYNC:-/opt/homebrew/bin/rsync}"
+else
+  RSYNC="${DEPLOY_RSYNC:-rsync}"
+fi
+rsync_cmd() { "$RSYNC" -az --partial -c --timeout=300 -e "ssh -i $DEPLOY_KEY -o BatchMode=yes -o ConnectTimeout=20 -o ServerAliveInterval=10 -o ServerAliveCountMax=3" "$@"; }
 
 log "== Step 2/6 · push dist/ -> $DEPLOY_HOST:$DEPLOY_REMOTE/dist =="
 remote "mkdir -p '$DEPLOY_REMOTE/dist'"
