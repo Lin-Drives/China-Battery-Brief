@@ -59,7 +59,7 @@
 
 ## 三、部署时必复核的三项配置
 
-> 部署形态已定（自有 VPS + Nginx + Cloudflare CDN，方案见 `deploy.md`，分支 `deploy/self-hosted`）。执行 `deploy.md` Step 4/5/8 时逐项落实以下三项；主线（Kimi Agent 平台托管）另行按平台网关行为核对。
+> 部署形态已定并上线（自有 VPS + Nginx + Cloudflare CDN，方案见 `deploy.md`，已作为主线 `main` 运行）。执行 `deploy.md` Step 4/5/8 时逐项落实以下三项（不再有 Kimi Agent 平台托管线）。
 
 1. **X-Forwarded-For 可信性**（最重要）
    限流和审计都靠 XFF 的第一个 IP 认人。前提是它由**你信得过的反向代理**（Nginx / Cloudflare / 平台网关）写入，并且代理会**覆盖**而非追加客户端传来的 XFF。

@@ -91,12 +91,13 @@
 - 重新梳理目标用户画像、想看的内容、与同类网站（Stratechery/终端数据商等）的差异化、品牌记忆点
 - 探索加入金融投资/研报内容作为新支柱方向，评估价值主张与商业化
 
-### 队列 E — 部署自动化（分支 `deploy/self-hosted` 开发中）
+### 队列 E — 部署自动化（已上线）
 > 内容生产/更新链路已自动化（见队列 C）。此处为部署侧。
-> **方案已定**：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，权威文档 `docs/deploy.md`（分支 `deploy/self-hosted`）。主线保持 Kimi Agent 平台托管。
-- [ ] 购买 VPS + 域名，按 `deploy.md` Step 0–8 执行
-- [ ] 部署后过 `security.md` 第三节三项核对（XFF / HTTPS+HSTS / OAuth redirect allowlist）
+> **方案已定并上线**：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，权威文档 `docs/deploy.md`（已作为主线 `main` 运行，不再有 Kimi Agent 平台托管线）。
+- [x] 购买 VPS（DigitalOcean `161.35.120.114`）+ 域名，并按 `deploy.md` Step 0–8 完成部署（MariaDB+seed、systemd 常驻、备份 cron、DNS 迁 Cloudflare、Nginx 反代 + HTTPS、安全三项核对 —— 详见 README §部署与 `docs/deploy.md`）
+- [x] 部署后过 `security.md` 第三节三项核对（XFF 可信性 / HTTPS+HSTS 访客段 / OAuth redirect allowlist；HSTS 待 SSL 升 Full 后全链路生效）
 - [x] 每周自动发版工作流：`app/scripts/deploy-release.sh`（本地 build → rsync dist/ + seed-content → VPS `db:seed` → `systemctl restart cbb` → 校验 200 + DB max 期号），launchd `com.cbb.release` 每周四 00:05 触发（提前一次发布准备，新刊 publishedAt 周四 06:00 UTC 可见）。No.052 已用该链路首次自动上线验证通过（DB max=52）
+- [x] **Cloudflare 边缘防护已上线（2026-09-03）**：Bot Fight Mode + 两条自定义防火墙规则（拦明显扫描 UA / 恶意探测路径），实测 403 拦截生效、正常访问 200 不受影响（详见根 `TODO.md`「Cloudflare 边缘安全防护」）
 - [ ] （可选）热点「价值判断」模型化——已有 S0–S4 分层 + published-topics 人工比对，判定模型可后置
 - [ ] **HTTPS 加密现状升级**：Cloudflare SSL 模式当前为 **Flexible**（访客↔Cloudflare 加密，Cloudflare↔VPS 走 HTTP 80 不加密，Nginx 未监听 443、无源站证书）。触发条件：正式上线前升级为 Full / Full(strict)——VPS 签发 Let's Encrypt 或 Cloudflare Origin 证书 + Nginx 监听 443 + 回源走 HTTPS，落实 security.md 的 HSTS 全链路
 

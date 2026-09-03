@@ -63,6 +63,12 @@
 - [x] **去平台化登录第一步**（分支 `deploy/self-hosted`）：移除 Kimi OAuth 全部代码（`api/kimi/`、`boot.ts` 路由、env 变量），demo 免登录全站可读，`auth.*` 接口预留 stub，cookie 改 `cbb_sid`，Login 页改占位
 - [ ] 购买 VPS 已办（DigitalOcean 161.35.120.114）→ 部署进行中：Step 3 MariaDB+seed、Step 6 systemd、Step 7 备份 cron、Step 1/4/5 DNS 迁 Cloudflare + Nginx + HTTPS
 - [ ] 域名 `chinabatterybrief.com` 已注册 → DNS 迁 Cloudflare（A 记录指向 VPS）
+- [x] **Cloudflare 边缘安全防护已上线（2026-09-03）**（网站已 Proxied；zone_id `7faa5df04d2638616458d0421ec8f7fa`、account_id `a32ed911284b609d2f204e8967c39c43`）：已通过 API 开启 **Bot Fight Mode**（`PUT /zones/{id}/bot_management {"fight_mode":true,"enable_js":true}`）+ 两条**自定义防火墙规则**（规则集 `a89da7d86623414d8116a5f2d800dbda`）：
+  - 拦截明显扫描 UA：sqlmap / nikto / zgrab / masscan / wpscan / gobuster / dirbuster / acunetix / nessus / nuclei / python-requests
+  - 拦截恶意探测路径：`/.git` `/.env` `wp-login` `xmlrpc` `wp-admin` `phpmyadmin` `/etc/passwd` `/.aws` `/.ssh` `/server-status`
+  - 已实测：扫描 UA 与上述路径均 403，正常浏览器访问 200 不受影响。
+  - 备注：写新版 WAF 规则需 API token 补 **Zone→WAF→Edit** 权限（`Firewall Services` 旧权限只对旧接口有效，旧接口 `firewall/rules` 已进入维护模式）。
+  - 未做（可选）：**Web Analytics**（建 RUM 站点取 beacon → 注入 `app/index.html`、`api/lib/security-headers.ts` 的 `script-src` 加 `https://static.cloudflareinsights.com` → build → 部署 → `curl` 验证 CSP）。当前 token 缺 Account→Analytics→Edit 权限，走面板手动补即可。
 
 ## 暂停（暂不开发付费功能）
 - 邮箱+密码认证（demo 免登录，接口已预留 stub）—— 队列 B
@@ -73,6 +79,7 @@
 - VPS 仅 454MB 内存，`npm run build` 全量构建会 OOM 崩溃（已临时加 2GB swap，治标）。**发版流程改为：本地 `npm run build` → `scp -r app/dist root@<VPS>:/opt/cbb/app/app/` → `systemctl restart cbb`**（dist 是平台无关纯 JS，直接可跑）。
 - 可选根治：VPS 升档至 1GB RAM（约 +$2/月），或限制 `NODE_OPTIONS='--max-old-space-size=256'`（强制 V8 更早 GC，不保证够用）。
 - VPS 侧目录已从 `deploy/self-hosted` 切到 `main` 分支；systemd `WorkingDirectory` 与备份 cron 均已指向 `/opt/cbb/app/app`。
+- **访问日志观测（Nginx）**：`/` 磁盘已用 82%、`backups/` 91M 且每日增长（考虑缩短保留或 `pull-backup.sh` 拉回本地）；攻击/扫描流量集中于单 IP `146.70.199.131`（探测 `.exe/.ps1` 等恶意路径、UA 为 `-`，约 4782 次）——建议 Cloudflare Firewall/WAF 规则阻断；真实浏览器访客很少（~/小时级），真实人类请求集中在 Windows/Mac/iOS/Android。
 
 ## 约定
 - 改动只提交本地，未获允许不 push 远端（本次已获用户明确授权推送）

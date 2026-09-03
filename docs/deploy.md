@@ -1,6 +1,6 @@
 # China Battery Brief — 部署方案（自有 VPS + Nginx 形态）
 
-> 定位：**自托管部署形态的权威方案**。主线（Kimi Agent 平台托管）见根 README；本方案在 git 分支 `deploy/self-hosted` 上开发，敲定并验证后决定是否合并主线。
+> 定位：**自托管部署形态的权威方案**（已作为主线 `main` 上线）。本方案已合入 `main` 并在 https://chinabatterybrief.com 运行。
 > 依据：`security.md` 第三节「部署时必复核的三项配置」——XFF 可信性 / HTTPS+HSTS / 应用内配置。
 > 状态：🟢 部署进行中（VPS 已购买、Step 0–3 已执行）。本分支已完成**去平台化登录**改造：站点不再依赖 Kimi OAuth，demo 免登录全可读，认证接口预留。
 
@@ -261,8 +261,7 @@ launchctl kickstart -k gui/$(id -u)/com.cbb.pull-backup   # 立即跑一次验�
 
 ## 六、回滚 / 双轨运行
 
-- **主线不变**：`main` 分支保持 Kimi Agent 平台托管，本方案全部在 `deploy/self-hosted` 分支开发验证。
-- 验证通过后，合并回主线或保留为独立交付形态（二选一，届时决定）。
+- **上线形态**：方案已合入 `main` 并作为站点主线运行（https://chinabatterybrief.com，自托管 VPS + Nginx + Cloudflare；不再有 Kimi Agent 平台托管线）。
 - 回滚：生产 VPS 上保留上一次 `dist/` 与数据库备份，`npm run db:restore` + 重启即回退。
 
 ---
