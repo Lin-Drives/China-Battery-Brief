@@ -38,7 +38,7 @@ The development site runs at `http://localhost:3000`. Configure local variables 
 ```text
 app/       application code, database schema, and bilingual seed content
 docs/      product, release, deployment, and security documentation
-info.md    researched fact base for newsletter content
+research/  topic-based research fact base for newsletter content
 AGENTS.md  conventions for contributors and coding agents
 ```
 
@@ -55,4 +55,4 @@ The only release entry point is `app/scripts/deploy-release.sh`. It builds local
 - [Product delivery notes](docs/README.md)
 - [Editorial and contributor rules](AGENTS.md)
 - [Editorial workflow for bilingual issues](app/AGENTS.md)
-- [Research fact base](info.md)
+- [Research fact base](research/README.md)

@@ -35,13 +35,13 @@
 | The Information | $399/年 | 科技商业新闻，不做电池垂直数据 |
 | The Limiting Factor | 免费 YouTube | 只讲电化学，不讲产业与资金 |
 
-MARKETS 的独特生态位：**跨语言情报差**。雪球、券商研报、MIIT 公告、中国上市公司业绩说明会纪要——这些 Western desks 读不了的一手信源，是 $19/月的成立理由。这正是 info.md 事实底座里最大块未展开的投资侧素材。
+MARKETS 的独特生态位：**跨语言情报差**。雪球、券商研报、MIIT 公告、中国上市公司业绩说明会纪要——这些 Western desks 读不了的一手信源，是 $19/月的成立理由。这正是 `research/` 事实库里可持续补充的投资侧素材。
 
 ## 四、内容矩阵（每周产出）
 
 | 板块 | 形态 | 素材底座 |
 |---|---|---|
-| **The Scoreboard** | 全球装机份额/出货的月度变盘点（谁升谁降、为什么） | SNE Research 数据（info.md §2.1） |
+| **The Scoreboard** | 全球装机份额/出货的月度变盘点（谁升谁降、为什么） | SNE Research 数据（`research/technology.md`） |
 | **Prices & Costs** | 电芯/大宗商品价格驱动因素（不只报数，讲因果） | LFP $52/kWh、钠电 -30%、§45X $35/kWh |
 | **Money Moves** | 财报、capex、融资、JV 股本、订单合同（谁在烧钱、谁在回血） | 印尼 $6bn、CALB €2.07bn、EVE $1.2bn |
 | **The Take** | 每周一个产业逻辑判断（**非投资建议**，保持新闻立场） | 编辑台综合分析 |

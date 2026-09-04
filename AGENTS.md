@@ -20,7 +20,7 @@ app/                       ← 唯一可构建的应用代码库（npm 项目根
 └── package.json / vite.config.ts / drizzle.config.ts / ...
 docs/                      ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ deploy.md（部署手册）+ security.md（安全应急手册）
 dev/                       ← 开发工具与笔记：devboard.mjs/html、screenshot.mjs、VS Code workspace
-info.md                    ← 调研事实底座（所有内容的事实来源，带来源与日期标注）
+research/                  ← 按主题拆分的调研事实库；`info.md` 为兼容索引，完整初版在 `research/archive/`
 .local-mysql/              ← 本地绿色版 MySQL 运行时（gitignore，不提交）
 backups/                   ← 备份落点：本地开发备份（backups/db/）+ 生产异地归档（backups/pull/）+ 历史存档 zip
 Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，勿改动（不随部署使用）
@@ -77,7 +77,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 - TypeScript 严格模式，`tsc -b` 是主门禁；ESLint 用 flat config，无 type-aware 规则。
 - 服务端代码（`api/`、`db/`、`contracts/`）风格：双引号、分号、JSDoc 注释（英文）；前端组件风格更随意（单引号常见）。**跟随所在文件的既有风格**，不要跨风格统一。
 - 设计基调（plan.md）：编辑部风格（Stratechery / The Information 气质），低饱和暖色调、大量留白，铜色（copper）为品牌点缀色，**禁止蓝紫渐变**。滚动动效用 Lenis + GSAP ScrollTrigger（`src/lib/gsap.ts` 统一注册插件）。
-- 注释语言：代码注释英文为主，项目文档（README/plan/info.md）中文为主、术语保留英文。
+- 注释语言：代码注释英文为主，项目文档（README/plan/research/）中文为主、术语保留英文。
 
 ## 六、测试
 
@@ -87,7 +87,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 
 ## 七、内容工作流与安全注意
 
-- 周刊发布流程：admin 在 `/account` 管理台粘贴 markdown → 发布；或更新 `db/seed-content*/` 后重跑 seed。事实内容必须溯源到 `info.md`（调研事实底座，每条带来源与日期）。
+- 周刊发布流程：admin 在 `/account` 管理台粘贴 markdown → 发布；或更新 `db/seed-content*/` 后重跑 seed。事实内容必须溯源到 `research/` 调研事实库；先读 `research/README.md`，再按选题只打开 1–2 个主题文件。仅在需要历史细节、来源追溯或处理冲突信息时阅读 `research/archive/`，不要默认加载完整归档。
 - **生产发刊（VPS）**：用户要求「发布」「发刊」「走发布流程」时，除非明确限定为「仅本地」，默认目标是 VPS 上线，而非只运行本地 `db:seed`。先确认本轮完整改动已提交、工作区干净，并完成适用的本地检查；然后从 `app/` 运行唯一发布入口 `bash scripts/deploy-release.sh`。该脚本会本地构建、用 rsync 同步 `dist/` 与双语种子内容、在 VPS 灌库并重启 `cbb`。以脚本的 VPS HTTP 200 和生产库最新期号达到本地最新期号为成功标准；「无新一期」的 no-op 要明确报告为跳过，不能报告为已发布。不得用 `scp`、手工 rsync 或手工重启替代脚本，不得执行 `email:blast`，除非用户另行明确授权。完整运行手册见 `docs/release.md`。
 - **信源时效（内容红线）**：优先选用发布后 3 个月内的信息，时效越高越好。对「当前状态」的断言（在建/投产/搁浅/占比等），必须引用近 3 个月信源；历史事实（签约日、首产下线等）可作背景保留，但须与近期信源分开标注。无法核实真实 URL 的事实不得写入。
 - **读者背景预设（写作红线）**：预设读者是专业从业者，但**不了解任何特定公司/项目的背景**。新企业、新项目、新专名首次出现时，先用一句简单语言介绍身份（如「安塔姆（Antam，印尼国有镍矿商）」「储能企业 HyperStrong」「商务部两步许可制」），再做具体论述；后续再提可沿用简称。英文同理（first mention 给身份从句）。

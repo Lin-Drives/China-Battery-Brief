@@ -51,7 +51,7 @@ users · issues(6 期英文样刊 No. 044–049，基于调研事实底座) · p
 
 - 代码库：`app/`（npm 项目根，`src/` 前端 + `api/` 后端 + `db/` 种子）
 - 项目文档：`docs/`（本文件 + plan.md + deploy.md + security.md）
-- 调研事实底座：`info.md`
+- 调研事实库：`research/README.md`（`info.md` 保留为兼容索引）
 - 样刊源稿：`app/db/seed-content/`（EN）+ `app/db/seed-content-zh/`（ZH）
 - 开发工具与笔记：`dev/`（devboard、workspace）
 - 备份双轨：VPS `/opt/cbb/backups`（DB 7 份 + assets 3 份，快速恢复）+ 本地 `backups/pull/`（90 天异地归档，每日 21:00 launchd 拉取，见 deploy.md Step 7）
