@@ -44,7 +44,8 @@ export function TocRail({
     scrollToEl(id, -96)
   }
 
-  const { t } = useLang()
+  const { lang, t } = useLang()
+  const isEnglish = lang === 'en'
   type TocItem = { id: string; label: string; kicker?: string; color?: string }
   // Mirror the body's PART signposts: each section takes its part's color, and
   // the kicker label is shown only at the first section of each part.
@@ -74,7 +75,8 @@ export function TocRail({
     <nav
       aria-label="Table of contents"
       className={cn(
-        'fixed left-6 top-32 z-40 hidden w-[320px] transition-opacity duration-500 xl:block',
+        'fixed left-6 top-32 z-40 hidden transition-opacity duration-500 xl:block',
+        isEnglish ? 'w-[min(18rem,calc((100vw-760px)/2-3rem))]' : 'w-[320px]',
         visible ? 'opacity-100' : 'pointer-events-none opacity-0',
       )}
     >
@@ -86,21 +88,28 @@ export function TocRail({
               <button
                 type="button"
                 onClick={() => jump(item.id)}
+                title={item.label}
                 className={cn(
                   'flex flex-col gap-0.5 border-l-2 py-1.5 pl-3 text-left font-mono text-[15px] leading-[1.4] tracking-[0.08em] transition-all duration-200',
+                  isEnglish && 'w-full min-w-0',
                   active ? 'opacity-100' : 'opacity-90 hover:opacity-100',
                 )}
                 style={{ borderColor: active ? (item.color ?? 'var(--volt)') : 'transparent' }}
               >
                 {item.kicker && (
                   <span
-                    className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.12em]"
+                    className={cn(
+                      'text-[13px] font-semibold uppercase tracking-[0.12em]',
+                      isEnglish ? 'block truncate' : 'whitespace-nowrap',
+                    )}
                     style={{ color: item.color }}
                   >
                     {item.kicker}
                   </span>
                 )}
-                <span className="whitespace-nowrap text-text">{item.label}</span>
+                <span className={cn(isEnglish ? 'block truncate text-text' : 'whitespace-nowrap text-text')}>
+                  {item.label}
+                </span>
               </button>
             </li>
           )

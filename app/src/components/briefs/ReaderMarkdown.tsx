@@ -83,8 +83,12 @@ const READER_CSS = `
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.62em;
   letter-spacing: 0.04em;
-  color: var(--dropcap-color, #C9F24B);
+  color: var(--sheet-muted);
   font-weight: 600;
+}
+.cbb-reader sup + sup::before {
+  content: '、';
+  font-weight: 400;
 }
 `
 
