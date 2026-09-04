@@ -112,7 +112,7 @@ Environment: see `app/.env.example`. Key vars: `DATABASE_URL` (MySQL), `MYSQL_BI
 
 The app itself is a **single Node process** (Hono serves `dist/public` + the API), so any host that runs Node and can reach a MySQL database works: build with `npm run build`, run with `npm start` (set `DATABASE_URL`, run `npm run db:seed` once). Swapping DB hosts later is just a `DATABASE_URL` change + reseed — schema is standard MySQL and the seed is idempotent.
 
-**Weekly release (auto)**: `app/scripts/deploy-release.sh` builds `dist/` locally, then `rsync`s `dist/` + `db/seed-content/*` to the VPS (VPS keeps its own newer `seed.ts`/`schema.ts`), runs `db:seed` there to upsert the issue, and `systemctl restart cbb` — finished with a `curl 200` + DB-max-issue sanity check. A launchd job (`com.cbb.release`, Thursday 00:05) fires it weekly. It bails out early if the current week has **no new issue** to publish (DB max already ≥ local newest), so an empty week is a no-op. Manual run: `bash app/scripts/deploy-release.sh`. `rsync` is used (not `scp`) for fast, resumable, incremental transfer.
+**Weekly release**: the sole release entry point is `app/scripts/deploy-release.sh`. It builds locally, syncs `dist/` and bilingual seed content to the VPS, upserts the issue, restarts `cbb`, then verifies HTTP 200 and the latest issue number. A launchd job (`com.cbb.release`, Thursday 00:05) runs it weekly; no new issue is a deliberate no-op. The manual procedure, success criteria, failure handling, and rollback boundary are in [docs/release.md](docs/release.md).
 
 Beta switch: `OpenAccess.beta` in `contracts/constants.ts` (`true` = every brief free to all readers, paywall/teasers off; flip to `false` to restore the paywall).
 

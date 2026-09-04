@@ -253,7 +253,7 @@ launchctl kickstart -k gui/$(id -u)/com.cbb.pull-backup   # 立即跑一次验�
 ## 五、迁移计划（本地 → 生产）
 
 1. **数据**：`npm run db:backup` 在本地出 `.sql.gz`，scp 到 VPS 后 `npm run db:restore -- <file>` 灌入（或直接 `db:seed` 重灌种子）。
-2. **内容**：issues/factories/policy 以种子为基线；发刊走 admin 台（生产库直接写入）。
+2. **内容**：issues/factories/policy 以种子为基线；日常发刊按 `docs/release.md` 的发布脚本执行，不手工同步或直接修改生产库。
 3. **扫描定时任务**：本机 launchd 继续跑（数据在本机 MySQL）；如需在生产侧跑，把 `scan/` 与 MariaDB 迁移后改 systemd timer。
 4. **验证**：`npm run build && npm start` 生产基线 → curl 首页 200 + tRPC ping 通 → 匿名访问期刊全量可读。
 
