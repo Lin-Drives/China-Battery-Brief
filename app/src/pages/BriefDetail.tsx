@@ -63,7 +63,14 @@ const TONE_VARS: Record<PaperTone, Record<string, string>> = {
 }
 
 function wordCount(markdown: string): number {
-  return markdown.split(/\s+/).filter(Boolean).length
+  // CJK 字按字符计，其余按空白分词计
+  const cjkRe = /[㐀-䶿一-鿿豈-﫿]/g
+  const cjk = markdown.match(cjkRe)?.length ?? 0
+  const words = markdown
+    .replace(cjkRe, " ")
+    .split(/\s+/)
+    .filter(Boolean).length
+  return cjk + words
 }
 
 export default function BriefDetail() {
