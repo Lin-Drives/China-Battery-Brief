@@ -24,6 +24,7 @@
 - [x] 选题跟进（No.051 背景）：调研中国电池/储能厂商在日落地全景（CATL 借 CHC 松山 12MW/35.8MWh、国轩 Edison/DEI 1GWh、阳光 Sun Village 500MWh、BYD 仅汽车、海辰/晶科仅有布局），骨架见 scan/2026-08-23/draft-rept-japan.md
 - [x] 新增 No. 051 EN + ZH（真实信源）：瑞浦兰钧日本首并网 + LTDA 容量市场单芯 ≤30% 国产化红线（方向 A「政策定份额」），registration 入 issues.json / issues-zh.json + published-topics.md
 - [x] No. 051 双语文稿经 content:review 子代理复核并修正（30% 引用层级加固、ZH 走样、首字专名身份、Marubeni 误报更正），已提交 `d658e0d` 并推送
+- [x] 新增 No. 053 EN + ZH（真实信源）：三部门《汽车行业境外竞争行为与合规建设指引》（商合函〔2026〕451 号）+ 欧盟价格承诺镜像 + 反内卷国内治理时间线；经 content-reviewer 复核修正 10 项后提交 `24ffb79`；scan:digest 2026-09-05 已产出（13 story）
 
 ## 调试记录（No. 048 阅读页专项，已提交）
 - [x] 修复 markdown HTML 注释泄漏（`skipHtml`）：PART 签注注释不再显示为正文文本
