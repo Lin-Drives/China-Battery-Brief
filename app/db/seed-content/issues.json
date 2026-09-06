@@ -597,5 +597,75 @@
         "date": "2026-08-27"
       }
     ]
+  },
+  {
+    "number": 53,
+    "slug": "dont-export-the-price-war",
+    "title": "Don't Export the Price War: Beijing Writes Conduct Rules for Its Automakers",
+    "dek": "Three ministries issued a 20-article conduct guide for Chinese companies abroad — cost-based pricing, dealer pricing autonomy, data and labor compliance — as July NEV exports surged 147.8%. Brussels built a price floor from the outside; Beijing is now writing one from the inside.",
+    "publishedAt": "2026-09-10T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "geopolitics",
+      "markets"
+    ],
+    "readingMinutes": 5,
+    "coverAsset": "/cover-053.svg",
+    "contentFile": "issue-053.md",
+    "highlights": [
+      {
+        "tag": "risk",
+        "text": "Three ministries' 20-article guide tells automakers the price war stays home",
+        "gauge": 20
+      },
+      {
+        "tag": "markets",
+        "text": "July NEV exports 540k units, +147.8% YoY — 58.8% of passenger-vehicle exports"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "商务部 MOFCOM",
+        "title": "汽车行业境外竞争行为与合规建设指引（商合函〔2026〕451号）",
+        "url": "https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_d3cadd96f72446a78a95f212bfb13e7c.html",
+        "date": "2026-08-24"
+      },
+      {
+        "outlet": "商务部 MOFCOM",
+        "title": "商务部合作司负责人解读《汽车行业境外竞争行为与合规建设指引》",
+        "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_010a728322d842229ec892a2b9958e9c.html",
+        "date": "2026-09-01"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China sets competition guidelines for automakers' overseas operations",
+        "url": "https://cnevpost.com/2026/09/01/china-sets-competition-guidelines-automakers-overseas/",
+        "date": "2026-09-01"
+      },
+      {
+        "outlet": "European Commission",
+        "title": "Commission issues Guidance Document on submission of price undertaking offers for battery electric vehicles from China",
+        "url": "https://policy.trade.ec.europa.eu/news/commission-issues-guidance-document-submission-price-undertaking-offers-battery-electric-vehicles-2026-01-12_en",
+        "date": "2026-01-12"
+      },
+      {
+        "outlet": "财新网",
+        "title": "火线评论｜“内卷外溢”病根在国内",
+        "url": "https://opinion.caixin.com/2026-09-06/102482387.html",
+        "date": "2026-09-06"
+      },
+      {
+        "outlet": "新浪财经",
+        "title": "车企价格战没有赢家 工信部将加力整治内卷式竞争",
+        "url": "https://finance.sina.com.cn/roll/2025-06-02/doc-ineyryai4668470.shtml",
+        "date": "2025-06-02"
+      },
+      {
+        "outlet": "新京报",
+        "title": "车市2025｜反“内卷”、闯关L3，十大热词看行业进化轨迹",
+        "url": "https://m.bjnews.com.cn/detail/1768349140169437.html",
+        "date": "2026-01-14"
+      }
+    ]
   }
 ]
