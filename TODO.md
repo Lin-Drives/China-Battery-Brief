@@ -6,7 +6,7 @@
 - [x] 开发进度可视化展板：`dev/devboard.mjs`（扫描 git/TODO/plan/deploy + 代码统计 → 生成纯 SVG/CSS 静态 `dev/devboard.html`，暗色编辑部风，`node dev/devboard.mjs` 重建）
 - [x] VPS 部署 Step 3：MariaDB 加固 + 建库建用户 + `db:push` 建表 + 种子灌入（7 EN + 7 ZH 期）已验证；生产构建完成（schema 因 MariaDB 不兼容 `serial` 改为 `bigint().autoincrement()`，未提交）
 - [x] VPS 部署 Step 6/7：VPS 同步到 `9d61cf0`（移除 Kimi OAuth）+ 重建；systemd `cbb.service` 常驻（www-data，3000 端口，`ping` + 期刊全量可读已验证）+ 备份 cron（每日 03:00，`/opt/cbb/backups/`）
-- [x] **自托管正式上线**：https://chinabatterybrief.com 已可访问（广东网络正常）——Step 1 DNS（CF A 记录 @/www → 161.35.120.114）+ Step 4 Nginx 反代（80→3000，XFF 信任 CF 21 段）+ Step 5 CF SSL Flexible（访客↔CF 加密，回源走 80）；CSP ✓、`/api/oauth/begin` 404 ✓；HSTS 待 Full 模式后生效（plan.md 队列 E）
+- [x] **自托管正式上线**：https://chinabatterybrief.com 已可访问——Step 1 DNS（CF A 记录 @/www → 161.35.120.114）+ Step 4 Nginx 反代（XFF 信任 CF 21 段）+ Step 5 HTTPS 全链路（2026-09-05：Let’s Encrypt 源站证书、Cloudflare Full (strict)、源站与公网 HTTP→HTTPS 301、CSP + HSTS）；`/api/oauth/begin` 404 ✓
 - [x] No. 048《再出口枢纽》EN + ZH（真实信源、SVG 程序化封面）
 - [x] No. 049 / No. 050 EN + ZH（真实信源、SVG 程序化封面）
 - [x] 四大支柱中文命名统一：产能地图 / 技术路线 / 政策追踪 / 市场信号
@@ -19,7 +19,7 @@
 - [x] 翻译校对：直引号→全角、混排间距、长句顺化、信源时效约定（AGENTS.md）
 - [x] 根 README（技术栈/部署/边界）、Git 初始化推送初始版
 - [x] 安全设计前置一轮（44d95db）：限流 / 安全响应头+CSRF / OAuth state / 审计表 / 备份脚本 / security.md 应急手册；部署方案敲定后需复核 XFF、HTTPS/HSTS、OAuth redirect allowlist
-- [x] 确认 scan 抓取定时任务已启动并运行正常：launchd `com.cbb.scan`（每周日 09:00），最近一次 17 源全跑、0 失败（整理层 `scan:digest` 仍需手动触发）
+- [x] 确认 scan 抓取定时任务已启动并运行正常：launchd `com.cbb.scan`（plist 实际为**每周六 21:00**，非此前记录的周日 09:00；最近 2026-09-05 跑 16 源、esnews 403 失败，535 条/376 新增；整理层 `scan:digest` 仍需手动触发）
 - [x] 整理层 `scan:digest` 跑 2026-08-23：529 原始 → 6 story（0 多源，1 已覆盖 No.046），见 scan/2026-08-23/digest.md
 - [x] 选题跟进（No.051 背景）：调研中国电池/储能厂商在日落地全景（CATL 借 CHC 松山 12MW/35.8MWh、国轩 Edison/DEI 1GWh、阳光 Sun Village 500MWh、BYD 仅汽车、海辰/晶科仅有布局），骨架见 scan/2026-08-23/draft-rept-japan.md
 - [x] 新增 No. 051 EN + ZH（真实信源）：瑞浦兰钧日本首并网 + LTDA 容量市场单芯 ≤30% 国产化红线（方向 A「政策定份额」），registration 入 issues.json / issues-zh.json + published-topics.md
@@ -61,14 +61,14 @@
 - [x] 固化 content-reviewer 复核流程为 opencode 命令（`.opencode/command/content:review.md`，已更新 AGENTS.md 引用）
 - [x] 部署方案敲定：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，方案文档 `docs/deploy.md`，在分支 `deploy/self-hosted` 开发（主线保持平台托管）
 - [x] **去平台化登录第一步**（分支 `deploy/self-hosted`）：移除 Kimi OAuth 全部代码（`api/kimi/`、`boot.ts` 路由、env 变量），demo 免登录全站可读，`auth.*` 接口预留 stub，cookie 改 `cbb_sid`，Login 页改占位
-- [ ] 购买 VPS 已办（DigitalOcean 161.35.120.114）→ 部署进行中：Step 3 MariaDB+seed、Step 6 systemd、Step 7 备份 cron、Step 1/4/5 DNS 迁 Cloudflare + Nginx + HTTPS
-- [ ] 域名 `chinabatterybrief.com` 已注册 → DNS 迁 Cloudflare（A 记录指向 VPS）
+- [x] VPS 部署全链路完成（DigitalOcean 161.35.120.114）：MariaDB+seed、systemd、备份 cron、Cloudflare DNS/Nginx/HTTPS
+- [x] 域名 `chinabatterybrief.com` 已迁 Cloudflare（A 记录 @/www → VPS，Proxied）
 - [x] **Cloudflare 边缘安全防护已上线（2026-09-03）**（网站已 Proxied；zone_id `7faa5df04d2638616458d0421ec8f7fa`、account_id `a32ed911284b609d2f204e8967c39c43`）：已通过 API 开启 **Bot Fight Mode**（`PUT /zones/{id}/bot_management {"fight_mode":true,"enable_js":true}`）+ 两条**自定义防火墙规则**（规则集 `a89da7d86623414d8116a5f2d800dbda`）：
   - 拦截明显扫描 UA：sqlmap / nikto / zgrab / masscan / wpscan / gobuster / dirbuster / acunetix / nessus / nuclei / python-requests
   - 拦截恶意探测路径：`/.git` `/.env` `wp-login` `xmlrpc` `wp-admin` `phpmyadmin` `/etc/passwd` `/.aws` `/.ssh` `/server-status`
   - 已实测：扫描 UA 与上述路径均 403，正常浏览器访问 200 不受影响。
   - 备注：写新版 WAF 规则需 API token 补 **Zone→WAF→Edit** 权限（`Firewall Services` 旧权限只对旧接口有效，旧接口 `firewall/rules` 已进入维护模式）。
-  - 未做（可选）：**Web Analytics**（建 RUM 站点取 beacon → 注入 `app/index.html`、`api/lib/security-headers.ts` 的 `script-src` 加 `https://static.cloudflareinsights.com` → build → 部署 → `curl` 验证 CSP）。当前 token 缺 Account→Analytics→Edit 权限，走面板手动补即可。
+  - [x] **Web Analytics 已启用（2026-09-05）**：Cloudflare RUM 选“完整访客覆盖”（含 EU）并自动注入 beacon；应用 CSP 已放行 `https://static.cloudflareinsights.com`，公网 HTML 与 CSP 均已核验。首批访问/性能数据需等待真实访客回传。
 
 ## 暂停（暂不开发付费功能）
 - 邮箱+密码认证（demo 免登录，接口已预留 stub）—— 队列 B
