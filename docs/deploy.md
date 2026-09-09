@@ -286,7 +286,7 @@ launchctl kickstart -k gui/$(id -u)/com.cbb.pull-backup   # 立即跑一次验�
 - [x] Step 2 部署代码（`/opt/cbb/app`，分支 `deploy/self-hosted`）
 - [x] Step 3 初始化 MariaDB + seed（已完成：加固 + 建库建用户 + `db:push` + 种子 7 EN/7 ZH 期；schema `serial→bigint` 修复兼容 MariaDB）
 - [x] Step 6 systemd 常驻（`cbb.service`，www-data 运行，3000 端口） + Step 7 备份 cron（每日北京时间 03:00 = UTC 19:00 `db:backup` → `/opt/cbb/backups/`）
-- [x] Step 1/4/5 DNS 迁 Cloudflare + Nginx 反代 + HTTPS（✅ **已上线**：https://chinabatterybrief.com 200，广东网络访问正常；SSL 模式 Flexible——访客↔CF 加密，CF↔VPS 走 80，全链路 HTTPS 升级登记在 plan.md 队列 E）
-- [x] 完成安全三项核对清单（XFF：Nginx 只信任 CF 21 段 ✓；HTTPS/HSTS：访客段 HTTPS+CSP ✓，HSTS 待 Full 模式升级后生效；认证：demo 免登录，`/api/oauth/begin` 404 ✓）
+- [x] Step 1/4/5 DNS 迁 Cloudflare + Nginx 反代 + HTTPS（✅ **已上线**：https://chinabatterybrief.com 200；2026-09-05 已从 Flexible 升至 Cloudflare **Full (strict)**，VPS Let’s Encrypt 证书覆盖根域名 + `www`，Nginx 443 与源站 HTTP→HTTPS 301 已验证）
+- [x] 完成安全三项核对清单（XFF：Nginx 只信任 CF 21 段 ✓；HTTPS/HSTS：源站与公网 HTTPS 200、HTTP→HTTPS 301、CSP + HSTS ✓；认证：demo 免登录，`/api/oauth/begin` 404 ✓）
 - [x] Step 8 认证状态核对：demo 免登录形态，无外部认证依赖，匿名访问首页+期刊全量可读 ✓（邮箱+密码认证为后续队列 B 待办）
 - [ ] 决策：验证后分支合并 or 双轨保留

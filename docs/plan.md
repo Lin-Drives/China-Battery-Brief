@@ -99,7 +99,7 @@
 - [x] 每周自动发版工作流：`app/scripts/deploy-release.sh`（本地 build → rsync dist/ + seed-content → VPS `db:seed` → `systemctl restart cbb` → 校验 200 + DB max 期号），launchd `com.cbb.release` 每周四 00:05 触发（提前一次发布准备，新刊 publishedAt 周四 06:00 UTC 可见）。No.052 已用该链路首次自动上线验证通过（DB max=52）
 - [x] **Cloudflare 边缘防护已上线（2026-09-03）**：Bot Fight Mode + 两条自定义防火墙规则（拦明显扫描 UA / 恶意探测路径），实测 403 拦截生效、正常访问 200 不受影响（详见根 `TODO.md`「Cloudflare 边缘安全防护」）
 - [ ] （可选）热点「价值判断」模型化——已有 S0–S4 分层 + published-topics 人工比对，判定模型可后置
-- [ ] **HTTPS 加密现状升级**：Cloudflare SSL 模式当前为 **Flexible**（访客↔Cloudflare 加密，Cloudflare↔VPS 走 HTTP 80 不加密，Nginx 未监听 443、无源站证书）。触发条件：正式上线前升级为 Full / Full(strict)——VPS 签发 Let's Encrypt 或 Cloudflare Origin 证书 + Nginx 监听 443 + 回源走 HTTPS，落实 security.md 的 HSTS 全链路
+- [x] **HTTPS 全链路加密**（2026-09-05）：VPS 已签发 Let’s Encrypt 证书（根域名 + `www`）、Nginx 监听 443 并将 HTTP 301 到 HTTPS；Cloudflare SSL 模式为 **Full (strict)**，公网与源站均验到 CSP + HSTS，`certbot.timer` 自动续期已启用。
 
 ### 已记录决策
 - 内容流水线自动化链路与记录位置：`app/scan/`（config/run/digest/published-topics）+ `sources-list.md`；定时任务 `~/Library/LaunchAgents/com.cbb.scan.plist`
