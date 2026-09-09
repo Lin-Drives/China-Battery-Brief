@@ -198,7 +198,7 @@ export default function Hero() {
                           <span aria-hidden style={{ color: meta.color }}>
                             ●
                           </span>
-                          <span className="font-semibold">{t(meta.labelKey)}</span>
+                          <span className="whitespace-nowrap font-semibold">{t(meta.labelKey)}</span>
                           <span className="text-paper-muted">— {h.text}</span>
                         </li>
                       )
