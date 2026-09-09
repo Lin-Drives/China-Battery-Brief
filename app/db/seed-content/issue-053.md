@@ -11,8 +11,8 @@ Chapter three is the compliance spine, and it is where the document reaches past
 
 Then chapter four tells you what kind of document this is. Article 19: the guidelines are general guidance, offered "for reference" — 供企业参考. Article 20: interpretation rests with the three ministries. There is no penalty clause, no enforcement calendar, no blacklist. The teeth, if any, live elsewhere.[^1]
 
-<!-- k:#B0432F|PART 02 · THE WAR AT HOME -->
-## The price war Beijing spent a year fighting just got a passport
+<!-- k:#B0432F|PART 02 · WHY NOW -->
+## Beijing fought the price war at home. Now it is banning the export version
 
 To understand why twenty articles of manners needed three ministries, look at the domestic campaign they extend. In late May 2025, the China Association of Automobile Manufacturers, the auto industry's trade association, issued an initiative against disorderly price-cutting, and the Ministry of Industry and Information Technology (MIIT) publicly backed it — a senior official's phrase, widely quoted: a price war has no winners, and no future. By mid-2025 seventeen automakers had pledged to pay suppliers within 60 days, a direct attack on the habit of financing price cuts by stretching the supply chain. Industry margins tell the story: aggressive price-cutting had pressed the sector's average profit margin to a historic low of around 4%.[^6]
 
@@ -20,7 +20,7 @@ The campaign did not stop at prices. In July 2026, MIIT sat down with the key au
 
 That is the honest way to read the document. It is not a trade measure aimed at anyone abroad. It is Beijing telling its own champions: the playbook that won you the home market — cut price, squeeze dealers and suppliers, flood the zone — is exactly the playbook that will get you regulated, sued and expelled abroad. So the ban comes from home first.[^1][^5]
 
-<!-- k:#5A6B9E|PART 03 · THE MIRROR -->
+<!-- k:#5A6B9E|PART 03 · THE EU PARALLEL -->
 ## Brussels built a price floor from the outside; Beijing is writing one from the inside
 
 There is a mirror across the Eurasian landmass. In October 2024, after its anti-subsidy investigation into Chinese-made electric vehicles, the European Commission imposed definitive countervailing duties ranging from 7.8% to 35.3%, on top of the standard 10% car tariff. Then, in January 2026, the Commission published a guidance document on price undertakings: Chinese exporters can offer binding minimum import prices — with rules on sales channels, cross-compensation and future EU investment — in place of the duties. Brussels' answer to Chinese price aggression was, literally, a price floor, negotiated firm by firm.[^4]
