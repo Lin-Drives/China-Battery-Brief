@@ -9,7 +9,7 @@
  * 设计：并发（默认 4）+ 边抓边写——即使部分源失败，已完成的结果也已落盘。
  */
 
-import "dotenv/config"
+import { config as dotenvConfig } from "dotenv";
 import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "fs";
 import { join } from "path";
 import { createHash } from "crypto";
@@ -20,6 +20,8 @@ import type { SourceConfig } from "./config";
 import { parseForSource, htmlItemsToScanned } from "./parse-html";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+// 显式从 app/.env 加载，避免 launchd 等以非 app/ 为 cwd 启动时读不到密钥
+dotenvConfig({ path: join(__dirname, "..", ".env") });
 const ROOT = join(__dirname, "..", "scan");
 const CONCURRENCY = 4;
 const FETCH_TIMEOUT_MS = 12000;
@@ -407,9 +409,84 @@ async function fetchFirecrawl(src: SourceConfig): Promise<ScannedItem[]> {
   return fcScrape(src)
 }
 
+/* 东方财富公告 JSON（A 股）：np-anotice-stock 接口，无需渲染。 */
+async function fetchEastmoneyAnn(src: SourceConfig): Promise<ScannedItem[]> {
+  if (!src.code) throw new Error(`${src.key}: missing code`)
+  const url = `https://np-anotice-stock.eastmoney.com/api/security/ann?sr=-1&page_size=50&page_index=1&ann_type=A&client_source=web&stock_list=${src.code}`
+  const json = JSON.parse(await fetchText(url)) as {
+    data?: { list?: Array<{ title?: string; notice_date?: string; art_code?: string }> }
+  }
+  const discovered = stamp()
+  return (json.data?.list ?? [])
+    .filter((d) => d.title && d.art_code)
+    .slice(0, 30)
+    .map((d) => {
+      const link = `https://data.eastmoney.com/notices/detail/${src.code}/${d.art_code}.html`
+      const pub = d.notice_date ? new Date(d.notice_date) : null
+      return {
+        id: hashUrl(link),
+        title: d.title!.replace(/\s+/g, " ").trim(),
+        url: link,
+        source: src.key,
+        layer: src.layer,
+        pillar: src.pillar,
+        publishedAt: pub && !isNaN(pub.getTime()) ? pub.toISOString() : null,
+        discoveredAt: discovered,
+        summary: null,
+      } satisfies ScannedItem
+    })
+}
+
+/* HKEXnews 官方公告（港股）：先代码换 stockId，再检索近 120 天公告。 */
+async function fetchHkexAnn(src: SourceConfig): Promise<ScannedItem[]> {
+  if (!src.code) throw new Error(`${src.key}: missing code`)
+  const prefix = await fetchText(
+    `https://www1.hkexnews.hk/search/prefix.do?callback=cb&lang=EN&type=A&name=${src.code}&market=SEHK`,
+  )
+  const idMatch = /"stockId":(\d+)/.exec(prefix)
+  if (!idMatch) throw new Error(`${src.key}: stockId not found`)
+  const ymd = (d: Date) =>
+    `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`
+  const from = ymd(new Date(Date.now() - 120 * 86400000))
+  const to = ymd(new Date())
+  const query =
+    `https://www1.hkexnews.hk/search/titleSearchServlet.do?sortDir=0&sortByOptions=DateTime&category=0` +
+    `&market=SEHK&stockId=${idMatch[1]}&documentType=-1&fromDate=${from}&toDate=${to}&title=&searchType=1` +
+    `&t1code=-2&t2Gcode=-2&t2code=-2&rowRange=50&lang=EN`
+  const json = JSON.parse(await fetchText(query)) as { result?: string }
+  let rows: Array<{ DATE_TIME?: string; TITLE?: string; FILE_LINK?: string }> = []
+  try {
+    rows = JSON.parse(json.result ?? "[]")
+  } catch {
+    rows = []
+  }
+  const discovered = stamp()
+  return rows
+    .filter((r) => r.TITLE && r.FILE_LINK)
+    .slice(0, 30)
+    .map((r) => {
+      const link = `https://www1.hkexnews.hk${r.FILE_LINK}`
+      const dm = /(\d{2})\/(\d{2})\/(\d{4})/.exec(r.DATE_TIME ?? "") // DD/MM/YYYY
+      const pub = dm ? new Date(`${dm[3]}-${dm[2]}-${dm[1]}`) : null
+      return {
+        id: hashUrl(link),
+        title: (r.TITLE ?? "").replace(/\s+/g, " ").trim(),
+        url: link,
+        source: src.key,
+        layer: src.layer,
+        pillar: src.pillar,
+        publishedAt: pub && !isNaN(pub.getTime()) ? pub.toISOString() : null,
+        discoveredAt: discovered,
+        summary: null,
+      } satisfies ScannedItem
+    })
+}
+
 async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[] }> {
   if (src.kind === "rss") return { src, items: await fetchRss(src) }
   if (src.kind === "rsshub") return { src, items: await fetchRsshub(src) }
+  if (src.kind === "eastmoney-ann") return { src, items: await fetchEastmoneyAnn(src) }
+  if (src.kind === "hkex-ann") return { src, items: await fetchHkexAnn(src) }
   if (src.kind === "firecrawl" || src.kind === "firecrawl-search") {
     return { src, items: await fetchFirecrawl(src) }
   }

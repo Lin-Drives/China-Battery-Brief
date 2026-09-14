@@ -125,6 +125,26 @@ const escnParser: HtmlParser = (_html, $) => {
   return out
 }
 
+/** SVOLT /news — 条目 `a[href^='/news/']`（数字 id），标题 `.nbul-right-textone`，日期 `.nbul-right-icon-one p`。 */
+const svoltParser: HtmlParser = (_html, $) => {
+  const out: HtmlParsedItem[] = []
+  const seen = new Set<string>()
+  $("a[href^='/news/']").each((_i, el) => {
+    const $a = $(el)
+    const href = $a.attr("href") ?? ""
+    if (!/^\/news\/\d+/.test(href)) return
+    if (seen.has(href)) return
+    seen.add(href)
+    const title = $a.find(".nbul-right-textone").first().text().replace(/\s+/g, " ").trim()
+    if (!title || title.length < 6) return
+    const dateRaw =
+      $a.find(".nbul-right-icon-one p").first().text().trim() ||
+      $a.find("p.std-word2").first().text().trim()
+    out.push({ title, url: `https://www.svolt.cn${href}`, publishedAt: parseDate(dateRaw) })
+  })
+  return out
+}
+
 /** SNE Research /en/insight/release/ — Press Release 列表，条目 `a[href*='release_view']`，标题 `p.font-score`，日期 `span.list-day`。 */
 const sneParser: HtmlParser = (_html, $) => {
   const out: HtmlParsedItem[] = []
@@ -207,6 +227,8 @@ export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[
       return huayouParser(html, $, src)
     case "escn":
       return escnParser(html, $, src)
+    case "svolt":
+      return svoltParser(html, $, src)
     case "sne":
       return sneParser(html, $, src)
     case "mofcom":

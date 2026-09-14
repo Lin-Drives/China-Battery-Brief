@@ -18,7 +18,14 @@
 export interface SourceConfig {
   key: string
   name: string
-  kind: "rss" | "rsshub" | "html" | "firecrawl" | "firecrawl-search"
+  kind:
+    | "rss"
+    | "rsshub"
+    | "html"
+    | "firecrawl"
+    | "firecrawl-search"
+    | "eastmoney-ann"
+    | "hkex-ann"
   url: string
   layer: "S0" | "S1" | "S2" | "S3"
   pillar: "overseas-capacity" | "geopolitics" | "markets" | "storage" | "mixed"
@@ -28,6 +35,8 @@ export interface SourceConfig {
   htmlSelector?: string
   /** firecrawl-search 专属：搜索查询词。 */
   fcQuery?: string
+  /** eastmoney-ann / hkex-ann 专属：证券代码（A 股 6 位或港股 5 位，如 300919 / 03931）。 */
+  code?: string
   /** firecrawl 专属：URL 必须匹配的正则（如含日期段）才算文章，用于过滤频道导航。 */
   fcUrlPattern?: string
   /** firecrawl 专属：从 URL 可解析出发布日期的条目，超过该天数（默认 90）丢弃（内容红线：3 个月内信源）。 */
@@ -60,7 +69,8 @@ export const SOURCES: SourceConfig[] = [
   /* ---------- ① 产能地图 ---------- */
   { key: "cnevpost", name: "CnEVPost", kind: "rss", url: "https://cnevpost.com/feed/", layer: "S2", pillar: "overseas-capacity", enabled: true, note: "中国巨头海外动态当日全覆盖，首选时效源" },
   { key: "benchmark", name: "Benchmark Mineral", kind: "firecrawl", url: "https://www.benchmarkminerals.com/media-and-news", layer: "S1", pillar: "mixed", enabled: false, note: "Firecrawl 实验：媒体页仅图片无文本链接，0 条，禁用" },
-  { key: "cls", name: "财联社电报", kind: "rsshub", url: "", rsshubRoute: "cls/telegraph", layer: "S3", pillar: "mixed", enabled: true, note: "分钟级快讯，最先抓到建厂/扩产公告" },
+  { key: "cls", name: "财联社电报", kind: "rsshub", url: "", rsshubRoute: "cls/telegraph/red", layer: "S3", pillar: "mixed", enabled: true, note: "重要电报（加红），带原文链接；原 cls/telegraph 的 <link> 为空不可用" },
+  { key: "cls-depth", name: "财联社（要闻/深度）", kind: "rsshub", url: "", rsshubRoute: "cls/depth", layer: "S3", pillar: "mixed", enabled: true, note: "财联社要闻/深度文章，带原文链接（含并购、产能等公司要闻）" },
   { key: "gasgoo", name: "盖世汽车", kind: "firecrawl", url: "https://news.gasgoo.com/news/", layer: "S2", pillar: "overseas-capacity", enabled: false, note: "Firecrawl 实验：scrape no data（页面结构不适配），禁用" },
 
   /* 公司官方（S0） */
@@ -68,11 +78,11 @@ export const SOURCES: SourceConfig[] = [
   { key: "byd", name: "比亚迪 BYD", kind: "firecrawl", url: "https://www.byd.com/cn/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "Firecrawl 实验：JS 渲染页" },
   { key: "eve", name: "亿纬锂能 EVE", kind: "html", url: "https://www.evebattery.com/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网新闻中心，/news-<id> 列表" },
   { key: "gotion", name: "国轩高科 Gotion", kind: "firecrawl", url: "https://www.gotion.com/news/", layer: "S0", pillar: "overseas-capacity", enabled: false, note: "Firecrawl 实验：抓到页面但 0 条（JS 渲染/结构问题），需调参，禁用" },
-  { key: "svolt", name: "蜂巢能源 SVOLT", kind: "rss", url: "https://www.svolt.cn/rss.xml", layer: "S0", pillar: "overseas-capacity", enabled: true },
+  { key: "svolt", name: "蜂巢能源 SVOLT", kind: "html", url: "https://www.svolt.cn/news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网新闻列表页（原 /rss.xml 为导航站点地图，非新闻）" },
   { key: "sunwoda", name: "欣旺达 Sunwoda", kind: "firecrawl", url: "https://www.sunwoda.com/about/news", layer: "S0", pillar: "overseas-capacity", enabled: false, note: "Firecrawl 实验：抓到页面但 0 条（onlyMainContent 过滤列表），需调参，禁用" },
   { key: "huayou", name: "华友钴业 Huayou", kind: "html", url: "https://www.huayou.com/news/corporate-news", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "官网企业新闻，/news/corporate-news/<id> 列表" },
-  { key: "calb", name: "中创新航 CALB (HKEX)", kind: "firecrawl-search", url: "", fcQuery: "中创新航 CALB 港股公告 hkexnews", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "Firecrawl 实验：交易所反爬，改用搜索" },
-  { key: "cngr", name: "中伟股份 CNGR (SZ)", kind: "firecrawl-search", url: "", fcQuery: "中伟股份 CNGR 深交所公告", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "Firecrawl 实验：深交所反爬，改用搜索" },
+  { key: "calb", name: "中创新航 CALB (HKEX)", kind: "hkex-ann", url: "", code: "03931", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "HKEXnews 官方公告检索接口（原 firecrawl-search 只能搜到行情页）" },
+  { key: "cngr", name: "中伟股份 CNGR (SZ)", kind: "eastmoney-ann", url: "", code: "300919", layer: "S0", pillar: "overseas-capacity", enabled: true, note: "东方财富公告 JSON 接口（原 firecrawl-search 只能搜到行情页）" },
 
   /* ---------- ② 政策追踪 ---------- */
   { key: "mofcom", name: "商务部 MOFCOM", kind: "html", url: "https://www.mofcom.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "出口管制/反制公告第一手，首页 art 详情解析已接入" },
