@@ -25,6 +25,7 @@
 - [x] 新增 No. 051 EN + ZH（真实信源）：瑞浦兰钧日本首并网 + LTDA 容量市场单芯 ≤30% 国产化红线（方向 A「政策定份额」），registration 入 issues.json / issues-zh.json + published-topics.md
 - [x] No. 051 双语文稿经 content:review 子代理复核并修正（30% 引用层级加固、ZH 走样、首字专名身份、Marubeni 误报更正），已提交 `d658e0d` 并推送
 - [x] 新增 No. 053 EN + ZH（真实信源）：三部门《汽车行业境外竞争行为与合规建设指引》（商合函〔2026〕451 号）+ 欧盟价格承诺镜像 + 反内卷国内治理时间线；经 content-reviewer 复核修正 10 项后提交 `24ffb79`；scan:digest 2026-09-05 已产出（13 story）
+- [x] 新增 No. 054 EN + ZH（真实信源）：电池消费税恢复征收（第 20 号公告，锂电 2%→4%）+ 钠电/固态/燃料电池免征至 2028 年底 + 增值税出口退税 9%→6%→2027 取消（第 2 号公告）；经 content-reviewer 复核、精简篇幅（英文 -18%）与中文标点修正后提交 `ba52ddb`/`d8171ea`/`ae2e4c0`，2026-09-17 提前发布（VPS HTTP 200、生产库期号 54）
 
 ## 调试记录（No. 048 阅读页专项，已提交）
 - [x] 修复 markdown HTML 注释泄漏（`skipHtml`）：PART 签注注释不再显示为正文文本
