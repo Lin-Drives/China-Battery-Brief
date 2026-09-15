@@ -666,5 +666,63 @@
         "date": "2026-01-14"
       }
     ]
+  },
+  {
+    "number": 54,
+    "slug": "the-maturity-tax",
+    "title": "The Maturity Tax: Lithium Starts Paying, Sodium Waits",
+    "dek": "China ended a decade of consumption-tax exemption for lithium-ion cells on September 1 — 2% now, 4% next year — while sodium, solid-state and fuel cells stay exempt until end-2028. In the same tax code, the battery VAT export rebate is being cut to 6%, then scrapped in 2027.",
+    "publishedAt": "2026-09-17T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "tech-routes",
+      "markets",
+      "geopolitics"
+    ],
+    "readingMinutes": 5,
+    "coverAsset": "/cover-054.svg",
+    "contentFile": "issue-054.md",
+    "highlights": [
+      {
+        "tag": "tech",
+        "text": "Sodium, solid-state and fuel cells stay consumption-tax exempt until end-2028; lithium pays 2% now, 4% in 2027"
+      },
+      {
+        "tag": "markets",
+        "text": "Battery VAT export rebate cut to 6% for 2026, scrapped from 2027 — while the consumption tax stays rebatable"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "财政部 海关总署 税务总局",
+        "title": "关于调整部分电池消费税政策的公告（财政部 海关总署 税务总局公告 2026 年第 20 号）",
+        "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5251171/content.html",
+        "date": "2026-07-16"
+      },
+      {
+        "outlet": "财政部 税务总局",
+        "title": "关于调整光伏等产品出口退税政策的公告（财政部 税务总局公告 2026 年第 2 号）",
+        "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5246745/content.html",
+        "date": "2026-01-08"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "CATL, EVE Energy lead Chinese manufacturers' battery storage cell price hikes",
+        "url": "https://www.energy-storage.news/catl-eve-energy-lead-chinese-manufacturers-battery-storage-cell-price-hikes/",
+        "date": "2026-09-09"
+      },
+      {
+        "outlet": "财政部 税务总局",
+        "title": "关于出口业务增值税和消费税政策的公告（财政部 税务总局公告 2026 年第 11 号）",
+        "url": "https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247437/content.html",
+        "date": "2026-01-30"
+      },
+      {
+        "outlet": "国家税务总局",
+        "title": "国家税务总局关于电池消费税征收管理有关事项的公告（2026 年第 16 号）",
+        "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5251620/content.html",
+        "date": "2026-07-31"
+      }
+    ]
   }
 ]
