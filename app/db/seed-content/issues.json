@@ -724,5 +724,62 @@
         "date": "2026-07-31"
       }
     ]
+  },
+  {
+    "number": 55,
+    "slug": "the-ten-percent-lane",
+    "title": "The Ten-Percent Lane: How China's Hybrids Slipped Past Europe's Tariff Wall",
+    "dek": "The EU is asking China to voluntarily cap hybrid vehicle exports — or face higher tariffs — after hybrids, left at the 10% base duty when BEVs were taxed up to about 45%, became the fastest lane into Europe. Beijing says voluntary export restraints violate WTO rules.",
+    "publishedAt": "2026-09-24T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "geopolitics",
+      "markets"
+    ],
+    "readingMinutes": 6,
+    "coverAsset": "/cover-055.svg",
+    "contentFile": "issue-055.md",
+    "highlights": [
+      {
+        "tag": "risk",
+        "text": "EU seeks a voluntary export restraint on Chinese hybrids; Beijing rejects it as a WTO violation"
+      },
+      {
+        "tag": "markets",
+        "text": "EU hybrid imports from China rose 3,800 to 50,000 a month; H1 2026's top-3 PHEVs are all Chinese"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "Financial Times (via CnEVPost)",
+        "title": "EU seeks curbs on Chinese hybrid exports, may raise tariffs if no deal",
+        "url": "https://cnevpost.com/2026/09/17/eu-seeks-curbs-chinese-hybrid-exports/",
+        "date": "2026-09-17"
+      },
+      {
+        "outlet": "商务部新闻发言人",
+        "title": "就媒体称欧盟希中国自愿限制混动汽车对欧出口答记者问",
+        "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_836c456aba344f6abef9943ff5da5999.html",
+        "date": "2026-09-18"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China opposes curbs on hybrid exports to EU, citing WTO rules",
+        "url": "https://cnevpost.com/2026/09/18/china-opposes-curbs-hybrid-exports-eu/",
+        "date": "2026-09-18"
+      },
+      {
+        "outlet": "观察者网",
+        "title": "中国插混车型热销，欧盟这次还想用关税阻挡？",
+        "url": "https://www.guancha.cn/qiche/2026_07_07_822868.shtml",
+        "date": "2026-07-07"
+      },
+      {
+        "outlet": "InsideEVs",
+        "title": "VW Wants Higher Tariffs After Chinese PHEVs Overtake Its Best-Seller in Europe",
+        "url": "https://insideevs.com/news/802809/vw-phev-eu-tariff-demand-sales-drop/",
+        "date": "2026-07-27"
+      }
+    ]
   }
 ]
