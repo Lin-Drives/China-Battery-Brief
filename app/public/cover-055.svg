@@ -51,7 +51,7 @@
   <!-- accent block -->
   <rect x="48" y="516" width="26" height="14" fill="#5ADFC3"/>
   <rect x="84" y="516" width="3" height="14" fill="#5ADFC3" opacity="0.35"/>
-  <text x="128" y="527" font-family="Courier,monospace" font-size="13" letter-spacing="1.2" fill="#8E97A8">EU ASK: VOLUNTARY EXPORT LIMIT · BEIJING: VIOLATES WTO</text>
+  <text x="128" y="527" font-family="Courier,monospace" font-size="13" letter-spacing="1.2" fill="#8E97A8">EU ASK: VOLUNTARY EXPORT LIMIT · CHINA: VIOLATES WTO</text>
 
   <line x1="48" y1="548" x2="752" y2="548" stroke="#1B2A33" stroke-width="1"/>
   <text x="48" y="566" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">CBB · WEEKLY INTELLIGENCE · EVERY THURSDAY 06:00 UTC</text>
