@@ -45,10 +45,7 @@
     <rect x="48" y="462" width="704" height="30" fill="#5ADFC3" opacity="0.10"/>
     <rect x="48" y="462" width="704" height="30" fill="none" stroke="#5ADFC3" stroke-width="1"/>
     <text x="64" y="482" fill="#F4F0E6">HYBRID LANE</text>
-    <text x="560" y="482" text-anchor="end" fill="#5ADFC3">10% ONLY · 3,800 → 50,000 /MO</text>
-    <!-- VER gate closing on the hybrid lane -->
-    <rect x="606" y="456" width="4" height="42" fill="#F0A832"/>
-    <text x="598" y="470" text-anchor="end" fill="#F0A832" font-size="11">VER?</text>
+    <text x="736" y="482" text-anchor="end" fill="#5ADFC3">10% ONLY · 3,800 → 50,000 /MO</text>
   </g>
 
   <!-- accent block -->
