@@ -48,7 +48,7 @@
 - [x] 备选模型：`kimi-for-coding/kimi-for-coding`（Kimi K2.7 Code，支持读图）
 - [x] Zen 免费档 `opencode/mimo-v2.5-free` 读图验证通过（受限流影响，仅作演示）
 - [x] 免费档仅 `mimo-v2.5-free` 支持读图，其余 `-free` 后缀模型为纯文本或 401 不可用
-- [x] 全局默认模型切换为 `deepseek/deepseek-v4-flash`（省成本）
+- [x] 全局默认模型切换为 `deepseek/deepseek-flash`（即 2026-09-10 发布的 V4.1 Flash，原生多模态；旧 v4-flash / vision-exp 已下线并路由至此）
 - [x] 结论：Zen/Go 提供 61+ 模型按量或订阅访问，vision 子代理读封面图质量达标（配色、文字逐字、缺陷检测均准确）
 
 ## 生图调研（结论：暂缓）
