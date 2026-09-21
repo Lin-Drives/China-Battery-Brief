@@ -26,6 +26,12 @@
 - [x] No. 051 双语文稿经 content:review 子代理复核并修正（30% 引用层级加固、ZH 走样、首字专名身份、Marubeni 误报更正），已提交 `d658e0d` 并推送
 - [x] 新增 No. 053 EN + ZH（真实信源）：三部门《汽车行业境外竞争行为与合规建设指引》（商合函〔2026〕451 号）+ 欧盟价格承诺镜像 + 反内卷国内治理时间线；经 content-reviewer 复核修正 10 项后提交 `24ffb79`；scan:digest 2026-09-05 已产出（13 story）
 - [x] 新增 No. 054 EN + ZH（真实信源）：电池消费税恢复征收（第 20 号公告，锂电 2%→4%）+ 钠电/固态/燃料电池免征至 2028 年底 + 增值税出口退税 9%→6%→2027 取消（第 2 号公告）；经 content-reviewer 复核、精简篇幅（英文 -18%）与中文标点修正后提交 `ba52ddb`/`d8171ea`/`ae2e4c0`，2026-09-17 提前发布（VPS HTTP 200、生产库期号 54）
+- [x] 新增 No. 055 EN + ZH 并发布（2026-09-21，早于排期 09-24）：欧盟要求中国混动「自愿」限额约 15% 市场份额否则加税 + 商务部 WTO 异议；经多轮优化（15% 数字、9-17 视频会谈事实修正、盟情咨文场合、取向电工钢佐证、地名/人名回指），VPS HTTP 200、生产库期号 55
+- [x] 首页加载提速：静态资源缓存头修复（`813eaa3`，`/assets/*` → `public, max-age=31536000, immutable`，HTML → `no-cache`），已强制发布并实测变快
+
+## 待确认（2026-09-22 看一眼）
+- [ ] **Cloudflare 边缘缓存仍 DYNAMIC**：缓存头上线后浏览器侧已快，但 js/css/svg/ico 全部 `cf-cache-status: DYNAMIC`（无 Set-Cookie、缓存头正确）——疑似 zone 有全局 Bypass 缓存规则。到控制台 **Caching → Cache Rules** 删掉全局 Bypass，或新建规则 `URI Path starts with /assets/` → Eligible for cache（Edge TTL 1 个月）；走 API 需 Cache Rules 写权限 token
+- [ ] **VPS 磁盘 83%（剩 1.7GB）**：`backups/` 每日增长，过 90% 有 MariaDB 风险；缩短保留周期或 pull 回本地。其余正常（2026-09-21 实测：load 0.00、内存 270MB 可用、swap 111MB/3GB、cbb RSS 67MB）
 
 ## 调试记录（No. 048 阅读页专项，已提交）
 - [x] 修复 markdown HTML 注释泄漏（`skipHtml`）：PART 签注注释不再显示为正文文本
