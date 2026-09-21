@@ -32,7 +32,7 @@ The verdict of CAR director Ferdinand Dudenhöffer on the last round of tariffs 
 For the battery industry, the lane question matters beyond cars. Every hybrid that clears a European port was built in China and shipped whole, battery included — a pack a fraction the size of a BEV's; every hybrid that rolls off the line in Szeged, Hungary, or Zaragoza, Spain, pulls demand toward the cell plants Chinese capital has already built in Europe — the capacity that sold out in Debrecen (No. 047). Closing the shipping lane does not close the battery flow. It reroutes it onto European soil, under European rules.[^5]
 
 <!-- k:#6B6558|THE TAKE -->
-## The take: quantity is the new price
+## The take: the curtain rises on Europe's cap on Chinese hybrids
 
 Two years of this contest have produced a clean pattern. Round one was price: the EU taxed BEVs up to 45%, and Chinese exports of them kept growing, modestly. Round two was the loophole: the industry redirected into the untaxed category and grew it thirteen-fold. Round three opens with the EU abandoning the price instrument for the quantity instrument — a cap that no discount can undercut, because it counts cars rather than taxing them. China's WTO objection is legally sound and, historically, beside the point: the 1981 restraint on Japan was just as contested, and it held for over a decade. Nor is the quantity instrument confined to cars: on September 18, the Commission imposed tariff-rate quotas and minimum prices on imports of grain-oriented electrical steel — the transformer-grade steel Europe barely still makes.[^1][^2][^8]
 
