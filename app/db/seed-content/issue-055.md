@@ -29,7 +29,7 @@ Read the ask against the investment map and its purpose clarifies. Chinese carma
 
 The verdict of CAR director Ferdinand Dudenhöffer on the last round of tariffs is the argument the EU is now testing: the duties did not protect Europe's industry, they accelerated the arrival of Chinese factories on European soil, faster than the Japanese or Koreans ever moved. A volume cap is designed to force the same migration on a deadline — and, unlike a tariff, it cannot be diluted by a cheaper car.[^4]
 
-For the battery industry, the lane question matters beyond cars. Every hybrid that clears a European port carries a Chinese-made battery a fraction the size of a BEV pack; every hybrid built in Szeged, Hungary, or Zaragoza, Spain, pulls demand toward the cell plants Chinese capital has already built in Europe — the capacity that sold out in Debrecen (No. 047). Closing the shipping lane does not close the battery flow. It reroutes it onto European soil, under European rules.[^5]
+For the battery industry, the lane question matters beyond cars. Every hybrid that clears a European port was built in China and shipped whole, battery included — a pack a fraction the size of a BEV's; every hybrid that rolls off the line in Szeged, Hungary, or Zaragoza, Spain, pulls demand toward the cell plants Chinese capital has already built in Europe — the capacity that sold out in Debrecen (No. 047). Closing the shipping lane does not close the battery flow. It reroutes it onto European soil, under European rules.[^5]
 
 <!-- k:#6B6558|THE TAKE -->
 ## The take: quantity is the new price
