@@ -19,6 +19,15 @@ export function serveStaticFiles(app: App) {
     await next();
   });
 
+  // Vite emits content-hashed files under /assets/ — safe to cache forever;
+  // Cloudflare only edge-caches responses carrying explicit Cache-Control.
+  app.use("*", async (c, next) => {
+    await next();
+    if (c.req.path.startsWith("/assets/")) {
+      c.header("Cache-Control", "public, max-age=31536000, immutable");
+    }
+  });
+
   app.use("*", serveStatic({ root: "./dist/public" }));
 
   app.notFound((c) => {
@@ -28,6 +37,9 @@ export function serveStaticFiles(app: App) {
     }
     const indexPath = path.resolve(distPath, "index.html");
     const content = fs.readFileSync(indexPath, "utf-8");
+    // The HTML shell references hashed assets by name — always revalidate so
+    // a new deploy is picked up immediately.
+    c.header("Cache-Control", "no-cache");
     return c.html(content);
   });
 }
