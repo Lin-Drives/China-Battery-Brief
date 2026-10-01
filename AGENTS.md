@@ -1,10 +1,10 @@
 # AGENTS.md — China Battery Brief
 
-> 本文件面向 AI 编码代理，描述本仓库的结构、构建方式与开发约定。
+> 本文件面向 AI 编码代理，描述本仓库的结构、构建方式与开发约定。**方法/流程细节（中文排版规范、双语新闻稿编辑流程、安全约定等）以 `app/AGENTS.md` 为准**，本文件不重复维护。
 
 ## 一、项目概览
 
-**China Battery Brief** 是一个中英双语（一键切换）的电池产业情报 Newsletter 全栈网站：每周一期英文周刊，三大内容支柱为海外建厂动态（Overseas Expansion）、技术路线（LFP vs 固态电池）、地缘政治与政策（IRA / 欧盟电池护照）。商业模式为付费订阅（Free / Pro $19 月 / Desk $499 月 三档）。
+**China Battery Brief** 是一个中英双语（一键切换）的电池产业情报 Newsletter 全栈网站：每周一期，**四大内容支柱**为产能地图（海外建厂动态）、技术路线（LFP vs 固态电池）、政策追踪（IRA / 欧盟电池护照）、市场信号（份额·价格·融资）。商业模式为付费订阅（Free / Pro $19 月）。
 
 技术栈：**React 19 + TypeScript + Vite 7**（前端） + **Hono + tRPC 11**（后端） + **Drizzle ORM + MySQL**（数据库） + Tailwind CSS 3 + shadcn/ui 风格组件（Radix UI 全家桶）。动画用 GSAP + Lenis 平滑滚动，地图用 d3-geo / react-three-fiber，图表用 recharts。
 
@@ -18,9 +18,9 @@ app/                       ← 唯一可构建的应用代码库（npm 项目根
 ├── contracts/             ← 前后端共享常量/类型/错误（constants.ts / types.ts / errors.ts）
 ├── public/                ← 静态资源（封面图、logo、头像等）
 └── package.json / vite.config.ts / drizzle.config.ts / ...
-docs/                      ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ deploy.md（部署手册）+ security.md（安全应急手册）
+docs/                      ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ deploy.md（部署手册）+ release.md（日常发刊）+ security.md（安全应急手册）等
 dev/                       ← 开发工具与笔记：devboard.mjs/html、screenshot.mjs、VS Code workspace
-research/                  ← 按主题拆分的调研事实库；`info.md` 为兼容索引，完整初版在 `research/archive/`
+research/                  ← 按主题拆分的调研事实库（overseas-plants / technology / policy / markets-storage / business-model）；完整初版在 `research/archive/`，兼容索引 `info.md` 位于仓库根
 .local-mysql/              ← 本地绿色版 MySQL 运行时（gitignore，不提交）
 backups/                   ← 备份落点：本地开发备份（backups/db/）+ 生产异地归档（backups/pull/）+ 历史存档 zip
 Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，勿改动（不随部署使用）
@@ -42,11 +42,11 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 | `npm run lint` | ESLint（flat config：js + typescript-eslint recommended + react-hooks + react-refresh） |
 | `npm run format` | Prettier 全量格式化 |
 | `npm test` | `vitest run`（详见「测试」一节） |
-| `npm run db:generate` / `db:migrate` / `db:push` | drizzle-kit 迁移生成/执行/直推；需要 `DATABASE_URL` 环境变量 |
+| `npm run db:generate` / `db:migrate` / `db:push` | drizzle-kit 迁移生成/执行/直推；需要 `DATABASE_URL`。**库结构变更一律用 `db:push`**（本项目 `db:migrate` 会挂起），详见 `app/AGENTS.md` |
 
 ### 环境变量
 
-见 `app/.env.example`。关键项：`DATABASE_URL`（MySQL 连接串）、`APP_ID` / `APP_SECRET`（Kimi OAuth 应用）、`KIMI_AUTH_URL` / `KIMI_OPEN_URL`（后端）、`VITE_KIMI_AUTH_URL` / `VITE_APP_ID`（前端经 Vite 暴露）、`OWNER_UNION_ID`（首个登录的创建者自动获得 admin 角色）。`.env` 属于密钥文件，不要读取或提交。
+见 `app/.env.example`。关键项：`DATABASE_URL`（MySQL 连接串）、`APP_SECRET`（JWT 签名，生产必填且 ≥32 字符）、`OWNER_EMAIL`（首个用该邮箱注册者自动获 admin）；邮件 `SMTP_*` / `PUBLIC_BASE_URL` / `MAIL_FROM(_NAME)`；备份 `BACKUP_*`；扫描 `FIRECRAWL_API_KEY`。`.env` 属于密钥文件，不要读取或提交。
 
 ## 三、运行时架构
 
@@ -54,8 +54,8 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 - **tRPC 路由**（`api/router.ts` 聚合）：`auth` / `content` / `billing` / `me` / `admin` + `ping`。过程分级定义在 `api/middleware.ts`：`publicQuery` → `authedQuery`（需登录）→ `adminQuery`（需 admin 角色）。序列化用 superjson。
 - **认证**：平台内置**邮箱+密码**（`api/auth-router.ts`：注册/登录签发 JWT session cookie `cbb_sid`，常量见 `contracts/constants.ts`；密码 scrypt 哈希 `api/lib/passwords.ts`；JWT `api/lib/jwt.ts`）。`api/context.ts` 在每个请求上解析 cookie 载入用户，解析失败不报错（公开接口可用）；`OWNER_EMAIL` 首登自动授予 admin。
 - **付费墙（服务端强制）**：`content.issues.bySlug` 对未授权用户只返回约 40% 内容（服务端截断，不是前端遮挡）。授权判定在 `api/lib/entitlement.ts`：admin 永远放行；普通用户需存在 status ∈ {active, canceled, trialing} 且 `currentPeriodEnd` 在未来的订阅。
-- **数据库**：`api/queries/connection.ts` 用 drizzle-orm/mysql2 单例（`mode: "planetscale"`）。Schema 在 `db/schema.ts`，共 12 表：users / issues（含 titleZh、dekZh、contentZh 中文字段）/ plans / subscriptions / payments / factories / policy_events / ticker_items / saved_briefs / alerts / api_keys / email_subscribers。种子脚本 `db/seed.ts` 从 `db/seed-content/`（英文）与 `db/seed-content-zh/`（中文）读 markdown + JSON 元数据灌库（幂等，onDuplicateKeyUpdate）。
-- **前端路由**（`src/App.tsx`，react-router 7 嵌套在 `Layout` 下）：`/`、`/briefs`、`/briefs/:slug`、`/tracker`、`/tech`、`/risk`、`/pricing`、`/about`、`/account`、`/login`、`*`（404）。无独立 `/admin` 路由——管理台（发刊/删刊/统计）内嵌在 `/account` 页面对 admin 角色可见。
+- **数据库**：`api/queries/connection.ts` 用 drizzle-orm/mysql2 单例（`mode: "planetscale"`）。Schema 在 `db/schema.ts`，共 14 表：users / issues（含 titleZh、dekZh、contentZh 中文字段）/ plans / subscriptions / payments / factories / policy_events / ticker_items / saved_briefs / alerts / api_keys / email_subscribers / email_sends / audit_logs。种子脚本 `db/seed.ts` 从 `db/seed-content/`（英文）与 `db/seed-content-zh/`（中文）读 markdown + JSON 元数据灌库（幂等，onDuplicateKeyUpdate）。
+- **前端路由**（`src/App.tsx`，react-router 7 嵌套在 `Layout` 下）：`/`、`/briefs`、`/briefs/:slug`、`/tracker`、`/tech`、`/policy`、`/markets`、`/pricing`、`/about`、`/account`、`/login`、`*`（404）。无独立 `/admin` 路由——管理台（发刊/删刊/统计）内嵌在 `/account` 页面对 admin 角色可见。
 - **路径别名**：`@` → `src/`，`@contracts` → `contracts/`，`@db` / `db` → `db/`（vite、vitest、tsconfig 三处保持一致，新增别名要同步改）。
 
 ### 真实 vs 模拟（改动前必读）
@@ -67,7 +67,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 
 ## 四、前端组织与国际化（核心特性）
 
-- `src/pages/` 一页面一文件；`src/components/` 按域分目录：`home/`、`briefs/`、`intel/`（Tracker/Tech/Risk 共用可视化组件，如 WorldMap、PolicyTimeline、RiskMeter）、`account/`、`growth/`、`ui/`（shadcn/ui 基础件）；跨页通用件在根（Navbar、Footer、TickerBar、LangToggle 等）。
+- `src/pages/` 一页面一文件；`src/components/` 按域分目录：`home/`、`briefs/`、`intel/`（Tracker/Tech/Risk 共用可视化组件，如 WorldMap、PolicyTimeline、RiskMeter）、`account/`、`growth/`、`ui/`（shadcn/ui 基础件）；跨页通用件在根（Navbar、Footer、LangToggle 等）。
 - **i18n 机制**（`src/i18n/`）：自建轻量方案，无 i18next。`lang.tsx` 提供 `LangProvider` / `useLang()`，扁平 dot-key 字典 `en.ts` / `zh.ts`，**zh 缺失时回退 en，再回退 key 本身**；`tpl()` 做 `{var}` 插值。语言持久化在 localStorage 键 `cbb:lang`，切换时同步 `<html lang>` 并切换 `zh` class 做 CJK 排版微调。新增任何用户可见文案必须同时加到两个字典。
 - 内容层双语：issues 表自带 `*Zh` 字段，英文先发、中文后补；`BriefDetail` 等页面按当前语言选字段。
 
@@ -76,7 +76,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 - **Prettier**（`.prettierrc`）：分号、双引号、`printWidth: 80`、`trailingComma: "es5"`、`arrowParens: "avoid"`、LF。注意 `src/` 下部分手写文件未严格遵循（单引号），改动时以不引入无关 diff 为准，批量重排用 `npm run format`。
 - TypeScript 严格模式，`tsc -b` 是主门禁；ESLint 用 flat config，无 type-aware 规则。
 - 服务端代码（`api/`、`db/`、`contracts/`）风格：双引号、分号、JSDoc 注释（英文）；前端组件风格更随意（单引号常见）。**跟随所在文件的既有风格**，不要跨风格统一。
-- 设计基调（plan.md）：编辑部风格（Stratechery / The Information 气质），低饱和暖色调、大量留白，铜色（copper）为品牌点缀色，**禁止蓝紫渐变**。滚动动效用 Lenis + GSAP ScrollTrigger（`src/lib/gsap.ts` 统一注册插件）。
+- 设计基调（plan.md）：编辑部风格（Stratechery / The Information 气质），低饱和暖色调、大量留白，品牌点缀色为 volt（`#C9F24B`），**禁止蓝紫渐变**。滚动动效用 Lenis + GSAP ScrollTrigger（`src/lib/gsap.ts` 统一注册插件）。
 - 注释语言：代码注释英文为主，项目文档（README/plan/research/）中文为主、术语保留英文。
 
 ## 六、测试
@@ -102,3 +102,14 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 - **Git 提交规范（用户指定）**：每完成一段完整、可独立说明的改动，就立即提交一次，不把无关变更攒在同一提交中。提交信息一律用**中文**，采用简洁的「动作 + 对象」标准格式（如 `修复首页语言切换按钮可读性`、`更新 info.md 竞品定价核实结果`）；允许同一主题下的多文件合并为一个提交；push 需用户明确授权。
 - **功能改动的测试门禁**：若改动涉及软件功能、行为、接口、构建配置或数据处理逻辑，提交前必须由代理自行运行相称的测试（至少覆盖受影响路径）；测试失败必须先定位并修复，复测通过后才能提交。纯内容、文档或格式修改仍须运行其相应的完整性检查（例如 JSON 解析、`git diff --check`），无需为此运行无关的应用测试。
 - 生产部署：自托管 VPS（基础设施见 `docs/deploy.md`，日常发刊见 `docs/release.md`），`app/` 直接位于仓库根（VPS 上 `/opt/cbb/app/app`）；本地验证以 `npm run build && npm start` 为准。README 中记录的交付基线：`npm run build` ✓、`tsc -b` ✓。
+
+## 八、上下文与工具使用（代理效率）
+
+> 背景：本项目素材体量大（`scan/*/raw/*.json` 单文件可达数百 KB、双语长稿、多源网页），**工具输出是上下文增长的主因**。一次发布 + 写作会话很容易堆到很高。为保持长会话可用：
+
+- **大文件与检索交给子代理**：读整份 `app/scan/<日期>/raw/*.json`、整份 `digest.md`、批量搜索/网页结果等，用 `explore` / `general` 子代理处理，**只回摘要与结论**，不要把原始大文件读进主上下文。
+- **精准读取**：优先 `grep` 定位，再用 `Read` 的 `offset/limit` 分段读；避免整文件、整 JSON、整标题清单一口气载入。
+- **素材先落盘再引用**：整理结果写入 `research/`、`app/scan/<日期>/digest.md`、`draft-*.md`，后续按需读取，不重复全量载入。
+- **抓取直奔目标 URL**：`webfetch` 直接访问已知的官方/媒体页面，**避免搜索引擎结果页**（体量大、噪声多、常被截断）。
+- **精简命令输出**：状态类命令用 `... | tail -n`、`rg -c`、`git diff --stat` 等压缩输出，不要 dump 大段日志或完整 diff。
+- **长任务分段、复用**：写长稿与多轮迭代时复用已读内容，不反复重读同一文件；切换到新选题（如新一期）时**开新会话**，或在上下文偏高时适时 `/compact`。
