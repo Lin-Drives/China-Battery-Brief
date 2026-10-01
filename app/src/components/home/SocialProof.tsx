@@ -8,12 +8,6 @@ import CBBButton from '@/components/Buttons'
 import Reveal from '@/components/Reveal'
 import { useLang } from '@/i18n/lang'
 
-const TESTIMONIALS = [
-  { quoteKey: 'proof.t1quote', attrKey: 'proof.t1attr' },
-  { quoteKey: 'proof.t2quote', attrKey: 'proof.t2attr' },
-  { quoteKey: 'proof.t3quote', attrKey: 'proof.t3attr' },
-]
-
 const TIERS = [
   {
     name: 'FREE',
@@ -64,31 +58,6 @@ export default function SocialProof() {
   useGSAP(
     () => {
       gsap.fromTo(
-        '.tst-card',
-        { y: 36, rotation: 0.8, opacity: 0 },
-        {
-          y: 0,
-          rotation: 0,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.09,
-          ease: 'expo.out',
-          scrollTrigger: { trigger: '.tst-grid', start: 'top 80%', once: true },
-        },
-      )
-      gsap.fromTo(
-        '.tst-border',
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          duration: 0.6,
-          stagger: 0.09,
-          transformOrigin: 'top center',
-          ease: 'expo.out',
-          scrollTrigger: { trigger: '.tst-grid', start: 'top 80%', once: true },
-        },
-      )
-      gsap.fromTo(
         '.price-card',
         { y: 36, opacity: 0, scale: 0.96 },
         {
@@ -107,45 +76,11 @@ export default function SocialProof() {
 
   return (
     <div ref={rootRef}>
-      {/* S8 · Testimonials */}
-      <section className="border-t border-line py-24">
-        <div className="mx-auto max-w-container px-[clamp(20px,4vw,48px)]">
-          <Reveal>
-            <KickerLine chapter="04" label={t('proof.kicker')} />
-          </Reveal>
-          <div className="tst-grid mt-12 grid gap-6 lg:grid-cols-3">
-            {TESTIMONIALS.map((tst) => (
-              <div
-                key={tst.attrKey}
-                className="tst-card group relative border border-line bg-ink-850 p-7 opacity-0 transition-transform duration-300 hover:-translate-y-1"
-              >
-                <span
-                  aria-hidden
-                  className="tst-border absolute left-0 top-0 h-full w-[2px] bg-volt"
-                />
-                <span
-                  aria-hidden
-                  className="font-display text-[64px] leading-none text-ink-700 transition-colors duration-300 group-hover:text-volt"
-                >
-                  &ldquo;
-                </span>
-                <p className="mt-2 font-display text-[22px] italic leading-snug text-text">
-                  {t(tst.quoteKey)}
-                </p>
-                <p className="mt-6 font-mono text-[11px] tracking-[0.14em] text-faint">
-                  {t(tst.attrKey)}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* S9 · Pricing teaser */}
       <section className="py-28">
         <div className="mx-auto max-w-container px-[clamp(20px,4vw,48px)]">
           <Reveal>
-            <KickerLine chapter="05" label={t('proof.pkicker')} />
+            <KickerLine chapter="04" label={t('proof.pkicker')} />
             <h2 className="mt-6 max-w-3xl font-display text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[1.02] tracking-[-0.015em] text-text">
               {t('proof.ptitleA')}
               <em className="italic text-volt">{t('proof.ptitleEm')}</em>
@@ -165,7 +100,7 @@ export default function SocialProof() {
                 >
                   {tier.featured && (
                     <div className="absolute -top-3 right-4">
-                      <RubberStamp color="var(--volt)" rotate={-4} className="bg-ink-950 text-[10px]">
+                      <RubberStamp color="var(--volt)" rotate={-4} className="bg-ink-950 text-[11px]">
                         {t('stamp.mostChosen')}
                       </RubberStamp>
                     </div>
@@ -207,7 +142,7 @@ export default function SocialProof() {
             ))}
           </div>
 
-          <p className="mt-10 text-center font-mono text-[11px] tracking-wide text-faint">
+          <p className="mt-10 text-center font-mono text-[12.5px] tracking-wide text-faint">
             {t('proof.pfoot')}
           </p>
         </div>

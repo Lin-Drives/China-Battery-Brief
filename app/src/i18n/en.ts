@@ -107,8 +107,11 @@ export const en: Record<string, string> = {
   'hero.h1em': 'brief',
   'hero.h1tail': ' the world.',
   'hero.sub':
-    'One dense, English-language brief every week on where Chinese battery makers are building abroad, which chemistry wins — LFP or solid-state — and how IRA subsidies and the EU battery passport redraw the map. Written by people who can read a patent and a customs ledger.',
-  'hero.proof': 'READ BY ANALYSTS AT OEM STRATEGY DESKS · BATTERY FUNDS · POLICY UNITS · TRADING HOUSES',
+    'One dense, English-language brief every week on where Chinese battery makers are building abroad, which chemistry wins — LFP or solid-state — and how IRA subsidies and the EU battery passport redraw the map.',
+  'hero.proofLabel': 'READERS',
+  'hero.proof1': 'STRATEGY, PROCUREMENT AND SUPPLY-CHAIN TEAMS AT BATTERY AND MATERIALS FIRMS',
+  'hero.proof2': 'PROCUREMENT AND MARKETING TEAMS AT OEMS',
+  'hero.proof3': 'INVESTORS ACROSS THE BATTERY CHAIN',
   'hero.scroll': 'SCROLL',
   'hero.cardStamp': 'WEEKLY BRIEF No. {no}',
   'hero.cardTitle': 'Debrecen Is Ahead of Schedule',
@@ -143,7 +146,7 @@ export const en: Record<string, string> = {
   'latest.tag.tech': 'Tech',
   'latest.tag.risk': 'Risk',
   'latest.tag.markets': 'Markets',
-  'latest.stats': '21 SOURCES · 4 CHARTS · 1 CUSTOMS LEDGER',
+  'latest.stats': '21 SOURCES · 4 CHARTS',
   'latest.readCta': 'READ THE FREE ISSUE →',
 
   /* ---------- Home · Three beats ---------- */
@@ -179,7 +182,7 @@ export const en: Record<string, string> = {
   'beat4.hEm': 'money',
   'beat4.hB': '.',
   'beat4.body':
-    'We read the scoreboard — global share, cell and commodity prices, and the capex and financing that move CATL, BYD and the challengers\' balance sheets. From the Chinese filings and broker notes Western desks can\'t read.',
+    'We read the scoreboard — global share, cell and commodity prices, and the capex and financing that move CATL, BYD and the challengers\' balance sheets. Based on Chinese filings and broker notes.',
   'beat4.s1': 'CATL SHARE · Q1',
   'beat4.s2': 'LFP SHARE · 1.2 TWH',
   'beat4.s3': 'CELL $/KWH',
@@ -232,13 +235,6 @@ export const en: Record<string, string> = {
   'sample.quote': 'A subsidy you can’t qualify for is a tariff with better PR.',
 
   /* ---------- Home · Readers + pricing teaser ---------- */
-  'proof.kicker': 'READERS',
-  'proof.t1quote': 'I cancelled a $6,000 data subscription. The Tracker alone pays for the year.',
-  'proof.t1attr': 'STRATEGY LEAD · EUROPEAN OEM',
-  'proof.t2quote': 'The FEOC explainer was circulating inside our ministry within hours.',
-  'proof.t2attr': 'POLICY RESEARCHER · BRUSSELS',
-  'proof.t3quote': 'Finally, someone who reads 宁德时代’s filings before writing about them.',
-  'proof.t3attr': 'ANALYST · BATTERY MATERIALS FUND',
   'proof.pkicker': 'PRICING',
   'proof.ptitleA': 'Intelligence that pays for itself in one ',
   'proof.ptitleEm': 'decision',
@@ -595,7 +591,7 @@ Object.assign(en, {
   'markets.h1bEm': 'not the hype',
   'markets.h1bB': '.',
   'markets.sub':
-    'Global share, cell and commodity prices, capex and financing — the numbers that decide which chemistry ships and which gigafactory survives. We read the filings and the broker notes Western desks can’t, and tell you what the balance sheets actually say.',
+    'Global share, cell and commodity prices, capex and financing — the numbers that decide which chemistry ships and which gigafactory survives. We read the filings and the broker notes, and tell you what the balance sheets actually say.',
   'markets.meta': 'LAST REVISED AUG 06 · 3 METRICS TRACKED · 4 MONEY MOVES',
   'markets.scoreKicker': 'THE SCOREBOARD · GLOBAL EV BATTERY DEPLOYMENT',
   'markets.scoreHA': 'The market moved ',
@@ -999,7 +995,7 @@ Object.assign(en, {
   'about.accent1Note': 'WHY A 4C CHARGE CURVE MATTERS MORE THAN A PRESS RELEASE',
   'about.accent2Note': '$3,000–15,000/YR TERMINALS — FOR THE RAW DATA, NOT THE UNDERSTANDING',
   'about.sub':
-    'Bloomberg and the FT are brilliant at deals and boardrooms; their reporters were never trained to read a patent or a customs ledger. The industry terminals are deep — and cost more than a car. China Battery Brief is the missing middle: analyst-grade, plain English, every Thursday, $19 a month.',
+    'China Battery Brief is the missing middle: a weekly, reader-funded brief that covers the whole stack — electrochemistry, policy and capital — in plain language, every Thursday, for $19 a month.',
 
   'about.stat1': 'BRIEFS SHIPPED',
   'about.stat2': 'WORDS PUBLISHED',

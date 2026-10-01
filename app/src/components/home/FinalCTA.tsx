@@ -96,13 +96,13 @@ export default function FinalCTA() {
               <span className="font-mono text-[32px] font-medium leading-none text-text tnum">
                 {cell.v}
               </span>
-              <span className="mt-2 font-mono text-[10px] tracking-[0.2em] text-faint">
+              <span className="mt-2 font-mono text-[11px] tracking-[0.2em] text-faint">
                 {cell.label}
               </span>
             </div>
           ))}
         </div>
-        <p className="mt-3 font-mono text-[11px] tracking-wide text-faint">{t('cta.until')}</p>
+        <p className="mt-3 font-mono text-[12.5px] tracking-wide text-faint">{t('cta.until')}</p>
 
         <div className="mt-10 flex w-full justify-center">
           <EmailCapture />

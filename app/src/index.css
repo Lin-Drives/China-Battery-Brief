@@ -148,7 +148,7 @@
 
   /* Mono kicker label (design.md §3.2) */
   .kicker {
-    @apply font-mono text-[11px] font-medium uppercase tracking-[0.16em];
+    @apply font-mono text-[12.5px] font-medium uppercase tracking-[0.16em];
   }
 
   .data-text {

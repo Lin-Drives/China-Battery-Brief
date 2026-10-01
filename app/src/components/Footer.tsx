@@ -132,8 +132,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-container flex-col items-start justify-between gap-4 px-[clamp(20px,4vw,48px)] py-6 md:flex-row md:items-center">
-          <p className="font-mono text-[11px] tracking-wide text-faint">{t('footer.bottom')}</p>
-          <RubberStamp color="var(--faint)" rotate={-4} className="text-[10px]">
+          <p className="font-mono text-[12.5px] tracking-wide text-faint">{t('footer.bottom')}</p>
+          <RubberStamp color="var(--faint)" rotate={-4} className="text-[11px]">
             {t('stamp.notAdvice')}
           </RubberStamp>
         </div>

@@ -96,12 +96,12 @@ export default function DataProducts() {
                 />
               ))}
               <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-ink-950/80 px-4 py-2 backdrop-blur-sm">
-                <span className="data-text text-[11px] text-text">{t('data.trackerStrip')}</span>
+                <span className="data-text text-[12.5px] text-text">{t('data.trackerStrip')}</span>
               </div>
             </div>
             <div className="flex flex-col gap-2 p-5">
               {UPDATES.map((u) => (
-                <p key={u} className="font-mono text-[11px] tracking-wide text-text-muted">
+                <p key={u} className="font-mono text-[12.5px] tracking-wide text-text-muted">
                   {u}
                 </p>
               ))}
@@ -150,7 +150,7 @@ export default function DataProducts() {
                 )
               })}
             </div>
-            <p className="mt-8 font-mono text-[11px] tracking-wide text-faint">{t('data.footnote')}</p>
+            <p className="mt-8 font-mono text-[12.5px] tracking-wide text-faint">{t('data.footnote')}</p>
             <CBBButton variant="ghost" to="/tech" className="mt-4">
               {t('data.ctaTech')}
             </CBBButton>

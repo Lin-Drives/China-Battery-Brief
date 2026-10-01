@@ -135,22 +135,32 @@ export default function Hero() {
           </p>
 
           {/* H1 — per-line masked reveal */}
-          <h1 className="font-display text-[clamp(3.25rem,7.5vw,7rem)] font-normal leading-[0.98] tracking-[-0.02em] text-text">
+          <h1
+            className={`font-display font-normal leading-[0.98] tracking-[-0.02em] text-text ${
+              lang === 'zh'
+                ? 'text-[clamp(2.75rem,6vw,5.5rem)]'
+                : 'text-[clamp(3.25rem,7.5vw,7rem)]'
+            }`}
+          >
             <span className="block overflow-hidden">
-              <span className="h1-line block">{t('hero.h1a')}</span>
+              <span className={`h1-line block${lang === 'zh' ? ' whitespace-nowrap' : ''}`}>
+                {t('hero.h1a')}
+              </span>
             </span>
             <span className="block overflow-hidden">
-              <span className="h1-line block">{t('hero.h1b')}</span>
+              <span className={`h1-line block${lang === 'zh' ? ' whitespace-nowrap' : ''}`}>
+                {t('hero.h1b')}
+              </span>
             </span>
             <span className="block overflow-hidden">
-              <span className="h1-line block">
+              <span className={`h1-line block${lang === 'zh' ? ' whitespace-nowrap' : ''}`}>
                 <em className="h1-brief font-normal italic">{t('hero.h1em')}</em>
                 {t('hero.h1tail')}
               </span>
             </span>
           </h1>
 
-          <p className="hero-sub mt-7 max-w-[52ch] font-sans text-base leading-[1.65] text-text-muted opacity-0">
+          <p className="hero-sub mt-7 max-w-[52ch] font-sans text-base leading-[1.65] text-text-muted opacity-0 [text-wrap:pretty]">
             {t('hero.sub')}
           </p>
 
@@ -160,9 +170,19 @@ export default function Hero() {
 
           <div className="mt-8 max-w-[520px]">
             <div aria-hidden className="hero-proof-line h-px w-full bg-line-strong" />
-            <p className="hero-proof-text pt-4 font-mono text-[11px] tracking-wide text-faint opacity-0">
-              {t('hero.proof')}
-            </p>
+            <div className="hero-proof-text pt-4 opacity-0">
+              <p className="font-mono text-[12.5px] uppercase tracking-[0.18em] text-faint">
+                {t('hero.proofLabel')}
+              </p>
+              <ul className="mt-2.5 space-y-1 font-mono text-[15px] leading-relaxed tracking-wide text-text-muted">
+                {['hero.proof1', 'hero.proof2', 'hero.proof3'].map((k, i) => (
+                  <li key={k} className="flex gap-2">
+                    <span aria-hidden className="text-volt">{i + 1}.</span>
+                    <span>{t(k)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -178,7 +198,7 @@ export default function Hero() {
                 >
                   <CornerTicks color="var(--paper-ink)" />
                   <div className="absolute right-3 top-3 z-10">
-                    <RubberStamp color="var(--paper-ink)" className="text-[10px]">
+                    <RubberStamp color="var(--paper-ink)" className="text-[11px]">
                       {cardStamp}
                     </RubberStamp>
                   </div>
@@ -197,7 +217,7 @@ export default function Hero() {
                     {highlights.map((h) => {
                       const meta = TAG_META[h.tag]
                       return (
-                        <li key={h.tag} className="flex items-baseline gap-2 font-mono text-[11px] tracking-wide text-paper-ink">
+                        <li key={h.tag} className="flex items-baseline gap-2 font-mono text-[12.5px] tracking-wide text-paper-ink">
                           <span aria-hidden style={{ color: meta.color }}>
                             ●
                           </span>
@@ -221,7 +241,7 @@ export default function Hero() {
 
       {/* Scroll cue */}
       <div className="relative z-10 flex flex-col items-center gap-2 pb-6">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{t('hero.scroll')}</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">{t('hero.scroll')}</span>
         <span aria-hidden className="block h-10 w-px bg-volt animate-scroll-cue" />
       </div>
     </section>

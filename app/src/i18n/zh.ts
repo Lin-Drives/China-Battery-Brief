@@ -102,13 +102,16 @@ export const zh: Record<string, string> = {
 
   /* ---------- 首页 · 头版 ---------- */
   'hero.kicker': '每周情报简报 · 每周四 06:00 UTC',
-  'hero.h1a': '中国建造电池，',
+  'hero.h1a': '中国建造电池',
   'hero.h1b': '我们向全球',
   'hero.h1em': '播报',
   'hero.h1tail': '',
   'hero.sub':
-    '每周一期高密度简报：中国电池企业在何处建厂出海、哪条化学路线胜出——磷酸铁锂还是固态电池——以及 IRA 补贴与欧盟电池护照如何重绘产业版图。执笔人既读得懂专利，也读得懂海关账册',
-  'hero.proof': '读者包括整车厂战略部门 · 电池基金 · 政策研究机构 · 贸易行的分析师',
+    '每周一期高密度简报：中国电池企业在何处建厂出海、哪条化学路线胜出（磷酸铁锂，还是固态电池），以及 IRA 补贴与欧盟电池护照如何重绘产业版图',
+  'hero.proofLabel': '读者',
+  'hero.proof1': '电池与材料企业的战略、采购与供应链团队',
+  'hero.proof2': '整车厂的采购与市场团队',
+  'hero.proof3': '电池产业链投资人',
   'hero.scroll': '向下滚动',
   'hero.cardStamp': '每周简报 No. {no}',
   'hero.cardTitle': '德布勒森进度超前',
@@ -143,7 +146,7 @@ export const zh: Record<string, string> = {
   'latest.tag.tech': '技术',
   'latest.tag.risk': '风险',
   'latest.tag.markets': '市场',
-  'latest.stats': '21 个来源 · 4 张图表 · 1 本海关账册',
+  'latest.stats': '21 个来源 · 4 张图表',
   'latest.readCta': '阅读免费样刊 →',
 
   /* ---------- 首页 · 三条主线 ---------- */
@@ -178,7 +181,7 @@ export const zh: Record<string, string> = {
   'beat4.hEm': '资金',
   'beat4.hB': '共同推动',
   'beat4.body':
-    '我们紧盯格局——全球份额、电芯与大宗商品价格，以及牵动宁德时代、比亚迪与挑战者资产负债表的资本开支与融资。读的是西方研究台读不到的中国公告与券商纪要',
+    '我们紧盯格局——全球份额、电芯与大宗商品价格，以及牵动宁德时代、比亚迪与挑战者资产负债表的资本开支与融资。取材于中国公告与券商纪要',
   'beat4.s1': '宁德时代 Q1 份额',
   'beat4.s2': 'LFP 占 1.2 TWH 份额',
   'beat4.s3': '电芯 美元/KWH',
@@ -231,13 +234,6 @@ export const zh: Record<string, string> = {
   'sample.quote': '你拿不到资格的补贴，无非是公关做得更好的关税',
 
   /* ---------- 首页 · 读者与价格 ---------- */
-  'proof.kicker': '读者',
-  'proof.t1quote': '我退掉了每年 6,000 美元的数据订阅。单是追踪器就值回全年费用',
-  'proof.t1attr': '战略主管 · 欧洲整车厂',
-  'proof.t2quote': '那篇 FEOC 解读，几小时内就在我们部里传开了',
-  'proof.t2attr': '政策研究员 · 布鲁塞尔',
-  'proof.t3quote': '终于有人先读完宁德时代的公告，再动笔写稿',
-  'proof.t3attr': '分析师 · 电池材料基金',
   'proof.pkicker': '订阅方案',
   'proof.ptitleA': '一次',
   'proof.ptitleEm': '决策，',
@@ -584,7 +580,7 @@ Object.assign(zh, {
   'markets.h1bEm': '别信炒作',
   'markets.h1bB': '',
   'markets.sub':
-    '全球份额、电芯与大宗商品价格、资本开支与融资——决定哪条化学路线装车、哪座超级工厂存活的数字。我们读西方研究台读不到的公司公告与券商纪要，告诉你资产负债表到底说了什么',
+    '全球份额、电芯与大宗商品价格、资本开支与融资——决定哪条化学路线装车、哪座超级工厂存活的数字。我们读公司公告与券商纪要，告诉你资产负债表到底说了什么',
   'markets.meta': '上次修订 8 月 6 日 · 3 项跟踪指标 · 4 笔资金动向',
   'markets.scoreKicker': '格局 · 全球 EV 电池装机',
   'markets.scoreHA': '市场在上个季度，',
@@ -980,7 +976,7 @@ Object.assign(zh, {
   'about.accent1Note': '为什么 4C 充电曲线比新闻稿更重要',
   'about.accent2Note': '$3,000–15,000/年的终端——买的是原始数据，不是理解',
   'about.sub':
-    '彭博和金融时报擅长交易与董事会动态，但他们的记者从未受过读专利或海关账册的训练。行业终端够深——价格也贵过一辆车。China Battery Brief 正是缺失的中间层：分析师水准，平实语言，每周四更新，每月 $19',
+    'China Battery Brief 正是缺失的中间层：一份由读者付费支持的周刊，覆盖完整链条——电化学、政策与资本——平实语言，每周四发布，每月 $19',
 
   'about.stat1': '已发布简报',
   'about.stat2': '累计字数',

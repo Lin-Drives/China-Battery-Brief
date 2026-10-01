@@ -137,7 +137,7 @@ export default function Pillars() {
         {/* Chapter index rail (lg+) */}
         <div className="absolute left-[clamp(20px,4vw,48px)] top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex">
           {PANELS.map((p) => (
-            <span key={p.index} className="font-mono text-[11px] tracking-[0.16em] text-faint">
+            <span key={p.index} className="font-mono text-[12.5px] tracking-[0.16em] text-faint">
               {p.index}
             </span>
           ))}

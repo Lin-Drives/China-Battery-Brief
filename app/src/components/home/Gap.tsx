@@ -61,21 +61,21 @@ export default function Gap() {
 
         <div className="gap-table relative mt-14">
           <div className="gap-stamp absolute -top-5 right-2 z-10 opacity-0">
-            <RubberStamp color="var(--volt)" rotate={-6} className="text-[10px]">
+            <RubberStamp color="var(--volt)" rotate={-6} className="text-[11px]">
               {t('stamp.missingMiddle')}
             </RubberStamp>
           </div>
           <table className="w-full border-collapse border border-line">
             <thead>
               <tr className="gap-row opacity-0">
-                <th className="border border-line bg-ink-900 p-4 text-left font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-faint" />
-                <th className="border border-line bg-ink-900 p-4 text-left font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted">
+                <th className="border border-line bg-ink-900 p-4 text-left font-mono text-[12.5px] font-medium uppercase tracking-[0.12em] text-faint" />
+                <th className="border border-line bg-ink-900 p-4 text-left font-mono text-[12.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
                   {t('gap.th1')}
                   <span className="mt-1 block normal-case tracking-normal text-faint">
                     Bloomberg · FT · The Information
                   </span>
                 </th>
-                <th className="border border-line bg-ink-900 p-4 text-left font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted">
+                <th className="border border-line bg-ink-900 p-4 text-left font-mono text-[12.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
                   {t('gap.th2')}
                   <span className="mt-1 block normal-case tracking-normal text-faint">
                     Benchmark · Rho · S&amp;P
@@ -84,7 +84,7 @@ export default function Gap() {
                 <th className="gap-cbb border border-line p-4 text-left">
                   <Link
                     to="/pricing"
-                    className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-volt hover:underline"
+                    className="font-mono text-[12.5px] font-semibold uppercase tracking-[0.12em] text-volt hover:underline"
                   >
                     CHINA BATTERY BRIEF
                   </Link>

@@ -96,7 +96,7 @@ export default function LatestBrief() {
             <span className="font-mono text-[13px] font-semibold tracking-[0.14em] text-paper-ink">
               CHINA BATTERY BRIEF
             </span>
-            <span className="font-mono text-[11px] tracking-wide text-paper-muted">{t('latest.sheetTag')}</span>
+            <span className="font-mono text-[12.5px] tracking-wide text-paper-muted">{t('latest.sheetTag')}</span>
           </div>
 
           <h3 className="mt-6 font-display text-[clamp(1.6rem,2.6vw,2.25rem)] font-medium leading-[1.15] text-paper-ink">
@@ -112,9 +112,9 @@ export default function LatestBrief() {
                 <div>
                   <p className="font-sans text-[15px] font-medium text-paper-ink">{t(row.titleKey)}</p>
                   {row.noteKey ? (
-                    <p className="mt-1 font-mono text-[11px] tracking-wide text-paper-muted">{t(row.noteKey)}</p>
+                    <p className="mt-1 font-mono text-[12.5px] tracking-wide text-paper-muted">{t(row.noteKey)}</p>
                   ) : (
-                    <p className="redact-line mt-1 font-mono text-[11px] tracking-wide text-paper-muted">
+                    <p className="redact-line mt-1 font-mono text-[12.5px] tracking-wide text-paper-muted">
                       {t('latest.redactA')}
                       <RedactedText>{t('latest.redactB')}</RedactedText>
                       {t('latest.redactC')}
@@ -127,7 +127,7 @@ export default function LatestBrief() {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-            <span className="font-mono text-[11px] tracking-wide text-paper-muted">{t('latest.stats')}</span>
+            <span className="font-mono text-[12.5px] tracking-wide text-paper-muted">{t('latest.stats')}</span>
             <CBBButton variant="paper" to="/briefs/debrecen-sold-out">
               {t('latest.readCta')}
             </CBBButton>
