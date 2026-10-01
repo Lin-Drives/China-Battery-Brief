@@ -33,6 +33,7 @@ import { OpenAccess } from '@contracts/constants'
 import { cn } from '@/lib/utils'
 import { scrollToEl } from '@/lib/scroll'
 import { useLang, tpl } from '@/i18n/lang'
+import { localizedCover, coverFallback } from '@/lib/cover'
 import { fmtDateLong, fmtReadTime, pick } from '@/i18n/format'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
@@ -404,7 +405,8 @@ export default function BriefDetail() {
             >
               {issue.coverAsset ? (
                 <img
-                  src={issue.coverAsset}
+                  src={localizedCover(issue.coverAsset, lang)}
+                  onError={coverFallback(issue.coverAsset)}
                   alt={`Cover art — ${title}`}
                   className="h-full w-full object-cover"
                 />

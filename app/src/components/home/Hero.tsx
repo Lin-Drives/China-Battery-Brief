@@ -7,6 +7,7 @@ import ChargeGauge from '@/components/ChargeGauge'
 import RubberStamp from '@/components/RubberStamp'
 import EmailCapture from '@/components/EmailCapture'
 import { useLang, tpl } from '@/i18n/lang'
+import { localizedCover, coverFallback } from '@/lib/cover'
 import { trpc } from '@/providers/trpc'
 
 const HeroCanvas = lazy(() => import('@/components/home/HeroCanvas'))
@@ -29,6 +30,7 @@ export default function Hero() {
     latest && (lang === 'zh' ? latest.titleZh ?? latest.title : latest.title) || t('hero.cardTitle')
   const cardSlug = latest ? `/briefs/${latest.slug}` : '/briefs/debrecen-sold-out'
   const cardCover = latest?.coverAsset || '/cover-047.png'
+  const cardCoverLocal = localizedCover(cardCover, lang) ?? cardCover
   const cardStamp = latest ? tpl(t('hero.cardStamp'), { no: latest.number }) : t('hero.cardStamp')
   // Editorial lines come from the issue itself; zh falls back to en highlights.
   const highlights = (latest ? (lang === 'zh' ? latest.highlightsZh ?? latest.highlights : latest.highlights) : []).filter(
@@ -182,7 +184,8 @@ export default function Hero() {
                   </div>
                   <div className="relative mb-4 mt-8 overflow-hidden rounded-[2px]">
                     <img
-                      src={cardCover}
+                      src={cardCoverLocal}
+                      onError={coverFallback(cardCover)}
                       alt={`Issue No. ${latest?.number ?? ''} — ${latest?.title ?? ''}`}
                       className="aspect-[4/3] w-full object-cover"
                     />

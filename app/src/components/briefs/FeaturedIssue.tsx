@@ -10,6 +10,7 @@ import GhostCover from './GhostCover'
 import SaveButton from './SaveButton'
 import { fmtIssueNo, pillarColor, pillarTag } from './pillar'
 import { useLang, tpl } from '@/i18n/lang'
+import { localizedCover, coverFallback } from '@/lib/cover'
 import { fmtDateLong, fmtReadTime, pick } from '@/i18n/format'
 import type { IssueMeta } from './pillar'
 import { trpc } from '@/providers/trpc'
@@ -68,7 +69,8 @@ export default function FeaturedIssue({ issue }: { issue: IssueMeta }) {
         <div className="relative min-h-[280px] overflow-hidden bg-ink-950 border-b border-line lg:border-b-0 lg:border-r">
           {issue.coverAsset ? (
             <motion.img
-              src={issue.coverAsset}
+              src={localizedCover(issue.coverAsset, lang)}
+              onError={coverFallback(issue.coverAsset)}
               alt={`Cover art for issue ${fmtIssueNo(issue.number)}`}
               initial={{ scale: 1.02, filter: 'grayscale(20%)' }}
               animate={{ scale: 1, filter: 'grayscale(0%)' }}

@@ -7,6 +7,7 @@ import RubberStamp from '@/components/RubberStamp'
 import GhostCover from './GhostCover'
 import { fmtIssueNo, pillarTag } from './pillar'
 import { useLang } from '@/i18n/lang'
+import { localizedCover, coverFallback } from '@/lib/cover'
 import { fmtDateShort, fmtReadTime, pick } from '@/i18n/format'
 import { OpenAccess } from '@contracts/constants'
 import type { IssueMeta } from './pillar'
@@ -40,7 +41,8 @@ export default function IssueCard({
         <div className="relative aspect-[4/3] overflow-hidden border-b border-line">
           {issue.coverAsset ? (
             <img
-              src={issue.coverAsset}
+              src={localizedCover(issue.coverAsset, lang)}
+              onError={coverFallback(issue.coverAsset)}
               alt=""
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]"

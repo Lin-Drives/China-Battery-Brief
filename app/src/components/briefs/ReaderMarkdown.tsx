@@ -239,6 +239,28 @@ export default function ReaderMarkdown({
           </div>
         )
       },
+      img({ node: _n, src, alt, title, ...props }) {
+        return (
+          <figure className="my-10">
+            <img
+              src={src ?? ''}
+              alt={alt ?? ''}
+              loading="lazy"
+              className="w-full rounded-[3px] border"
+              style={{ borderColor: 'var(--sheet-line)', backgroundColor: 'var(--sheet-2)' }}
+              {...props}
+            />
+            {title || alt ? (
+              <figcaption
+                className="mx-auto mt-3 max-w-[40rem] text-center font-mono text-[11.5px] leading-[1.6] tracking-[0.02em]"
+                style={{ color: 'var(--sheet-muted)' }}
+              >
+                {title ?? alt}
+              </figcaption>
+            ) : null}
+          </figure>
+        )
+      },
       table({ node: _n, children, ...props }) {
         return (
           <div className="my-9 overflow-x-auto">
