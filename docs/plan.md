@@ -14,7 +14,7 @@
   - Pro：$29/月 或 $290/年（完整周刊 + 档案库）
   - Team/Enterprise：$990/年（5 席位）
 - **目标读者**：海外投资人、供应链从业者、政策分析师（内容全英文）
-- **设计基调**：编辑部风格（Stratechery / The Information 气质），低饱和暖色调、大量留白、清晰层级；铜色（copper）作为品牌点缀色，呼应电池金属；禁止蓝紫渐变
+- **设计基调**：编辑部风格（Stratechery / The Information 气质），低饱和暖色调、大量留白、清晰层级；品牌点缀色为 volt（`#C9F24B`）；禁止蓝紫渐变
 
 ## 1. 功能范围（MVP）
 
@@ -37,7 +37,7 @@
 
 ### Stage 2 — 设计（design-first）
 - 派发 design 子代理：输出设计系统（色板/字体/组件风格/页面线框），写入仓库 `docs/design-system.md`
-- Gate：主代理审核设计稿方向符合"编辑部风格 + 铜色点缀"方可进入下一阶段
+- Gate：主代理审核设计稿方向符合"编辑部风格 + volt 点缀"方可进入下一阶段
 
 ### Stage 3 — 前端构建（`webapp-building-swarm`）
 - 派发前端子代理，在 worktree 上实现全部前端页面（React + TS + Tailwind + shadcn/ui）
@@ -67,7 +67,7 @@
 > 基线：全栈 + 4 支柱 + 7 期内容（No. 044–050）+ 信源扫描工作流（17 源零失败 + 定时任务）+ 内容选题横向比对 + 安全加固一轮（44d95db）+ 去平台化登录第一步（分支 `deploy/self-hosted`：移除 Kimi OAuth、demo 免登录、auth 接口预留）。
 
 ### 队列 A — MARKETS 板块深化（触发式）
-- [ ] **独立 MARKETS 归档视图**：等 MARKETS 出到 5~6 期后，在 `/markets` 内或 `/markets/archive` 用铜色卡片列出全部 markets 期，不复用通用 IssueRow（现 No. 049/050 两期）
+- [ ] **独立 MARKETS 归档视图**：等 MARKETS 出到 5~6 期后，在 `/markets` 内或 `/markets/archive` 用 volt 卡片列出全部 markets 期，不复用通用 IssueRow（现 No. 049/050 两期）
 - [ ] **`markets` 真 API**：新建 `markets.overview` tRPC 接口 + 市场数据表，`Markets.tsx` 改 `useQuery`。价值：改数字不发版、数据可溯源带日期、能算周环比差异。触发条件：MARKETS 累积几期数据，或需支持 admin 台编辑市场数据
 
 ### 队列 B — 平台真实化（README §五，大工程择期）
