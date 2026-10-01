@@ -31,18 +31,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 
 ## 二、构建与运行
 
-在 `app/` 目录下（依赖未安装时先 `npm install`）：
-
-| 命令 | 说明 |
-|---|---|
-| `npm run dev` | 开发模式：Vite dev server（端口 3000），通过 `@hono/vite-dev-server` 把 `api/boot.ts` 挂进同一进程，HMR 同时覆盖前后端 |
-| `npm run build` | 生产构建：`vite build` 输出前端到 `dist/public/`，再用 esbuild 把 `api/boot.ts` 打包成 `dist/boot.js`（ESM + createRequire banner） |
-| `npm start` | 生产运行：`NODE_ENV=production node dist/boot.js`，由 Hono 静态托管 `dist/public` 并服务 API（`api/boot.ts` 中的 `env.isProduction` 分支） |
-| `npm run check` | 类型检查 `tsc -b`（三个 tsconfig project：app / node / server）——**提交前必过的门禁** |
-| `npm run lint` | ESLint（flat config：js + typescript-eslint recommended + react-hooks + react-refresh） |
-| `npm run format` | Prettier 全量格式化 |
-| `npm test` | `vitest run`（详见「测试」一节） |
-| `npm run db:generate` / `db:migrate` / `db:push` | drizzle-kit 迁移生成/执行/直推；需要 `DATABASE_URL`。**库结构变更一律用 `db:push`**（本项目 `db:migrate` 会挂起），详见 `app/AGENTS.md` |
+所有构建/测试命令都在 `app/` 下执行（依赖未安装时先 `npm install`）；完整命令清单（dev/build/start、`check`/`lint`/`format`/`test`、`db:*` 等）见 `app/AGENTS.md`。本地验证基线为 `npm run build && npm start`。
 
 ### 环境变量
 
@@ -68,7 +57,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 ## 四、前端组织与国际化（核心特性）
 
 - `src/pages/` 一页面一文件；`src/components/` 按域分目录：`home/`、`briefs/`、`intel/`（Tracker/Tech/Risk 共用可视化组件，如 WorldMap、PolicyTimeline、RiskMeter）、`account/`、`growth/`、`ui/`（shadcn/ui 基础件）；跨页通用件在根（Navbar、Footer、LangToggle 等）。
-- **i18n 机制**（`src/i18n/`）：自建轻量方案，无 i18next。`lang.tsx` 提供 `LangProvider` / `useLang()`，扁平 dot-key 字典 `en.ts` / `zh.ts`，**zh 缺失时回退 en，再回退 key 本身**；`tpl()` 做 `{var}` 插值。语言持久化在 localStorage 键 `cbb:lang`，切换时同步 `<html lang>` 并切换 `zh` class 做 CJK 排版微调。新增任何用户可见文案必须同时加到两个字典。
+- **i18n 机制**（`src/i18n/`）：自建轻量方案，无 i18next。`lang.tsx` 提供 `LangProvider` / `useLang()`，扁平 dot-key 字典 `en.ts` / `zh.ts`，**zh 缺失时回退 en，再回退 key 本身**；`tpl()` 做 `{var}` 插值。语言持久化在 localStorage 键 `cbb:lang`，切换时同步 `<html lang>` 并切换 `zh` class 做 CJK 排版微调。使用规则（键一一对应、禁硬编码、三段标题拼接）见 `app/AGENTS.md`。
 - 内容层双语：issues 表自带 `*Zh` 字段，英文先发、中文后补；`BriefDetail` 等页面按当前语言选字段。
 
 ## 五、代码风格约定

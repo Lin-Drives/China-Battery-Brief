@@ -4,14 +4,22 @@
 
 ## 常用命令
 
-```bash
-npm run dev        # 开发服务器（localhost:3000，含 API）
-npm run check      # tsc 类型检查（改动后必须通过）
-npm run db:start   # 启动项目内绿色版 MySQL（../.local-mysql）
-npm run db:seed    # 灌入种子数据
-npm run db:backup  # 备份数据库 + assets（写 ../backups/db/，保留 N 份）
-npm run db:restore -- <file.sql.gz>   # 从备份恢复（覆盖当前库，谨慎）
-```
+所有命令在 `app/` 下执行（依赖未安装时先 `npm install`）。
+
+| 命令 | 说明 |
+|---|---|
+| `npm run dev` | 开发模式：Vite dev server（端口 3000），通过 `@hono/vite-dev-server` 把 `api/boot.ts` 挂进同一进程，HMR 同时覆盖前后端 |
+| `npm run build` | 生产构建：`vite build` 输出前端到 `dist/public/`，再 esbuild 打包 `api/boot.ts` 为 `dist/boot.js`（ESM + createRequire banner） |
+| `npm start` | 生产运行：`NODE_ENV=production node dist/boot.js`，由 Hono 静态托管 `dist/public` 并服务 API |
+| `npm run check` | 类型检查 `tsc -b`（三个 project：app / node / server）——**提交前必过** |
+| `npm run lint` | ESLint（flat config：js + typescript-eslint + react-hooks + react-refresh） |
+| `npm run format` | Prettier 全量格式化 |
+| `npm test` | `vitest run`（只收集 `api/**/*.test.ts`） |
+| `npm run db:start` / `db:stop` | 启停项目内绿色版 MySQL（`../.local-mysql`） |
+| `npm run db:seed` | 灌入种子数据 |
+| `npm run db:backup` | 备份数据库 + assets（写 `../backups/db/`，保留 N 份） |
+| `npm run db:restore -- <file.sql.gz>` | 从备份恢复（覆盖当前库，谨慎） |
+| `npm run db:generate` / `db:migrate` / `db:push` | drizzle-kit 迁移生成/执行/直推 |
 
 > **库结构变更一律用 `npm run db:push`**（本项目 `db:migrate` 会挂起）。
 
