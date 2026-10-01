@@ -1,0 +1,47 @@
+<svg width="900" height="500" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Figure 01 — Defect rate from PPM to PPB: a 1,000 times tighter ceiling">
+  <defs>
+    <pattern id="fdots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="900" height="500" fill="#0C1017"/>
+  <rect width="900" height="500" fill="url(#fdots)"/>
+
+  <!-- corner ticks -->
+  <g stroke="#2A3640" stroke-width="1.5">
+    <path d="M20 42 V28 a8 8 0 0 1 8 -8 H42" fill="none"/>
+    <path d="M880 42 V28 a8 8 0 0 0 -8 -8 H858" fill="none"/>
+    <path d="M20 458 V472 a8 8 0 0 0 8 8 H42" fill="none"/>
+    <path d="M880 458 V472 a8 8 0 0 1 -8 8 H858" fill="none"/>
+  </g>
+
+  <!-- header -->
+  <text x="48" y="54" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">FIGURE 01 · DEFECT RATE</text>
+  <text x="48" y="120" font-family="Georgia,serif" font-size="46" fill="#F4F0E6">From PPM to PPB</text>
+  <text x="48" y="154" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#C9F24B">a 1,000× tighter ceiling</text>
+
+  <!-- panel A: PPM -->
+  <rect x="48" y="192" width="356" height="168" fill="#0F141C" stroke="#2A3640" stroke-width="1"/>
+  <text x="74" y="228" font-family="Courier,monospace" font-size="20" font-weight="bold" letter-spacing="2" fill="#8E97A8">PPM</text>
+  <text x="74" y="250" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#8E97A8">parts per million</text>
+  <text x="74" y="302" font-family="Courier,monospace" font-size="29" fill="#F4F0E6">1 in 1,000,000</text>
+  <text x="74" y="334" font-family="Courier,monospace" font-size="13" letter-spacing="0.5" fill="#8E97A8">long-standing industry high bar</text>
+
+  <!-- gap -->
+  <text x="450" y="290" text-anchor="middle" font-family="Courier,monospace" font-size="26" font-weight="bold" fill="#C9F24B">×1000</text>
+
+  <!-- panel B: PPB -->
+  <rect x="496" y="192" width="356" height="168" fill="#0F141C" stroke="#C9F24B" stroke-width="1.5"/>
+  <text x="522" y="228" font-family="Courier,monospace" font-size="20" font-weight="bold" letter-spacing="2" fill="#C9F24B">PPB</text>
+  <text x="522" y="250" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#8E97A8">parts per billion</text>
+  <text x="522" y="302" font-family="Courier,monospace" font-size="26" fill="#F4F0E6">1 in 1,000,000,000</text>
+  <text x="522" y="334" font-family="Courier,monospace" font-size="13" letter-spacing="0.5" fill="#8E97A8">2030 target — leading firms only</text>
+
+  <!-- arithmetic -->
+  <line x1="48" y1="392" x2="852" y2="392" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="428" font-family="Courier,monospace" font-size="15" letter-spacing="0.5" fill="#8E97A8">PPM · 150-CELL PACK</text>
+  <text x="852" y="428" text-anchor="end" font-family="Courier,monospace" font-size="15" letter-spacing="0.5" fill="#F4F0E6">yield 99.985%   ·   ~1 in 7,000 cars</text>
+  <text x="48" y="462" font-family="Courier,monospace" font-size="15" letter-spacing="0.5" fill="#8E97A8">PPB · 150-CELL PACK</text>
+  <text x="852" y="462" text-anchor="end" font-family="Courier,monospace" font-size="15" letter-spacing="0.5" fill="#C9F24B">yield 99.999985%   ·   ~1 in 7,000,000 packs</text>
+</svg>

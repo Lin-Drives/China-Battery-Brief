@@ -799,5 +799,62 @@
         "date": "2026-09-18"
       }
     ]
+  },
+  {
+    "number": 56,
+    "slug": "from-scale-to-spec",
+    "title": "From Scale to Spec: China's First National Battery Plan",
+    "dek": "The battery industry's first national special plan sets no output target — only three hard numbers, all technical: all-solid-state batteries in initial scale application by 2030, 15,000-cycle lithium cells, and PPB-level defect rates. It also disciplines the price war, secures raw materials, and writes the standard for going abroad — including a battery passport and carbon data.",
+    "publishedAt": "2026-10-01T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "tech-routes",
+      "geopolitics"
+    ],
+    "readingMinutes": 6,
+    "coverAsset": "/cover-056.svg",
+    "contentFile": "issue-056.md",
+    "highlights": [
+      {
+        "tag": "tech",
+        "text": "2030 goals: all-solid-state in initial scale application, 15,000-cycle cells and PPB defects — and no output target"
+      },
+      {
+        "tag": "risk",
+        "text": "Going abroad as a managed task: overseas recycling capacity, a battery passport and carbon-data mutual recognition"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "工业和信息化部等七部门",
+        "title": "新型电池产业发展“十五五”规划（工信部联规〔2026〕220 号）",
+        "url": "https://mp.weixin.qq.com/s/kZK-dkYYiHvxusza2sUn2A",
+        "date": "2026-09-14"
+      },
+      {
+        "outlet": "工业和信息化部电子信息司",
+        "title": "《新型电池产业发展“十五五”规划》解读",
+        "url": "https://www.escn.com.cn/news/show-2330920.html",
+        "date": "2026-09-30"
+      },
+      {
+        "outlet": "新华社",
+        "title": "我国提出到 2030 年全固态电池初步实现规模化应用",
+        "url": "https://www.news.cn/fortune/20260928/0a8a78ebd80e41acaaa801296976b96a/c.html",
+        "date": "2026-09-28"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China unveils 5-year battery plan targeting large-scale all-solid-state use by 2030",
+        "url": "https://cnevpost.com/2026/09/28/china-unveils-5-year-battery-plan/",
+        "date": "2026-09-28"
+      },
+      {
+        "outlet": "人民网（人民日报客户端）",
+        "title": "产品缺陷率降至十亿分之一，头部电池企业的“大考”来了",
+        "url": "http://finance.people.com.cn/n1/2026/0929/c1004-40807678.html",
+        "date": "2026-09-29"
+      }
+    ]
   }
 ]
