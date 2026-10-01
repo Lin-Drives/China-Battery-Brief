@@ -6,7 +6,7 @@
 
 > A bilingual weekly intelligence newsletter on China's battery industry going global.
 
-[Visit the live site](https://chinabatterybrief.com) · [中文交付说明](docs/README.md)
+[Visit the live site](https://chinabatterybrief.com)
 
 ## What it covers
 
@@ -39,20 +39,10 @@ The development site runs at `http://localhost:3000`. Configure local variables 
 app/       application code, database schema, and bilingual seed content
 docs/      product, release, deployment, and security documentation
 research/  topic-based research fact base for newsletter content
-AGENTS.md  conventions for contributors and coding agents
+AGENTS.md  contributor conventions
 ```
-
-## Operations
-
-- [Weekly release runbook](docs/release.md) — publish an issue to the VPS
-- [Deployment guide](docs/deploy.md) — VPS, Nginx, database, and backup setup
-- [Security guide](docs/security.md) — production security and incident response
-
-The only release entry point is `app/scripts/deploy-release.sh`. It builds locally, syncs the release to the VPS, upserts the issue, restarts the service, and verifies the deployment.
 
 ## Documentation
 
-- [Product delivery notes](docs/README.md)
 - [Editorial and contributor rules](AGENTS.md)
 - [Editorial workflow for bilingual issues](app/AGENTS.md)
-- [Research fact base](research/README.md)
