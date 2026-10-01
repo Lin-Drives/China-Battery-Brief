@@ -1,51 +1,26 @@
-# China Battery Brief — 部署方案（自有 VPS + Nginx 形态）
+# China Battery Brief — 部署方案（自有 VPS + Nginx）
 
-> 定位：**自托管部署形态的权威方案**（已作为主线 `main` 上线）。本方案已合入 `main` 并在 https://chinabatterybrief.com 运行。
+> 定位：**自托管部署形态的权威方案**，已作为主线 `main` 上线运行（https://chinabatterybrief.com）。
 > 依据：`security.md` 第三节「部署时必复核的三项配置」——XFF 可信性 / HTTPS+HSTS / 应用内配置。
-> 状态：🟢 部署进行中（VPS 已购买、Step 0–3 已执行）。本分支已完成**去平台化登录**改造：站点不再依赖 Kimi OAuth，demo 免登录全可读，认证接口预留。
 
 ---
 
-## 一、选型决策（已定）
+## 一、选型
 
 | 项 | 选择 | 理由 |
 |---|---|---|
-| 托管形态 | 自有 VPS + Nginx 反向代理 | 能完整落实 security.md 三项：Nginx 作为可信反代覆盖 XFF、签发 HTTPS/HSTS |
+| 托管形态 | 自有 VPS + Nginx 反向代理 | 完整落实 security.md 三项：可信反代覆盖 XFF、签发 HTTPS/HSTS |
 | 应用运行 | 单进程 Node（`npm start`，Hono 托管静态 + tRPC） | 现状零改造，本地验证基线一致 |
-| 数据库 | VPS 同机安装 MariaDB | 零额外成本、`db:backup` 脚本直接复用、单人维护足够；后续可迁 PlanetScale（代码已对齐 `mode: planetscale`） |
-| 域名 | 新购独立域名（如 `chinabatterybrief.com`） | 站点最终绑定域名；换域名仅需改 DNS |
-| 认证 | **无登录（demo）**：全站免登录可读，`auth.*` 接口预留为 stub | 彻底摆脱 Kimi OAuth；正式上线时在此填邮箱+密码认证 |
-| 部署方式 | 手动部署 + systemd 常驻 + cron 备份（先不接 CI/CD） | 冷启动阶段单人可控；CI/CD 留到队列 E |
+| 数据库 | VPS 同机 MariaDB | 零额外成本、`db:backup` 脚本直接复用、单人维护足够；后续可迁 PlanetScale（代码已对齐 `mode: planetscale`） |
+| 域名 | 独立域名 + Cloudflare DNS | 免费 CDN + WAF + 自动 TLS，省去一半配置 |
+| 认证 | 平台内置邮箱+密码，JWT session cookie；首个用 `OWNER_EMAIL` 注册者自动成为 admin | 无外部 OAuth 依赖 |
+| 部署方式 | 手动部署 + systemd 常驻 + cron 备份 | 单人可控；发版由 `deploy-release.sh` 自动完成 |
 
-**不选**：PaaS（XFF/HSTS 受平台控制）、云 RDS（过度配置）、PlanetScale 起步（有按量费用，先同机省成本）。
-
----
-
-## 二、资源清单（待购买）
-
-### 2.1 VPS（选一个）
-
-| 提供商 | 起步配置 | 月费 | 备注 |
-|---|---|---|---|
-| **DigitalOcean**（推荐） | 1 vCPU / 1GB RAM / 25GB SSD | ~$6 | 老牌、文档全、新加坡/美西机房近读者 |
-| Vultr | 1 vCPU / 1GB / 25GB | ~$5–6 | 最便宜入门档 |
-| Hetzner | 2 vCPU / 4GB / 40GB | ~€4–5 | 欧洲机房，性价比高 |
-
-购买要点：
-- 系统镜像选 **Ubuntu 24.04 LTS**
-- 机房选离目标读者近的：**新加坡**（亚太）或**美西**（欧美读者）
-- 创建时**记下 root 密码 / 或配置 SSH key**
-- 不要买额外带宽/快照（后续可加）
-
-### 2.2 域名
-
-- 注册商：**Cloudflare Registrar**（成本价，约 $10–15/年）或 Namecheap
-- 域名建议：`chinabatterybrief.com`（先查可用性）
-- 注册后 DNS 托管到 **Cloudflare**（免费 CDN + WAF + 自动 TLS 证书，后面三件套能省一半功夫）
+**不选**：PaaS（XFF/HSTS 受平台控制）、云 RDS（过度配置）、PlanetScale 起步（有按量费用）。
 
 ---
 
-## 三、部署步骤（购买资源后执行）
+## 二、部署步骤
 
 > 以下每步都是独立命令块。执行到一步，确认无错再下一步。所有命令在 VPS 上以 root 或 sudo 执行。
 
@@ -82,11 +57,11 @@ mkdir -p /opt/cbb && cd /opt/cbb
 git clone <你的私有仓库> app
 cd app/app
 
-# 生产环境变量（当前 demo 免登录，只需 DATABASE_URL）
-#   DATABASE_URL = 指向本机 MariaDB（见 Step 3）
-# `.env.example` 被 gitignore，不随仓库走；直接在 app/ 下手写 `.env`：
+# 生产环境变量（`.env.example` 被 gitignore，不随仓库走；直接在 app/ 下手写 `.env`）
 cat > .env <<'EOF'
 DATABASE_URL=mysql://cbb:<强密码>@localhost:3306/cbb
+APP_SECRET=<≥32 字符随机串>
+OWNER_EMAIL=<管理员邮箱>
 EOF
 
 # 安装依赖 + 构建
@@ -95,8 +70,8 @@ npm run build
 ```
 
 > 说明：仓库根 `/opt/cbb/app` 下是 `app/`（npm 项目）、`docs/`、`dev/` 等；所有构建/运行命令都在 `/opt/cbb/app/app/` 内执行。
-
-> 认证说明：demo 阶段全站免登录，`APP_SECRET` 不设置（预留）。正式开启邮箱+密码认证后再填（≥32 字符），届时 `auth.*` stub 换为真实实现。
+>
+> 认证说明：`APP_SECRET` 为 JWT 签名密钥，生产必填且 ≥32 字符（否则拒绝启动）；`OWNER_EMAIL` 指定的邮箱首次注册后自动成为 admin。
 
 ### Step 3 — 初始化数据库
 
@@ -114,11 +89,6 @@ FLUSH PRIVILEGES;
 SQL
 ```
 
-`.env` 的 `DATABASE_URL` 填：
-```
-DATABASE_URL=mysql://cbb:<强密码>@localhost:3306/cbb
-```
-
 建表 + 灌种子（首次）：
 ```bash
 cd /opt/cbb/app/app
@@ -133,6 +103,7 @@ npm run db:seed
 > MYSQL_BIN=/usr/bin
 > BACKUP_ROOT=/opt/cbb/backups
 > ```
+
 ### Step 4 — Nginx 反向代理（落实 XFF + HTTPS）
 
 新建 `/etc/nginx/sites-available/cbb`：
@@ -209,7 +180,7 @@ curl -I http://127.0.0.1:3000 # 应用在本机 3000 端口
 
 ### Step 7 — 备份 cron（落实 security.md 4.1）
 
-> cron 走系统时区 UTC。**北京时间凌晨 3:00 = UTC 19:00**，下述任务因此写 `0 19 * * *`。VPS 已执行（实际应用路径 `/opt/cbb/app/app`，比下方示例多一层目录）。
+> cron 走系统时区 UTC。**北京时间凌晨 3:00 = UTC 19:00**，下述任务因此写 `0 19 * * *`。VPS 上应用路径为 `/opt/cbb/app/app`。
 >
 > 保留策略（`scripts/backup.sh`）：DB dump 默认保留最近 7 份（`BACKUP_RETENTION`），assets 快照默认保留最近 3 份（`ASSET_RETENTION`，可从 git 重建，短保留）。assets 快照 ~30MB/份，是 VPS 磁盘的主要消耗，**必须靠该保留策略封顶**。
 
@@ -230,63 +201,21 @@ launchctl kickstart -k gui/$(id -u)/com.cbb.pull-backup   # 立即跑一次验�
 
 > 注意：本地 launchd 计划任务在机器睡眠时会顺延到唤醒后补跑，不保证每天准点；漏拉几天没关系，VPS 轨兜底 7 天窗口。拉取依赖 `~/.ssh/cbb_vps` 免密与 VPS 在线。
 
-### Step 8 — 认证状态核对（对应 security.md 第三节第 3 条）
-
-当前 demo 为**免登录**形态（`auth.*` 接口 stub），无外部认证依赖，此步只需确认：
-
-1. `.env` 未设置 `APP_SECRET`（或设置了也无妨，demo 阶段不使用）
-2. 回归验证：匿名访问首页 + 任意期刊 → 全量可读（无付费墙）
-3. 预留：正式上线邮箱+密码认证时，此步改为「配置 APP_SECRET + 首个管理员邮箱」，并回归注册/登录全流程
-
 ---
 
-## 四、安全三项核对清单（部署后必过）
+## 三、安全三项核对清单（部署后必过）
 
 | # | 项 | 核对方法 | 期望结果 |
 |---|---|---|---|
 | 1 | XFF 可信性 | Nginx 配置 `set_real_ip_from` + `real_ip_recursive`；请求日志 `ip` 字段显示真实访客 IP | 伪造 XFF 无法改变限流/审计所见 IP |
 | 2 | HTTPS/HSTS | `curl -I https://<domain>` | 看到 `Strict-Transport-Security` + 应用 CSP |
-| 3 | 认证状态 | 匿名访问首页 + 期刊全量可读 | demo 免登录无外部依赖；`/api/oauth/begin` 返回 404 |
+| 3 | 认证 | 配置 `APP_SECRET` 与 `OWNER_EMAIL`，回归注册/登录全流程 | 认证可用；owner 邮箱账号为 admin |
 
 ---
 
-## 五、迁移计划（本地 → 生产）
+## 四、迁移计划（本地 → 生产）
 
 1. **数据**：`npm run db:backup` 在本地出 `.sql.gz`，scp 到 VPS 后 `npm run db:restore -- <file>` 灌入（或直接 `db:seed` 重灌种子）。
 2. **内容**：issues/factories/policy 以种子为基线；日常发刊按 `docs/release.md` 的发布脚本执行，不手工同步或直接修改生产库。
 3. **扫描定时任务**：本机 launchd 继续跑（数据在本机 MySQL）；如需在生产侧跑，把 `scan/` 与 MariaDB 迁移后改 systemd timer。
-4. **验证**：`npm run build && npm start` 生产基线 → curl 首页 200 + tRPC ping 通 → 匿名访问期刊全量可读。
-
----
-
-## 六、回滚 / 双轨运行
-
-- **上线形态**：方案已合入 `main` 并作为站点主线运行（https://chinabatterybrief.com，自托管 VPS + Nginx + Cloudflare；不再有 Kimi Agent 平台托管线）。
-- 回滚：生产 VPS 上保留上一次 `dist/` 与数据库备份，`npm run db:restore` + 重启即回退。
-
----
-
-## 七、费用预估（月度）
-
-| 项 | 月费 |
-|---|---|
-| VPS（DigitalOcean 入门） | ~$6 |
-| 域名（Cloudflare Registrar） | ~$1（年付 $10–15 均摊） |
-| TLS 证书 | $0（Let's Encrypt / Cloudflare） |
-| MariaDB | $0（同机） |
-| **合计** | **~$7/月** |
-
----
-
-## 八、待办清单（本文档外部）
-
-- [x] 购买 VPS（DigitalOcean）+ 配置 SSH key（`~/.ssh/cbb_vps`）
-- [x] 购买域名 + 迁 Cloudflare DNS（`chinabatterybrief.com` A 记录 @/www → `161.35.120.114`，Proxied）
-- [x] Step 0 基础准备（apt/Node 20/ufw/swap/MariaDB/Nginx/certbot）
-- [x] Step 2 部署代码（`/opt/cbb/app`，分支 `deploy/self-hosted`）
-- [x] Step 3 初始化 MariaDB + seed（已完成：加固 + 建库建用户 + `db:push` + 种子 7 EN/7 ZH 期；schema `serial→bigint` 修复兼容 MariaDB）
-- [x] Step 6 systemd 常驻（`cbb.service`，www-data 运行，3000 端口） + Step 7 备份 cron（每日北京时间 03:00 = UTC 19:00 `db:backup` → `/opt/cbb/backups/`）
-- [x] Step 1/4/5 DNS 迁 Cloudflare + Nginx 反代 + HTTPS（✅ **已上线**：https://chinabatterybrief.com 200；2026-09-05 已从 Flexible 升至 Cloudflare **Full (strict)**，VPS Let’s Encrypt 证书覆盖根域名 + `www`，Nginx 443 与源站 HTTP→HTTPS 301 已验证）
-- [x] 完成安全三项核对清单（XFF：Nginx 只信任 CF 21 段 ✓；HTTPS/HSTS：源站与公网 HTTPS 200、HTTP→HTTPS 301、CSP + HSTS ✓；认证：demo 免登录，`/api/oauth/begin` 404 ✓）
-- [x] Step 8 认证状态核对：demo 免登录形态，无外部认证依赖，匿名访问首页+期刊全量可读 ✓（邮箱+密码认证为后续队列 B 待办）
-- [ ] 决策：验证后分支合并 or 双轨保留
+4. **验证**：`npm run build && npm start` 生产基线 → curl 首页 200 + tRPC ping 通 → 未订阅账号访问期刊只得截断内容、订阅/admin 全量可读。

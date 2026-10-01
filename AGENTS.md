@@ -18,7 +18,7 @@ app/                       ← 唯一可构建的应用代码库（npm 项目根
 ├── contracts/             ← 前后端共享常量/类型/错误（constants.ts / types.ts / errors.ts）
 ├── public/                ← 静态资源（封面图、logo、头像等）
 └── package.json / vite.config.ts / drizzle.config.ts / ...
-docs/                      ← 项目文档：README.md（交付说明，权威）+ plan.md（执行蓝图）+ deploy.md（部署手册）+ release.md（日常发刊）+ security.md（安全应急手册）等
+docs/                      ← 项目文档：plan.md（执行蓝图）+ deploy.md（部署手册）+ release.md（日常发刊）+ security.md（安全应急手册）等
 dev/                       ← 开发工具与笔记：devboard.mjs/html、screenshot.mjs、VS Code workspace
 research/                  ← 按主题拆分的调研事实库（overseas-plants / technology / policy / markets-storage / business-model）；完整初版在 `research/archive/`，兼容索引 `info.md` 位于仓库根
 .local-mysql/              ← 本地绿色版 MySQL 运行时（gitignore，不提交）
@@ -27,7 +27,7 @@ Kimi_Agent_一键中英切换.zip  ← 旧目录结构的历史打包存档，�
 ```
 
 - 所有构建/测试命令都在 `app/` 下执行。
-- `app/README.md` 是 Vite 脚手架默认 README，**没有信息量**；真正的项目说明在 `docs/README.md`。
+- `app/README.md` 是 Vite 脚手架默认 README，**没有信息量**；对外项目说明见仓库根 `README.md`。
 
 ## 二、构建与运行
 
