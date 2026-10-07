@@ -215,6 +215,38 @@ const miitParser: HtmlParser = (_html, $, src) => {
   return out
 }
 
+/**
+ * 外交部 MFA — 首页。
+ * 只保留核心栏目：zyxw（重要新闻/元首外交成果文件）、wjbzhd（部领导活动）、
+ * fyrbt_673021（发言人表态）、wjdt_674879（外交部动态）、wjbxw_new（部内新闻）；
+ * 排除 zwbd_673032（驻外使领馆活动，噪声大）与 web/ 静态目录页。
+ * 条目形如 `./<col>/<yyyymm>/t<yyyymmdd>_<id>.shtml`，日期从 URL 提取；
+ * 同一链接在首页头条/列表多区块重复（列表区标题带截断省略号），按 URL 去重并保留最长标题。
+ */
+const mfaParser: HtmlParser = (_html, $) => {
+  const keepCols = ["zyxw", "wjbzhd", "fyrbt_673021", "wjdt_674879", "wjbxw_new"]
+  const byUrl = new Map<string, HtmlParsedItem>()
+  $("a[href]").each((_i, el) => {
+    const $a = $(el)
+    const href = ($a.attr("href") ?? "").trim()
+    const m = /(?:^|\/)([a-z0-9_]+)\/(20\d{4})\/t(20\d{2})(\d{2})(\d{2})_\d+\.shtml$/i.exec(href)
+    if (!m || !keepCols.includes(m[1])) return
+    const url = href.startsWith("http") ? href : `https://www.mfa.gov.cn/${href.replace(/^\.?\//, "")}`
+    const title =
+      ($a.attr("title") ?? "").replace(/\s+/g, " ").trim() ||
+      $a.text().replace(/\s+/g, " ").trim()
+    if (!title || title.length < 6) return
+    const prev = byUrl.get(url)
+    if (prev && prev.title.length >= title.length) return
+    byUrl.set(url, {
+      title,
+      url,
+      publishedAt: parseDate(`${m[3]}-${m[4]}-${m[5]}`),
+    })
+  })
+  return [...byUrl.values()]
+}
+
 /** 解析入口：按源 key 分发。无专用解析的源返回空（run.ts 落占位记录）。 */
 export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[] {
   const $ = load(html)
@@ -235,6 +267,8 @@ export function parseForSource(src: SourceConfig, html: string): HtmlParsedItem[
       return mofcomParser(html, $, src)
     case "miit":
       return miitParser(html, $, src)
+    case "mfa":
+      return mfaParser(html, $, src)
     default:
       return []
   }

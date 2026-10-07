@@ -117,6 +117,7 @@ export const SOURCES: SourceConfig[] = [
   { key: "mofcom", name: "商务部 MOFCOM", kind: "html", url: "https://www.mofcom.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "出口管制/反制公告第一手，首页 art 详情解析已接入" },
   { key: "miit", name: "工信部 MIIT", kind: "html", url: "https://www.miit.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "国标/回收/行业准入，首页 art 详情解析已接入" },
   { key: "ndrc", name: "发改委 NDRC", kind: "html", url: "https://www.ndrc.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "规划与补贴细则，待接入" },
+  { key: "mfa", name: "外交部 MFA", kind: "html", url: "https://www.mfa.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "元首外交成果文件/发言人表态兜底（首页 zyxw/wjbzhd/fyrbt/wjdt/wjbxw 栏目），解析已接入" },
   { key: "govcn", name: "国务院（中国政府网）", kind: "html", url: "https://www.gov.cn", layer: "S0", pillar: "geopolitics", enabled: true, cooldownDays: 7, slow: true, note: "政策文件库与官方解读，待接入" },
   { key: "gta", name: "Global Trade Alert", kind: "firecrawl", url: "https://www.globaltradealert.org/", layer: "S1", pillar: "geopolitics", enabled: true, note: "Firecrawl 实验：Angular SPA" },
   { key: "xinhua", name: "新华社（新华网）", kind: "firecrawl", url: "https://www.news.cn/energy/", layer: "S0", pillar: "geopolitics", enabled: true, fcUrlPattern: "\\d{8}", fcMaxAgeDays: 90, note: "Firecrawl 实验：403 已解锁；URL 日期段过滤导航 + 90 天时效" },

@@ -90,6 +90,7 @@ launchctl load ~/Library/LaunchAgents/com.cbb.scan.plist
 | 站点 | URL | 语言 | 优先级 | 备注 |
 |---|---|---|---|---|
 | 商务部 MOFCOM | mofcom.gov.cn | 中 | ★★★ | 出口管制/两步许可/反制第一手，日更 |
+| 外交部 MFA | mfa.gov.cn | 中 | ★★★ | 元首外交成果文件（如中美八点成果共识）、发言人表态第一手，周报节奏兜底 |
 | 工信部 MIIT | miit.gov.cn | 中 | ★★★ | 国标/回收/行业准入 |
 | 发改委 NDRC | ndrc.gov.cn | 中 | ★★ | 规划与补贴细则上位文件 |
 | 国务院（中国政府网） | gov.cn | 中 | ★★ | 政策文件库与官方解读 |
