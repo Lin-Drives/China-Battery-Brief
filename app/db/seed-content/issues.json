@@ -856,5 +856,86 @@
         "date": "2026-09-29"
       }
     ]
+  },
+  {
+    "number": 57,
+    "slug": "not-on-the-table",
+    "title": "Not on the Table: What the Trump-Xi Summit Told the Battery Industry",
+    "dek": "The eight-point consensus from September's state visit trades toys for farm goods and buys coal — batteries, EVs and storage appear zero times. Tariffs stay frozen, export controls stay suspended, and the truce now expires on January 10.",
+    "publishedAt": "2026-10-08T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "geopolitics",
+      "markets"
+    ],
+    "readingMinutes": 6,
+    "coverAsset": "/cover-057.svg",
+    "contentFile": "issue-057.md",
+    "highlights": [
+      {
+        "tag": "risk",
+        "text": "Zero mentions of batteries, EVs or storage in the eight outcomes — relief lists were built from goods neither side calls sensitive"
+      },
+      {
+        "tag": "markets",
+        "text": "The pause is extended, not settled: APEC Shenzhen in November, G20 Miami in December, and the truce expires 2027-01-10"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "外交部",
+        "title": "中美达成八点成果共识",
+        "url": "https://www.fmprc.gov.cn/zyxw/202609/t20260926_12031616.shtml",
+        "date": "2026-09-26"
+      },
+      {
+        "outlet": "商务部",
+        "title": "商务部公布中美贸易理事会和“300亿对300亿”对等降税框架有关情况",
+        "url": "https://www.mofcom.gov.cn/xwfb/rcxwfb/art/2026/art_7f879be341ec4137a22f6d0360a5a291.html",
+        "date": "2026-09-28"
+      },
+      {
+        "outlet": "商务部",
+        "title": "商务部美大司负责人解读第八轮中美经贸磋商成果",
+        "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_cd060e0649964da8ae13216c3bb1a645.html",
+        "date": "2026-09-28"
+      },
+      {
+        "outlet": "Brookings Institution",
+        "title": "What did the Trump-Xi summit actually accomplish?",
+        "url": "https://www.brookings.edu/articles/what-did-the-trump-xi-summit-actually-accomplish/",
+        "date": "2026-09-29"
+      },
+      {
+        "outlet": "Carbon Brief",
+        "title": "China Briefing 1 October 2026: Xi-Trump summit",
+        "url": "https://www.carbonbrief.org/china-briefing-1-october-2026-xi-trump-summit-trade-war-plea-strongest-el-nino",
+        "date": "2026-10-01"
+      },
+      {
+        "outlet": "USTR",
+        "title": "USTR Finalizes Action on China Tariffs Following Statutory Four-Year Review",
+        "url": "https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/september/ustr-finalizes-action-china-tariffs-following-statutory-four-year-review",
+        "date": "2024-09-13"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2025 年第 58 号公告（锂电池及人造石墨负极材料等出口管制）",
+        "url": "https://www.mofcom.gov.cn/zfxxgk/gkml/art/2025/art_ea1c3c25d9094e40a70c9c2d887953f8.html",
+        "date": "2025-10-09"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2025 年第 70 号公告（暂停实施相关出口管制至 2026-11-10）",
+        "url": "https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html",
+        "date": "2025-11-07"
+      },
+      {
+        "outlet": "China Daily",
+        "title": "Global auto giants plug into China's battery power",
+        "url": "https://global.chinadaily.com.cn/a/202605/12/WS6a029b76a310d6866eb48222.html",
+        "date": "2026-05-12"
+      }
+    ]
   }
 ]

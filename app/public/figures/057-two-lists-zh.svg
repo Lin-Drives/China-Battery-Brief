@@ -1,0 +1,56 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="图 —— 两份 300 亿美元降税清单，电池不在其中">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="960" height="540" fill="#0C1017"/>
+  <rect width="960" height="540" fill="url(#dots)"/>
+
+  <!-- header -->
+  <text x="48" y="56" font-family="Courier,monospace" font-size="12" letter-spacing="2.4" fill="#8E97A8">“300亿对300亿”对等降税清单 · 2026 年 9 月</text>
+  <line x1="48" y1="76" x2="912" y2="76" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- left column: US cuts -->
+  <text x="48" y="116" font-family="Courier,monospace" font-size="13" letter-spacing="1.6" fill="#5ADFC3">美方对约 300 亿美元自华进口商品降税</text>
+  <g font-family="Georgia,serif" font-size="22" fill="#F4F0E6">
+    <text x="48" y="158">玩具</text>
+    <text x="48" y="196">家电</text>
+    <text x="48" y="234">婴儿用品</text>
+    <text x="48" y="272">厨卫用品</text>
+    <text x="48" y="310">节日礼物</text>
+  </g>
+  <g font-family="Courier,monospace" font-size="12" fill="#8E97A8">
+    <text x="280" y="158">消费品</text>
+    <text x="280" y="196">消费品</text>
+    <text x="280" y="234">消费品</text>
+    <text x="280" y="272">消费品</text>
+    <text x="280" y="310">消费品</text>
+  </g>
+
+  <!-- right column: China cuts -->
+  <text x="500" y="116" font-family="Courier,monospace" font-size="13" letter-spacing="1.6" fill="#F0A832">中方对约 300 亿美元自美进口商品降税</text>
+  <g font-family="Georgia,serif" font-size="22" fill="#F4F0E6">
+    <text x="500" y="158">农产品</text>
+    <text x="500" y="196">个人护理用品</text>
+    <text x="500" y="234">医疗器械</text>
+    <text x="500" y="272">煤炭</text>
+  </g>
+  <g font-family="Courier,monospace" font-size="12" fill="#8E97A8">
+    <text x="762" y="158">大宗商品</text>
+    <text x="762" y="196">消费品</text>
+    <text x="762" y="234">设备</text>
+    <text x="762" y="272">能源</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="48" y1="348" x2="912" y2="348" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="384" font-family="Courier,monospace" font-size="12" letter-spacing="2.4" fill="#8E97A8">两份清单超九成产品降至最惠国税率——只覆盖“非敏感”品类</text>
+
+  <!-- the absent row -->
+  <rect x="48" y="404" width="864" height="84" fill="none" stroke="#B0432F" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="72" y="440" font-family="Georgia,serif" font-size="24" fill="#B0432F">电池 · 电动车 · 储能</text>
+  <text x="72" y="470" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.4" fill="#8E97A8">不在任何一份清单上——25%–100% 关税与出口管制暂缓安排维持原样</text>
+  <text x="888" y="452" text-anchor="end" font-family="Georgia,serif" font-style="italic" font-size="30" fill="#B0432F">缺席</text>
+</svg>

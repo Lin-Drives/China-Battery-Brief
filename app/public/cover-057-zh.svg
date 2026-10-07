@@ -1,0 +1,66 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 057 —— 不上谈判桌：中美元首会晤给电池产业的信号">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <!-- ghost issue number -->
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">057</text>
+
+  <!-- corner ticks -->
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <!-- masthead -->
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 057 · 周四 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- title -->
+  <text x="48" y="176" font-family="Georgia,serif" font-size="72" fill="#F4F0E6">不上谈判桌</text>
+  <text x="48" y="238" font-family="Georgia,serif" font-style="italic" font-size="21" fill="#C9F24B">八点成果共识，没有一条提到电池</text>
+
+  <!-- deal sheet -->
+  <text x="48" y="300" font-family="Courier,monospace" font-size="12" letter-spacing="2.2" fill="#8E97A8">会晤成果清单 · 2026 年 9 月 23—25 日</text>
+
+  <g font-family="Courier,monospace" font-size="15" letter-spacing="1.2">
+    <text x="48" y="336" fill="#F4F0E6">“300亿对300亿”降税</text>
+    <text x="752" y="336" text-anchor="end" fill="#F4F0E6">两份清单都没有电池</text>
+    <line x1="48" y1="351" x2="752" y2="351" stroke="#1B2A33" stroke-width="1"/>
+
+    <text x="48" y="378" fill="#F4F0E6">稀土与关键矿产</text>
+    <text x="752" y="378" text-anchor="end" fill="#F0A832">暂停，未解决</text>
+    <line x1="48" y1="393" x2="752" y2="393" stroke="#1B2A33" stroke-width="1"/>
+
+    <text x="48" y="420" fill="#F4F0E6">中美投资理事会</text>
+    <text x="752" y="420" text-anchor="end" fill="#F0A832">只有机制，没有批准</text>
+    <line x1="48" y1="435" x2="752" y2="435" stroke="#1B2A33" stroke-width="1"/>
+
+    <text x="48" y="462" fill="#F4F0E6">气候与能源转型</text>
+    <text x="752" y="462" text-anchor="end" fill="#B0432F">全程未提及</text>
+    <line x1="48" y1="477" x2="752" y2="477" stroke="#1B2A33" stroke-width="1"/>
+
+    <text x="48" y="504" fill="#B0432F">电池 · 电动车 · 储能</text>
+    <text x="752" y="504" text-anchor="end" fill="#B0432F">—— 缺席</text>
+  </g>
+
+  <!-- accent block -->
+  <rect x="48" y="528" width="26" height="12" fill="#C9F24B"/>
+  <rect x="84" y="528" width="3" height="12" fill="#C9F24B" opacity="0.35"/>
+  <text x="128" y="538" font-family="Courier,monospace" font-size="11" letter-spacing="1.2" fill="#8E97A8">下一站：11 月深圳 APEC · 12 月迈阿密 G20 · 休战 2027-01-10 到期</text>
+
+  <text x="48" y="588" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">CBB · 每周情报 · 每周四 06:00 UTC</text>
+</svg>

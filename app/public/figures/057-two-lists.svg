@@ -1,0 +1,56 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Figure — Two $30bn tariff-cut lists, batteries on neither">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="960" height="540" fill="#0C1017"/>
+  <rect width="960" height="540" fill="url(#dots)"/>
+
+  <!-- header -->
+  <text x="48" y="56" font-family="Courier,monospace" font-size="12" letter-spacing="2.4" fill="#8E97A8">THE “$30BN FOR $30BN” RECIPROCAL TARIFF-CUT LISTS · SEP 2026</text>
+  <line x1="48" y1="76" x2="912" y2="76" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- left column: US cuts -->
+  <text x="48" y="116" font-family="Courier,monospace" font-size="13" letter-spacing="1.6" fill="#5ADFC3">US LOWERS TARIFFS ON ≈ $30BN OF CHINESE GOODS</text>
+  <g font-family="Georgia,serif" font-size="22" fill="#F4F0E6">
+    <text x="48" y="158">Toys</text>
+    <text x="48" y="196">Home appliances</text>
+    <text x="48" y="234">Baby products</text>
+    <text x="48" y="272">Kitchen &amp; bath goods</text>
+    <text x="48" y="310">Holiday gifts</text>
+  </g>
+  <g font-family="Courier,monospace" font-size="12" fill="#8E97A8">
+    <text x="330" y="158">CONSUMER</text>
+    <text x="330" y="196">CONSUMER</text>
+    <text x="330" y="234">CONSUMER</text>
+    <text x="330" y="272">CONSUMER</text>
+    <text x="330" y="310">CONSUMER</text>
+  </g>
+
+  <!-- right column: China cuts -->
+  <text x="500" y="116" font-family="Courier,monospace" font-size="13" letter-spacing="1.6" fill="#F0A832">CHINA LOWERS TARIFFS ON ≈ $30BN OF US GOODS</text>
+  <g font-family="Georgia,serif" font-size="22" fill="#F4F0E6">
+    <text x="500" y="158">Farm products</text>
+    <text x="500" y="196">Personal care</text>
+    <text x="500" y="234">Medical devices</text>
+    <text x="500" y="272">Coal</text>
+  </g>
+  <g font-family="Courier,monospace" font-size="12" fill="#8E97A8">
+    <text x="762" y="158">COMMODITY</text>
+    <text x="762" y="196">CONSUMER</text>
+    <text x="762" y="234">EQUIPMENT</text>
+    <text x="762" y="272">ENERGY</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="48" y1="348" x2="912" y2="348" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="384" font-family="Courier,monospace" font-size="12" letter-spacing="2.4" fill="#8E97A8">90%+ OF EACH LIST GOES TO MFN RATES — “NON-SENSITIVE” GOODS ONLY</text>
+
+  <!-- the absent row -->
+  <rect x="48" y="404" width="864" height="84" fill="none" stroke="#B0432F" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="72" y="440" font-family="Georgia,serif" font-size="24" fill="#B0432F">Batteries · EVs · Energy storage</text>
+  <text x="72" y="470" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.4" fill="#8E97A8">ON NEITHER LIST — 25%–100% TARIFFS AND EXPORT-CONTROL SUSPENSIONS UNCHANGED</text>
+  <text x="888" y="452" text-anchor="end" font-family="Georgia,serif" font-style="italic" font-size="30" fill="#B0432F">absent</text>
+</svg>
