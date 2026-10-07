@@ -14,8 +14,8 @@ import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync, statSy
 import { join } from "path";
 import { createHash } from "crypto";
 import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { RSSHUB_INSTANCES, enabledSources } from "./config";
+import { fileURLToPath, pathToFileURL } from "url";
+import { RSSHUB_INSTANCES, EM_WATCHLIST, enabledSources } from "./config";
 import type { SourceConfig } from "./config";
 import { parseForSource, htmlItemsToScanned } from "./parse-html";
 
@@ -482,11 +482,268 @@ async function fetchHkexAnn(src: SourceConfig): Promise<ScannedItem[]> {
     })
 }
 
+/* ---------- 东方财富行情/持股（em-quotes / em-holdings） ---------- */
+
+/** push2 ulist 请求的字段：最新价/涨跌幅/涨跌额/成交量/成交额/换手率/PE/代码/市场号/名称/高/低/开/昨收/总市值/流通市值/PB。 */
+const EM_QUOTE_FIELDS = "f2,f3,f4,f5,f6,f8,f9,f12,f13,f14,f15,f16,f17,f18,f20,f21,f23";
+/** 港币兑离岸人民币 secid（push2 外汇前缀 133），用于 H/A 溢价折算。 */
+const EM_FX_SECID = "133.HKDCNH";
+/** summary 末尾的结构化快照标记，供下次扫描解析做环比。 */
+const QDATA_MARK = "[qdata]";
+
+/** push2 ulist 行（行情快照）。字段值可能是数字或 "-" 字符串。 */
+interface EmQuoteRow {
+  f2?: number | string
+  f3?: number | string
+  f4?: number | string
+  f5?: number | string
+  f6?: number | string
+  f8?: number | string
+  f9?: number | string
+  f12?: string
+  f13?: number
+  f14?: string
+  f15?: number | string
+  f16?: number | string
+  f17?: number | string
+  f18?: number | string
+  f20?: number | string
+  f21?: number | string
+  f23?: number | string
+}
+
+/** datacenter RPT_MUTUAL_STOCK_HOLDRANKS 行（南向持股，INTERVAL_TYPE=1 日度）。 */
+interface EmHoldingRow {
+  SECURITY_CODE?: string
+  SECURITY_NAME?: string
+  TRADE_DATE?: string
+  HOLD_SHARES?: number
+  HOLD_MARKET_CAP?: number
+  HOLD_SHARES_RATIO?: number | null
+  ADD_SHARES_REPAIR?: number | null
+  CLOSE_PRICE?: number | null
+}
+
+function num(v: unknown): number | null {
+  const n = typeof v === "string" ? Number(v) : v
+  return typeof n === "number" && isFinite(n) ? n : null
+}
+
+/** 金额格式化：≥1 万亿 → "1.35 万亿"，≥1 亿 → "86.14 亿"。 */
+function fmtAmount(n: number | null): string {
+  if (n === null) return "—"
+  const abs = Math.abs(n)
+  if (abs >= 1e12) return `${(n / 1e12).toFixed(2)} 万亿`
+  if (abs >= 1e8) return `${(n / 1e8).toFixed(2)} 亿`
+  if (abs >= 1e4) return `${(n / 1e4).toFixed(2)} 万`
+  return n.toFixed(2)
+}
+
+/** 股数格式化：≥1 亿股 / ≥1 万股。 */
+function fmtShares(n: number | null): string {
+  if (n === null) return "—"
+  const abs = Math.abs(n)
+  if (abs >= 1e8) return `${(n / 1e8).toFixed(2)} 亿股`
+  if (abs >= 1e4) return `${(n / 1e4).toFixed(2)} 万股`
+  return `${Math.round(n)} 股`
+}
+
+/** 带符号百分比（如 "+2.31%" / "-0.45%"）。 */
+function fmtSignedPct(n: number, digits = 2): string {
+  return `${n > 0 ? "+" : ""}${n.toFixed(digits)}%`
+}
+
+/** 把结构化快照附在 summary 末尾（[qdata] JSON），供下次扫描读取做环比；展示层截断不会露出。 */
+function withQdata(human: string, data: Record<string, unknown>): string {
+  return `${human}\n${QDATA_MARK}${JSON.stringify(data)}`
+}
+
+/** 从条目 summary 解析 [qdata] 结构化快照。 */
+function qdataOf(item: ScannedItem | undefined): Record<string, unknown> | null {
+  if (!item?.summary) return null
+  const i = item.summary.indexOf(QDATA_MARK)
+  if (i < 0) return null
+  try {
+    return JSON.parse(item.summary.slice(i + QDATA_MARK.length)) as Record<string, unknown>
+  } catch {
+    return null
+  }
+}
+
+/** 上一次扫描（今天之前最近一次）该源落盘的条目，用于环比；找不到返回 null。 */
+function previousSnapshot(src: SourceConfig): ScannedItem[] | null {
+  if (!existsSync(ROOT)) return null
+  const today = todayDir()
+  let best: ScannedItem[] | null = null
+  let bestDate = ""
+  for (const d of readdirSync(ROOT)) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || d >= today || d <= bestDate) continue
+    const p = join(ROOT, d, "raw", `${src.key}.json`)
+    if (!existsSync(p)) continue
+    try {
+      best = JSON.parse(readFileSync(p, "utf8")) as ScannedItem[]
+      bestDate = d
+    } catch {
+      /* 坏文件忽略 */
+    }
+  }
+  return best
+}
+
+/** "0.300750" → { code: "300750", suffix: "SZ", quoteUrl: "https://quote.eastmoney.com/sz300750.html" } */
+function secidInfo(secid: string): { code: string; suffix: "SZ" | "SH" | "HK"; quoteUrl: string } {
+  const [market, code] = secid.split(".")
+  if (market === "116") return { code, suffix: "HK", quoteUrl: `https://quote.eastmoney.com/hk${code}.html` }
+  const suffix = market === "1" ? "SH" : "SZ"
+  return { code, suffix, quoteUrl: `https://quote.eastmoney.com/${suffix.toLowerCase()}${code}.html` }
+}
+
+/* 东方财富行情快照：watchlist 全量 + 港币汇率一次请求；id 带扫描日期，每周扫描都计为新增。 */
+export async function fetchEmQuotes(src: SourceConfig): Promise<ScannedItem[]> {
+  const secids = EM_WATCHLIST.flatMap((w) => [w.aSecid, w.hkSecid].filter((x): x is string => x !== null))
+  const url =
+    `https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&invt=2&fields=${EM_QUOTE_FIELDS}` +
+    `&secids=${[...secids, EM_FX_SECID].join(",")}`
+  const json = JSON.parse(await fetchText(url)) as { data?: { diff?: EmQuoteRow[] } }
+  const rows = json.data?.diff ?? []
+  if (rows.length === 0) throw new Error(`${src.key}: empty quote response`)
+  const bySecid = new Map(rows.map((r) => [`${r.f13}.${r.f12}`, r]))
+  const date = todayDir()
+  const discovered = stamp()
+  const prev = previousSnapshot(src)
+  const hkdCny = num(bySecid.get(EM_FX_SECID)?.f2)
+  const items: ScannedItem[] = []
+
+  for (const w of EM_WATCHLIST) {
+    // A+H 双上市标的在汇率缺失时，两条腿 summary 注明溢价条目被跳过
+    const fxNote =
+      w.aSecid && w.hkSecid && hkdCny === null ? "港币兑人民币汇率不可用，本次未生成 H/A 溢价条目。" : ""
+    for (const secid of [w.aSecid, w.hkSecid].filter((x): x is string => x !== null)) {
+      const r = bySecid.get(secid)
+      const price = num(r?.f2)
+      const pct = num(r?.f3)
+      if (!r || price === null || pct === null) continue
+      const info = secidInfo(secid)
+      const ccy = info.suffix === "HK" ? "港元" : "元"
+      const dir = pct > 0 ? "日涨" : pct < 0 ? "日跌" : "日平"
+      // 环比：从历史最近一次 em-quotes.json 里找同一 secid 的快照
+      const prevData = qdataOf(prev?.find((i) => qdataOf(i)?.secid === secid))
+      const prevPrice = num(prevData?.price)
+      const cmp =
+        prevPrice !== null
+          ? `环比上次扫描（${String(prevData?.date ?? "?")}）：${price - prevPrice > 0 ? "+" : ""}${(price - prevPrice).toFixed(2)} ${ccy}（${fmtSignedPct(((price - prevPrice) / prevPrice) * 100)}）。`
+          : "首次快照，无环比。"
+      const human =
+        `开 ${num(r.f17)?.toFixed(2) ?? "—"} / 高 ${num(r.f15)?.toFixed(2) ?? "—"} / 低 ${num(r.f16)?.toFixed(2) ?? "—"}` +
+        ` / 昨收 ${num(r.f18)?.toFixed(2) ?? "—"} ${ccy}；成交额 ${fmtAmount(num(r.f6))}${ccy}，` +
+        `换手率 ${num(r.f8)?.toFixed(2) ?? "—"}%；PE ${num(r.f9)?.toFixed(2) ?? "—"}，PB ${num(r.f23)?.toFixed(2) ?? "—"}；` +
+        `总市值 ${fmtAmount(num(r.f20))}${ccy}，流通市值 ${fmtAmount(num(r.f21))}${ccy}。${cmp}${fxNote}`
+      items.push({
+        id: hashUrl(`quote:${secid}:${date}`),
+        title: `${w.nameZh}(${info.code}.${info.suffix})：收盘 ${price.toFixed(2)} ${ccy}，${dir} ${Math.abs(pct).toFixed(2)}%，总市值 ${fmtAmount(num(r.f20))}${ccy}`,
+        url: info.quoteUrl,
+        source: src.key,
+        layer: src.layer,
+        pillar: src.pillar,
+        publishedAt: null,
+        discoveredAt: discovered,
+        summary: withQdata(human, { secid, price, date }),
+      })
+    }
+    // H/A 溢价条目（仅 A+H 双上市标的，需要港币兑人民币汇率）
+    if (w.aSecid && w.hkSecid && hkdCny !== null) {
+      const aPrice = num(bySecid.get(w.aSecid)?.f2)
+      const hPrice = num(bySecid.get(w.hkSecid)?.f2)
+      if (aPrice === null || hPrice === null || aPrice === 0) continue
+      const hCny = hPrice * hkdCny
+      const premium = (hCny / aPrice - 1) * 100
+      const prevData = qdataOf(prev?.find((i) => qdataOf(i)?.secid === `ha:${w.aSecid}`))
+      const prevPremium = num(prevData?.premium)
+      const cmp =
+        prevPremium !== null
+          ? `环比上次扫描（${String(prevData?.date ?? "?")}）：溢价 ${premium - prevPremium > 0 ? "+" : ""}${(premium - prevPremium).toFixed(2)} pct。`
+          : "首次快照，无环比。"
+      items.push({
+        id: hashUrl(`ha-premium:${w.aSecid}:${date}`),
+        title:
+          `${w.nameZh} H/A 比价：H 股 ${hPrice.toFixed(2)} 港元 ≈ ${hCny.toFixed(2)} 元人民币，` +
+          `较 A 股（${aPrice.toFixed(2)} 元）${premium >= 0 ? "溢价" : "折价"} ${Math.abs(premium).toFixed(1)}%`,
+        url: secidInfo(w.aSecid).quoteUrl,
+        source: src.key,
+        layer: src.layer,
+        pillar: src.pillar,
+        publishedAt: null,
+        discoveredAt: discovered,
+        summary: withQdata(
+          `H 股收盘 ${hPrice.toFixed(2)} 港元，按港币兑离岸人民币 ${hkdCny} 折算 ${hCny.toFixed(2)} 元；A 股收盘 ${aPrice.toFixed(2)} 元。溢价 = H 折算价 / A 价 - 1。${cmp}`,
+          { secid: `ha:${w.aSecid}`, premium, date },
+        ),
+      })
+    }
+  }
+  return items
+}
+
+/* 沪深港通持股：仅南向（北向个股持股东财数据止于 2024-08-16，见 config note）。
+ * 每个港股标的取最新一条日度持股（RN=1 + TRADE_DATE 倒序）。 */
+export async function fetchEmHoldings(src: SourceConfig): Promise<ScannedItem[]> {
+  const prev = previousSnapshot(src)
+  const discovered = stamp()
+  const items: ScannedItem[] = []
+  for (const w of EM_WATCHLIST) {
+    if (!w.hkSecid) continue
+    const code = w.hkSecid.split(".")[1]
+    const filter = encodeURIComponent(`(RN=1)(SECURITY_CODE="${code}")(INTERVAL_TYPE="1")`)
+    const url =
+      `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_MUTUAL_STOCK_HOLDRANKS&columns=ALL` +
+      `&filter=${filter}&pageNumber=1&pageSize=1&sortColumns=TRADE_DATE&sortTypes=-1&source=WEB&client=WEB`
+    const json = JSON.parse(await fetchText(url)) as { result?: { data?: EmHoldingRow[] } }
+    const row = json.result?.data?.[0]
+    if (!row || !row.TRADE_DATE) continue
+    const tradeDate = row.TRADE_DATE.slice(0, 10)
+    const shares = num(row.HOLD_SHARES)
+    const ratio = num(row.HOLD_SHARES_RATIO)
+    const dayAdd = num(row.ADD_SHARES_REPAIR)
+    const dayAddText =
+      dayAdd === null ? "—" : dayAdd === 0 ? "持平" : `${dayAdd > 0 ? "+" : ""}${fmtShares(dayAdd)}`
+    const prevData = qdataOf(prev?.find((i) => qdataOf(i)?.code === code))
+    const prevShares = num(prevData?.shares)
+    const prevRatio = num(prevData?.ratio)
+    const cmp =
+      prevShares !== null && shares !== null
+        ? `环比上次扫描（${String(prevData?.tradeDate ?? "?")}）：持股 ${shares - prevShares > 0 ? "+" : ""}${fmtShares(shares - prevShares)}` +
+          (prevRatio !== null && ratio !== null
+            ? `，占比 ${ratio - prevRatio > 0 ? "+" : ""}${(ratio - prevRatio).toFixed(2)} pct`
+            : "") +
+          "。"
+        : "首次快照，无环比。"
+    const human =
+      `截至 ${tradeDate}：南向（港股通）合计持股 ${shares !== null ? shares.toLocaleString("en-US") : "—"} 股，` +
+      `持股市值 ${fmtAmount(num(row.HOLD_MARKET_CAP))}港元，占港股股本 ${ratio?.toFixed(2) ?? "—"}%；` +
+      `当日收盘价 ${num(row.CLOSE_PRICE)?.toFixed(2) ?? "—"} 港元。${cmp}`
+    items.push({
+      id: hashUrl(`south-hold:${code}:${tradeDate}`),
+      title: `${w.nameZh}(${code}.HK)：南向持股 ${fmtShares(shares)}，占港股股本 ${ratio?.toFixed(2) ?? "—"}%，较上日 ${dayAddText}`,
+      url: "https://data.eastmoney.com/hsgtcg/",
+      source: src.key,
+      layer: src.layer,
+      pillar: src.pillar,
+      publishedAt: new Date(tradeDate).toISOString(),
+      discoveredAt: discovered,
+      summary: withQdata(human, { code, shares, ratio, tradeDate }),
+    })
+  }
+  if (items.length === 0) throw new Error(`${src.key}: no southbound holdings rows`)
+  return items
+}
+
 async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[] }> {
   if (src.kind === "rss") return { src, items: await fetchRss(src) }
   if (src.kind === "rsshub") return { src, items: await fetchRsshub(src) }
   if (src.kind === "eastmoney-ann") return { src, items: await fetchEastmoneyAnn(src) }
   if (src.kind === "hkex-ann") return { src, items: await fetchHkexAnn(src) }
+  if (src.kind === "em-quotes") return { src, items: await fetchEmQuotes(src) }
+  if (src.kind === "em-holdings") return { src, items: await fetchEmHoldings(src) }
   if (src.kind === "firecrawl" || src.kind === "firecrawl-search") {
     return { src, items: await fetchFirecrawl(src) }
   }
@@ -614,7 +871,10 @@ function buildSummary(items: ScannedItem[]): string {
   return lines.join("\n")
 }
 
-main().catch((e) => {
-  console.error("Scan failed:", e)
-  process.exit(1)
-})
+// 仅直接执行时跑全量扫描；被 import（如单源冒烟脚本）时不触发
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((e) => {
+    console.error("Scan failed:", e)
+    process.exit(1)
+  })
+}

@@ -7,6 +7,8 @@
  *   html     — 抓取 HTML 页面，用 selector 提取列表（尚未接入解析，先存原始 HTML）
  *   firecrawl        — 经 Firecrawl API 抓取（无头渲染 + 反爬），从 clean markdown 提取链接
  *   firecrawl-search — 经 Firecrawl API 搜索（解决交易所/登录墙类反爬源）
+ *   em-quotes   — 东方财富 push2 行情快照（EM_WATCHLIST，无需密钥）
+ *   em-holdings — 东方财富 datacenter 沪深港通持股（南向，无需密钥）
  *
  * layer (S0-S4，参考 finhot):
  *   S0 权威原始源（官方公告/交易所）
@@ -26,6 +28,8 @@ export interface SourceConfig {
     | "firecrawl-search"
     | "eastmoney-ann"
     | "hkex-ann"
+    | "em-quotes"
+    | "em-holdings"
   url: string
   layer: "S0" | "S1" | "S2" | "S3"
   pillar: "overseas-capacity" | "geopolitics" | "markets" | "storage" | "mixed"
@@ -65,6 +69,31 @@ export const RSSHUB_INSTANCES = [
   "https://rsshub.app",
 ]
 
+/** 行情/持股 watchlist（em-quotes 与 em-holdings 两个信源共用）。 */
+export interface EmWatchItem {
+  /** 中文简称（条目 title 用）。 */
+  nameZh: string
+  /** 英文简称。 */
+  nameEn: string
+  /** A 股 secid（push2 市场前缀：0=深市，1=沪市）；纯港股标的为 null。 */
+  aSecid: string | null
+  /** 港股 secid（116=港股）；无港股为 null。 */
+  hkSecid: string | null
+}
+
+export const EM_WATCHLIST: EmWatchItem[] = [
+  { nameZh: "宁德时代", nameEn: "CATL", aSecid: "0.300750", hkSecid: "116.03750" },
+  { nameZh: "比亚迪", nameEn: "BYD", aSecid: "0.002594", hkSecid: "116.01211" },
+  { nameZh: "亿纬锂能", nameEn: "EVE", aSecid: "0.300014", hkSecid: null },
+  { nameZh: "国轩高科", nameEn: "Gotion", aSecid: "0.002074", hkSecid: null },
+  { nameZh: "中创新航", nameEn: "CALB", aSecid: null, hkSecid: "116.03931" },
+  { nameZh: "欣旺达", nameEn: "Sunwoda", aSecid: "0.300207", hkSecid: null },
+  { nameZh: "华友钴业", nameEn: "Huayou", aSecid: "1.603799", hkSecid: null },
+  { nameZh: "中伟股份", nameEn: "CNGR", aSecid: "0.300919", hkSecid: null },
+  { nameZh: "湖南裕能", nameEn: "Hunan Yuneng", aSecid: "0.301358", hkSecid: null },
+  { nameZh: "恩捷股份", nameEn: "Enjie", aSecid: "0.002812", hkSecid: null },
+]
+
 export const SOURCES: SourceConfig[] = [
   /* ---------- ① 产能地图 ---------- */
   { key: "cnevpost", name: "CnEVPost", kind: "rss", url: "https://cnevpost.com/feed/", layer: "S2", pillar: "overseas-capacity", enabled: true, note: "中国巨头海外动态当日全覆盖，首选时效源" },
@@ -93,6 +122,8 @@ export const SOURCES: SourceConfig[] = [
   { key: "xinhua", name: "新华社（新华网）", kind: "firecrawl", url: "https://www.news.cn/energy/", layer: "S0", pillar: "geopolitics", enabled: true, fcUrlPattern: "\\d{8}", fcMaxAgeDays: 90, note: "Firecrawl 实验：403 已解锁；URL 日期段过滤导航 + 90 天时效" },
 
   /* ---------- ③ 市场信号 ---------- */
+  { key: "em-quotes", name: "东方财富行情快照", kind: "em-quotes", url: "https://push2.eastmoney.com/api/qt/ulist.np/get", layer: "S1", pillar: "markets", enabled: true, note: "EM_WATCHLIST 行情快照（免费 JSON，无需密钥）；id 带扫描日期，每周扫描均算新增；summary 含环比上次扫描；CATL/BYD 附 H/A 溢价条目（HKD→CNY 用离岸价 133.HKDCNH）" },
+  { key: "em-holdings", name: "沪深港通持股（东财数据中心）", kind: "em-holdings", url: "https://datacenter-web.eastmoney.com/api/data/v1/get", layer: "S1", pillar: "markets", enabled: true, note: "仅南向（RPT_MUTUAL_STOCK_HOLDRANKS，覆盖 watchlist 3 个港股标的）；北向个股持股东财数据止于 2024-08-16（交易所信披调整后停更），不可得" },
   { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com/en/insight/release/", layer: "S1", pillar: "markets", enabled: true, note: "Press Release 列表，含全球装机份额" },
   { key: "eastmoney", name: "东方财富", kind: "rsshub", url: "", rsshubRoute: "eastmoney/report/industry", layer: "S3", pillar: "markets", enabled: true, note: "财报/研报/公告聚合" },
   { key: "wallstreetcn", name: "华尔街见闻", kind: "rsshub", url: "", rsshubRoute: "wallstreetcn/live", layer: "S3", pillar: "markets", enabled: true },

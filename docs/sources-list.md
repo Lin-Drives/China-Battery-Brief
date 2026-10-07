@@ -42,7 +42,7 @@ launchctl load ~/Library/LaunchAgents/com.cbb.scan.plist
 
 ### 抓取层信源状态（2026-08-10 定稿）
 
-**已接入（正常产出）**：CnEVPost / 华尔街见闻 / 东方财富 / CNBC / Energy-Storage.News（RSS）+ 财联社电报（RSSHub）+ CATL / EVE / 华友 / 中国储能网 / SNE（HTML 专用解析）。
+**已接入（正常产出）**：CnEVPost / 华尔街见闻 / 东方财富 / CNBC / Energy-Storage.News（RSS）+ 财联社电报（RSSHub）+ CATL / EVE / 华友 / 中国储能网 / SNE（HTML 专用解析）+ 东方财富行情快照 / 沪深港通持股（JSON 接口，2026-10-07 新增）。
 
 **已修复（2026-08-10）**：SNE——原 URL 302 跳转 + 缺 `/en/insight/release/` 路径，改对后抓到 12 条全球份额/装机数据。
 
@@ -110,6 +110,8 @@ launchctl load ~/Library/LaunchAgents/com.cbb.scan.plist
 
 | 站点 | URL | 语言 | 优先级 | 备注 |
 |---|---|---|---|---|
+| 东方财富行情快照（em-quotes） | push2.eastmoney.com | 中 | ★★★ | watchlist 12 条腿实时快照 + CATL/BYD H/A 溢价（HKD→CNY 用离岸价）；免费 JSON 无需密钥；id 带扫描日期，每周均计新增 |
+| 沪深港通持股（em-holdings） | datacenter-web.eastmoney.com | 中 | ★★ | 仅南向（港股通持 3 个港股标的，RPT_MUTUAL_STOCK_HOLDRANKS）；北向个股持股自 2024-08 交易所信披调整后停更，不可得 |
 | SNE Research | sneresearch.com | 英/韩 | ★★★ | 全球装机份额权威，免费 PR 含最新份额数据 |
 | 财联社 | cls.cn | 中 | ★★★ | 与①中文重复，公告/业绩披露最快 |
 | 东方财富 | eastmoney.com | 中 | ★★ | 财报/研报/公告聚合，免费 |
