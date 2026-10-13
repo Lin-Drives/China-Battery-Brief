@@ -35,14 +35,14 @@
   <text x="650" y="596" text-anchor="middle" font-family="Courier,monospace" font-size="16" letter-spacing="2" fill="#8E97A8">2025</text>
 
   <!-- framing annotations, right of the bars -->
-  <text x="780" y="320" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">EU readout: exports “halved” —</text>
-  <text x="780" y="350" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">measured against the pre-meeting</text>
-  <text x="780" y="380" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">curb proposal, not actual volumes</text>
+  <text x="780" y="320" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">Šefčovič on X: exports “halved” —</text>
+  <text x="780" y="350" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">vs the trajectory implied by</text>
+  <text x="780" y="380" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">July 2026’s 50,000-car month</text>
   <text x="780" y="440" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#C9F24B">MOFCOM: “growth ensured” —</text>
   <text x="780" y="470" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#C9F24B">measured from the 2025 baseline</text>
 
   <!-- footer -->
   <line x1="72" y1="628" x2="1128" y2="628" stroke="#1B2A33" stroke-width="1"/>
-  <text x="72" y="654" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.5" fill="#8E97A8">SOURCE: EUROSTAT, CITED BY CHINA’S MINISTRY OF COMMERCE, 2026-10-13 · CEILING POSITION SCHEMATIC</text>
+  <text x="72" y="654" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.5" fill="#8E97A8">SOURCE: EUROSTAT, CITED BY CHINA’S MINISTRY OF COMMERCE, 2026-10-12 · CEILING POSITION SCHEMATIC</text>
   <text x="1128" y="654" text-anchor="end" font-family="Courier,monospace" font-size="12.5" letter-spacing="2" fill="#C9F24B">CBB · No.058</text>
 </svg>

@@ -35,14 +35,14 @@
   <text x="650" y="596" text-anchor="middle" font-family="Courier,monospace" font-size="16" letter-spacing="2" fill="#8E97A8">2025</text>
 
   <!-- annotations -->
-  <text x="780" y="320" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">欧方口径：出口“减半”——</text>
-  <text x="780" y="350" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">相对的是会前的限制方案，</text>
-  <text x="780" y="380" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">不是实际销量</text>
+  <text x="780" y="320" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">谢夫乔维奇 X 帖：出口“减半”——</text>
+  <text x="780" y="350" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">相对的是 2026 年 7 月单月</text>
+  <text x="780" y="380" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">5 万辆所隐含的轨迹</text>
   <text x="780" y="440" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#C9F24B">商务部口径：“确保出口空间”——</text>
   <text x="780" y="470" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#C9F24B">相对的是 2025 年基准</text>
 
   <!-- footer -->
   <line x1="72" y1="628" x2="1128" y2="628" stroke="#1B2A33" stroke-width="1"/>
-  <text x="72" y="654" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.5" fill="#8E97A8">数据来源：欧盟统计局，中国商务部 2026-10-13 援引 · 天花板位置为示意</text>
+  <text x="72" y="654" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.5" fill="#8E97A8">数据来源：欧盟统计局，中国商务部 2026-10-12 援引 · 天花板位置为示意</text>
   <text x="1128" y="654" text-anchor="end" font-family="Courier,monospace" font-size="12.5" letter-spacing="2" fill="#C9F24B">CBB · No.058</text>
 </svg>
