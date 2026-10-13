@@ -24,7 +24,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenvConfig({ path: join(__dirname, "..", ".env") });
 const ROOT = join(__dirname, "..", "scan");
 const CONCURRENCY = 4;
-const FETCH_TIMEOUT_MS = 12000;
+// 规则模式下海外源直连单跳约 10s，301 跳转需两跳，12s 超时会被打断
+const FETCH_TIMEOUT_MS = 30000;
 /** 慢速源（政府站等敏感站点）串行请求之间的最小间隔（毫秒），避免突发访问。 */
 const SLOW_GAP_MS = 6000;
 const UA =
