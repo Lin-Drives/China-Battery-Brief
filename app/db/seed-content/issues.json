@@ -937,5 +937,104 @@
         "date": "2026-05-12"
       }
     ]
+  },
+  {
+    "number": 58,
+    "slug": "half-of-what",
+    "title": "Half of What? The China–EU Hybrid Deal in Two Baselines",
+    "dek": "The EU readout calls the October 9 arrangement a halving of Chinese hybrid exports; China's commerce ministry calls it an upward arrangement on the 2025 baseline of 302,000 cars. Both are right — each picked its own denominator. Plus: Q3 reporting season opens with materials profits and silent cell makers.",
+    "publishedAt": "2026-10-15T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "geopolitics",
+      "markets"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": "/cover-058.svg",
+    "contentFile": "issue-058.md",
+    "highlights": [
+      {
+        "tag": "geopolitics",
+        "text": "Same deal, two baselines: the EU's 'halved' is measured against the pre-meeting curb proposal; China's 'growth' from the 302,000 cars actually imported in 2025"
+      },
+      {
+        "tag": "markets",
+        "text": "Q3 season opens: separator and lithium producers forecast surging profits; CATL, BYD, EVE, Gotion and CALB have filed nothing ahead of the October 31 deadline"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "商务部",
+        "title": "商务部新闻发言人就中欧混动汽车、电动汽车磋商共识答记者问",
+        "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_4d502e1d49fd4480b39a6cfd0d752038.html",
+        "date": "2026-10-13"
+      },
+      {
+        "outlet": "商务部",
+        "title": "王文涛部长与欧委会贸易和经济安全委员谢夫乔维奇共同召开中欧贸易投资磋商机制第二次例会",
+        "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_663946a91806452182d02b3f0f62d4fc.html",
+        "date": "2026-10-12"
+      },
+      {
+        "outlet": "商务部欧洲司",
+        "title": "商务部欧洲司负责人解读中欧贸易投资磋商机制第二次例会成果",
+        "url": "https://www.cls.cn/detail/2501143",
+        "date": "2026-10-10"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "EU plans Chinese hybrid import curbs as test case for trade rebalancing, report says",
+        "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/",
+        "date": "2026-10-07"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China, EU make progress on hybrid trade as EU says exports will be halved",
+        "url": "https://cnevpost.com/2026/10/09/china-eu-make-progress-hybrid-trade/",
+        "date": "2026-10-09"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China says EU hybrid trade deal allows export growth from 2025 levels",
+        "url": "https://cnevpost.com/2026/10/12/china-eu-hybrid-trade-allows-growth/",
+        "date": "2026-10-12"
+      },
+      {
+        "outlet": "玉渊谭天",
+        "title": "中欧经贸，需要寻找更大的共识",
+        "url": "https://wallstreetcn.com/livenews/3174783",
+        "date": "2026-10-07"
+      },
+      {
+        "outlet": "华龙证券",
+        "title": "汽车行业周报：中欧形成汽车贸易阶段性共识",
+        "url": "https://pdf.dfcfw.com/pdf/H3_AP202610131830395373_1.pdf",
+        "date": "2026-10-12"
+      },
+      {
+        "outlet": "财联社",
+        "title": "三季报行情正式打响",
+        "url": "https://www.cls.cn/detail/2503517",
+        "date": "2026-10-13"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Interim reports of CATL, EVE, REPT and other listed Chinese BESS players",
+        "url": "https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
+        "date": "2026-08-28"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China NEV sales hit year-to-date high in September as export surge offsets domestic decline, CAAM data shows",
+        "url": "https://cnevpost.com/2026/10/12/china-sept-2026-nev-sales-caam/",
+        "date": "2026-10-12"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China September NEV retail sales fall 16.7% as penetration hits record 67%, CPCA data shows",
+        "url": "https://cnevpost.com/2026/10/12/china-sept-2026-nev-retail-cpca/",
+        "date": "2026-10-12"
+      }
+    ]
   }
 ]

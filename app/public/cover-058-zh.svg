@@ -1,0 +1,56 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 058 — 减半，还是增长：中欧混动共识的两个基准">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <!-- ghost issue number -->
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">058</text>
+
+  <!-- corner ticks -->
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <!-- masthead -->
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 058 · THU 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- title -->
+  <text x="48" y="178" font-family="Georgia,serif" font-size="60" fill="#F4F0E6">减半，</text>
+  <text x="48" y="254" font-family="Georgia,serif" font-size="60" fill="#F4F0E6">还是增长</text>
+  <text x="48" y="306" font-family="Georgia,serif" font-style="italic" font-size="21" fill="#C9F24B">一个中欧混动协议，两个基准</text>
+
+  <!-- the two numbers -->
+  <text x="48" y="362" font-family="Courier,monospace" font-size="12" letter-spacing="2.2" fill="#8E97A8">欧盟自华混动汽车进口 · 欧盟统计局（商务部援引）</text>
+
+  <!-- 2024 bar -->
+  <rect x="48" y="442" width="120" height="14" fill="#5ADFC3" opacity="0.85"/>
+  <text x="48" y="430" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2024</text>
+  <text x="180" y="455" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">10.7 万辆</text>
+
+  <!-- 2025 bar -->
+  <rect x="48" y="492" width="340" height="14" fill="#C9F24B"/>
+  <text x="48" y="480" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2025</text>
+  <text x="400" y="505" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">30.2 万辆</text>
+
+  <!-- ceiling line -->
+  <line x1="48" y1="398" x2="560" y2="398" stroke="#F0A832" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="572" y="402" font-family="Courier,monospace" font-size="13" fill="#F0A832">天花板：向上</text>
+
+  <!-- bottom note -->
+  <text x="48" y="556" font-family="Courier,monospace" font-size="12.5" letter-spacing="1" fill="#8E97A8">欧方：“出口减半” · 商务部：“在 2025 年基础上向上安排”</text>
+</svg>

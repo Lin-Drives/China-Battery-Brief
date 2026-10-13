@@ -1,0 +1,48 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EU hybrid-car imports from China: 107,000 in 2024, 302,000 in 2025, with a dashed negotiated ceiling above the 2025 level">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <!-- header -->
+  <text x="72" y="64" font-family="Courier,monospace" font-size="14" letter-spacing="3" fill="#8E97A8">EU HYBRID-CAR IMPORTS FROM CHINA · UNITS PER YEAR</text>
+  <line x1="72" y1="86" x2="1128" y2="86" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- negotiated ceiling: dashed line above 2025 bar -->
+  <text x="1010" y="106" text-anchor="end" font-family="Courier,monospace" font-size="15" fill="#F0A832">NEGOTIATED CEILING</text>
+  <text x="1010" y="128" text-anchor="end" font-family="Courier,monospace" font-size="12.5" fill="#F0A832" opacity="0.8">“UPWARD ARRANGEMENT ON THE 2025 BASE” — NO OFFICIAL FIGURE</text>
+  <line x1="500" y1="142" x2="1010" y2="142" stroke="#F0A832" stroke-width="2.5" stroke-dasharray="10 7"/>
+
+  <!-- up arrow from 2025 bar top to ceiling -->
+  <path d="M830 176 V150" stroke="#F0A832" stroke-width="2.5" fill="none"/>
+  <path d="M822 162 L830 148 L838 162 Z" fill="#F0A832"/>
+
+  <!-- axis -->
+  <line x1="120" y1="560" x2="1128" y2="560" stroke="#8E97A8" stroke-width="1" opacity="0.5"/>
+
+  <!-- 2024 bar: 107k -> 135px -->
+  <rect x="240" y="425" width="180" height="135" fill="#5ADFC3" opacity="0.85"/>
+  <text x="330" y="478" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#0C1017">107,000</text>
+  <text x="330" y="596" text-anchor="middle" font-family="Courier,monospace" font-size="16" letter-spacing="2" fill="#8E97A8">2024</text>
+
+  <!-- 2025 bar: 302k -> 380px -->
+  <rect x="560" y="180" width="180" height="380" fill="#C9F24B"/>
+  <text x="650" y="233" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#0C1017">302,000</text>
+  <text x="650" y="596" text-anchor="middle" font-family="Courier,monospace" font-size="16" letter-spacing="2" fill="#8E97A8">2025</text>
+
+  <!-- framing annotations, right of the bars -->
+  <text x="780" y="320" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">EU readout: exports “halved” —</text>
+  <text x="780" y="350" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">measured against the pre-meeting</text>
+  <text x="780" y="380" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#F4F0E6">curb proposal, not actual volumes</text>
+  <text x="780" y="440" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#C9F24B">MOFCOM: “growth ensured” —</text>
+  <text x="780" y="470" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#C9F24B">measured from the 2025 baseline</text>
+
+  <!-- footer -->
+  <line x1="72" y1="628" x2="1128" y2="628" stroke="#1B2A33" stroke-width="1"/>
+  <text x="72" y="654" font-family="Courier,monospace" font-size="12.5" letter-spacing="1.5" fill="#8E97A8">SOURCE: EUROSTAT, CITED BY CHINA’S MINISTRY OF COMMERCE, 2026-10-13 · CEILING POSITION SCHEMATIC</text>
+  <text x="1128" y="654" text-anchor="end" font-family="Courier,monospace" font-size="12.5" letter-spacing="2" fill="#C9F24B">CBB · No.058</text>
+</svg>
