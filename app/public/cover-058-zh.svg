@@ -37,15 +37,15 @@
   <!-- the two numbers -->
   <text x="48" y="362" font-family="Courier,monospace" font-size="12" letter-spacing="2.2" fill="#8E97A8">欧盟自华混动汽车进口 · 欧盟统计局（商务部援引）</text>
 
-  <!-- 2024 bar -->
-  <rect x="48" y="442" width="120" height="14" fill="#5ADFC3" opacity="0.85"/>
-  <text x="48" y="430" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2024</text>
-  <text x="180" y="455" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">10.7 万辆</text>
+  <!-- 2025 bar (top — the base the ceiling sits above) -->
+  <rect x="48" y="442" width="340" height="14" fill="#C9F24B"/>
+  <text x="48" y="430" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2025</text>
+  <text x="400" y="455" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">30.2 万辆</text>
 
-  <!-- 2025 bar -->
-  <rect x="48" y="492" width="340" height="14" fill="#C9F24B"/>
-  <text x="48" y="480" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2025</text>
-  <text x="400" y="505" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">30.2 万辆</text>
+  <!-- 2024 bar (below) -->
+  <rect x="48" y="492" width="120" height="14" fill="#5ADFC3" opacity="0.85"/>
+  <text x="48" y="480" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2024</text>
+  <text x="180" y="505" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">10.7 万辆</text>
 
   <!-- ceiling line -->
   <line x1="48" y1="398" x2="560" y2="398" stroke="#F0A832" stroke-width="2" stroke-dasharray="8 6"/>

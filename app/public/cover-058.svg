@@ -37,15 +37,15 @@
   <!-- the two numbers -->
   <text x="48" y="356" font-family="Courier,monospace" font-size="12" letter-spacing="2.2" fill="#8E97A8">EU HYBRID IMPORTS FROM CHINA · EUROSTAT VIA MOFCOM</text>
 
-  <!-- 2024 bar -->
-  <rect x="48" y="436" width="120" height="14" fill="#5ADFC3" opacity="0.85"/>
-  <text x="48" y="424" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2024</text>
-  <text x="180" y="449" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">107,000</text>
+  <!-- 2025 bar (top — the base the ceiling sits above) -->
+  <rect x="48" y="436" width="340" height="14" fill="#C9F24B"/>
+  <text x="48" y="424" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2025</text>
+  <text x="400" y="449" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">302,000</text>
 
-  <!-- 2025 bar -->
-  <rect x="48" y="486" width="340" height="14" fill="#C9F24B"/>
-  <text x="48" y="474" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2025</text>
-  <text x="400" y="499" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">302,000</text>
+  <!-- 2024 bar (below) -->
+  <rect x="48" y="486" width="120" height="14" fill="#5ADFC3" opacity="0.85"/>
+  <text x="48" y="474" font-family="Courier,monospace" font-size="14" fill="#8E97A8">2024</text>
+  <text x="180" y="499" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">107,000</text>
 
   <!-- ceiling line -->
   <line x1="48" y1="392" x2="560" y2="392" stroke="#F0A832" stroke-width="2" stroke-dasharray="8 6"/>

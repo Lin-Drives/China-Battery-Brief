@@ -964,34 +964,16 @@
     ],
     "sources": [
       {
-        "outlet": "商务部",
-        "title": "商务部新闻发言人就中欧混动汽车、电动汽车磋商共识答记者问",
-        "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_4d502e1d49fd4480b39a6cfd0d752038.html",
-        "date": "2026-10-12"
-      },
-      {
-        "outlet": "商务部",
-        "title": "王文涛部长与欧委会贸易和经济安全委员谢夫乔维奇共同召开中欧贸易投资磋商机制第二次例会",
-        "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_663946a91806452182d02b3f0f62d4fc.html",
-        "date": "2026-10-12"
-      },
-      {
-        "outlet": "商务部欧洲司",
-        "title": "商务部欧洲司负责人解读中欧贸易投资磋商机制第二次例会成果",
-        "url": "https://www.cls.cn/detail/2501143",
-        "date": "2026-10-10"
-      },
-      {
-        "outlet": "CnEVPost",
-        "title": "EU plans Chinese hybrid import curbs as test case for trade rebalancing, report says",
-        "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/",
-        "date": "2026-10-07"
-      },
-      {
         "outlet": "CnEVPost",
         "title": "China, EU make progress on hybrid trade as EU says exports will be halved",
         "url": "https://cnevpost.com/2026/10/09/china-eu-make-progress-hybrid-trade/",
         "date": "2026-10-09"
+      },
+      {
+        "outlet": "商务部",
+        "title": "商务部新闻发言人就中欧混动汽车、电动汽车磋商共识答记者问",
+        "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_4d502e1d49fd4480b39a6cfd0d752038.html",
+        "date": "2026-10-12"
       },
       {
         "outlet": "CnEVPost",
@@ -1000,10 +982,28 @@
         "date": "2026-10-12"
       },
       {
+        "outlet": "商务部",
+        "title": "王文涛部长与欧委会贸易和经济安全委员谢夫乔维奇共同召开中欧贸易投资磋商机制第二次例会",
+        "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_663946a91806452182d02b3f0f62d4fc.html",
+        "date": "2026-10"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "EU plans Chinese hybrid import curbs as test case for trade rebalancing, report says",
+        "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/",
+        "date": "2026-10-07"
+      },
+      {
         "outlet": "玉渊谭天",
         "title": "中欧经贸，需要寻找更大的共识",
         "url": "https://wallstreetcn.com/livenews/3174783",
         "date": "2026-10-07"
+      },
+      {
+        "outlet": "商务部欧洲司",
+        "title": "商务部欧洲司负责人解读中欧贸易投资磋商机制第二次例会成果",
+        "url": "https://www.cls.cn/detail/2501143",
+        "date": "2026-10-10"
       },
       {
         "outlet": "华龙证券",
@@ -1012,16 +1012,52 @@
         "date": "2026-10-12"
       },
       {
+        "outlet": "商务部",
+        "title": "商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问",
+        "url": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_6997d22d59cc4196a5bb3954828861ec.html",
+        "date": "2026-10"
+      },
+      {
+        "outlet": "财联社",
+        "title": "假期要闻汇总",
+        "url": "https://www.cls.cn/detail/2498581",
+        "date": "2026-10-07"
+      },
+      {
+        "outlet": "Global Trade Alert",
+        "title": "Chinese Import Penetration in EU Markets in 5 Sensitive Sectors",
+        "url": "https://globaltradealert.org/reports/Chinese-import-penetration-in-EU-markets-in-5-sensitive-sectors",
+        "date": "2026-10"
+      },
+      {
         "outlet": "财联社",
         "title": "三季报行情正式打响",
         "url": "https://www.cls.cn/detail/2503517",
         "date": "2026-10-13"
       },
       {
+        "outlet": "财联社",
+        "title": "恩捷股份 2026 年前三季度业绩预告快讯",
+        "url": "https://api3.cls.cn/share/article/2503731",
+        "date": "2026-10-13"
+      },
+      {
+        "outlet": "华尔街见闻",
+        "title": "盐湖股份 2026 年前三季度业绩预告快讯",
+        "url": "https://wallstreetcn.com/livenews/3177902",
+        "date": "2026-10-13"
+      },
+      {
         "outlet": "Energy-Storage.News",
-        "title": "Interim reports of CATL, EVE, REPT and other listed Chinese BESS players",
+        "title": "Interim reports of CATL, EVE, REPT and other listed Chinese BESS players: Leaders see steady earnings growth, second-tier returns to profitability",
         "url": "https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
         "date": "2026-08-28"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "CATL, EVE Energy lead Chinese manufacturers' battery storage cell price hikes",
+        "url": "https://www.energy-storage.news/catl-eve-energy-lead-chinese-manufacturers-battery-storage-cell-price-hikes/",
+        "date": "2026-09-09"
       },
       {
         "outlet": "CnEVPost",
@@ -1034,6 +1070,12 @@
         "title": "China September NEV retail sales fall 16.7% as penetration hits record 67%, CPCA data shows",
         "url": "https://cnevpost.com/2026/10/12/china-sept-2026-nev-retail-cpca/",
         "date": "2026-10-12"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "China NEV export share in September: BYD leads with 31.1%, Chery rises to second",
+        "url": "https://cnevpost.com/2026/10/13/china-nev-export-share-sept-2026/",
+        "date": "2026-10-13"
       }
     ]
   }
