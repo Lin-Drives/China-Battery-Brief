@@ -66,6 +66,50 @@ export function stripDanglingFootnoteRefs(markdown: string): string {
   )
 }
 
+type HNode = {
+  type: string
+  tagName?: string
+  value?: string
+  properties?: Record<string, unknown>
+  children?: HNode[]
+}
+
+/** Wrap `<!-- horizon -->` … `<!-- /horizon -->` in a `<horizonbox>` element so a
+ *  closing preview section can render as a bordered module. Done at the hast
+ *  level so the markdown stays one parse — splitting it would reset gfm's
+ *  footnote numbering and break the in-text callouts. */
+function rehypeHorizon() {
+  const isMarker = (n: HNode | undefined, close: boolean) =>
+    n?.type === 'raw' &&
+    new RegExp(`^<!--\\s*${close ? '\\/' : ''}horizon\\s*-->$`).test(
+      String(n.value ?? '').trim(),
+    )
+  return (tree: { children?: HNode[] }) => {
+    const kids = tree.children
+    if (!kids) return
+    const out: HNode[] = []
+    for (let i = 0; i < kids.length; i++) {
+      if (!isMarker(kids[i], false)) {
+        out.push(kids[i])
+        continue
+      }
+      const inner: HNode[] = []
+      while (++i < kids.length && !isMarker(kids[i], true)) inner.push(kids[i])
+      out.push({
+        type: 'element',
+        tagName: 'horizonbox',
+        properties: {},
+        children: inner,
+      })
+    }
+    tree.children = out
+  }
+}
+
+function HorizonBox({ children }: { children?: ReactNode }) {
+  return <div className="cbb-horizon">{children}</div>
+}
+
 /* Scoped reader styles that Tailwind can't express (drop cap, footnote markers).
    Everything is namespaced under .cbb-reader and driven by the sheet's CSS vars
    so the paper-tone flip (cream / sepia / night) keeps working. */
@@ -86,9 +130,24 @@ const READER_CSS = `
   color: var(--sheet-muted);
   font-weight: 600;
 }
-.cbb-reader sup + sup::before {
-  content: '、';
-  font-weight: 400;
+.cbb-reader .cbb-horizon {
+  margin: 3.5rem 0 0;
+  padding: 1.6rem 1.75rem 0.35rem;
+  border: 1px solid var(--sheet-line);
+  border-radius: 3px;
+  background: var(--sheet-2);
+}
+.cbb-reader .cbb-horizon h2 {
+  margin-top: 0;
+}
+.cbb-reader .cbb-horizon h2 + p::first-letter {
+  float: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  border-bottom: 0;
 }
 `
 
@@ -110,8 +169,21 @@ export default function ReaderMarkdown({
     () => headings.map((h) => kickers.get(h.text) ?? undefined),
     [headings, kickers],
   )
+  // Footnote refs written back-to-back (e.g. `[^1][^7]`) get a `、` separator.
+  // We detect true adjacency from source offsets via `node.position`; a CSS
+  // sibling combinator can't — text nodes are ignored, so it would wrongly
+  // separate any two refs sharing a paragraph.
+  const refContinuations = useMemo(() => {
+    const offsets = new Set<number>()
+    const re = /\[\^\d+\]/g
+    let m: RegExpExecArray | null
+    while ((m = re.exec(content)) !== null) {
+      if (m.index > 0 && content[m.index - 1] === ']') offsets.add(m.index)
+    }
+    return offsets
+  }, [content])
   const components = useMemo<Components>(() => {
-    return {
+    const map: Components = {
       h2({ node, children, ...props }) {
         const text = String(
           Array.isArray(children) ? children.join('') : children ?? '',
@@ -189,9 +261,13 @@ export default function ReaderMarkdown({
       // Footnote refs: render as plain superscript markers (the sources ledger
       // is rendered from structured issue.sources, so gfm's footnote jump links
       // would point at a list we deliberately suppress).
-      sup({ node: _n, children, ...props }) {
+      sup({ node, children, ...props }) {
+        const offset = node?.position?.start?.offset
+        const needsSep =
+          typeof offset === 'number' && refContinuations.has(offset)
         return (
           <sup {...props}>
+            {needsSep ? <span style={{ fontWeight: 400 }}>、</span> : null}
             {collectText(children)}
           </sup>
         )
@@ -348,12 +424,18 @@ export default function ReaderMarkdown({
         return <section {...props}>{children}</section>
       },
     }
-  }, [headings, kickerSeq])
+    return { ...map, horizonbox: HorizonBox } as Components
+  }, [headings, kickerSeq, refContinuations])
 
   return (
     <div className="cbb-reader">
       <style>{READER_CSS}</style>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components} skipHtml>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeHorizon]}
+        components={components}
+        skipHtml
+      >
         {content}
       </ReactMarkdown>
     </div>
