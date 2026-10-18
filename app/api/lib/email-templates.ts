@@ -157,16 +157,36 @@ function renderMarkdown(md: string): string {
 }
 
 /* ----- Weekly blast: the issue itself ----- */
+const ISSUE_META: Record<
+  Lang,
+  {
+    subject: (number: number, title: string) => string;
+    kicker: (number: number, readingMinutes?: number | null) => string;
+  }
+> = {
+  en: {
+    subject: (number, title) => `Issue No. ${number} · ${title}`,
+    kicker: (number, readingMinutes) =>
+      `ISSUE NO. ${number}${readingMinutes ? ` · ${readingMinutes} MIN READ` : ""}`,
+  },
+  zh: {
+    subject: (number, title) => `第 ${number} 期 · ${title}`,
+    kicker: (number, readingMinutes) =>
+      `第 ${number} 期${readingMinutes ? ` · ${readingMinutes} 分钟阅读` : ""}`,
+  },
+};
+
 export function weeklyBlastEmail(
   lang: Lang = "en",
   issue: { number: number; title: string; dek?: string | null; content: string; readingMinutes?: number | null },
   opts: { unsubUrl: string; viewOnlineUrl: string },
 ): RenderedEmail {
   const c = COPY[lang];
-  const subject = `Issue No. ${issue.number} · ${issue.title}`;
+  const meta = ISSUE_META[lang];
+  const subject = meta.subject(issue.number, issue.title);
   const dek = issue.dek ? `<div style="font-size:15px;line-height:1.7;color:${MUTED};margin:4px 0 20px">${escapeHtml(issue.dek)}</div>` : "";
   const bodyHtml =
-    `<div style="font-size:13px;font-weight:700;letter-spacing:0.18em;color:${VOLT};text-transform:uppercase">ISSUE NO. ${issue.number}${issue.readingMinutes ? ` · ${issue.readingMinutes} MIN READ` : ""}</div>` +
+    `<div style="font-size:13px;font-weight:700;letter-spacing:0.18em;color:${VOLT};text-transform:uppercase">${escapeHtml(meta.kicker(issue.number, issue.readingMinutes))}</div>` +
     dek +
     `<div style="font-size:15px;line-height:1.8;color:${PAPER}">${renderMarkdown(issue.content)}</div>` +
     `<p style="margin:24px 0 0;font-size:13px"><a href="${escapeHtml(opts.viewOnlineUrl)}" style="color:${VOLT};text-decoration:none">${escapeHtml(c.viewOnline)} →</a></p>`;
@@ -175,7 +195,7 @@ export function weeklyBlastEmail(
     `<p><a href="${escapeHtml(opts.unsubUrl)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.unsubscribe)}</a></p>`;
   return {
     subject,
-    text: `Issue No. ${issue.number} · ${issue.title}\n\n${issue.dek ?? ""}\n\n${issue.content}\n\n${opts.viewOnlineUrl}\n\n${c.unsubscribe}: ${opts.unsubUrl}`,
+    text: `${subject}\n\n${issue.dek ?? ""}\n\n${issue.content}\n\n${opts.viewOnlineUrl}\n\n${c.unsubscribe}: ${opts.unsubUrl}`,
     html: shell({
       preheader: subject,
       brandName: c.brandName,

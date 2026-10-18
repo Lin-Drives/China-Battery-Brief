@@ -29,12 +29,14 @@ async function processSend(
   const lang = (sub.lang || "en") as Lang;
   if (!sub.unsubToken) return "skipped";
   const content = lang === "zh" ? issue.contentZh ?? issue.content : issue.content;
+  const title = lang === "zh" ? issue.titleZh ?? issue.title : issue.title;
+  const dek = lang === "zh" ? issue.dekZh ?? issue.dek : issue.dek;
   const unsubUrl = absoluteUrl(`/api/subscribe/unsubscribe?token=${sub.unsubToken}`);
   const viewOnlineUrl = absoluteUrl(`/briefs/${issue.slug}`);
   const mail = weeklyBlastEmail(lang, {
     number: issue.number,
-    title: issue.title,
-    dek: issue.dek,
+    title,
+    dek,
     content,
     readingMinutes: issue.readingMinutes,
   }, { unsubUrl, viewOnlineUrl });
