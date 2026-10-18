@@ -2,7 +2,7 @@ import { eq, lt } from "drizzle-orm";
 import { emailSends, emailSubscribers, issues } from "@db/schema";
 import { getDb } from "../queries/connection";
 import { sendMail } from "./mailer";
-import { absoluteUrl, weeklyBlastEmail, type Lang } from "./email-templates";
+import { absoluteUrl, smtpTestEmail, weeklyBlastEmail, type Lang } from "./email-templates";
 
 export type BlastSummary = {
   total: number;
@@ -124,16 +124,7 @@ export async function pruneEmailSends(
 
 /** Send a single test email to verify SMTP configuration (admin action). */
 export async function sendTestEmail(email: string, lang: Lang = "en"): Promise<{ sent: boolean; error?: string }> {
-  const mail = weeklyBlastEmail(lang, {
-    number: 0,
-    title: "Test — China Battery Brief",
-    dek: "An SMTP test message.",
-    content: "If you're reading this, your mail channel is configured.\n\nThank you.",
-    readingMinutes: null,
-  }, {
-    unsubUrl: absoluteUrl("/"),
-    viewOnlineUrl: absoluteUrl("/"),
-  });
+  const mail = smtpTestEmail(lang);
   const result = await sendMail({ to: email, subject: mail.subject, text: mail.text, html: mail.html });
   try {
     await getDb().insert(emailSends).values({

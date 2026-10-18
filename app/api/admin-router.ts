@@ -1,11 +1,14 @@
 import { TRPCError } from "@trpc/server";
-import { count, desc, eq, sql } from "drizzle-orm";
+import { and, count, desc, eq, like, sql } from "drizzle-orm";
 import { z } from "zod";
 import { emailSubscribers, emailSends, factories, issues, payments, policyEvents, users } from "@db/schema";
 import { createRouter, adminQuery } from "./middleware";
 import { getDb } from "./queries/connection";
 import { audit } from "./lib/audit";
 import { sendTestEmail, sendWeeklyBlast, pruneEmailSends } from "./lib/newsletter";
+import { subscribeEmail } from "./lib/subscribe";
+import type { Lang } from "./lib/email-templates";
+import { toCsv } from "./lib/csv";
 
 const issueInput = z.object({
   number: z.number().int().positive(),
@@ -240,32 +243,140 @@ export const adminRouter = createRouter({
     return { byStatus: statusMap, sends: sendMap };
   }),
 
-  "email.list": adminQuery.query(async () => {
-    return getDb()
-      .select({
-        id: emailSubscribers.id,
-        email: emailSubscribers.email,
-        status: emailSubscribers.status,
-        lang: emailSubscribers.lang,
-        verifiedAt: emailSubscribers.verifiedAt,
-        unsubscribedAt: emailSubscribers.unsubscribedAt,
-        createdAt: emailSubscribers.createdAt,
-      })
-      .from(emailSubscribers)
-      .orderBy(desc(emailSubscribers.createdAt))
-      .limit(500);
-  }),
+  "email.list": adminQuery
+    .input(
+      z.object({
+        q: z.string().trim().max(320).optional(),
+        status: z.enum(["pending", "verified", "unsubscribed"]).optional(),
+        lang: z.enum(["en", "zh"]).optional(),
+        page: z.number().int().min(1).default(1),
+        pageSize: z.number().int().min(1).max(100).default(50),
+      }),
+    )
+    .query(async ({ input }) => {
+      const db = getDb();
+      const where = and(
+        input.q ? like(emailSubscribers.email, `%${input.q}%`) : undefined,
+        input.status ? eq(emailSubscribers.status, input.status) : undefined,
+        input.lang ? eq(emailSubscribers.lang, input.lang) : undefined,
+      );
+      const [{ total }] = await db
+        .select({ total: count() })
+        .from(emailSubscribers)
+        .where(where);
+      const rows = await db
+        .select({
+          id: emailSubscribers.id,
+          email: emailSubscribers.email,
+          status: emailSubscribers.status,
+          lang: emailSubscribers.lang,
+          verifiedAt: emailSubscribers.verifiedAt,
+          unsubscribedAt: emailSubscribers.unsubscribedAt,
+          createdAt: emailSubscribers.createdAt,
+        })
+        .from(emailSubscribers)
+        .where(where)
+        .orderBy(desc(emailSubscribers.createdAt))
+        .limit(input.pageSize)
+        .offset((input.page - 1) * input.pageSize);
+      return { rows, total, page: input.page, pageSize: input.pageSize };
+    }),
+
+  "email.export": adminQuery
+    .input(
+      z.object({
+        q: z.string().trim().max(320).optional(),
+        status: z.enum(["pending", "verified", "unsubscribed"]).optional(),
+        lang: z.enum(["en", "zh"]).optional(),
+      }),
+    )
+    .query(async ({ input }) => {
+      const db = getDb();
+      const where = and(
+        input.q ? like(emailSubscribers.email, `%${input.q}%`) : undefined,
+        input.status ? eq(emailSubscribers.status, input.status) : undefined,
+        input.lang ? eq(emailSubscribers.lang, input.lang) : undefined,
+      );
+      const rows = await db
+        .select({
+          email: emailSubscribers.email,
+          status: emailSubscribers.status,
+          lang: emailSubscribers.lang,
+          createdAt: emailSubscribers.createdAt,
+          verifiedAt: emailSubscribers.verifiedAt,
+          unsubscribedAt: emailSubscribers.unsubscribedAt,
+        })
+        .from(emailSubscribers)
+        .where(where)
+        .orderBy(desc(emailSubscribers.createdAt))
+        .limit(10_000);
+      const csv = toCsv(
+        ["email", "status", "lang", "createdAt", "verifiedAt", "unsubscribedAt"],
+        rows.map((r) => [
+          r.email,
+          r.status,
+          r.lang,
+          r.createdAt?.toISOString(),
+          r.verifiedAt?.toISOString(),
+          r.unsubscribedAt?.toISOString(),
+        ]),
+      );
+      return { csv, total: rows.length };
+    }),
+
+  "email.resendConfirm": adminQuery
+    .input(z.object({ id: z.number().int().positive() }))
+    .mutation(async ({ ctx, input }) => {
+      const db = getDb();
+      const row = (
+        await db.select().from(emailSubscribers).where(eq(emailSubscribers.id, input.id))
+      )[0];
+      if (!row) throw new TRPCError({ code: "NOT_FOUND", message: "Subscriber not found" });
+      if (row.status === "verified") return { state: "already" as const };
+
+      const result = await subscribeEmail(row.email, (row.lang || "en") as Lang);
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.email.resend_confirm",
+        targetType: "email",
+        targetId: input.id,
+        meta: { email: row.email, state: result.state },
+      });
+      return result;
+    }),
+
+  "email.remove": adminQuery
+    .input(z.object({ id: z.number().int().positive() }))
+    .mutation(async ({ ctx, input }) => {
+      const db = getDb();
+      const row = (
+        await db.select().from(emailSubscribers).where(eq(emailSubscribers.id, input.id))
+      )[0];
+      if (!row) throw new TRPCError({ code: "NOT_FOUND", message: "Subscriber not found" });
+
+      await db.delete(emailSubscribers).where(eq(emailSubscribers.id, input.id));
+      await audit({
+        userId: ctx.user.id,
+        actorName: ctx.user.name,
+        action: "admin.email.remove",
+        targetType: "email",
+        targetId: input.id,
+        meta: { email: row.email, status: row.status },
+      });
+      return { ok: true as const };
+    }),
 
   "email.test": adminQuery
-    .input(z.object({ email: z.string().email() }))
+    .input(z.object({ email: z.string().email(), lang: z.enum(["en", "zh"]).default("en") }))
     .mutation(async ({ ctx, input }) => {
-      const result = await sendTestEmail(input.email);
+      const result = await sendTestEmail(input.email, input.lang);
       await audit({
         userId: ctx.user.id,
         actorName: ctx.user.name,
         action: "admin.email.test",
         targetType: "email",
-        meta: { email: input.email, sent: result.sent },
+        meta: { email: input.email, lang: input.lang, sent: result.sent },
       });
       return result;
     }),

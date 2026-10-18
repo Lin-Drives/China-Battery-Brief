@@ -34,6 +34,10 @@ const COPY: Record<Lang, Record<string, string>> = {
     unsubscribe: "Unsubscribe",
     viewOnline: "View online",
     sentBy: "Sent by",
+    testSubject: "SMTP test — China Battery Brief",
+    testHeading: "Mail channel test",
+    testBody:
+      "If you're reading this, your mail channel is configured. No action is needed.",
   },
   zh: {
     brandName: "中国电池简报",
@@ -51,6 +55,9 @@ const COPY: Record<Lang, Record<string, string>> = {
     unsubscribe: "取消订阅",
     viewOnline: "在线查看",
     sentBy: "发件方",
+    testSubject: "SMTP 测试 — 中国电池简报",
+    testHeading: "邮件通道测试",
+    testBody: "如果你能读到这封邮件，说明邮件通道已配置成功。无需任何操作。",
   },
 };
 
@@ -154,6 +161,23 @@ export function welcomeEmail(lang: Lang = "en"): RenderedEmail {
 /** Convert issue markdown to HTML (headings, lists, links, quotes, tables). */
 function renderMarkdown(md: string): string {
   return marked.parse(md) as string;
+}
+
+/* ----- Admin: SMTP test message ----- */
+export function smtpTestEmail(lang: Lang = "en"): RenderedEmail {
+  const c = COPY[lang];
+  const footerHtml = `<p>${escapeHtml(c.sentBy)}${lang === "zh" ? "：" : ": "}${escapeHtml(c.brandName)}</p>`;
+  return {
+    subject: c.testSubject,
+    text: c.testBody,
+    html: shell({
+      preheader: c.testBody,
+      brandName: c.brandName,
+      heading: c.testHeading,
+      bodyHtml: `<p>${escapeHtml(c.testBody)}</p>`,
+      footerHtml,
+    }),
+  };
 }
 
 /* ----- Weekly blast: the issue itself ----- */

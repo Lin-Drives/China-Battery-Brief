@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { weeklyBlastEmail } from "./email-templates";
+import { smtpTestEmail, weeklyBlastEmail } from "./email-templates";
 
 const links = {
   unsubUrl: "https://example.com/api/subscribe/unsubscribe?token=abc",
@@ -55,5 +55,21 @@ describe("weeklyBlastEmail", () => {
     );
 
     expect(mail.html).not.toContain("分钟阅读");
+  });
+});
+
+describe("smtpTestEmail", () => {
+  it("uses Chinese copy for Chinese test sends", () => {
+    const mail = smtpTestEmail("zh");
+
+    expect(mail.subject).toBe("SMTP 测试 — 中国电池简报");
+    expect(mail.text).toContain("邮件通道已配置成功");
+  });
+
+  it("uses English copy for English test sends", () => {
+    const mail = smtpTestEmail("en");
+
+    expect(mail.subject).toBe("SMTP test — China Battery Brief");
+    expect(mail.text).toContain("mail channel is configured");
   });
 });
