@@ -34,6 +34,8 @@ const COPY: Record<Lang, Record<string, string>> = {
     unsubscribe: "Unsubscribe",
     viewOnline: "View online",
     sentBy: "Sent by",
+    langEn: "English",
+    langZh: "中文",
     testSubject: "SMTP test — China Battery Brief",
     testHeading: "Mail channel test",
     testBody:
@@ -55,6 +57,8 @@ const COPY: Record<Lang, Record<string, string>> = {
     unsubscribe: "取消订阅",
     viewOnline: "在线查看",
     sentBy: "发件方",
+    langEn: "English",
+    langZh: "中文",
     testSubject: "SMTP 测试 — 中国电池简报",
     testHeading: "邮件通道测试",
     testBody: "如果你能读到这封邮件，说明邮件通道已配置成功。无需任何操作。",
@@ -114,10 +118,25 @@ function buttonHtml(href: string, label: string): string {
   return `<a href="${escapeHtml(href)}" style="display:inline-block;margin:12px 0 8px;padding:14px 26px;background:${VOLT};color:${INK};font-size:14px;font-weight:700;letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;border-radius:2px">${escapeHtml(label)}</a>`;
 }
 
+export type SwitchLangUrls = { en: string; zh: string };
+
+function languageLinksHtml(lang: Lang, urls: SwitchLangUrls): string {
+  const c = COPY[lang];
+  return (
+    `<a href="${escapeHtml(urls.en)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.langEn)}</a>` +
+    ` · <a href="${escapeHtml(urls.zh)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.langZh)}</a>`
+  );
+}
+
+function languageLinksText(lang: Lang, urls: SwitchLangUrls): string {
+  const c = COPY[lang];
+  return `${c.langEn}: ${urls.en}\n${c.langZh}: ${urls.zh}`;
+}
+
 /* ----- Transactional: double opt-in confirmation ----- */
 export function confirmEmail(
   lang: Lang = "en",
-  opts: { email: string; confirmUrl: string },
+  opts: { email: string; confirmUrl: string; switchLangUrls: SwitchLangUrls },
 ): RenderedEmail {
   const c = COPY[lang];
   const bodyHtml =
@@ -126,10 +145,11 @@ export function confirmEmail(
     `<p style="font-size:12px;color:${MUTED}">${escapeHtml(c.confirmIgnore)}</p>`;
   const footerHtml =
     `<p>${escapeHtml(c.footerRights)}</p>` +
-    `<p><a href="${escapeHtml(opts.confirmUrl)}" style="color:${VOLT};text-decoration:none">${escapeHtml(c.confirmButton)}</a></p>`;
+    `<p><a href="${escapeHtml(opts.confirmUrl)}" style="color:${VOLT};text-decoration:none">${escapeHtml(c.confirmButton)}</a></p>` +
+    `<p>${languageLinksHtml(lang, opts.switchLangUrls)}</p>`;
   return {
     subject: c.confirmSubject,
-    text: `${c.confirmIntro}\n\n${opts.confirmUrl}\n\n${c.confirmIgnore}`,
+    text: `${c.confirmIntro}\n\n${opts.confirmUrl}\n\n${c.confirmIgnore}\n\n${languageLinksText(lang, opts.switchLangUrls)}`,
     html: shell({
       preheader: c.confirmIntro,
       brandName: c.brandName,
@@ -141,13 +161,22 @@ export function confirmEmail(
 }
 
 /* ----- Transactional: verified / welcome ----- */
-export function welcomeEmail(lang: Lang = "en"): RenderedEmail {
+export function welcomeEmail(
+  lang: Lang = "en",
+  opts?: { switchLangUrls: SwitchLangUrls; unsubUrl: string },
+): RenderedEmail {
   const c = COPY[lang];
   const bodyHtml = `<p>${escapeHtml(c.welcomeIntro)}</p>`;
-  const footerHtml = `<p>${escapeHtml(c.footerRights)}</p>`;
+  const footerHtml =
+    `<p>${escapeHtml(c.footerRights)}</p>` +
+    (opts
+      ? `<p>${languageLinksHtml(lang, opts.switchLangUrls)} · <a href="${escapeHtml(opts.unsubUrl)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.unsubscribe)}</a></p>`
+      : "");
   return {
     subject: c.welcomeSubject,
-    text: c.welcomeIntro,
+    text: opts
+      ? `${c.welcomeIntro}\n\n${languageLinksText(lang, opts.switchLangUrls)}\n\n${c.unsubscribe}: ${opts.unsubUrl}`
+      : c.welcomeIntro,
     html: shell({
       preheader: c.welcomeIntro,
       brandName: c.brandName,
@@ -203,7 +232,7 @@ const ISSUE_META: Record<
 export function weeklyBlastEmail(
   lang: Lang = "en",
   issue: { number: number; title: string; dek?: string | null; content: string; readingMinutes?: number | null },
-  opts: { unsubUrl: string; viewOnlineUrl: string },
+  opts: { unsubUrl: string; viewOnlineUrl: string; switchLangUrls: SwitchLangUrls },
 ): RenderedEmail {
   const c = COPY[lang];
   const meta = ISSUE_META[lang];
@@ -216,10 +245,10 @@ export function weeklyBlastEmail(
     `<p style="margin:24px 0 0;font-size:13px"><a href="${escapeHtml(opts.viewOnlineUrl)}" style="color:${VOLT};text-decoration:none">${escapeHtml(c.viewOnline)} →</a></p>`;
   const footerHtml =
     `<p>${escapeHtml(c.footerRights)}</p>` +
-    `<p><a href="${escapeHtml(opts.unsubUrl)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.unsubscribe)}</a></p>`;
+    `<p>${languageLinksHtml(lang, opts.switchLangUrls)} · <a href="${escapeHtml(opts.unsubUrl)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.unsubscribe)}</a></p>`;
   return {
     subject,
-    text: `${subject}\n\n${issue.dek ?? ""}\n\n${issue.content}\n\n${opts.viewOnlineUrl}\n\n${c.unsubscribe}: ${opts.unsubUrl}`,
+    text: `${subject}\n\n${issue.dek ?? ""}\n\n${issue.content}\n\n${opts.viewOnlineUrl}\n\n${languageLinksText(lang, opts.switchLangUrls)}\n\n${c.unsubscribe}: ${opts.unsubUrl}`,
     html: shell({
       preheader: subject,
       brandName: c.brandName,

@@ -263,6 +263,8 @@ export const emailSends = mysqlTable(
     id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
     subscriberId: bigint("subscriberId", { mode: "number", unsigned: true }),
     email: varchar("email", { length: 320 }).notNull(),
+    /** Language the message was rendered in (en | zh). */
+    lang: varchar("lang", { length: 5 }),
     kind: mysqlEnum("kind", ["confirm", "welcome", "weekly", "test"]).notNull(),
     status: mysqlEnum("status", ["sent", "failed", "skipped"]).default("sent").notNull(),
     error: varchar("error", { length: 500 }),

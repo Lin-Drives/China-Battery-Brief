@@ -175,6 +175,28 @@ export default function EmailDesk() {
     n: stats?.sends[k] ?? 0,
   }))
 
+  const issueById = new Map(issues.map((issue) => [issue.id, issue]))
+  const weeklyByIssue = new Map<number, { en: number; zh: number; failed: number; skipped: number }>()
+  for (const row of stats?.weekly ?? []) {
+    if (row.issueId == null) continue
+    const entry = weeklyByIssue.get(row.issueId) ?? { en: 0, zh: 0, failed: 0, skipped: 0 }
+    if (row.status === 'sent') {
+      if (row.lang === 'zh') entry.zh += row.n
+      else entry.en += row.n
+    } else if (row.status === 'failed') {
+      entry.failed += row.n
+    } else {
+      entry.skipped += row.n
+    }
+    weeklyByIssue.set(row.issueId, entry)
+  }
+  const weeklyRows = [...weeklyByIssue.entries()]
+    .sort(
+      (a, b) =>
+        (issueById.get(b[0])?.number ?? 0) - (issueById.get(a[0])?.number ?? 0),
+    )
+    .slice(0, 5)
+
   const handleBlast = () => {
     if (!blastIssueId) return
     if (!window.confirm(tpl(t('acct.blastConfirm'), { n: verified }))) return
@@ -203,6 +225,36 @@ export default function EmailDesk() {
           </div>
         ))}
       </div>
+
+      {/* Per-issue blast breakdown by language */}
+      {weeklyRows.length > 0 && (
+        <div className="mt-5">
+          <p className="kicker mb-2 text-text-muted">{t('acct.weeklyStats')}</p>
+          <div className="border border-line">
+            <div className="grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 border-b border-line px-4 py-2.5">
+              <span className="kicker text-faint">{t('acct.weeklyColIssue')}</span>
+              <span className="kicker text-faint">EN</span>
+              <span className="kicker text-faint">中文</span>
+              <span className="kicker text-faint">{t('acct.weeklyColFailed')}</span>
+              <span className="kicker text-faint">{t('acct.weeklyColSkipped')}</span>
+            </div>
+            {weeklyRows.map(([issueId, row]) => (
+              <div
+                key={issueId}
+                className="grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 border-b border-line px-4 py-2.5 last:border-b-0"
+              >
+                <span className="truncate font-mono text-[11px] text-text">
+                  No. {String(issueById.get(issueId)?.number ?? issueId).padStart(3, '0')}
+                </span>
+                <span className="font-mono text-[11px] text-text tnum">{row.en}</span>
+                <span className="font-mono text-[11px] text-text tnum">{row.zh}</span>
+                <span className="font-mono text-[11px] text-signal tnum">{row.failed}</span>
+                <span className="font-mono text-[11px] text-faint tnum">{row.skipped}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Actions: test send + weekly blast */}
       <div className="mt-5 grid gap-4 lg:grid-cols-2">

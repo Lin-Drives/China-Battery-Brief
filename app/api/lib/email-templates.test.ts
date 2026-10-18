@@ -1,9 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { smtpTestEmail, weeklyBlastEmail } from "./email-templates";
+import { confirmEmail, smtpTestEmail, weeklyBlastEmail, welcomeEmail } from "./email-templates";
+
+const switchLangUrls = {
+  en: "https://example.com/api/subscribe/language?token=abc&lang=en",
+  zh: "https://example.com/api/subscribe/language?token=abc&lang=zh",
+};
 
 const links = {
   unsubUrl: "https://example.com/api/subscribe/unsubscribe?token=abc",
   viewOnlineUrl: "https://example.com/briefs/058",
+  switchLangUrls,
 };
 
 describe("weeklyBlastEmail", () => {
@@ -55,6 +61,46 @@ describe("weeklyBlastEmail", () => {
     );
 
     expect(mail.html).not.toContain("分钟阅读");
+  });
+
+  it("includes language switch links in the footer", () => {
+    const mail = weeklyBlastEmail(
+      "zh",
+      { number: 58, title: "标题", content: "正文", readingMinutes: 9 },
+      links,
+    );
+
+    expect(mail.html).toContain("lang=en");
+    expect(mail.html).toContain("lang=zh");
+    expect(mail.html).toContain("English");
+    expect(mail.html).toContain("中文");
+  });
+});
+
+describe("confirmEmail", () => {
+  it("lets a pending subscriber switch language before confirming", () => {
+    const mail = confirmEmail("en", {
+      email: "reader@example.com",
+      confirmUrl: "https://example.com/api/subscribe/confirm?token=confirm",
+      switchLangUrls,
+    });
+
+    expect(mail.subject).toBe("Confirm your subscription — China Battery Brief");
+    expect(mail.html).toContain("lang=zh");
+    expect(mail.text).toContain("中文");
+  });
+});
+
+describe("welcomeEmail", () => {
+  it("includes language and unsubscribe links", () => {
+    const mail = welcomeEmail("zh", {
+      switchLangUrls,
+      unsubUrl: links.unsubUrl,
+    });
+
+    expect(mail.subject).toBe("订阅成功 — 中国电池简报");
+    expect(mail.html).toContain("lang=en");
+    expect(mail.html).toContain("取消订阅");
   });
 });
 

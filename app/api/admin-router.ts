@@ -236,11 +236,21 @@ export const adminRouter = createRouter({
       .select({ kind: emailSends.kind, n: count() })
       .from(emailSends)
       .groupBy(emailSends.kind);
+    const weekly = await db
+      .select({
+        issueId: emailSends.issueId,
+        lang: emailSends.lang,
+        status: emailSends.status,
+        n: count(),
+      })
+      .from(emailSends)
+      .where(eq(emailSends.kind, "weekly"))
+      .groupBy(emailSends.issueId, emailSends.lang, emailSends.status);
     const statusMap: Record<string, number> = {};
     for (const r of byStatus) statusMap[r.status] = r.n;
     const sendMap: Record<string, number> = {};
     for (const r of sends) sendMap[r.kind] = r.n;
-    return { byStatus: statusMap, sends: sendMap };
+    return { byStatus: statusMap, sends: sendMap, weekly };
   }),
 
   "email.list": adminQuery

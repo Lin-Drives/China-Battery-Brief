@@ -72,6 +72,8 @@ export const zh: Record<string, string> = {
   'email.error': '邮箱格式似乎有误——请重试',
   'email.successNote': '确认邮件已发送——请查收收件箱',
   'email.alreadyNote': '你已在订阅名单上',
+  'email.langLabel': '邮件语言',
+  'email.langAria': '选择邮件语言',
 
   /* ---------- 主线 ---------- */
   'pillar.all': '全部',
@@ -1273,6 +1275,10 @@ Object.assign(zh, {
   'acct.emailPageInfo': '第 {page} / {pages} 页 · 共 {total} 条',
   'acct.emailNoResults': '没有匹配的订阅者',
   'acct.emailTestLang': '测试语言',
+  'acct.weeklyStats': '最近群发',
+  'acct.weeklyColIssue': '期号',
+  'acct.weeklyColFailed': '失败',
+  'acct.weeklyColSkipped': '跳过',
   'acct.subiEmail': '邮箱',
   'acct.subiStatus': '状态',
   'acct.subiLang': '语言',

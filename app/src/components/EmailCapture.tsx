@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import RubberStamp from '@/components/RubberStamp'
+import EmailLangChoice from '@/components/EmailLangChoice'
+import type { EmailLang } from '@/components/EmailLangChoice'
 import { cn } from '@/lib/utils'
 import { trpc } from '@/providers/trpc'
 import { useLang } from '@/i18n/lang'
@@ -25,6 +27,9 @@ export default function EmailCapture({
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'error' | 'done'>('idle')
   const [already, setAlready] = useState(false)
+  const [emailLangOverride, setEmailLangOverride] = useState<EmailLang | null>(null)
+  const emailLang = emailLangOverride ?? lang
+
   const subscribe = trpc.content['subscribe.email'].useMutation({
     onSuccess: (data) => {
       setAlready(data.state === 'already')
@@ -40,7 +45,7 @@ export default function EmailCapture({
       setState('error')
       return
     }
-    subscribe.mutate({ email, lang })
+    subscribe.mutate({ email, lang: emailLang })
   }
 
   if (state === 'done') {
@@ -81,6 +86,17 @@ export default function EmailCapture({
           <ArrowRight aria-hidden className="h-3.5 w-3.5" />
         </button>
       </form>
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-faint">
+          {t('email.langLabel')}
+        </span>
+        <EmailLangChoice
+          value={emailLang}
+          onChange={(next) => {
+            setEmailLangOverride(next)
+          }}
+        />
+      </div>
       {state === 'error' ? (
         <p className="mt-2 font-mono text-[11px] tracking-wide text-signal">{t('email.error')}</p>
       ) : (

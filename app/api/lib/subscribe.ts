@@ -23,10 +23,22 @@ function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
 }
 
+function switchLangUrls(unsubToken: string) {
+  return {
+    en: absoluteUrl(`/api/subscribe/language?token=${unsubToken}&lang=en`),
+    zh: absoluteUrl(`/api/subscribe/language?token=${unsubToken}&lang=zh`),
+  };
+}
+
+function unsubscribeUrl(unsubToken: string): string {
+  return absoluteUrl(`/api/subscribe/unsubscribe?token=${unsubToken}`);
+}
+
 async function recordSend(
   subscriberId: number | null,
   email: string,
   kind: "confirm" | "welcome" | "weekly" | "test",
+  lang: Lang,
   result: { sent: boolean; messageId?: string; error?: string },
   issueId?: number,
 ): Promise<void> {
@@ -37,6 +49,7 @@ async function recordSend(
         subscriberId,
         email,
         kind,
+        lang,
         status: result.sent ? "sent" : result.error ? "failed" : "skipped",
         error: result.error ?? null,
         issueId: issueId ?? null,
@@ -84,9 +97,9 @@ export async function subscribeEmail(rawEmail: string, lang: Lang = "en"): Promi
   }
 
   const confirmUrl = absoluteUrl(`/api/subscribe/confirm?token=${confirmToken}`);
-  const mail = confirmEmail(lang, { email, confirmUrl });
+  const mail = confirmEmail(lang, { email, confirmUrl, switchLangUrls: switchLangUrls(unsubToken) });
   const result = await sendMail({ to: email, subject: mail.subject, text: mail.text, html: mail.html });
-  await recordSend(id, email, "confirm", result);
+  await recordSend(id, email, "confirm", lang, result);
   if (!result.sent) console.log(`[mail] confirm URL (log-mode): ${confirmUrl}`);
 
   return { ok: true, state: "pending" };
@@ -105,9 +118,17 @@ export async function confirmSubscribe(token: string): Promise<ConfirmResult> {
     .set({ status: "verified", verifiedAt: new Date() })
     .where(eq(emailSubscribers.id, row.id));
 
-  const mail = welcomeEmail(lang);
+  const mail = welcomeEmail(
+    lang,
+    row.unsubToken
+      ? {
+          switchLangUrls: switchLangUrls(row.unsubToken),
+          unsubUrl: unsubscribeUrl(row.unsubToken),
+        }
+      : undefined,
+  );
   const result = await sendMail({ to: row.email, subject: mail.subject, text: mail.text, html: mail.html });
-  await recordSend(row.id, row.email, "welcome", result);
+  await recordSend(row.id, row.email, "welcome", lang, result);
   return { ok: true, state: "verified", lang };
 }
 
@@ -124,4 +145,23 @@ export async function unsubscribeByToken(token: string): Promise<UnsubscribeResu
     .set({ status: "unsubscribed", unsubscribedAt: new Date() })
     .where(eq(emailSubscribers.id, row.id));
   return { ok: true, state: "unsubscribed", lang };
+}
+
+export type LanguageSwitchResult =
+  | { ok: true; state: "updated"; lang: Lang }
+  | { ok: false; state: "invalid" };
+
+/** Switch a subscriber's email language via the stable token in outbound mail. */
+export async function setLanguageByToken(
+  token: string,
+  lang: Lang,
+): Promise<LanguageSwitchResult> {
+  const db = getDb();
+  const row = (
+    await db.select().from(emailSubscribers).where(eq(emailSubscribers.unsubToken, token))
+  )[0];
+  if (!row) return { ok: false, state: "invalid" };
+
+  await db.update(emailSubscribers).set({ lang }).where(eq(emailSubscribers.id, row.id));
+  return { ok: true, state: "updated", lang };
 }

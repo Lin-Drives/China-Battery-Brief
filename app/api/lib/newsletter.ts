@@ -33,13 +33,17 @@ async function processSend(
   const dek = lang === "zh" ? issue.dekZh ?? issue.dek : issue.dek;
   const unsubUrl = absoluteUrl(`/api/subscribe/unsubscribe?token=${sub.unsubToken}`);
   const viewOnlineUrl = absoluteUrl(`/briefs/${issue.slug}`);
+  const switchLangUrls = {
+    en: absoluteUrl(`/api/subscribe/language?token=${sub.unsubToken}&lang=en`),
+    zh: absoluteUrl(`/api/subscribe/language?token=${sub.unsubToken}&lang=zh`),
+  };
   const mail = weeklyBlastEmail(lang, {
     number: issue.number,
     title,
     dek,
     content,
     readingMinutes: issue.readingMinutes,
-  }, { unsubUrl, viewOnlineUrl });
+  }, { unsubUrl, viewOnlineUrl, switchLangUrls });
 
   const result = await sendMail({
     to: sub.email,
@@ -58,6 +62,7 @@ async function processSend(
       subscriberId: sub.id,
       email: sub.email,
       kind: "weekly",
+      lang,
       status,
       error: result.error ?? null,
       issueId,
@@ -131,6 +136,7 @@ export async function sendTestEmail(email: string, lang: Lang = "en"): Promise<{
       subscriberId: null,
       email,
       kind: "test",
+      lang,
       status: result.sent ? "sent" : result.error ? "failed" : "skipped",
       error: result.error ?? null,
       issueId: null,

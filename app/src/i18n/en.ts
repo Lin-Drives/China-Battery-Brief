@@ -72,6 +72,8 @@ export const en: Record<string, string> = {
   'email.error': "THAT EMAIL DOESN'T LOOK RIGHT — TRY AGAIN.",
   'email.successNote': 'CONFIRMATION SENT — CHECK YOUR INBOX',
   'email.alreadyNote': 'YOU ARE ALREADY ON THE LIST',
+  'email.langLabel': 'EMAIL LANGUAGE',
+  'email.langAria': 'Choose email language',
 
   /* ---------- Pillars ---------- */
   'pillar.all': 'ALL',
@@ -1297,6 +1299,10 @@ Object.assign(en, {
   'acct.emailPageInfo': 'PAGE {page} / {pages} · {total} TOTAL',
   'acct.emailNoResults': 'NO MATCHING SUBSCRIBERS',
   'acct.emailTestLang': 'TEST LANGUAGE',
+  'acct.weeklyStats': 'RECENT BLASTS',
+  'acct.weeklyColIssue': 'ISSUE',
+  'acct.weeklyColFailed': 'FAILED',
+  'acct.weeklyColSkipped': 'SKIPPED',
   'acct.subiEmail': 'EMAIL',
   'acct.subiStatus': 'STATUS',
   'acct.subiLang': 'LANG',

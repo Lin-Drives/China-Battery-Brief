@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { absoluteUrl, type Lang } from "./lib/email-templates";
-import { confirmSubscribe, unsubscribeByToken } from "./lib/subscribe";
+import { confirmSubscribe, setLanguageByToken, unsubscribeByToken } from "./lib/subscribe";
 import { rateLimit } from "./lib/rate-limit";
 
 const INK = "#0C1017";
@@ -41,6 +41,26 @@ const PAGES: Record<Lang, Record<string, PageCopy>> = {
       message: "The link you followed isn't valid or has already been used. Please re-subscribe from the site.",
       button: "Go to the brief",
     },
+    languageConfirmEn: {
+      title: "Switch email language",
+      message: "Switch future issues to English? You can change back any time from the email footer.",
+      button: "Switch to English",
+    },
+    languageConfirmZh: {
+      title: "Switch email language",
+      message: "Switch future issues to Chinese? You can change back any time from the email footer.",
+      button: "Switch to Chinese",
+    },
+    languageUpdatedEn: {
+      title: "Language updated",
+      message: "Future issues will be sent in English.",
+      button: "Back to the brief",
+    },
+    languageUpdatedZh: {
+      title: "Language updated",
+      message: "Future issues will be sent in Chinese.",
+      button: "Back to the brief",
+    },
   },
   zh: {
     confirmed: {
@@ -68,6 +88,26 @@ const PAGES: Record<Lang, Record<string, PageCopy>> = {
       message: "你访问的链接无效或已使用。请到网站重新订阅",
       button: "前往简报",
     },
+    languageConfirmEn: {
+      title: "切换邮件语言",
+      message: "确定之后改用英文收取简报吗？随时可在邮件页脚切回中文",
+      button: "切换为英文",
+    },
+    languageConfirmZh: {
+      title: "切换邮件语言",
+      message: "确定之后改用中文收取简报吗？随时可在邮件页脚切回英文",
+      button: "切换为中文",
+    },
+    languageUpdatedEn: {
+      title: "语言已更新",
+      message: "之后的简报将以英文发送",
+      button: "返回简报",
+    },
+    languageUpdatedZh: {
+      title: "语言已更新",
+      message: "之后的简报将以中文发送",
+      button: "返回简报",
+    },
   },
 };
 
@@ -79,7 +119,10 @@ function escapeHtml(input: string): string {
     .replace(/"/g, "&quot;");
 }
 
-function pageHtml(lang: Lang, copy: PageCopy): string {
+function pageHtml(lang: Lang, copy: PageCopy, actionHtml?: string): string {
+  const action =
+    actionHtml ??
+    `<a href="${escapeHtml(absoluteUrl("/"))}" style="display:inline-block;padding:13px 26px;background:${VOLT};color:${INK};font-size:14px;font-weight:700;letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;border-radius:2px">${escapeHtml(copy.button)}</a>`;
   return `<!doctype html>
 <html lang="${lang === "zh" ? "zh-CN" : "en"}">
   <head>
@@ -96,14 +139,22 @@ function pageHtml(lang: Lang, copy: PageCopy): string {
           </td></tr>
           <tr><td style="padding:32px 0 0;font-size:28px;line-height:1.25;font-weight:700;color:${PAPER}">${escapeHtml(copy.title)}</td></tr>
           <tr><td style="padding:12px 0 20px;font-size:16px;line-height:1.7;color:${PAPER}">${escapeHtml(copy.message)}</td></tr>
-          <tr><td>
-            <a href="${escapeHtml(absoluteUrl("/"))}" style="display:inline-block;padding:13px 26px;background:${VOLT};color:${INK};font-size:14px;font-weight:700;letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;border-radius:2px">${escapeHtml(copy.button)}</a>
-          </td></tr>
+          <tr><td>${action}</td></tr>
         </table>
       </td></tr>
     </table>
   </body>
 </html>`;
+}
+
+function languageSwitchHtml(lang: Lang, copy: PageCopy, token: string, target: Lang): string {
+  const action =
+    `<form method="post" action="/api/subscribe/language" style="margin:0">` +
+    `<input type="hidden" name="token" value="${escapeHtml(token)}" />` +
+    `<input type="hidden" name="lang" value="${target}" />` +
+    `<button type="submit" style="display:inline-block;padding:13px 26px;background:${VOLT};color:${INK};border:0;font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:2px;cursor:pointer">${escapeHtml(copy.button)}</button>` +
+    `</form>`;
+  return pageHtml(lang, copy, action);
 }
 
 export const mailRoutes = new Hono();
@@ -121,6 +172,39 @@ mailRoutes.get(
         : PAGES[lang].alreadyConfirmed
       : PAGES[lang].invalid;
     return c.html(pageHtml(lang, copy));
+  },
+);
+
+mailRoutes.get(
+  "/api/subscribe/language",
+  rateLimit({ windowMs: 60_000, max: 30, prefix: "lang-link" }),
+  async (c) => {
+    const token = c.req.query("token") ?? "";
+    const raw = c.req.query("lang");
+    if (raw !== "en" && raw !== "zh") {
+      return c.html(pageHtml("en", PAGES.en.invalid), 400);
+    }
+    const copy = raw === "zh" ? PAGES.zh.languageConfirmZh : PAGES.en.languageConfirmEn;
+    // Two-step: GET only renders a confirmation form, so mail scanners that
+    // prefetch links cannot change a subscriber's language.
+    return c.html(languageSwitchHtml(raw, copy, token, raw));
+  },
+);
+
+mailRoutes.post(
+  "/api/subscribe/language",
+  rateLimit({ windowMs: 60_000, max: 30, prefix: "lang-set" }),
+  async (c) => {
+    const body = await c.req.parseBody();
+    const token = typeof body.token === "string" ? body.token : "";
+    const raw = typeof body.lang === "string" ? body.lang : "";
+    if (raw !== "en" && raw !== "zh") {
+      return c.html(pageHtml("en", PAGES.en.invalid), 400);
+    }
+    const result = await setLanguageByToken(token, raw);
+    if (!result.ok) return c.html(pageHtml(raw, PAGES[raw].invalid), 400);
+    const copy = raw === "zh" ? PAGES.zh.languageUpdatedZh : PAGES.en.languageUpdatedEn;
+    return c.html(pageHtml(raw, copy));
   },
 );
 
