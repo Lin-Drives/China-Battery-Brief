@@ -58,17 +58,20 @@ export const env = {
     secure: (optional("SMTP_SECURE") || "true") === "true",
     user: optional("SMTP_USER"),
     pass: optional("SMTP_PASS"),
+    /** Resend HTTP API key — preferred when outbound SMTP ports are blocked. */
+    resendApiKey: optional("RESEND_API_KEY"),
     fromEmail: optional("MAIL_FROM") || "brief@chinabattery.com",
     fromName: optional("MAIL_FROM_NAME") || "China Battery Brief",
   },
 } as const;
 
 /**
- * True when a real SMTP transport is available. `MAIL_DISABLED=1` forces
- * log-mode (no send) — useful for dry-running a blast or testing without
- * spamming real inboxes.
+ * True when a real mail channel is available (Resend API or SMTP).
+ * `MAIL_DISABLED=1` forces log-mode (no send) — useful for dry-running a blast
+ * or testing without spamming real inboxes.
  */
 export function mailEnabled(): boolean {
   if (process.env.MAIL_DISABLED === "1") return false;
+  if (env.mail.resendApiKey !== "") return true;
   return env.mail.host !== "" && env.mail.user !== "" && env.mail.pass !== "";
 }

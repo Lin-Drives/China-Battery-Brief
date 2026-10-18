@@ -64,17 +64,18 @@ nano .env
 # 站点对外地址：确认/退订链接会用它拼接，必须是对外可访问的 https 域名
 PUBLIC_BASE_URL=https://chinabatterybrief.com
 
-# Resend 的 SMTP 参数
-SMTP_HOST=smtp.resend.com
-SMTP_PORT=465
-SMTP_SECURE=true
-SMTP_USER=resend
-SMTP_PASS=<Resend 后台的 API Key，以 re_ 开头>
+# 推荐：Resend HTTP API（走 443，不受 VPS 封锁 SMTP 端口影响）
+RESEND_API_KEY=<Resend 后台的 API Key，以 re_ 开头>
 
 # 发件人：必须是你在 Resend 验证过的域名
 MAIL_FROM=brief@chinabatterybrief.com
 MAIL_FROM_NAME=China Battery Brief
 ```
+
+> 如果 VPS 允许出站 SMTP（25/465/587），也可以不用 `RESEND_API_KEY`，改用
+> `SMTP_HOST=smtp.resend.com`、`SMTP_PORT=465`、`SMTP_SECURE=true`、
+> `SMTP_USER=resend`、`SMTP_PASS=<同一个 API Key>`。两种方式二选一。
+> DigitalOcean 等云厂商常默认封锁 SMTP 端口，此时必须用 `RESEND_API_KEY`。
 
 保存后重启服务：
 
@@ -84,20 +85,20 @@ systemctl status cbb --no-pager
 ```
 
 > `PUBLIC_BASE_URL` 漏配会让确认链接指向 `localhost`，用户点了必然失败。
-> 不要把 `.env` 提交到 Git，也不要把 `SMTP_PASS` 发到聊天或截图里。
+> 不要把 `.env` 提交到 Git，也不要把 API Key / `SMTP_PASS` 发到聊天或截图里。
 
 ---
 
 ## 六、步骤 4：验证
 
-在 VPS 的项目目录执行：
+在 VPS 的项目目录执行（若该版本仓库包含 `scripts/send-test.ts`）：
 
 ```bash
 cd /opt/cbb/app/app
 npm run email:test -- 你的邮箱@example.com
 ```
 
-这封测试邮件使用中文模板；收到即说明 SMTP 通了。然后到网站任意订阅框用自己的另一个邮箱走一遍：
+也可以直接用网站验证：到任意订阅框用自己的邮箱走一遍。
 
 1. 提交邮箱 → 应收到“确认你的邮箱”邮件。
 2. 点击确认 → 应收到“欢迎加入”邮件。
@@ -114,7 +115,7 @@ npm run email:test -- 你的邮箱@example.com
 | 测试邮件显示“log-mode（未发送）” | `.env` 里 SMTP 没配全，或 `MAIL_DISABLED=1`。补全 `SMTP_HOST/USER/PASS` 后重启。 |
 | 确认链接是 `localhost` | `PUBLIC_BASE_URL` 没配或写错。改成 `https://chinabatterybrief.com` 后重启。 |
 | 邮件进了垃圾箱 | DNS 记录还没验证完，或 DMARC 未生效。等 Resend 显示 Verified，必要时从 `p=none` 开始观察。 |
-| 发信超时 | DO 封锁了 25 端口。确认 `SMTP_PORT` 用 465 或 587，不要用 25。 |
+| 发信超时 | VPS 封锁了 SMTP 端口（DO 常封 25/465/587）。改用 `RESEND_API_KEY` 走 HTTPS API，不要继续调 SMTP 端口。 |
 | Resend 验证域名失败 | Cloudflare 里对应的 CNAME 开了橙云代理。改成 DNS only。 |
 | 改完配置仍不生效 | 忘了 `systemctl restart cbb`。 |
 
