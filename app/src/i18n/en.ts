@@ -263,6 +263,8 @@ export const en: Record<string, string> = {
   'cta.min': 'MIN',
   'cta.sec': 'SEC',
   'cta.until': 'UNTIL No. 048 · 06:00 UTC',
+  'cta.readLatest': 'READ THE LATEST ISSUE',
+  'cta.viewPricing': 'VIEW SUBSCRIPTION PLANS',
 }
 
 /* ---------- Briefs archive ---------- */

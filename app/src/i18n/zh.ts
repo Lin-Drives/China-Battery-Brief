@@ -262,6 +262,8 @@ export const zh: Record<string, string> = {
   'cta.min': '分',
   'cta.sec': '秒',
   'cta.until': '距 No. 048 · 14:00（北京时间）',
+  'cta.readLatest': '阅读最新一期',
+  'cta.viewPricing': '查看订阅方案',
 }
 
 /* ---------- 简报档案库 ---------- */

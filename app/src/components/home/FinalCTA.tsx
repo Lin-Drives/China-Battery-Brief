@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router'
 import { useGSAP } from '@gsap/react'
 import { gsap } from '@/lib/gsap'
-import EmailCapture from '@/components/EmailCapture'
 import RubberStamp from '@/components/RubberStamp'
 import { useLang } from '@/i18n/lang'
 
@@ -104,8 +104,19 @@ export default function FinalCTA() {
         </div>
         <p className="mt-3 font-mono text-[12.5px] tracking-wide text-faint">{t('cta.until')}</p>
 
-        <div className="mt-10 flex w-full justify-center">
-          <EmailCapture />
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            to="/briefs"
+            className="rounded-sm bg-volt px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-950 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-volt-pop active:translate-y-0 active:shadow-none"
+          >
+            {t('cta.readLatest')}
+          </Link>
+          <Link
+            to="/pricing"
+            className="rounded-sm border border-line px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted transition-colors duration-200 hover:border-volt hover:text-volt"
+          >
+            {t('cta.viewPricing')}
+          </Link>
         </div>
 
         <div className="mt-12">
