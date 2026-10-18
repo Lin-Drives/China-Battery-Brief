@@ -48,7 +48,7 @@ function scrollToId(id: string) {
 
 function Dashboard() {
   const { t, lang } = useLang()
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const [params, setParams] = useSearchParams()
   const welcome = params.get('welcome') === '1'
   const fromSlug = params.get('from')
@@ -100,11 +100,20 @@ function Dashboard() {
             {t(timeGreetingKey())}, <em className="italic text-volt">{name}</em>.
           </h1>
         </div>
-        <p className="font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-faint tnum sm:text-right">
-          {tpl(t('acct.memberSince'), { d: user?.createdAt ? fmtDateShort(user.createdAt, lang) : '—' })}
-          <br />
-          {tpl(t('acct.readerId'), { n: String(user?.id ?? 0).padStart(4, '0') })}
-        </p>
+        <div className="flex flex-col items-start gap-3 sm:items-end">
+          <p className="font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-faint tnum sm:text-right">
+            {tpl(t('acct.memberSince'), { d: user?.createdAt ? fmtDateShort(user.createdAt, lang) : '—' })}
+            <br />
+            {tpl(t('acct.readerId'), { n: String(user?.id ?? 0).padStart(4, '0') })}
+          </p>
+          <button
+            type="button"
+            onClick={() => logout()}
+            className="rounded-sm border border-line px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-faint transition-colors hover:border-signal hover:text-signal"
+          >
+            {t('nav.signout')}
+          </button>
+        </div>
       </motion.header>
 
       {/* Rail nav — horizontal chips on mobile, sticky left rail on lg */}

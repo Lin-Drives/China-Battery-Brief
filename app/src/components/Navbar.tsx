@@ -25,6 +25,7 @@ const LINKS = [
 export default function Navbar() {
   const { pathname } = useLocation()
   const { t } = useLang()
+  const { isAuthenticated, logout } = useAuth()
   const [scrolled, setScrolled] = useState(false)
   const [pastHero, setPastHero] = useState(false)
   const [open, setOpen] = useState(false)
@@ -163,7 +164,33 @@ export default function Navbar() {
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line px-[clamp(20px,4vw,48px)] py-5">
               <p className="data-text text-faint">{t('nav.drawerContact')}</p>
-              <LangToggle id="lang-toggle-pill-mobile" />
+              <div className="flex items-center gap-4">
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      to="/account"
+                      className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-muted transition-colors hover:text-text"
+                    >
+                      {t('nav.account')}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => logout()}
+                      className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint transition-colors hover:text-signal"
+                    >
+                      {t('nav.signout')}
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to={LOGIN_PATH}
+                    className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-muted transition-colors hover:text-text"
+                  >
+                    {t('nav.signin')}
+                  </Link>
+                )}
+                <LangToggle id="lang-toggle-pill-mobile" />
+              </div>
             </div>
           </motion.div>
         )}
@@ -217,6 +244,7 @@ function AuthSlot() {
         type="button"
         onClick={() => logout()}
         aria-label={t('nav.signout')}
+        title={t('nav.signout')}
         className="text-muted transition-colors hover:text-signal"
       >
         <LogOut className="h-4 w-4" />
