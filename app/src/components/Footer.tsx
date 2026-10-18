@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import RubberStamp from '@/components/RubberStamp'
 import { useLang } from '@/i18n/lang'
+import { trpc } from '@/providers/trpc'
 
 const COLUMNS: { titleKey: string; links: { labelKey: string; to: string }[] }[] = [
   {
@@ -41,9 +42,27 @@ const WORDMARK = 'China Battery Brief'
 
 /** design.md §8.3 — footer on all pages */
 export default function Footer() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [email, setEmail] = useState('')
-  const [sent, setSent] = useState(false)
+  const [state, setState] = useState<'idle' | 'error' | 'done'>('idle')
+  const [already, setAlready] = useState(false)
+  const subscribe = trpc.content['subscribe.email'].useMutation({
+    onSuccess: (data) => {
+      setAlready(data.state === 'already')
+      setState('done')
+    },
+    onError: () => setState('error'),
+  })
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    if (!valid) {
+      setState('error')
+      return
+    }
+    subscribe.mutate({ email, lang })
+  }
 
   return (
     <footer className="border-t border-line bg-ink-950">
@@ -51,32 +70,36 @@ export default function Footer() {
       <div className="mx-auto flex max-w-container flex-col gap-6 px-[clamp(20px,4vw,48px)] py-14 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-md">
           <p className="kicker mb-3 text-volt">{t('footer.kicker')}</p>
-          {sent ? (
-            <p className="data-text text-text">{t('footer.confirm')}</p>
+          {state === 'done' ? (
+            <p className="data-text text-text">
+              {already ? t('email.alreadyNote') : t('footer.confirm')}
+            </p>
           ) : (
-            <form
-              className="flex gap-2"
-              onSubmit={(e) => {
-                e.preventDefault()
-                if (email.trim()) setSent(true)
-              }}
-            >
+            <form className="flex gap-2" onSubmit={submit}>
               <input
                 type="email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setState('idle')
+                }}
                 placeholder={t('footer.placeholder')}
+                aria-label={t('email.aria')}
                 className="w-full rounded-sm border border-line bg-ink-900 px-3.5 py-3 font-mono text-[13px] text-text caret-volt placeholder:uppercase placeholder:tracking-[0.08em] placeholder:text-faint focus:border-volt focus:outline-none"
               />
               <button
                 type="submit"
-                className="shrink-0 rounded-sm bg-volt px-4 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-950 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-volt-pop"
+                disabled={subscribe.isPending}
+                className="shrink-0 rounded-sm bg-volt px-4 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-950 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-volt-pop disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <ArrowRight aria-hidden />
               </button>
             </form>
           )}
+          {state === 'error' ? (
+            <p className="mt-2 font-mono text-[11px] tracking-wide text-signal">{t('email.error')}</p>
+          ) : null}
         </div>
         <img src="/logo.svg" alt="China Battery Brief" className="h-8 w-auto text-text-muted opacity-70" />
       </div>
