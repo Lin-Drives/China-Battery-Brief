@@ -65,7 +65,7 @@ const PAGES: Record<Lang, Record<string, PageCopy>> = {
   zh: {
     confirmed: {
       title: "已确认",
-      message: "你已加入订阅名单。下一期简报将在每周四 06:00 UTC 送达你的收件箱",
+      message: "你已加入订阅名单。下一期简报将在每周四 14:00（北京时间）送达你的收件箱",
       button: "前往简报",
     },
     alreadyConfirmed: {
@@ -135,7 +135,7 @@ function pageHtml(lang: Lang, copy: PageCopy, actionHtml?: string): string {
       <tr><td align="center" style="padding:64px 16px">
         <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
           <tr><td style="border-bottom:2px solid ${VOLT};padding-bottom:16px">
-            <div style="font-size:13px;font-weight:700;letter-spacing:0.22em;color:${VOLT};text-transform:uppercase">CHINA BATTERY BRIEF</div>
+            <div style="font-size:13px;font-weight:700;letter-spacing:0.22em;color:${VOLT};text-transform:uppercase">${lang === "zh" ? "中国电池出海简报" : "CHINA BATTERY BRIEF"}</div>
           </td></tr>
           <tr><td style="padding:32px 0 0;font-size:28px;line-height:1.25;font-weight:700;color:${PAPER}">${escapeHtml(copy.title)}</td></tr>
           <tr><td style="padding:12px 0 20px;font-size:16px;line-height:1.7;color:${PAPER}">${escapeHtml(copy.message)}</td></tr>

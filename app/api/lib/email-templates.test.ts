@@ -98,7 +98,7 @@ describe("welcomeEmail", () => {
       unsubUrl: links.unsubUrl,
     });
 
-    expect(mail.subject).toBe("订阅成功 — 中国电池简报");
+    expect(mail.subject).toBe("订阅成功 — 中国电池出海简报");
     expect(mail.html).toContain("lang=en");
     expect(mail.html).toContain("取消订阅");
   });
@@ -108,7 +108,7 @@ describe("smtpTestEmail", () => {
   it("uses Chinese copy for Chinese test sends", () => {
     const mail = smtpTestEmail("zh");
 
-    expect(mail.subject).toBe("SMTP 测试 — 中国电池简报");
+    expect(mail.subject).toBe("SMTP 测试 — 中国电池出海简报");
     expect(mail.text).toContain("邮件通道已配置成功");
   });
 

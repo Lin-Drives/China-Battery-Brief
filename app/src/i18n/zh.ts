@@ -16,7 +16,7 @@ export const zh: Record<string, string> = {
   'nav.subscribe': '订阅',
   'nav.est': '创刊于 2025 · 周刊',
   'nav.account': '账户',
-  'nav.drawerContact': 'DESK@CHINABATTERYBRIEF.COM ◆ 上海 — 柏林 — 香港 ◆ 每周四 06:00 UTC',
+  'nav.drawerContact': 'DESK@CHINABATTERYBRIEF.COM ◆ 上海 — 柏林 — 香港 ◆ 每周四 14:00（北京时间）',
 
   'route.home': '首页',
   'route.briefs': '简报',
@@ -50,7 +50,7 @@ export const zh: Record<string, string> = {
   'footer.link.privacy': '隐私政策',
   'footer.link.refunds': '退款政策',
   'footer.link.imprint': '版权信息',
-  'footer.bottom': '© 2025 CHINA BATTERY BRIEF LTD · 每周四 06:00 UTC 出版 · 上海 — 柏林 — 香港',
+  'footer.bottom': '© 2025 CHINA BATTERY BRIEF LTD · 每周四 14:00（北京时间）出版 · 上海 — 柏林 — 香港',
 
   /* ---------- 印章 ---------- */
   'stamp.free': '免费样刊',
@@ -103,7 +103,7 @@ export const zh: Record<string, string> = {
   'redacted.cursor': '显示',
 
   /* ---------- 首页 · 头版 ---------- */
-  'hero.kicker': '每周情报简报 · 每周四 06:00 UTC',
+  'hero.kicker': '每周情报简报 · 每周四 14:00（北京时间）',
   'hero.h1a': '中国建造电池',
   'hero.h1b': '我们向全球',
   'hero.h1em': '播报',
@@ -261,7 +261,7 @@ export const zh: Record<string, string> = {
   'cta.hrs': '时',
   'cta.min': '分',
   'cta.sec': '秒',
-  'cta.until': '距 No. 048 · 06:00 UTC',
+  'cta.until': '距 No. 048 · 14:00（北京时间）',
 }
 
 /* ---------- 简报档案库 ---------- */
@@ -894,7 +894,7 @@ Object.assign(zh, {
   'pricing.pro.epithet': '“简报”',
   'pricing.pro.noteMo': '按月计费 · 无锁定期',
   'pricing.pro.noteYr': '折合 $15.80/月 · 免 2 个月',
-  'pricing.pro.f1': '每周简报全文，周四 06:00 UTC',
+  'pricing.pro.f1': '每周简报全文，周四 14:00（北京时间）',
   'pricing.pro.f2': '完整档案库——62 份文件',
   'pricing.pro.f3': '完整追踪器：时间线、来源、CSV 导出',
   'pricing.pro.f4': '风险雷达邮件预警（±5 变动）',
@@ -956,7 +956,7 @@ Object.assign(zh, {
   'pricing.finalHA': '一次决策，值回',
   'pricing.finalHEm': '一年',
   'pricing.finalHB': '',
-  'pricing.finalNext': '下期简报：周四 06:00 UTC',
+  'pricing.finalNext': '下期简报：周四 14:00（北京时间）',
   'pricing.finalCtaAnnual': '订阅 PRO — $190/年',
   'pricing.finalCtaMonthly': '订阅 PRO — $19/月',
   'pricing.finalFree': '还没想好？免费开始——每月一期公开简报，永久有效',
@@ -1018,7 +1018,7 @@ Object.assign(zh, {
   'about.stage3T': '分析',
   'about.stage3B': '电化学家与政策分析师读同一组事实。分歧会保留在简报中——并明确标注',
   'about.stage4T': '发布与更正',
-  'about.stage4B': '每周四 06:00 UTC。错误进入公开的更正日志，而不是悄悄修改',
+  'about.stage4B': '每周四 14:00（北京时间）。错误进入公开的更正日志，而不是悄悄修改',
   'about.fixLogLink': '→ 更正日志',
 
   'about.deskKicker': '编辑台',
