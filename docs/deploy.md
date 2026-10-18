@@ -94,10 +94,11 @@ SQL
 cd /opt/cbb/app/app
 # 库结构直接推（本项目用 db:push，不用 migrate）
 npx drizzle-kit push
+# 邮箱订阅表（email_subscribers / email_sends）同样由 db:push 创建；
+# 仓库不跟踪新的迁移 SQL，不要依赖 db:migrate。
 # 灌种子内容（English + 中文）
 npm run db:seed
 ```
-
 > 注意：`scripts/backup.sh` 默认找 `../.local-mysql/mysql/bin` 的 mysqldump。VPS 上要改成系统自带的，加环境变量：
 > ```
 > MYSQL_BIN=/usr/bin
