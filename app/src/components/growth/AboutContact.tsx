@@ -5,14 +5,16 @@ import { useLang } from '@/i18n/lang'
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 const CONTACTS = [
-  { labelKey: 'about.contact1', value: 'TIPS@CBBRIEF.COM (PGP AVAILABLE)', href: 'mailto:tips@cbbrief.com' },
-  { labelKey: 'about.contact2', value: 'CORRECTIONS@CBBRIEF.COM', href: 'mailto:corrections@cbbrief.com' },
-  { labelKey: 'about.contact3', value: 'DESK@CBBRIEF.COM', href: 'mailto:desk@cbbrief.com' },
+  {
+    labelKey: 'about.contact1',
+    value: 'HELLO@CHINABATTERYBRIEF.COM',
+    href: 'mailto:hello@chinabatterybrief.com',
+  },
 ]
 
 /** about.md S6 — contact + CTA */
 export default function AboutContact() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   return (
     <section className="relative overflow-hidden py-28">
       {/* Seal watermark at 4% opacity */}
@@ -62,8 +64,13 @@ export default function AboutContact() {
           viewport={{ once: true, margin: '-15% 0px' }}
           transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
         >
-          <CBBButton variant="primary" to="/briefs/debrecen-sold-out">
-            {t('about.readFreeIssue')}
+          <CBBButton
+            variant="primary"
+            href={`/email-preview?lang=${lang}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t('about.emailSample')}
           </CBBButton>
           <CBBButton variant="ghost" to="/subscribe">
             {t('about.seePricing')}

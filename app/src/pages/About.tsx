@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import AboutManifesto from '@/components/growth/AboutManifesto'
-import AboutModel from '@/components/growth/AboutModel'
-import MethodologyPipeline from '@/components/growth/MethodologyPipeline'
-import CorrectionsEthics from '@/components/growth/CorrectionsEthics'
+import AboutOrigin from '@/components/growth/AboutOrigin'
+import AboutAuthor from '@/components/growth/AboutAuthor'
+import AboutSynthesis from '@/components/growth/AboutSynthesis'
 import AboutContact from '@/components/growth/AboutContact'
 
 export default function About() {
@@ -13,9 +13,9 @@ export default function About() {
   return (
     <>
       <AboutManifesto />
-      <AboutModel />
-      <MethodologyPipeline />
-      <CorrectionsEthics />
+      <AboutOrigin />
+      <AboutAuthor />
+      <AboutSynthesis />
       <AboutContact />
     </>
   )

@@ -26,6 +26,8 @@ export interface CBBButtonProps {
   variant?: Variant
   to?: string
   href?: string
+  target?: string
+  rel?: string
   type?: 'button' | 'submit'
   onClick?: React.MouseEventHandler
   className?: string
@@ -37,7 +39,7 @@ export interface CBBButtonProps {
  * an <a> for external `href`, otherwise a <button>.
  */
 const CBBButton = forwardRef<HTMLButtonElement, CBBButtonProps>(function CBBButton(
-  { variant = 'primary', to, href, type = 'button', onClick, className, children },
+  { variant = 'primary', to, href, target, rel, type = 'button', onClick, className, children },
   ref,
 ) {
   const cls = cn(baseClasses, variantClasses[variant], className)
@@ -50,7 +52,7 @@ const CBBButton = forwardRef<HTMLButtonElement, CBBButtonProps>(function CBBButt
   }
   if (href) {
     return (
-      <a href={href} className={cls} onClick={onClick}>
+      <a href={href} target={target} rel={rel} className={cls} onClick={onClick}>
         {children}
       </a>
     )

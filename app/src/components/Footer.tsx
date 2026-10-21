@@ -25,8 +25,6 @@ const COLUMNS: { titleKey: string; links: { labelKey: string; to: string }[] }[]
     links: [
       { labelKey: 'footer.link.about', to: '/about' },
       { labelKey: 'footer.link.manifesto', to: '/about#manifesto' },
-      { labelKey: 'footer.link.methodology', to: '/about#methodology' },
-      { labelKey: 'footer.link.corrections', to: '/about#corrections' },
     ],
   },
   {

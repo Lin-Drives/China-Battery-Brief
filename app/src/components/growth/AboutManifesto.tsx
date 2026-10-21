@@ -73,7 +73,7 @@ export default function AboutManifesto() {
   const [finalLanded, setFinalLanded] = useState(false)
 
   return (
-    <header className="relative overflow-hidden border-b border-line">
+    <header id="manifesto" className="relative overflow-hidden border-b border-line">
       <div aria-hidden className="graph-grid absolute inset-0" />
       <div className="relative z-10 mx-auto max-w-[960px] px-[clamp(20px,4vw,48px)] pb-28 pt-28 text-center">
         <motion.p
