@@ -73,6 +73,12 @@
 6. **双语同步终检**：若改动分析性结论、标题、dek 或元数据，核对英文稿、中文稿及 `issues-zh.json` 的 title/dek/highlights 是否仍表达同一事实和立场；再运行 JSON 解析与 `git diff --check`。
 7. **配图与封面中英一致**：本期若含正文插图或封面，中文稿必须引用中文版（`-zh` 后缀）图、英文稿引用英文版——封面由 `src/lib/cover.ts` 的 `localizedCover` 按语言自动切换，正文插图须在中文稿显式写 `-zh` 路径；中英两版同时产出，不得只做一版。每期正文配图**只挑一个最重点概念、配一张 SVG**。
 
+## 首页最新一期（硬规则）
+
+- 首页 Hero 悬浮卡与「本周档案」（`src/components/home/LatestBrief.tsx`）只从 `content.issues.latest` 取数。
+- 禁止在组件或 i18n 中硬编码期号、标题、导语、`highlights`、来源数、免费/付费标识和 CTA 文案；加载中的 fallback 也不得暗示某一期。
+- 每期发刊后核验 `/`：左侧期号/标题/导语/日期与右侧卡片期号/标题一致，要点、来源数、免费/付费标签和 CTA 均指向最新一期 slug。发现不一致按发布未完成处理。
+
 ## 内测开关
 
 `contracts/constants.ts` 的 `OpenAccess.beta`：为 `true` 时全站内容免费开放（无限时免费标注），付费墙、涂黑 teaser 均停用。恢复付费时改为 `false`。
