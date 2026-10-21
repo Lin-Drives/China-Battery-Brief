@@ -28,10 +28,10 @@ export default function Hero() {
   const { data: latest } = trpc.content['issues.latest'].useQuery()
   const cardTitle =
     latest && (lang === 'zh' ? latest.titleZh ?? latest.title : latest.title) || t('hero.cardTitle')
-  const cardSlug = latest ? `/briefs/${latest.slug}` : '/briefs/debrecen-sold-out'
-  const cardCover = latest?.coverAsset || '/cover-047.png'
-  const cardCoverLocal = localizedCover(cardCover, lang) ?? cardCover
-  const cardStamp = latest ? tpl(t('hero.cardStamp'), { no: latest.number }) : t('hero.cardStamp')
+  const cardSlug = latest ? `/briefs/${latest.slug}` : '/briefs'
+  const cardCover = latest?.coverAsset ?? null
+  const cardCoverLocal = cardCover ? (localizedCover(cardCover, lang) ?? cardCover) : null
+  const cardStamp = latest ? tpl(t('hero.cardStamp'), { no: latest.number }) : t('hero.cardStampFallback')
   // Editorial lines come from the issue itself; zh falls back to en highlights.
   const highlights = (latest ? (lang === 'zh' ? latest.highlightsZh ?? latest.highlights : latest.highlights) : []).filter(
     (h) => TAG_META[h.tag],
@@ -203,12 +203,18 @@ export default function Hero() {
                     </RubberStamp>
                   </div>
                   <div className="relative mb-4 mt-8 overflow-hidden rounded-[2px]">
-                    <img
-                      src={cardCoverLocal}
-                      onError={coverFallback(cardCover)}
-                      alt={`Issue No. ${latest?.number ?? ''} — ${latest?.title ?? ''}`}
-                      className="aspect-[4/3] w-full object-cover"
-                    />
+                    {cardCoverLocal ? (
+                      <img
+                        src={cardCoverLocal}
+                        onError={coverFallback(cardCoverLocal)}
+                        alt={`Issue No. ${latest?.number ?? ''} — ${latest?.title ?? ''}`}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex aspect-[4/3] w-full items-center justify-center bg-paper-ink/5">
+                        <img src="/seal-cbb.svg" alt="" aria-hidden className="h-16 w-16 opacity-25" />
+                      </div>
+                    )}
                   </div>
                   <h2 className="font-display text-[24px] leading-tight text-paper-ink">
                     {cardTitle}
