@@ -1,0 +1,59 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 059 — 零跑的西班牙模式：在萨拉戈萨造车、在马连组装电池包，电芯仍来自中国">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">059</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 059 · 周四 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="128" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="13" letter-spacing="3" fill="#F0A832">产能地图 · 政策追踪</text>
+
+  <text x="48" y="222" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="78" fill="#F4F0E6">西班牙</text>
+  <text x="48" y="310" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="78" fill="#C9F24B">模式</text>
+
+  <text x="48" y="356" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="23" fill="#8E97A8">进入欧盟最快、最轻的一条路</text>
+
+  <line x1="48" y1="386" x2="752" y2="386" stroke="#1B2A33" stroke-width="1"/>
+
+  <g font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="12" letter-spacing="2">
+    <text x="48" y="430" fill="#8E97A8">电芯</text>
+    <text x="48" y="452" fill="#F0A832">中国</text>
+    <path d="M110 445 H164" stroke="#F0A832" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <path d="M158 439 L168 445 L158 451 Z" fill="#F0A832"/>
+
+    <rect x="190" y="414" width="150" height="64" fill="none" stroke="#5ADFC3" stroke-width="1.5"/>
+    <text x="265" y="440" text-anchor="middle" fill="#5ADFC3">马连</text>
+    <text x="265" y="462" text-anchor="middle" fill="#8E97A8">电池包</text>
+
+    <path d="M348 445 H452" stroke="#8E97A8" stroke-width="1.5"/>
+    <path d="M446 439 L456 445 L446 451 Z" fill="#8E97A8"/>
+    <text x="400" y="432" text-anchor="middle" fill="#8E97A8">30 公里</text>
+
+    <rect x="470" y="414" width="170" height="64" fill="none" stroke="#C9F24B" stroke-width="1.5"/>
+    <text x="555" y="440" text-anchor="middle" fill="#C9F24B">萨拉戈萨</text>
+    <text x="555" y="462" text-anchor="middle" fill="#8E97A8">B10</text>
+  </g>
+
+  <text x="48" y="526" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="11" letter-spacing="2" fill="#8E97A8">本地化：现在 40% · 拟议门槛 70%</text>
+  <line x1="48" y1="548" x2="752" y2="548" stroke="#1B2A33" stroke-width="1"/>
+</svg>

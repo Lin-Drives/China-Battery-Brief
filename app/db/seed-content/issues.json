@@ -1078,5 +1078,98 @@
         "date": "2026-10-13"
       }
     ]
+  },
+  {
+    "number": 59,
+    "slug": "forty-percent-local",
+    "title": "Leapmotor's Spanish Model Is Testing the Fastest, Lightest Route into the EU",
+    "dek": "Leapmotor now assembles the B10 in Zaragoza and its battery packs in Mallén, 30 km away, and calls itself the first Chinese carmaker with both in Europe. The cells, according to a Mallén engineer quoted by Economic Observer, still arrive from China. Leapmotor founder Zhu Jiangming puts first-phase localisation above 40%; the next European threshold under discussion is 70%.",
+    "publishedAt": "2026-10-22T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "overseas-capacity",
+      "geopolitics"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": "/cover-059.svg",
+    "contentFile": "issue-059.md",
+    "highlights": [
+      {
+        "tag": "capacity",
+        "text": "Two plants, 30 km apart: B10 bodies in Zaragoza, packs in Mallén, and cells that still cross the border from China"
+      },
+      {
+        "tag": "risk",
+        "text": "40% is the company's first-phase figure; 70% is the EU's proposed component-value threshold from 2028, battery excluded"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "Stellantis",
+        "title": "Stellantis and Leapmotor officially start B10 production in Zaragoza, turning their alliance into a European industrial reality",
+        "url": "https://media.stellantis.com/em-en/leapmotor/press/stellantis-and-leapmotor-officially-start-b10-production-in-zaragoza-turning-their-alliance-into-a-european-industrial-reality",
+        "date": "2026-10-16"
+      },
+      {
+        "outlet": "Stellantis",
+        "title": "Leapmotor International announces opening of a battery workshop in Mallen, Spain",
+        "url": "https://media.stellantis.com/es-es/leapmotor/press/leapmotor-international-announces-opening-of-a-battery-workshop-in-mallen-spain",
+        "date": "2026-06-23"
+      },
+      {
+        "outlet": "经济观察报",
+        "title": "中国车企谋求欧洲本地化 零跑汽车跑出第一程",
+        "url": "https://finance.sina.com.cn/stock/wbstock/2026-10-19/doc-inivueuh0893678.shtml",
+        "date": "2026-10-19"
+      },
+      {
+        "outlet": "Reuters",
+        "title": "Leapmotor opens battery assembly workshop in Spain",
+        "url": "https://uk.finance.yahoo.com/news/leapmotor-opens-battery-assembly-workshop-134219852.html",
+        "date": "2026-10-15"
+      },
+      {
+        "outlet": "Stellantis",
+        "title": "Leapmotor B10 C-SUV for the global market: orders opening and European list price",
+        "url": "https://media.stellantis.com/em-en/leapmotor/press/leapmotor-b10-c-suv-for-the-global-market-orders-opening-and-european-list-price",
+        "date": "2025-07-30"
+      },
+      {
+        "outlet": "EUR-Lex",
+        "title": "Commission Implementing Regulation (EU) 2024/2754",
+        "url": "https://eur-lex.europa.eu/eli/reg_impl/2024/2754/oj/eng",
+        "date": "2024-10-29"
+      },
+      {
+        "outlet": "European Commission",
+        "title": "Non-preferential origin",
+        "url": "https://taxation-customs.ec.europa.eu/customs-4/international-affairs/origin-goods/non-preferential-origin_en",
+        "date": "2026-10-21"
+      },
+      {
+        "outlet": "European Commission",
+        "title": "Proposal for the Industrial Accelerator Act, COM(2026) 100 final",
+        "url": "https://single-market-economy.ec.europa.eu/document/download/9bc8eb85-4d43-4025-be7b-c86b9f3648ec_en",
+        "date": "2026-03-04"
+      },
+      {
+        "outlet": "Politico",
+        "title": "Macron and Merz say they agreed on 'Made in Europe' and car emissions",
+        "url": "https://www.politico.eu/article/macron-and-merz-say-they-agreed-on-made-in-europe-and-car-emissions/",
+        "date": "2026-10-16"
+      },
+      {
+        "outlet": "CATL",
+        "title": "CATL and Stellantis to build a joint venture battery plant in Zaragoza, Spain",
+        "url": "https://www.catl.com/en/news/6614.html",
+        "date": "2025-11-26"
+      },
+      {
+        "outlet": "electrive",
+        "title": "CATL and Stellantis start battery plant construction in Spain",
+        "url": "https://www.electrive.com/2025/11/26/catl-and-stellantis-start-battery-plant-construction-in-spain/",
+        "date": "2025-11-26"
+      }
+    ]
   }
 ]

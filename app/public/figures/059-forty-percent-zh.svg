@@ -1,0 +1,43 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="三个本地化数字：公司口径一期本地化率 40%、欧盟拟自 2028 年执行的零部件价值门槛 70%、进口电芯组装的电池包本地增值 20% 至 30%">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <text x="72" y="64" font-family="Courier,monospace" font-size="14" letter-spacing="3" fill="#8E97A8">本地化，三个深度</text>
+  <text x="72" y="106" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="34" fill="#F4F0E6">三个数字，一个问题</text>
+  <line x1="72" y1="128" x2="1128" y2="128" stroke="#1B2A33" stroke-width="1"/>
+
+  <g font-family="Courier,monospace" font-size="12" fill="#8E97A8">
+    <text x="240" y="158">0%</text>
+    <text x="540" y="158" text-anchor="middle">50%</text>
+    <text x="840" y="158" text-anchor="middle">100%</text>
+  </g>
+  <g stroke="#1B2A33" stroke-width="1">
+    <line x1="240" y1="168" x2="240" y2="600"/>
+    <line x1="540" y1="168" x2="540" y2="600"/>
+    <line x1="840" y1="168" x2="840" y2="600"/>
+  </g>
+
+  <text x="72" y="250" font-family="Georgia,serif" font-size="30" fill="#C9F24B">40%</text>
+  <text x="72" y="276" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">公司口径</text>
+  <rect x="240" y="220" width="240" height="56" fill="#C9F24B"/>
+  <text x="500" y="244" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="19" fill="#F4F0E6">零跑萨拉戈萨</text>
+  <text x="500" y="268" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="19" fill="#F4F0E6">一期本地化率</text>
+
+  <text x="72" y="400" font-family="Georgia,serif" font-size="30" fill="#F0A832">70%</text>
+  <text x="72" y="426" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">提案，2028</text>
+  <rect x="240" y="370" width="420" height="56" fill="#F0A832" opacity="0.9"/>
+  <text x="680" y="394" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="19" fill="#F4F0E6">欧盟零部件价值门槛</text>
+  <text x="680" y="418" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="19" fill="#F4F0E6">电池除外</text>
+
+  <text x="72" y="550" font-family="Georgia,serif" font-size="30" fill="#5ADFC3">20–30%</text>
+  <text x="72" y="576" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">估算</text>
+  <rect x="240" y="520" width="150" height="56" fill="#5ADFC3" opacity="0.9"/>
+  <text x="410" y="544" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="19" fill="#F4F0E6">进口电芯装成的电池包</text>
+  <text x="410" y="568" font-family="'PingFang SC','Noto Sans SC',sans-serif" font-size="19" fill="#F4F0E6">本地增值</text>
+</svg>

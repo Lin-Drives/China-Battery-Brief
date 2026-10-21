@@ -1,0 +1,46 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three localisation numbers: 40 percent company first-phase figure, 70 percent proposed EU component threshold from 2028, and 20 to 30 percent local value inside a pack assembled from imported cells">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <text x="72" y="64" font-family="Courier,monospace" font-size="14" letter-spacing="3" fill="#8E97A8">LOCALISATION, MEASURED AT THREE DEPTHS</text>
+  <text x="72" y="106" font-family="Georgia,serif" font-size="34" fill="#F4F0E6">Three numbers, one question</text>
+  <line x1="72" y1="128" x2="1128" y2="128" stroke="#1B2A33" stroke-width="1"/>
+
+  <g font-family="Courier,monospace" font-size="12" fill="#8E97A8">
+    <text x="240" y="158">0%</text>
+    <text x="540" y="158" text-anchor="middle">50%</text>
+    <text x="840" y="158" text-anchor="middle">100%</text>
+  </g>
+  <g stroke="#1B2A33" stroke-width="1">
+    <line x1="240" y1="168" x2="240" y2="600"/>
+    <line x1="540" y1="168" x2="540" y2="600"/>
+    <line x1="840" y1="168" x2="840" y2="600"/>
+  </g>
+
+  <!-- 40% -->
+  <text x="72" y="250" font-family="Georgia,serif" font-size="30" fill="#C9F24B">40%</text>
+  <text x="72" y="276" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">COMPANY FIGURE</text>
+  <rect x="240" y="220" width="240" height="56" fill="#C9F24B"/>
+  <text x="500" y="244" font-family="Georgia,serif" font-size="19" fill="#F4F0E6">Leapmotor’s first-phase</text>
+  <text x="500" y="268" font-family="Georgia,serif" font-size="19" fill="#F4F0E6">localisation at Zaragoza</text>
+
+  <!-- 70% -->
+  <text x="72" y="400" font-family="Georgia,serif" font-size="30" fill="#F0A832">70%</text>
+  <text x="72" y="426" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">PROPOSED, 2028</text>
+  <rect x="240" y="370" width="420" height="56" fill="#F0A832" opacity="0.9"/>
+  <text x="680" y="394" font-family="Georgia,serif" font-size="19" fill="#F4F0E6">EU component value,</text>
+  <text x="680" y="418" font-family="Georgia,serif" font-size="19" fill="#F4F0E6">battery excluded</text>
+
+  <!-- 20-30% -->
+  <text x="72" y="550" font-family="Georgia,serif" font-size="30" fill="#5ADFC3">20–30%</text>
+  <text x="72" y="576" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">ESTIMATE</text>
+  <rect x="240" y="520" width="150" height="56" fill="#5ADFC3" opacity="0.9"/>
+  <text x="410" y="544" font-family="Georgia,serif" font-size="19" fill="#F4F0E6">Local value inside a pack</text>
+  <text x="410" y="568" font-family="Georgia,serif" font-size="19" fill="#F4F0E6">built from imported cells</text>
+</svg>

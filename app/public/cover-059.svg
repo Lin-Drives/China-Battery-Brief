@@ -1,0 +1,60 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cover 059 — Leapmotor's Spanish Model: cars in Zaragoza, packs in Mallen, cells still from China">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">059</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 059 · THU 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="128" font-family="Courier,monospace" font-size="13" letter-spacing="3" fill="#F0A832">OVERSEAS CAPACITY · POLICY</text>
+
+  <text x="48" y="222" font-family="Georgia,serif" font-size="74" fill="#F4F0E6">Spanish</text>
+  <text x="48" y="300" font-family="Georgia,serif" font-size="74" fill="#C9F24B">Model</text>
+
+  <text x="48" y="350" font-family="Georgia,serif" font-style="italic" font-size="23" fill="#8E97A8">The fastest, lightest route into the EU</text>
+
+  <line x1="48" y1="386" x2="752" y2="386" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- diagram -->
+  <g font-family="Courier,monospace" font-size="12" letter-spacing="2">
+    <text x="48" y="430" fill="#8E97A8">CELLS</text>
+    <text x="48" y="452" fill="#F0A832">CHINA</text>
+    <path d="M110 445 H164" stroke="#F0A832" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <path d="M158 439 L168 445 L158 451 Z" fill="#F0A832"/>
+
+    <rect x="190" y="414" width="150" height="64" fill="none" stroke="#5ADFC3" stroke-width="1.5"/>
+    <text x="265" y="440" text-anchor="middle" fill="#5ADFC3">MALLÉN</text>
+    <text x="265" y="462" text-anchor="middle" fill="#8E97A8">PACKS</text>
+
+    <path d="M348 445 H452" stroke="#8E97A8" stroke-width="1.5"/>
+    <path d="M446 439 L456 445 L446 451 Z" fill="#8E97A8"/>
+    <text x="400" y="432" text-anchor="middle" fill="#8E97A8">30 KM</text>
+
+    <rect x="470" y="414" width="170" height="64" fill="none" stroke="#C9F24B" stroke-width="1.5"/>
+    <text x="555" y="440" text-anchor="middle" fill="#C9F24B">ZARAGOZA</text>
+    <text x="555" y="462" text-anchor="middle" fill="#8E97A8">B10</text>
+  </g>
+
+  <text x="48" y="526" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">LOCALISATION: 40% NOW · 70% PROPOSED</text>
+  <line x1="48" y1="548" x2="752" y2="548" stroke="#1B2A33" stroke-width="1"/>
+</svg>
