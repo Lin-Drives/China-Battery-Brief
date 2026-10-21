@@ -242,6 +242,10 @@ export default function WorldMap({
 
   /* ---- drag handlers ---- */
   const onPointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+    // Let factory nodes handle their own clicks. Capturing the pointer on
+    // the SVG root retargets the subsequent click event to the SVG, which
+    // makes the nodes' onClick handlers unreachable.
+    if ((e.target as Element).closest('[data-factory-node]')) return
     const [sx, sy] = toSvgPoint(e.clientX, e.clientY)
     dragRef.current = { startX: sx, startY: sy, base: { ...tRef.current }, moved: false }
     e.currentTarget.setPointerCapture(e.pointerId)
@@ -299,7 +303,7 @@ export default function WorldMap({
             const color = STATUS_META[n.f.status].color
             const rr = n.r / k
             return (
-              <g key={n.f.id} transform={`translate(${n.x} ${n.y})`}>
+              <g key={n.f.id} data-factory-node={n.f.id} transform={`translate(${n.x} ${n.y})`}>
                 {/* entrance + scrubber pop (staggered by longitude) */}
                 <g
                   style={{
