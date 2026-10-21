@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
-import { Lock } from 'lucide-react'
 import PillarTag from '@/components/PillarTag'
 import { fmtIssueNo, pillarTag } from './pillar'
 import { useLang } from '@/i18n/lang'
@@ -26,7 +25,7 @@ export default function IssueRow({
     <motion.article variants={variants} className="group relative border-b border-line">
       <Link
         to={`/briefs/${issue.slug}`}
-        data-cursor={issue.isFree ? 'OPEN' : 'UNLOCK'}
+        data-cursor="OPEN"
         aria-label={`${fmtIssueNo(issue.number)} — ${title}`}
         className="grid grid-cols-1 gap-3 px-4 py-5 transition-colors duration-200 group-hover:bg-ink-800 lg:grid-cols-[140px_1fr_220px_120px] lg:items-center lg:gap-6 lg:py-0 lg:h-24"
       >
@@ -60,15 +59,9 @@ export default function IssueRow({
         {/* Min + status */}
         <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] tnum lg:justify-end">
           <span className="text-faint">{fmtReadTime(issue.readingMinutes, lang)}</span>
-          {issue.isFree ? (
-            <span className="rounded-sm border border-volt/60 bg-volt/10 px-2 py-[3px] text-[10.5px] font-medium text-volt">
-              {t('issue.free')}
-            </span>
-          ) : (
-            <span className="flex items-center gap-1 rounded-sm border border-line-strong px-2 py-[3px] text-[10.5px] font-medium text-text-muted">
-              <Lock className="h-3 w-3 text-signal" /> PRO
-            </span>
-          )}
+          <span className="rounded-sm border border-volt/60 bg-volt/10 px-2 py-[3px] text-[10.5px] font-medium text-volt">
+            {t('issue.free')}
+          </span>
         </div>
 
         {/* OPEN → slide-in on hover (lg+) */}

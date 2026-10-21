@@ -14,7 +14,6 @@ const LINKS = [
   { key: 'nav.tech', to: '/tech' },
   { key: 'nav.policy', to: '/policy' },
   { key: 'nav.markets', to: '/markets' },
-  { key: 'nav.pricing', to: '/pricing' },
   { key: 'nav.about', to: '/about' },
 ]
 
@@ -104,7 +103,7 @@ export default function Navbar() {
           <LangToggle className="hidden sm:flex" />
           <AuthSlot />
           <Link
-            to="/pricing"
+            to="/subscribe"
             className="rounded-sm bg-volt px-4 py-2 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-950 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-volt-pop active:translate-y-0 active:shadow-none"
           >
             {t('nav.subscribe')}

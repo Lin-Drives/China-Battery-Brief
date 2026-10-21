@@ -8,11 +8,9 @@ import CBBButton from '@/components/Buttons'
 import RubberStamp from '@/components/RubberStamp'
 import GhostCover from '@/components/briefs/GhostCover'
 import IssueCard from '@/components/briefs/IssueCard'
-import PaywallGate from '@/components/briefs/PaywallGate'
 import ReaderMarkdown, {
   extractHeadings,
   extractKickers,
-  stripDanglingFootnoteRefs,
 } from '@/components/briefs/ReaderMarkdown'
 import {
   PAPER_TONES,
@@ -117,14 +115,12 @@ export default function BriefDetail() {
   const content = useMemo(() => {
     if (!issue) return ''
     // zh mode prefers the translated body (null-safe fallback to English)
-    const body = pick(lang, issue.contentZh, issue.content)
-    // Truncated previews lose footnote definitions → strip dangling refs
-    return issue.paywalled ? stripDanglingFootnoteRefs(body) : body
+    return pick(lang, issue.contentZh, issue.content)
   }, [issue, lang])
 
   const headings = useMemo(() => extractHeadings(content), [content])
   const kickers = useMemo(() => extractKickers(content), [content])
-  const hasSources = !!issue && !issue.paywalled && (issue.sources?.length ?? 0) > 0
+  const hasSources = !!issue && (issue.sources?.length ?? 0) > 0
 
   // Scrollspy: active = last section whose top has passed the 120px offset
   useEffect(() => {
@@ -196,9 +192,6 @@ export default function BriefDetail() {
   const words = wordCount(content)
   const sourcesCount = issue.sources?.length ?? 0
   // Truncation keeps ~40% of blocks; estimate the locked remainder
-  const remainingWords = issue.paywalled
-    ? Math.max(300, Math.round(issue.readingMinutes * 220 - words))
-    : 0
 
   const allIssues: IssueMeta[] = listQuery.data?.issues ?? []
   const older = allIssues
@@ -426,16 +419,9 @@ export default function BriefDetail() {
           {/* S4 · Body (+ S5 paywall gate) */}
           <div className="px-6 pb-14 pt-4 md:px-10">
             <ReaderMarkdown content={content} headings={headings} />
-            {issue.paywalled && (
-              <PaywallGate
-                slug={issue.slug}
-                remainingWords={remainingWords}
-                sourcesCount={sourcesCount}
-              />
-            )}
 
-            {/* S5.5 · Sources & attribution (full view only) */}
-            {!issue.paywalled && issue.sources && issue.sources.length > 0 && (
+            {/* S5.5 · Sources & attribution */}
+            {issue.sources && issue.sources.length > 0 && (
               <section
                 id="sources"
                 aria-label={t('detail.sourcesHeading')}
@@ -584,11 +570,9 @@ export default function BriefDetail() {
                   className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 opacity-[0.04]"
                   style={{ color: 'var(--sheet-ink)' }}
                 />
-                {!issue.paywalled && (
-                  <span className="w-full max-w-[280px]" style={{ color: 'var(--sheet-ink)' }}>
-                    <ChargeGauge value={100} color={accent} showLabel />
-                  </span>
-                )}
+                <span className="w-full max-w-[280px]" style={{ color: 'var(--sheet-ink)' }}>
+                  <ChargeGauge value={100} color={accent} showLabel />
+                </span>
                 <p
                   className="font-mono text-[11px] uppercase tracking-[0.16em]"
                   style={{ color: 'var(--sheet-muted)' }}
@@ -614,7 +598,7 @@ export default function BriefDetail() {
               <PrevNextPanel direction="newer" issue={newer} />
             ) : (
               <Link
-                to="/pricing"
+                to="/subscribe"
                 className="group flex flex-col gap-2 bg-ink-950 p-8 transition-colors duration-200 hover:bg-ink-850"
               >
                 <span className="font-mono text-[11px] tracking-[0.14em] text-faint">

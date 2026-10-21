@@ -3,7 +3,7 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { sql } from "drizzle-orm";
 import { getDb } from "../api/queries/connection";
-import { factories, issues, plans, policyEvents, tickerItems } from "./schema";
+import { factories, issues, policyEvents, tickerItems } from "./schema";
 import type { Highlight, SourceRef } from "./schema";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -11,17 +11,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 async function seed() {
   const db = getDb();
   console.log("Seeding China Battery Brief database...");
-
-  /* ---------- Plans ---------- */
-  await db
-    .insert(plans)
-    .values([
-      { code: "free", name: "The Sample", tier: "free", priceCents: 0, interval: "forever", features: ["One open brief every month", "Weekly headline digest email", "Tracker: browse all sites"] },
-      { code: "pro-monthly", name: "The Brief", tier: "pro", priceCents: 1900, interval: "month", features: ["Every weekly brief, full, Thursday 06:00 UTC", "Complete archive", "Full tracker: timelines, sources, CSV export", "Risk radar email alerts", "Save & annotate briefs"] },
-      { code: "pro-annual", name: "The Brief (Annual)", tier: "pro", priceCents: 19000, interval: "year", features: ["Everything in Pro monthly", "2 months free"] },
-    ])
-    .onDuplicateKeyUpdate({ set: { name: sql`values(name)` } });
-  console.log("plans ✓");
 
   /* ---------- Issues (from db/seed-content) ---------- */
   const meta = JSON.parse(readFileSync(join(__dirname, "seed-content", "issues.json"), "utf8")) as Array<{

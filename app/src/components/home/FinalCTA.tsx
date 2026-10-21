@@ -112,7 +112,7 @@ export default function FinalCTA() {
             {t('cta.readLatest')}
           </Link>
           <Link
-            to="/pricing"
+            to="/subscribe"
             className="rounded-sm border border-line px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted transition-colors duration-200 hover:border-volt hover:text-volt"
           >
             {t('cta.viewPricing')}

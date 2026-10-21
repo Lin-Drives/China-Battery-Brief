@@ -13,15 +13,6 @@ import {
   listPolicyEvents,
   listTickerItems,
 } from "./queries/content";
-import { isEntitled } from "./lib/entitlement";
-import { OpenAccess } from "@contracts/constants";
-
-/** Keep ~40% of markdown blocks for the free preview. */
-function truncateContent(markdown: string): string {
-  const blocks = markdown.split(/\n{2,}/);
-  const keep = Math.max(2, Math.ceil(blocks.length * 0.4));
-  return blocks.slice(0, keep).join("\n\n");
-}
 
 const PILLARS = ["overseas-capacity", "tech-routes", "geopolitics", "markets"] as const;
 
@@ -46,25 +37,17 @@ export const contentRouter = createRouter({
   "issues.latest": publicQuery.query(async () => {
     const latest = await findLatestIssue();
     if (!latest) return null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { content: _c, contentZh: _cz, ...meta } = latest;
     return meta;
   }),
 
   "issues.bySlug": publicQuery
     .input(z.object({ slug: z.string().min(1).max(255) }))
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       const issue = await findIssueBySlug(input.slug);
       if (!issue) throw new TRPCError({ code: "NOT_FOUND", message: "Issue not found" });
-      const entitled = OpenAccess.beta || issue.isFree || (await isEntitled(ctx.user));
-      if (entitled) {
-        return { ...issue, paywalled: false as const };
-      }
-      return {
-        ...issue,
-        content: truncateContent(issue.content),
-        contentZh: issue.contentZh ? truncateContent(issue.contentZh) : null,
-        paywalled: true as const,
-      };
+      return issue;
     }),
 
   /* ----- Factories ----- */

@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
-import { and, count, desc, eq, like, sql } from "drizzle-orm";
+import { and, count, desc, eq, like } from "drizzle-orm";
 import { z } from "zod";
-import { emailSubscribers, emailSends, factories, issues, payments, policyEvents, users } from "@db/schema";
+import { emailSubscribers, emailSends, factories, issues, policyEvents, users } from "@db/schema";
 import { createRouter, adminQuery } from "./middleware";
 import { getDb } from "./queries/connection";
 import { audit } from "./lib/audit";
@@ -63,17 +63,15 @@ export const adminRouter = createRouter({
   /* ----- Dashboard stats ----- */
   stats: adminQuery.query(async () => {
     const db = getDb();
-    const [[u], [i], [e], [p]] = await Promise.all([
+    const [[u], [i], [e]] = await Promise.all([
       db.select({ n: count() }).from(users),
       db.select({ n: count() }).from(issues),
       db.select({ n: count() }).from(emailSubscribers),
-      db.select({ total: sql<number>`coalesce(sum(${payments.amountCents}),0)` }).from(payments),
     ]);
     return {
       users: u?.n ?? 0,
       issues: i?.n ?? 0,
       emailSubscribers: e?.n ?? 0,
-      revenueCents: Number(p?.total ?? 0),
     };
   }),
 

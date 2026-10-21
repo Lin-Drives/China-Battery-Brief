@@ -65,7 +65,7 @@ export default function AboutContact() {
           <CBBButton variant="primary" to="/briefs/debrecen-sold-out">
             {t('about.readFreeIssue')}
           </CBBButton>
-          <CBBButton variant="ghost" to="/pricing">
+          <CBBButton variant="ghost" to="/subscribe">
             {t('about.seePricing')}
           </CBBButton>
         </motion.div>

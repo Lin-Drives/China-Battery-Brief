@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
-import { Lock } from 'lucide-react'
 import { trpc } from '@/providers/trpc'
 import { useToast } from './Toasts'
 import { SectionSkeleton } from './Skeletons'
@@ -57,7 +55,6 @@ export default function AlertsMatrix() {
   const toast = useToast()
   const utils = trpc.useUtils()
   const alertsQuery = trpc.me['alerts.get'].useQuery()
-  const myQuery = trpc.billing.my.useQuery()
 
   // Optimistic overrides keyed `${pillar}:${channel}`; cleared when fresh data lands.
   const [overrides, setOverrides] = useState<Record<string, boolean>>({})
@@ -76,9 +73,7 @@ export default function AlertsMatrix() {
     onSettled: () => utils.me['alerts.get'].invalidate(),
   })
 
-  if (alertsQuery.isLoading || myQuery.isLoading) return <SectionSkeleton rows={4} />
-
-  const locked = !myQuery.data // free readers: inline upsell per design
+  if (alertsQuery.isLoading) return <SectionSkeleton rows={4} />
 
   const serverValue = (pillar: PillarSlug, channel: Channel): boolean =>
     alertsQuery.data?.find((a) => a.pillar === pillar && a.channel === channel)?.enabled ?? false
@@ -118,7 +113,7 @@ export default function AlertsMatrix() {
                   on={value(slug, channel)}
                   color={meta.color}
                   label={tpl(t('acct.alertsAria'), { p: t(`pillar.${slug}`), c: channel })}
-                  disabled={locked || setMut.isPending}
+                  disabled={setMut.isPending}
                   onChange={(next) => toggle(slug, channel, next)}
                 />
               </span>
@@ -132,28 +127,5 @@ export default function AlertsMatrix() {
     </div>
   )
 
-  if (!locked) return matrix
-
-  // Pro gate (account.md B4): matrix locked behind inline upsell.
-  return (
-    <div className="relative">
-      <div aria-hidden className="pointer-events-none select-none blur-[2px]">
-        {matrix}
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center bg-ink-950/40 p-6">
-        <div className="flex flex-col items-center gap-4 border border-line-strong bg-ink-900 px-8 py-7 text-center">
-          <Lock className="h-4 w-4 text-volt" />
-          <p className="font-mono text-[12px] font-semibold uppercase tracking-[0.16em] text-text">
-            {t('acct.alertsPro')}
-          </p>
-          <Link
-            to="/pricing"
-            className="rounded-sm bg-volt px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-950 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-volt-pop active:translate-y-0 active:shadow-none"
-          >
-            {t('acct.upgradeArrow')}
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
+  return matrix
 }

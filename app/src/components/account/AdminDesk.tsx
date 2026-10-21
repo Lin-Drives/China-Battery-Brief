@@ -7,7 +7,7 @@ import RubberStamp from '@/components/RubberStamp'
 import { cn } from '@/lib/utils'
 import { useToast } from './Toasts'
 import { SectionSkeleton } from './Skeletons'
-import { PILLAR_META, PILLAR_ORDER, fmtDate, fmtMoney } from './utils'
+import { PILLAR_META, PILLAR_ORDER, fmtDate } from './utils'
 import type { PillarSlug } from './utils'
 import { useLang, tpl } from '@/i18n/lang'
 import EmailDesk from './EmailDesk'
@@ -165,16 +165,15 @@ export default function AdminDesk() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 border-b border-line lg:grid-cols-4">
+      <div className="grid grid-cols-3 border-b border-line">
         {[
           { label: t('acct.statUsers'), value: stats ? String(stats.users) : '—' },
           { label: t('acct.statIssues'), value: stats ? String(stats.issues) : '—' },
           { label: t('acct.statEmailSubs'), value: stats ? String(stats.emailSubscribers) : '—' },
-          { label: t('acct.statRevenue'), value: stats ? fmtMoney(stats.revenueCents) : '—' },
         ].map((s, i) => (
           <div
             key={s.label}
-            className={cn('border-line px-6 py-5', i % 2 === 1 && 'border-l', i >= 2 && 'border-t lg:border-t-0', i > 0 && 'lg:border-l')}
+            className={cn('border-line px-6 py-5', i > 0 && 'border-l')}
           >
             <p className="font-display text-[28px] leading-none text-text tnum">{s.value}</p>
             <p className="kicker mt-2 text-faint">{s.label}</p>

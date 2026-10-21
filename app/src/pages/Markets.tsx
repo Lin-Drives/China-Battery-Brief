@@ -320,7 +320,7 @@ export default function Markets() {
                 {t('markets.ctaSub')}
               </p>
             </div>
-            <CBBButton to="/pricing">{t('markets.ctaButton')}</CBBButton>
+            <CBBButton to="/subscribe">{t('markets.ctaButton')}</CBBButton>
           </div>
         </div>
       </section>

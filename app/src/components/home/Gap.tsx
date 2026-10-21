@@ -83,7 +83,7 @@ export default function Gap() {
                 </th>
                 <th className="gap-cbb border border-line p-4 text-left">
                   <Link
-                    to="/pricing"
+                    to="/subscribe"
                     className="font-mono text-[12.5px] font-semibold uppercase tracking-[0.12em] text-volt hover:underline"
                   >
                     CHINA BATTERY BRIEF

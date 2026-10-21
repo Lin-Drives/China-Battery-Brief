@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router'
 import { motion } from 'framer-motion'
-import { ArrowRight, Lock } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import CornerTicks from '@/components/CornerTicks'
 import PillarTag from '@/components/PillarTag'
 import RubberStamp from '@/components/RubberStamp'
@@ -105,15 +105,9 @@ export default function FeaturedIssue({ issue }: { issue: IssueMeta }) {
               {fmtIssueNo(issue.number)} · {fmtDateLong(issue.publishedAt, lang)} ·{' '}
               {fmtReadTime(issue.readingMinutes, lang)}
             </span>
-            {issue.isFree ? (
-              <span className="rounded-sm border border-volt/60 bg-volt/10 px-2 py-[3px] font-mono text-[10.5px] font-medium tracking-[0.12em] text-volt">
-                {t('stamp.free')}
-              </span>
-            ) : (
-              <span className="flex items-center gap-1 rounded-sm border border-line-strong px-2 py-[3px] font-mono text-[10.5px] font-medium tracking-[0.12em] text-text-muted">
-                <Lock className="h-3 w-3 text-signal" /> {t('issue.subscribers')}
-              </span>
-            )}
+            <span className="rounded-sm border border-volt/60 bg-volt/10 px-2 py-[3px] font-mono text-[10.5px] font-medium tracking-[0.12em] text-volt">
+              {t('stamp.free')}
+            </span>
             <span className="flex flex-wrap gap-1.5">
               {issue.pillars.map((p) => (
                 <PillarTag key={p} pillar={pillarTag(p)}>

@@ -237,7 +237,7 @@ export default function Policy() {
                 {t('policy.ctaSub')}
               </p>
             </div>
-            <CBBButton to="/pricing">{t('policy.ctaButton')}</CBBButton>
+            <CBBButton to="/subscribe">{t('policy.ctaButton')}</CBBButton>
           </div>
         </div>
       </section>

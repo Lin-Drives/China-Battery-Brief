@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { motion } from 'framer-motion'
-import { ArrowRight, Lock } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { trpc } from '@/providers/trpc'
 import { getReadLedger, markIssueRead, pillarMeta } from './utils'
 import { SkeletonBlock } from './Skeletons'
@@ -84,7 +84,6 @@ export default function LatestStrip() {
                     />
                   ))}
                   <span className="ml-1 font-mono text-[10.5px] tnum text-faint">{fmtReadTime(issue.readingMinutes, lang)}</span>
-                  {!issue.isFree && <Lock className="h-3 w-3 text-faint" />}
                 </span>
                 <span className="inline-flex items-center gap-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.12em] text-volt">
                   {isRead ? t('acct.reread') : t('acct.read')}

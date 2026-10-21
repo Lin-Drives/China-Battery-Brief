@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronDown, Download, Search, SlidersHorizontal, X } from 'lucide-react'
+import { ChevronDown, Search, SlidersHorizontal, X } from 'lucide-react'
 import type { FactoryStatus, Region, TrackerFilters } from '@/components/intel/intel-utils'
 import { REGIONS, STATUS_META, STATUS_ORDER, countActiveFilters } from '@/components/intel/intel-utils'
 import { cn } from '@/lib/utils'
@@ -37,7 +36,6 @@ export default function FilterBar({
 }) {
   const { t } = useLang()
   const [expanded, setExpanded] = useState(false)
-  const [exportOpen, setExportOpen] = useState(false)
   const active = countActiveFilters(filters)
 
   const toggleCompany = (c: string) =>
@@ -179,14 +177,6 @@ export default function FilterBar({
           <p className="font-mono text-[11px] tnum tracking-[0.12em] text-faint">
             {tpl(t('tf.shown'), { shown, total })}
           </p>
-          <button
-            type="button"
-            onClick={() => setExportOpen(true)}
-            className="flex items-center gap-2 rounded-sm border border-line-strong px-3 py-1.5 font-mono text-[11px] tracking-[0.12em] text-text transition-colors hover:border-volt hover:text-volt"
-          >
-            <Download className="h-3.5 w-3.5" />
-            {t('tf.exportCsv')}
-          </button>
         </div>
 
         {/* country chip (deep-linked from Risk Radar) */}
@@ -220,39 +210,6 @@ export default function FilterBar({
         </AnimatePresence>
       </div>
 
-      {/* export gating modal (Pro/Desk only — entitlement checked server-side) */}
-      <AnimatePresence>
-        {exportOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-ink-950/70 px-4 backdrop-blur-[4px]"
-            onClick={() => setExportOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.96, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.96, opacity: 0 }}
-              transition={{ duration: 0.22 }}
-              className="w-full max-w-sm rounded-sm border border-line-strong bg-ink-900 p-6 text-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <p className="font-mono text-[12px] tracking-[0.16em] text-signal">{t('tf.exportProK')}</p>
-              <p className="mt-3 font-sans text-[14px] leading-relaxed text-text-muted">
-                {tpl(t('tf.exportProB'), { total })}
-              </p>
-              <Link
-                to="/pricing"
-                className="mt-5 inline-block rounded-sm bg-volt px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-ink-950 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-volt-pop"
-              >
-                {t('tracker.ctaButton')}
-              </Link>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

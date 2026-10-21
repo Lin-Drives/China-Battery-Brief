@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router'
 import { motion } from 'framer-motion'
 import { useAuth } from '@/hooks/useAuth'
 import { LOGIN_PATH } from '@/const'
@@ -7,12 +6,10 @@ import KickerLine from '@/components/KickerLine'
 import { cn } from '@/lib/utils'
 import { ToastProvider } from '@/components/account/Toasts'
 import { DashboardSkeleton } from '@/components/account/Skeletons'
-import WelcomeBanner from '@/components/account/WelcomeBanner'
 import OverviewSection from '@/components/account/OverviewSection'
 import LatestStrip from '@/components/account/LatestStrip'
 import SavedBriefs from '@/components/account/SavedBriefs'
 import AlertsMatrix from '@/components/account/AlertsMatrix'
-import BillingHistory from '@/components/account/BillingHistory'
 import AdminDesk from '@/components/account/AdminDesk'
 import { firstNameOf, timeGreetingKey } from '@/components/account/utils'
 import { useLang, tpl } from '@/i18n/lang'
@@ -49,10 +46,6 @@ function scrollToId(id: string) {
 function Dashboard() {
   const { t, lang } = useLang()
   const { user, logout } = useAuth()
-  const [params, setParams] = useSearchParams()
-  const welcome = params.get('welcome') === '1'
-  const fromSlug = params.get('from')
-  const [welcomeDismissed, setWelcomeDismissed] = useState(false)
 
   const isAdmin = user?.role === 'admin'
 
@@ -61,32 +54,14 @@ function Dashboard() {
     { id: 'latest', label: t('acct.nav.latest') },
     { id: 'saved', label: t('acct.nav.saved') },
     { id: 'alerts', label: t('acct.nav.alerts') },
-    { id: 'billing', label: t('acct.nav.billing') },
     ...(isAdmin ? [{ id: 'desk-control', label: t('acct.nav.desk') }] : []),
   ]
   const active = useActiveSection(sections.map((s) => s.id).join('|'))
-
-  // Post-checkout welcome: auto-scroll to the latest files strip (account.md shared states)
-  useEffect(() => {
-    if (!welcome) return
-    const t = window.setTimeout(() => scrollToId('latest'), 1100)
-    return () => window.clearTimeout(t)
-  }, [welcome])
-
-  const dismissWelcome = () => {
-    setWelcomeDismissed(true)
-    const next = new URLSearchParams(params)
-    next.delete('welcome')
-    next.delete('from')
-    setParams(next, { replace: true })
-  }
 
   const name = firstNameOf(user?.name, user?.email)
 
   return (
     <div className="mx-auto max-w-container px-[clamp(20px,4vw,48px)] pb-24 pt-16">
-      {welcome && !welcomeDismissed && <WelcomeBanner fromSlug={fromSlug} onDismiss={dismissWelcome} />}
-
       {/* Header (account.md B): greeting + member metadata */}
       <motion.header
         initial={{ opacity: 0, y: 24 }}
@@ -203,18 +178,6 @@ function Dashboard() {
           >
             <p className="kicker mb-5 text-text-muted">{t('acct.alertsControl')}</p>
             <AlertsMatrix />
-          </motion.section>
-
-          <motion.section
-            id="billing"
-            className="scroll-mt-32"
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.6, ease: EASE_EXPO }}
-          >
-            <p className="kicker mb-5 text-text-muted">{t('acct.billingHistory')}</p>
-            <BillingHistory />
           </motion.section>
 
           {isAdmin && (

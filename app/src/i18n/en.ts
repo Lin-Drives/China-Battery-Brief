@@ -13,7 +13,7 @@ export const en: Record<string, string> = {
   'nav.about': 'About',
   'nav.signin': 'Sign in',
   'nav.signout': 'Sign out',
-  'nav.subscribe': 'Subscribe',
+  'nav.subscribe': 'Get the brief',
   'nav.est': 'EST. 2025 · WEEKLY',
   'nav.account': 'Account',
   'nav.drawerContact': 'DESK@CHINABATTERYBRIEF.COM ◆ SHANGHAI — BERLIN — HONG KONG ◆ EVERY THURSDAY 06:00 UTC',
@@ -41,7 +41,7 @@ export const en: Record<string, string> = {
   'footer.link.techRoutes': 'Tech Routes',
   'footer.link.policy': 'Policy',
   'footer.link.markets': 'Markets',
-  'footer.link.pricing': 'Pricing',
+  'footer.link.subscribe': 'Get the brief',
   'footer.link.about': 'About',
   'footer.link.manifesto': 'Manifesto',
   'footer.link.methodology': 'Methodology',
@@ -74,6 +74,22 @@ export const en: Record<string, string> = {
   'email.alreadyNote': 'YOU ARE ALREADY ON THE LIST',
   'email.langLabel': 'EMAIL LANGUAGE',
   'email.langAria': 'Choose email language',
+
+  'subscribe.kicker': 'THE WEEKLY BRIEF',
+  'subscribe.titleA': 'One email, ',
+  'subscribe.titleEm': 'the week',
+  'subscribe.titleB': ' in batteries',
+  'subscribe.dek': "Every Thursday, one email on the four things that moved China's battery industry: overseas plants, technology routes, policy and markets. Free to read, free to forward, one click to leave.",
+  'subscribe.point1Title': 'EVERY THURSDAY',
+  'subscribe.point1Body': 'Published at 06:00 UTC, in English and Chinese. One issue, two languages, no daily noise.',
+  'subscribe.point2Title': 'FOUR PILLARS',
+  'subscribe.point2Body': 'Capacity map, technology routes, policy tracking and market signals — with sources you can check.',
+  'subscribe.point3Title': 'NO CARD, NO LOCK-IN',
+  'subscribe.point3Body': 'Double opt-in, unsubscribe in one click. We do not sell or share the list.',
+  'subscribe.sampleKicker': 'READ BEFORE YOU SIGN UP',
+  'subscribe.sampleBody': 'The archive is open. Start with the latest issue, or browse by pillar, before you hand over an address.',
+  'subscribe.sampleCta': 'Browse the archive',
+  'subscribe.loginCta': 'Already subscribed? Sign in',
 
   /* ---------- Pillars ---------- */
   'pillar.all': 'ALL',
@@ -222,7 +238,7 @@ export const en: Record<string, string> = {
   'gap.r4label': 'Price',
   'gap.r4gen': '$30–75/mo',
   'gap.r4term': '$3,000–15,000/yr',
-  'gap.r4cbb': '$19/mo',
+  'gap.r4cbb': 'FREE',
 
   /* ---------- Home · Writing sample ---------- */
   'sample.kicker': 'FROM ISSUE No. 045',
@@ -264,7 +280,7 @@ export const en: Record<string, string> = {
   'cta.sec': 'SEC',
   'cta.until': 'UNTIL No. 048 · 06:00 UTC',
   'cta.readLatest': 'READ THE LATEST ISSUE',
-  'cta.viewPricing': 'VIEW SUBSCRIPTION PLANS',
+  'cta.viewPricing': "GET THE WEEKLY BRIEF",
 }
 
 /* ---------- Briefs archive ---------- */
@@ -365,7 +381,7 @@ Object.assign(en, {
   'detail.newerFile': 'NEWER FILE →',
   'detail.firstFile': "YOU'RE AT THE FIRST FILE",
   'detail.nextFile': 'NEXT FILE →',
-  'detail.nextThursday': '{no} NEXT THURSDAY — SUBSCRIBERS GET IT FIRST',
+  'detail.nextThursday': "{no} NEXT THURSDAY",
   'detail.subscribeCta': 'SUBSCRIBE →',
   'detail.related': 'RELATED FILES',
   'detail.requested': 'REQUESTED:',
@@ -434,11 +450,11 @@ Object.assign(en, {
   'tracker.correctionsK': 'CORRECTIONS',
   'tracker.correctionsB': 'Found an error? Every site file has a correction channel. Fixes are logged publicly.',
   'tracker.seeLog': 'SEE THE LOG →',
-  'tracker.ctaA': 'The map is free. The ',
-  'tracker.ctaEm': 'file',
-  'tracker.ctaB': ' is Pro.',
-  'tracker.ctaSub': 'FULL TIMELINES · SOURCES · CSV EXPORT · API',
-  'tracker.ctaButton': 'GO PRO — $19/MO →',
+  'tracker.ctaA': "The map is free. The ",
+  'tracker.ctaEm': "weekly file",
+  'tracker.ctaB': " lands in your inbox.",
+  'tracker.ctaSub': "ONE EMAIL EVERY THURSDAY · FOUR PILLARS · SOURCES INCLUDED",
+  'tracker.ctaButton': "GET THE BRIEF →",
 
   /* Tracker filter bar / table / drawer chrome */
   'tf.searchPh': 'SITE, CITY, COUNTRY…',
@@ -990,8 +1006,8 @@ Object.assign(en, {
   'about.h1l2a': "is covered by people who don't speak ",
   'about.h1l2em': 'electrochemistry',
   'about.h1l2b': ',',
-  'about.h1l3a': 'or priced for desks that trade ',
-  'about.h1l3em': 'cobalt futures',
+  'about.h1l3a': 'or priced for ',
+  'about.h1l3em': 'trading desks',
   'about.h1l3b': '.',
   'about.h1l4a': 'We built the ',
   'about.h1l4em': 'missing middle',
@@ -999,22 +1015,17 @@ Object.assign(en, {
   'about.accent1Note': 'WHY A 4C CHARGE CURVE MATTERS MORE THAN A PRESS RELEASE',
   'about.accent2Note': '$3,000–15,000/YR TERMINALS — FOR THE RAW DATA, NOT THE UNDERSTANDING',
   'about.sub':
-    'China Battery Brief is the missing middle: a weekly, reader-funded brief that covers the whole stack — electrochemistry, policy and capital — in plain language, every Thursday, for $19 a month.',
+    'China Battery Brief is the missing middle: a weekly, reader-funded brief that covers the whole stack — electrochemistry, policy and capital — in plain language, every Thursday.',
 
-  'about.stat1': 'BRIEFS SHIPPED',
-  'about.stat2': 'WORDS PUBLISHED',
-  'about.stat3': 'SITES TRACKED',
-  'about.stat4': 'CORRECTION RATE',
-  'about.stat4Note': 'EVERY FIX LOGGED PUBLICLY ↓',
 
   'about.modelKicker': 'THE MODEL',
   'about.modelHA': 'Light assets. High ',
   'about.modelHEm': 'standards',
   'about.modelHB': '.',
   'about.modelBody':
-    "No offices in five capitals, no sales team, no events business. The entire company is a desk, a database, and a publishing pipeline. That's why Pro costs $19 and not $1,900 — and why the brief answers to readers only.",
+    "No offices in five capitals, no sales team, no events business. The entire company is a desk, a database, and a publishing pipeline. The brief answers to readers only.",
   'about.ledger1L': 'REVENUE',
-  'about.ledger1V': '100% READER SUBSCRIPTIONS',
+  'about.ledger1V': 'READER-SUPPORTED',
   'about.ledger2L': 'ADS',
   'about.ledger2V': '$0',
   'about.ledger3L': 'SPONSORS',
@@ -1043,8 +1054,8 @@ Object.assign(en, {
   'about.stage3B':
     'An electrochemist and a policy analyst read the same fact set. Disagreements survive into the brief — labeled.',
   'about.stage4T': 'PUBLISH & CORRECT',
-  'about.stage4B': 'Thursday 06:00 UTC. Errors get a public fix log, not a silent edit.',
-  'about.fixLogLink': '→ FIX LOG',
+  'about.stage4B': 'Thursday 06:00 UTC. Errors are corrected against the issue and source, not silently edited.',
+  'about.fixLogLink': '→ CORRECTIONS',
 
   'about.deskKicker': 'THE DESK',
   'about.deskHA': 'Three people. Six ',
@@ -1073,6 +1084,7 @@ Object.assign(en, {
   'about.eth4a':
     'No desk member holds or trades securities of companies we cover, in any market, directly or through funds we control. This is a condition of employment, not a preference.',
   'about.fixlogKicker': 'PUBLIC FIX LOG',
+  'about.fixlogEmpty': 'Every correction is tagged to its issue and source, and folded back into the article.',
   'about.reportError': 'REPORT AN ERROR',
   'about.reportLogged': 'LOGGED — THANK YOU',
   'about.reportLoggedBody':
@@ -1096,7 +1108,7 @@ Object.assign(en, {
   'about.contactHEm': 'Thursday',
   'about.contactHB': '.',
   'about.readFreeIssue': 'READ THE FREE ISSUE →',
-  'about.seePricing': 'SEE PRICING →',
+  'about.seePricing': "GET THE WEEKLY BRIEF",
 })
 
 /* ---------- Account dashboard ---------- */

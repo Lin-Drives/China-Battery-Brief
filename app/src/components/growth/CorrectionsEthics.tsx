@@ -23,12 +23,6 @@ const ETHICS = [
   { qKey: 'about.eth4q', aKey: 'about.eth4a' },
 ]
 
-const FIX_LOG = [
-  { issue: 'No. 044', fix: 'HPAL COST FIGURE RESTATED (SOURCE: COMPANY FILING REV.)', date: 'NOV 8' },
-  { issue: 'No. 039', fix: 'GOTION SOP YEAR CORRECTED 2025→2026', date: 'OCT 12' },
-  { issue: 'No. 037', fix: 'WH/KG TYPO FIXED', date: 'SEP 28' },
-]
-
 /** Report-an-error modal. The v1 backend ships no /corrections endpoint, so
  *  submission is mocked client-side behind the same interface. */
 function ReportErrorDialog() {
@@ -166,33 +160,9 @@ export default function CorrectionsEthics() {
         {/* Right — public fix log */}
         <div>
           <KickerLine chapter="06" label={t('about.fixlogKicker')} />
-          <div className="mt-8 border-t border-line">
-            {FIX_LOG.map((row, i) => (
-              <motion.div
-                key={row.issue}
-                className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-line py-3.5"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.45, delay: i * 0.06, ease: EASE }}
-              >
-                <span className="font-mono text-[12px] font-semibold text-volt tnum">{row.issue}</span>
-                <span className="flex-1 font-mono text-[12px] leading-[1.6] tracking-[0.04em] text-text-muted">
-                  {row.fix}
-                </span>
-                {/* Fix date flickers once volt on entry */}
-                <motion.span
-                  className="font-mono text-[11px] tracking-[0.1em] text-faint tnum"
-                  initial={{ color: '#5A6376' }}
-                  whileInView={{ color: ['#C9F24B', '#5A6376'] }}
-                  viewport={{ once: true, margin: '-10% 0px' }}
-                  transition={{ duration: 0.9, delay: 0.3 + i * 0.06, times: [0.25, 1] }}
-                >
-                  {row.date}
-                </motion.span>
-              </motion.div>
-            ))}
-          </div>
+          <p className="mt-8 max-w-[46ch] font-sans text-[14px] leading-[1.7] text-text-muted">
+            {t('about.fixlogEmpty')}
+          </p>
           <motion.div
             className="mt-6 flex flex-wrap items-center gap-4"
             initial={{ opacity: 0 }}

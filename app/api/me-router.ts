@@ -1,11 +1,8 @@
-import { createHash, randomBytes } from "crypto";
-import { TRPCError } from "@trpc/server";
 import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
-import { alerts, apiKeys, issues, savedBriefs } from "@db/schema";
+import { alerts, issues, savedBriefs } from "@db/schema";
 import { createRouter, authedQuery } from "./middleware";
 import { getDb } from "./queries/connection";
-import { getActiveSubscription } from "./lib/entitlement";
 
 const PILLARS = ["overseas-capacity", "tech-routes", "geopolitics", "markets"] as const;
 
@@ -77,38 +74,4 @@ export const meRouter = createRouter({
       return { ok: true as const };
     }),
 
-  /* ----- API keys (Desk tier only) ----- */
-  "apiKeys.list": authedQuery.query(async ({ ctx }) => {
-    const db = getDb();
-    const rows = await db
-      .select({ id: apiKeys.id, label: apiKeys.label, scopes: apiKeys.scopes, lastUsedAt: apiKeys.lastUsedAt, createdAt: apiKeys.createdAt })
-      .from(apiKeys)
-      .where(eq(apiKeys.userId, ctx.user.id))
-      .orderBy(desc(apiKeys.createdAt));
-    return rows;
-  }),
-
-  "apiKeys.create": authedQuery
-    .input(z.object({ label: z.string().min(1).max(120) }))
-    .mutation(async ({ ctx, input }) => {
-      const active = await getActiveSubscription(ctx.user.id);
-      if (!active || active.plan.tier !== "desk") {
-        throw new TRPCError({ code: "FORBIDDEN", message: "API keys require the Desk plan" });
-      }
-      const plain = `cbb_${randomBytes(24).toString("hex")}`;
-      const keyHash = createHash("sha256").update(plain).digest("hex");
-      await getDb()
-        .insert(apiKeys)
-        .values({ userId: ctx.user.id, keyHash, label: input.label, scopes: ["issues", "factories", "policy"] });
-      return { key: plain }; // shown once, never again
-    }),
-
-  "apiKeys.remove": authedQuery
-    .input(z.object({ id: z.number().int().positive() }))
-    .mutation(async ({ ctx, input }) => {
-      await getDb()
-        .delete(apiKeys)
-        .where(and(eq(apiKeys.id, input.id), eq(apiKeys.userId, ctx.user.id)));
-      return { ok: true as const };
-    }),
 });

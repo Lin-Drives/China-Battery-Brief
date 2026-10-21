@@ -226,7 +226,7 @@ export default function Tracker() {
               {t('tracker.ctaSub')}
             </p>
           </div>
-          <CBBButton to="/pricing">{t('tracker.ctaButton')}</CBBButton>
+          <CBBButton to="/subscribe">{t('tracker.ctaButton')}</CBBButton>
         </div>
       </section>
 

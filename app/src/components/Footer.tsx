@@ -17,7 +17,7 @@ const COLUMNS: { titleKey: string; links: { labelKey: string; to: string }[] }[]
       { labelKey: 'footer.link.techRoutes', to: '/tech' },
       { labelKey: 'footer.link.policy', to: '/policy' },
       { labelKey: 'footer.link.markets', to: '/markets' },
-      { labelKey: 'footer.link.pricing', to: '/pricing' },
+      { labelKey: 'footer.link.subscribe', to: '/subscribe' },
     ],
   },
   {

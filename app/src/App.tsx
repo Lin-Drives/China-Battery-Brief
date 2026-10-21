@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import Lenis from 'lenis'
 import { ScrollTrigger } from '@/lib/gsap'
 import { setLenis } from '@/lib/scroll'
@@ -11,7 +11,7 @@ import Tracker from '@/pages/Tracker'
 import Tech from '@/pages/Tech'
 import Policy from '@/pages/Policy'
 import Markets from '@/pages/Markets'
-import Pricing from '@/pages/Pricing'
+import Subscribe from '@/pages/Subscribe'
 import About from '@/pages/About'
 import Account from '@/pages/Account'
 import Login from '@/pages/Login'
@@ -50,7 +50,8 @@ export default function App() {
           <Route path="tech" element={<Tech />} />
           <Route path="policy" element={<Policy />} />
           <Route path="markets" element={<Markets />} />
-          <Route path="pricing" element={<Pricing />} />
+          <Route path="subscribe" element={<Subscribe />} />
+          <Route path="pricing" element={<Navigate to="/subscribe" replace />} />
           <Route path="about" element={<About />} />
           <Route path="account" element={<Account />} />
           <Route path="login" element={<Login />} />

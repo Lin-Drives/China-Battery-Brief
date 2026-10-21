@@ -293,7 +293,7 @@ export default function Tech() {
                 {t('tech.ctaSub')}
               </p>
             </div>
-            <CBBButton to="/pricing">{t('tech.ctaButton')}</CBBButton>
+            <CBBButton to="/subscribe">{t('tech.ctaButton')}</CBBButton>
           </div>
         </div>
       </section>

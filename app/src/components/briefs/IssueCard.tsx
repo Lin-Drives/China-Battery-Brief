@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
-import { Lock } from 'lucide-react'
 import PillarTag from '@/components/PillarTag'
 import RubberStamp from '@/components/RubberStamp'
 import GhostCover from './GhostCover'
@@ -9,7 +8,6 @@ import { fmtIssueNo, pillarTag } from './pillar'
 import { useLang } from '@/i18n/lang'
 import { localizedCover, coverFallback } from '@/lib/cover'
 import { fmtDateShort, fmtReadTime, pick } from '@/i18n/format'
-import { OpenAccess } from '@contracts/constants'
 import type { IssueMeta } from './pillar'
 
 /**
@@ -27,13 +25,11 @@ export default function IssueCard({
   const { lang, t } = useLang()
   const title = pick(lang, issue.titleZh, issue.title)
   const dek = pick(lang, issue.dekZh, issue.dek)
-  // Closed beta: everything reads as free while OpenAccess.beta is on
-  const open = OpenAccess.beta || issue.isFree
   return (
     <motion.article variants={variants} className="group relative h-full">
       <Link
         to={`/briefs/${issue.slug}`}
-        data-cursor={open ? 'READ' : 'UNLOCK'}
+        data-cursor="READ"
         className="flex h-full flex-col border border-line bg-ink-800 transition-all duration-200 ease-out group-hover:-translate-y-1 group-hover:border-volt/40"
         aria-label={`${fmtIssueNo(issue.number)} — ${title}`}
       >
@@ -50,13 +46,11 @@ export default function IssueCard({
           ) : (
             <GhostCover number={issue.number} pillars={issue.pillars} />
           )}
-          {open && (
-            <div className="absolute right-3 top-3">
-              <RubberStamp color="var(--volt)" rotate={-6} className="px-2 py-1 text-[9px]">
-                {issue.isFree ? t('stamp.free') : t('stamp.betaFree')}
-              </RubberStamp>
-            </div>
-          )}
+          <div className="absolute right-3 top-3">
+            <RubberStamp color="var(--volt)" rotate={-6} className="px-2 py-1 text-[9px]">
+              {issue.isFree ? t('stamp.free') : t('stamp.betaFree')}
+            </RubberStamp>
+          </div>
         </div>
 
         <div className="flex flex-1 flex-col gap-3 p-5">
@@ -82,11 +76,6 @@ export default function IssueCard({
           <div className="flex items-center justify-between border-t border-line pt-3 font-mono text-[11px] tracking-[0.12em]">
             <span className="flex items-center gap-2 text-faint tnum">
               {fmtReadTime(issue.readingMinutes, lang)}
-              {!open && (
-                <span className="flex items-center gap-1 text-signal">
-                  <Lock className="h-3 w-3" /> PRO
-                </span>
-              )}
             </span>
             <span className="text-text-muted transition-all duration-200 group-hover:translate-x-1 group-hover:text-volt">
               {t('issue.read')}

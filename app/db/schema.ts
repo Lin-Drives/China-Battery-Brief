@@ -88,49 +88,6 @@ export const issues = mysqlTable("issues", {
 export type Issue = typeof issues.$inferSelect;
 export type InsertIssue = typeof issues.$inferInsert;
 
-/** Subscription catalog. */
-export const plans = mysqlTable("plans", {
-  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  code: varchar("code", { length: 50 }).notNull().unique(), // free | pro-monthly | pro-annual
-  name: varchar("name", { length: 100 }).notNull(),
-  tier: mysqlEnum("tier", ["free", "pro", "desk"]).notNull(), // "desk" retained for historical rows only
-  priceCents: int("priceCents").notNull(),
-  currency: varchar("currency", { length: 3 }).default("USD").notNull(),
-  interval: mysqlEnum("interval", ["month", "year", "forever"]).notNull(),
-  features: json("features").$type<string[]>(),
-});
-
-export type Plan = typeof plans.$inferSelect;
-
-export const subscriptions = mysqlTable("subscriptions", {
-  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
-  planId: bigint("planId", { mode: "number", unsigned: true }).notNull(),
-  status: mysqlEnum("status", ["active", "canceled", "past_due", "trialing"]).notNull(),
-  currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt")
-    .defaultNow()
-    .notNull()
-    .$onUpdate(() => new Date()),
-});
-
-export type Subscription = typeof subscriptions.$inferSelect;
-
-/** Mock-checkout payment records (Stripe-shaped for later swap-in). */
-export const payments = mysqlTable("payments", {
-  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
-  planId: bigint("planId", { mode: "number", unsigned: true }).notNull(),
-  amountCents: int("amountCents").notNull(),
-  currency: varchar("currency", { length: 3 }).default("USD").notNull(),
-  status: mysqlEnum("status", ["succeeded", "pending", "failed"]).notNull(),
-  mockRef: varchar("mockRef", { length: 100 }),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
-
-export type Payment = typeof payments.$inferSelect;
-
 /** Global Factory Tracker dataset. */
 export const factories = mysqlTable(
   "factories",
@@ -219,16 +176,6 @@ export const alerts = mysqlTable(
   },
   (t) => ({ uniq: unique("uniq_user_pillar_channel").on(t.userId, t.pillar, t.channel) }),
 );
-
-export const apiKeys = mysqlTable("api_keys", {
-  id: bigint({ mode: "number", unsigned: true }).autoincrement().primaryKey(),
-  userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
-  keyHash: varchar("keyHash", { length: 255 }).notNull(),
-  label: varchar("label", { length: 255 }),
-  scopes: json("scopes").$type<string[]>(),
-  lastUsedAt: timestamp("lastUsedAt"),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
 
 export const emailSubscribers = mysqlTable(
   "email_subscribers",

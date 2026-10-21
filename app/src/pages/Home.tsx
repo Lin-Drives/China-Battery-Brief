@@ -5,7 +5,6 @@ import Pillars from '@/components/home/Pillars'
 import DataProducts from '@/components/home/DataProducts'
 import Gap from '@/components/home/Gap'
 import WritingSample from '@/components/home/WritingSample'
-import SocialProof from '@/components/home/SocialProof'
 import FinalCTA from '@/components/home/FinalCTA'
 
 /**
@@ -25,7 +24,6 @@ export default function Home() {
       <DataProducts />
       <Gap />
       <WritingSample />
-      <SocialProof />
       <FinalCTA />
     </>
   )
