@@ -75,6 +75,7 @@
 - [x] 邮箱+密码认证（`api/auth-router.ts`：scrypt 哈希 `api/lib/passwords.ts`、注册/登录、JWT session `api/lib/jwt.ts`、`OWNER_EMAIL` 首登 admin、`context.ts` 解析 cookie 载入用户）
 - [ ] 模拟支付 → Stripe Checkout + Webhook（`api/billing-router.ts` 替换点已预留）
 - [x] 邮件服务：SMTP 通道 + 双重确认 + 每周群发框架（`api/lib/mailer.ts` / `subscribe.ts` / `newsletter.ts`；`npm run email:blast -- <期号>` 发刊，周四 06:00 UTC 由 cron/launchd 触发；未配置 SMTP 时 log-mode 不发送）
+- [ ] **开通 Cloudflare Email Routing**：将 `hello@chinabatterybrief.com` 转发到主理人现有邮箱，验证收发后启用关于页的“交流与纠错”入口。注意 Resend 发信 SPF 需与 Cloudflare 的 SPF 合并为单条 TXT，不能让域名同时存在两条 SPF；开通前页面展示的地址尚不可收信。
 - [ ] 独立 `/admin` 路由 + 富文本编辑器
 
 ### 队列 C — 内容生产流水线（链路已落地，补缺口）

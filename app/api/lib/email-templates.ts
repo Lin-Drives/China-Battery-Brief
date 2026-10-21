@@ -1,4 +1,3 @@
-import { marked } from "marked";
 import { env } from "./env";
 
 export type Lang = "en" | "zh";
@@ -15,7 +14,31 @@ const PAPER = "#F4F0E6";
 const VOLT = "#C9F24B";
 const MUTED = "#8E97A8";
 
-const COPY: Record<Lang, Record<string, string>> = {
+type EmailCopy = {
+  brandName: string;
+  confirmSubject: string;
+  confirmHeading: string;
+  confirmIntro: string;
+  confirmButton: string;
+  confirmIgnore: string;
+  welcomeSubject: string;
+  welcomeHeading: string;
+  welcomeIntro: string;
+  footerRights: string;
+  unsubscribe: string;
+  viewOnline: string;
+  sentBy: string;
+  langEn: string;
+  langZh: string;
+  testSubject: string;
+  testHeading: string;
+  testBody: string;
+  inThisIssue: string;
+  readFull: string;
+  tags: Record<string, string>;
+};
+
+const COPY: Record<Lang, EmailCopy> = {
   en: {
     brandName: "CHINA BATTERY BRIEF",
     confirmSubject: "Confirm your subscription — China Battery Brief",
@@ -40,6 +63,14 @@ const COPY: Record<Lang, Record<string, string>> = {
     testHeading: "Mail channel test",
     testBody:
       "If you're reading this, your mail channel is configured. No action is needed.",
+    inThisIssue: "IN THIS ISSUE",
+    readFull: "READ THE FULL ISSUE",
+    tags: {
+      capacity: "CAPACITY",
+      tech: "TECH",
+      risk: "RISK",
+      markets: "MARKETS",
+    },
   },
   zh: {
     brandName: "中国电池出海简报",
@@ -62,6 +93,14 @@ const COPY: Record<Lang, Record<string, string>> = {
     testSubject: "SMTP 测试 — 中国电池出海简报",
     testHeading: "邮件通道测试",
     testBody: "如果你能读到这封邮件，说明邮件通道已配置成功。无需任何操作。",
+    inThisIssue: "本期要点",
+    readFull: "阅读完整简报",
+    tags: {
+      capacity: "产能",
+      tech: "技术",
+      risk: "风险",
+      markets: "市场",
+    },
   },
 };
 
@@ -80,6 +119,7 @@ function shell(opts: {
   heading: string;
   bodyHtml: string;
   footerHtml: string;
+  previewNote?: string;
 }): string {
   return `<!doctype html>
 <html>
@@ -93,6 +133,11 @@ function shell(opts: {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${INK}">
       <tr><td align="center" style="padding:32px 16px">
         <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%">
+          ${
+            opts.previewNote
+              ? `<tr><td style="padding-bottom:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.6;letter-spacing:0.08em;color:${MUTED};text-transform:uppercase">${escapeHtml(opts.previewNote)}</td></tr>`
+              : ""
+          }
           <tr>
             <td style="padding-bottom:24px;border-bottom:2px solid ${VOLT}">
               <div style="font-size:14px;font-weight:700;letter-spacing:0.22em;color:${VOLT};text-transform:uppercase">${escapeHtml(opts.brandName)}</div>
@@ -187,11 +232,6 @@ export function welcomeEmail(
   };
 }
 
-/** Convert issue markdown to HTML (headings, lists, links, quotes, tables). */
-function renderMarkdown(md: string): string {
-  return marked.parse(md) as string;
-}
-
 /* ----- Admin: SMTP test message ----- */
 export function smtpTestEmail(lang: Lang = "en"): RenderedEmail {
   const c = COPY[lang];
@@ -229,32 +269,82 @@ const ISSUE_META: Record<
   },
 };
 
+export type EmailHighlight = {
+  tag: string;
+  text: string;
+};
+
 export function weeklyBlastEmail(
   lang: Lang = "en",
-  issue: { number: number; title: string; dek?: string | null; content: string; readingMinutes?: number | null },
-  opts: { unsubUrl: string; viewOnlineUrl: string; switchLangUrls: SwitchLangUrls },
+  issue: {
+    number: number;
+    title: string;
+    dek?: string | null;
+    readingMinutes?: number | null;
+    highlights?: EmailHighlight[] | null;
+  },
+  opts: {
+    unsubUrl: string;
+    viewOnlineUrl: string;
+    switchLangUrls: SwitchLangUrls;
+    /** Shown only on the public sample page, never in a real send. */
+    previewNote?: string;
+  },
 ): RenderedEmail {
   const c = COPY[lang];
   const meta = ISSUE_META[lang];
   const subject = meta.subject(issue.number, issue.title);
-  const dek = issue.dek ? `<div style="font-size:15px;line-height:1.7;color:${MUTED};margin:4px 0 20px">${escapeHtml(issue.dek)}</div>` : "";
+  const dek = issue.dek
+    ? `<div style="font-size:15px;line-height:1.7;color:${MUTED};margin:4px 0 20px">${escapeHtml(issue.dek)}</div>`
+    : "";
+
+  const highlights = (issue.highlights ?? []).slice(0, 3);
+  const highlightsHtml = highlights.length
+    ? `<div style="margin:8px 0 24px;border-top:1px solid rgba(244,240,230,0.14);border-bottom:1px solid rgba(244,240,230,0.14)">` +
+      `<div style="padding:14px 0 4px;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:${VOLT}">${escapeHtml(c.inThisIssue)}</div>` +
+      highlights
+        .map((item) => {
+          const label = c.tags[item.tag as keyof typeof c.tags] ?? item.tag;
+          return (
+            `<div style="padding:12px 0;border-top:1px solid rgba(244,240,230,0.1)">` +
+            `<div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:${MUTED}">${escapeHtml(label)}</div>` +
+            `<div style="margin-top:4px;font-size:15px;line-height:1.65;color:${PAPER}">${escapeHtml(item.text)}</div>` +
+            `</div>`
+          );
+        })
+        .join("") +
+      `</div>`
+    : "";
+
   const bodyHtml =
     `<div style="font-size:13px;font-weight:700;letter-spacing:0.18em;color:${VOLT};text-transform:uppercase">${escapeHtml(meta.kicker(issue.number, issue.readingMinutes))}</div>` +
     dek +
-    `<div style="font-size:15px;line-height:1.8;color:${PAPER}">${renderMarkdown(issue.content)}</div>` +
-    `<p style="margin:24px 0 0;font-size:13px"><a href="${escapeHtml(opts.viewOnlineUrl)}" style="color:${VOLT};text-decoration:none">${escapeHtml(c.viewOnline)} →</a></p>`;
+    highlightsHtml +
+    buttonHtml(opts.viewOnlineUrl, c.readFull);
+
   const footerHtml =
     `<p>${escapeHtml(c.footerRights)}</p>` +
     `<p>${languageLinksHtml(lang, opts.switchLangUrls)} · <a href="${escapeHtml(opts.unsubUrl)}" style="color:${MUTED};text-decoration:underline">${escapeHtml(c.unsubscribe)}</a></p>`;
+
+  const textHighlights = highlights.length
+    ? `\n\n${c.inThisIssue}\n${highlights
+        .map((item) => {
+          const label = c.tags[item.tag as keyof typeof c.tags] ?? item.tag;
+          return `- [${label}] ${item.text}`;
+        })
+        .join("\n")}`
+    : "";
+
   return {
     subject,
-    text: `${subject}\n\n${issue.dek ?? ""}\n\n${issue.content}\n\n${opts.viewOnlineUrl}\n\n${languageLinksText(lang, opts.switchLangUrls)}\n\n${c.unsubscribe}: ${opts.unsubUrl}`,
+    text: `${subject}\n\n${issue.dek ?? ""}${textHighlights}\n\n${c.readFull}: ${opts.viewOnlineUrl}\n\n${languageLinksText(lang, opts.switchLangUrls)}\n\n${c.unsubscribe}: ${opts.unsubUrl}`,
     html: shell({
-      preheader: subject,
+      preheader: issue.dek ?? subject,
       brandName: c.brandName,
       heading: issue.title,
       bodyHtml,
       footerHtml,
+      previewNote: opts.previewNote,
     }),
   };
 }

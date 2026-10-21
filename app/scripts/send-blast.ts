@@ -11,13 +11,17 @@ import { getDb, closeDb } from "../api/queries/connection";
  *   npm run email:blast            → latest published issue (concurrency 5)
  *   npm run email:blast -- 50      → issue number 50
  *   npm run email:blast -- 50 10   → issue 50 with 10 concurrent sends
+ *   npm run email:blast -- 50 --dry-run → render only; no mail, no audit rows
  *
  * After the blast it opportunistically prunes old email_sends audit rows.
  * Requires DATABASE_URL (+ SMTP_* to actually send; otherwise log-mode).
  */
 async function main() {
-  const arg = process.argv[2];
-  const concurrencyArg = process.argv[3];
+  const args = process.argv.slice(2);
+  const dryRun = args.includes("--dry-run");
+  const positional = args.filter((arg) => arg !== "--dry-run");
+  const arg = positional[0];
+  const concurrencyArg = positional[1];
   const db = getDb();
 
   let issueId: number;
@@ -44,12 +48,19 @@ async function main() {
     throw new Error(`Invalid concurrency: ${concurrencyArg}`);
   }
 
-  console.log(`Blasting issue #${issueId}${concurrency ? ` (concurrency ${concurrency})` : ""}…`);
-  const summary = await sendWeeklyBlast(issueId, concurrency ? { concurrency } : {});
+  console.log(
+    `${dryRun ? "Dry run" : "Blasting"} issue #${issueId}${concurrency ? ` (concurrency ${concurrency})` : ""}…`,
+  );
+  const summary = await sendWeeklyBlast(issueId, {
+    ...(concurrency ? { concurrency } : {}),
+    ...(dryRun ? { dryRun: true } : {}),
+  });
   console.log(`Blast finished: ${JSON.stringify(summary)}`);
 
-  const pruned = await pruneEmailSends();
-  console.log(`Pruned old email_sends: ${JSON.stringify(pruned)}`);
+  if (!dryRun) {
+    const pruned = await pruneEmailSends();
+    console.log(`Pruned old email_sends: ${JSON.stringify(pruned)}`);
+  }
 }
 
 main()

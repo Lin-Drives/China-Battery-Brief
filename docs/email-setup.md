@@ -45,7 +45,7 @@
 4. 关键：这些记录如果是 CNAME，代理状态必须选 **DNS only（灰色云朵）**。发信不走网页代理，开了橙云会验证失败。
 5. 全部添加后回到 Resend，点 **Verify**，等状态变成 Verified（通常几分钟，最长 24 小时）。
 
-> 不要修改现有的网站 A 记录，也不要开启 Cloudflare Email Routing 去抢同一个域名的 MX，除非你明确知道自己在做什么。
+> 不要修改现有的网站 A 记录。若需要 `hello@chinabatterybrief.com` 收信而开启 Cloudflare Email Routing，可以与 Resend 发信共存：MX 只影响收信，不影响 Resend 发信；但必须把 Resend 的 SPF 与 Cloudflare 的 SPF **合并成一条 TXT**（同一条记录里 include 两个服务），不能让域名同时存在两条 SPF。
 
 ---
 

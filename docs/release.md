@@ -47,3 +47,31 @@ bash scripts/deploy-release.sh
 ## 六、邮件群发是独立步骤
 
 `npm run email:blast` 会向订阅者发送邮件，不属于部署脚本，也不应随发刊自动运行。只有在用户明确要求发送本期邮件后，才单独执行，并报告发送结果
+
+### 6.1 长期定时群发（VPS cron）
+
+生产环境不保留完整源码，邮件 CLI 由本地构建产出 `dist/send-blast.js`，随每次发版同步到 VPS。VPS 上已配置每周任务：
+
+```cron
+0 6 * * 4 /opt/cbb/app/app/scripts/weekly-blast.sh >> /opt/cbb/app/app/email-blast.log 2>&1
+```
+
+邮件是**摘要版**：期号与阅读时长、标题、导语、最多 3 条 `highlights`，以及“阅读完整简报”按钮；不发送全文和脚注，读者点进站点阅读。
+
+`weekly-blast.sh` 的安全保护：`flock` 防并发、磁盘低于 512 MB 拒绝执行、只选 `publishedAt` 已到期的最新一期、该期已有成功发送记录则跳过、`nice` 降低优先级并将 Node 堆限制在 128 MB。`DRY_RUN=1` 可只打印决策不发送。
+
+手动补发/测试（在 VPS 的 `/opt/cbb/app/app` 下）：
+
+```bash
+node dist/send-blast.js 59 --dry-run   # 渲染但不发信、不写审计
+node dist/send-blast.js 59             # 真正发送
+```
+
+每次发送结果写入 `email-blast.log` 和数据库 `email_sends` 表。
+
+邮件排版示例（免费期 No. 047，中英可切换）：
+
+- https://chinabatterybrief.com/email-preview?lang=zh
+- https://chinabatterybrief.com/email-preview?lang=en
+
+示例页也链在关于页底部。

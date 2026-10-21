@@ -14,6 +14,8 @@ export type BlastSummary = {
 export type BlastOptions = {
   /** Max in-flight SMTP sends at once. Defaults to DEFAULT_BLAST_CONCURRENCY. */
   concurrency?: number;
+  /** Render every message but skip SMTP and audit-log writes. */
+  dryRun?: boolean;
 };
 
 /** Cap concurrent sends bounding wall-clock time without spiking memory. */
@@ -25,25 +27,36 @@ async function processSend(
   issue: typeof issues.$inferSelect,
   sub: typeof emailSubscribers.$inferSelect,
   issueId: number,
+  dryRun: boolean,
 ): Promise<"sent" | "failed" | "skipped"> {
   const lang = (sub.lang || "en") as Lang;
   if (!sub.unsubToken) return "skipped";
-  const content = lang === "zh" ? issue.contentZh ?? issue.content : issue.content;
   const title = lang === "zh" ? issue.titleZh ?? issue.title : issue.title;
   const dek = lang === "zh" ? issue.dekZh ?? issue.dek : issue.dek;
+  const highlights =
+    lang === "zh" ? issue.highlightsZh ?? issue.highlights : issue.highlights;
   const unsubUrl = absoluteUrl(`/api/subscribe/unsubscribe?token=${sub.unsubToken}`);
   const viewOnlineUrl = absoluteUrl(`/briefs/${issue.slug}`);
   const switchLangUrls = {
     en: absoluteUrl(`/api/subscribe/language?token=${sub.unsubToken}&lang=en`),
     zh: absoluteUrl(`/api/subscribe/language?token=${sub.unsubToken}&lang=zh`),
   };
-  const mail = weeklyBlastEmail(lang, {
-    number: issue.number,
-    title,
-    dek,
-    content,
-    readingMinutes: issue.readingMinutes,
-  }, { unsubUrl, viewOnlineUrl, switchLangUrls });
+  const mail = weeklyBlastEmail(
+    lang,
+    {
+      number: issue.number,
+      title,
+      dek,
+      highlights,
+      readingMinutes: issue.readingMinutes,
+    },
+    { unsubUrl, viewOnlineUrl, switchLangUrls },
+  );
+
+  if (dryRun) {
+    console.log(`[dry-run] would send issue #${issue.number} to ${sub.email} (${lang})`);
+    return "skipped";
+  }
 
   const result = await sendMail({
     to: sub.email,
@@ -105,7 +118,7 @@ export async function sendWeeklyBlast(issueId: number, opts: BlastOptions = {}):
   const worker = async () => {
     while (cursor < subscribers.length) {
       const idx = cursor++;
-      results[idx] = await processSend(issue, subscribers[idx], issueId);
+      results[idx] = await processSend(issue, subscribers[idx], issueId, opts.dryRun ?? false);
     }
   };
 

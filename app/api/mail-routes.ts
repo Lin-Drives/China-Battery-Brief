@@ -1,6 +1,7 @@
 import { Hono } from "hono";
-import { absoluteUrl, type Lang } from "./lib/email-templates";
+import { absoluteUrl, weeklyBlastEmail, type Lang } from "./lib/email-templates";
 import { confirmSubscribe, setLanguageByToken, unsubscribeByToken } from "./lib/subscribe";
+import { findIssueBySlug } from "./queries/content";
 import { rateLimit } from "./lib/rate-limit";
 
 const INK = "#0C1017";
@@ -158,6 +159,37 @@ function languageSwitchHtml(lang: Lang, copy: PageCopy, token: string, target: L
 }
 
 export const mailRoutes = new Hono();
+
+/** Public sample of the weekly email, rendered from a free issue. */
+mailRoutes.get("/email-preview", async (c) => {
+  const lang: Lang = c.req.query("lang") === "zh" ? "zh" : "en";
+  const issue = await findIssueBySlug("debrecen-sold-out");
+  if (!issue) return c.text("Email preview unavailable", 404);
+  const mail = weeklyBlastEmail(
+    lang,
+    {
+      number: issue.number,
+      title: lang === "zh" ? issue.titleZh ?? issue.title : issue.title,
+      dek: lang === "zh" ? issue.dekZh ?? issue.dek : issue.dek,
+      highlights:
+        lang === "zh" ? issue.highlightsZh ?? issue.highlights : issue.highlights,
+      readingMinutes: issue.readingMinutes,
+    },
+    {
+      unsubUrl: "#unsubscribe",
+      viewOnlineUrl: absoluteUrl(`/briefs/${issue.slug}`),
+      switchLangUrls: {
+        en: absoluteUrl("/email-preview?lang=en"),
+        zh: absoluteUrl("/email-preview?lang=zh"),
+      },
+      previewNote:
+        lang === "zh"
+          ? `邮件示例 · 订阅者收到的排版 · 免费期第 ${issue.number} 期`
+          : `EMAIL SAMPLE · THE LAYOUT SUBSCRIBERS RECEIVE · FREE ISSUE NO. ${issue.number}`,
+    },
+  );
+  return c.html(mail.html);
+});
 
 mailRoutes.get(
   "/api/subscribe/confirm",
