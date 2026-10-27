@@ -156,6 +156,7 @@ export const zh: Record<string, string> = {
   'latest.tag.tech': '技术',
   'latest.tag.risk': '风险',
   'latest.tag.markets': '市场',
+  'latest.tag.geopolitics': '地缘',
 
   /* ---------- 首页 · 三条主线 ---------- */
   'beat1.kicker': '主线 01 / 产能地图',

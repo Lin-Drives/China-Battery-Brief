@@ -149,6 +149,15 @@ const READER_CSS = `
   padding: 0;
   border-bottom: 0;
 }
+html.zh .cbb-reader h2.cbb-h2 + p::first-letter {
+  float: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  border-bottom: 0;
+}
 `
 
 /**

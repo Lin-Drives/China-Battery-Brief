@@ -156,6 +156,7 @@ export const en: Record<string, string> = {
   'latest.tag.tech': 'Tech',
   'latest.tag.risk': 'Risk',
   'latest.tag.markets': 'Markets',
+  'latest.tag.geopolitics': 'Geopolitics',
 
   /* ---------- Home · Three beats ---------- */
   'beat1.kicker': 'BEAT 01 / OVERSEAS CAPACITY',
