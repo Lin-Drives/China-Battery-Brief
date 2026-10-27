@@ -1,0 +1,42 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 060——缺的那一层：美国管电池，不管资本">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">060</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 060 · 周四 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="140" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#F0A832">地缘政治 · 市场</text>
+
+  <text x="48" y="268" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="82" font-weight="600" fill="#F4F0E6">缺的</text>
+  <text x="48" y="356" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="82" font-weight="600" fill="#C9F24B">那一层</text>
+
+  <text x="48" y="404" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="24" fill="#8E97A8">美国管电池，不管资本</text>
+
+  <line x1="48" y1="462" x2="330" y2="462" stroke="#C9F24B" stroke-width="2"/>
+  <line x1="470" y1="462" x2="752" y2="462" stroke="#C9F24B" stroke-width="2"/>
+  <text x="400" y="455" text-anchor="middle" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">COINS</text>
+  <text x="400" y="484" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="11" letter-spacing="2" fill="#5C6675">不含电池</text>
+
+  <text x="48" y="560" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="12" fill="#5C6675">五件工具，四件管得到电池，唯一没管的是资本。</text>
+</svg>

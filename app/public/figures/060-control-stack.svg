@@ -1,0 +1,53 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four US regulatory layers applied to Chinese batteries: capital screening does not cover batteries, while tariffs, subsidy eligibility and grid-equipment rules do">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <text x="72" y="64" font-family="Courier,monospace" font-size="14" letter-spacing="3" fill="#8E97A8">AMERICA'S BATTERY CONTROLS, LAYER BY LAYER</text>
+  <text x="72" y="108" font-family="Georgia,serif" font-size="36" fill="#F4F0E6">Four tests, one missing question</text>
+  <line x1="72" y1="132" x2="1128" y2="132" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- CAPITAL -->
+  <rect x="72" y="164" width="1056" height="92" fill="#111823" stroke="#8E97A8" stroke-width="1.2" stroke-dasharray="7 6" opacity="0.85"/>
+  <rect x="72" y="164" width="5" height="92" fill="#8E97A8" opacity="0.55"/>
+  <text x="102" y="202" font-family="Courier,monospace" font-size="12" letter-spacing="2.5" fill="#8E97A8">CAPITAL</text>
+  <text x="102" y="230" font-family="Georgia,serif" font-size="21" fill="#B8BFCC">Who can own it?</text>
+  <text x="470" y="202" font-family="Courier,monospace" font-size="11.5" letter-spacing="1.4" fill="#8E97A8">TREASURY · COINS ACT · OCT 2026</text>
+  <text x="470" y="230" font-family="Georgia,serif" font-size="15" fill="#8E97A8">Five tech sectors, plus biotech. No batteries.</text>
+  <text x="1100" y="212" text-anchor="end" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#8E97A8">NOT COVERED</text>
+
+  <!-- GOODS -->
+  <rect x="72" y="272" width="1056" height="92" fill="#111823"/>
+  <rect x="72" y="272" width="5" height="92" fill="#F0A832"/>
+  <text x="102" y="310" font-family="Courier,monospace" font-size="12" letter-spacing="2.5" fill="#F0A832">GOODS</text>
+  <text x="102" y="338" font-family="Georgia,serif" font-size="21" fill="#F4F0E6">What does it cost at the border?</text>
+  <text x="470" y="310" font-family="Courier,monospace" font-size="11.5" letter-spacing="1.4" fill="#8E97A8">USTR · SECTION 301</text>
+  <text x="470" y="338" font-family="Georgia,serif" font-size="15" fill="#8E97A8">EVs 100%. Batteries 25%.</text>
+  <text x="1100" y="320" text-anchor="end" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#F0A832">COVERED</text>
+
+  <!-- SUBSIDY -->
+  <rect x="72" y="380" width="1056" height="92" fill="#111823"/>
+  <rect x="72" y="380" width="5" height="92" fill="#5ADFC3"/>
+  <text x="102" y="418" font-family="Courier,monospace" font-size="12" letter-spacing="2.5" fill="#5ADFC3">SUBSIDY</text>
+  <text x="102" y="446" font-family="Georgia,serif" font-size="21" fill="#F4F0E6">Can the project claim the credit?</text>
+  <text x="470" y="418" font-family="Courier,monospace" font-size="11.5" letter-spacing="1.4" fill="#8E97A8">TREASURY &amp; IRS · FEOC</text>
+  <text x="470" y="446" font-family="Georgia,serif" font-size="15" fill="#8E97A8">Non-compliance loses the 30% ITC base rate.</text>
+  <text x="1100" y="428" text-anchor="end" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#5ADFC3">CONDITIONAL</text>
+
+  <!-- EQUIPMENT -->
+  <rect x="72" y="488" width="1056" height="92" fill="#111823"/>
+  <rect x="72" y="488" width="5" height="92" fill="#C9F24B"/>
+  <text x="102" y="526" font-family="Courier,monospace" font-size="12" letter-spacing="2.5" fill="#C9F24B">EQUIPMENT</text>
+  <text x="102" y="554" font-family="Georgia,serif" font-size="21" fill="#F4F0E6">Can it connect to the grid?</text>
+  <text x="470" y="526" font-family="Courier,monospace" font-size="11.5" letter-spacing="1.4" fill="#8E97A8">FCC · DOE · JUL–AUG 2026</text>
+  <text x="470" y="554" font-family="Georgia,serif" font-size="15" fill="#8E97A8">Inverters, transformers, BESS. 69 kV and above.</text>
+  <text x="1100" y="536" text-anchor="end" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#C9F24B">COVERED</text>
+
+  <line x1="72" y1="612" x2="1128" y2="612" stroke="#1B2A33" stroke-width="1"/>
+  <text x="72" y="642" font-family="Georgia,serif" font-size="16" fill="#8E97A8">Three layers decide whether a project can be built. The missing one decides who can own it.</text>
+</svg>

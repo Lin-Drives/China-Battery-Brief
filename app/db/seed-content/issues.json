@@ -1171,5 +1171,92 @@
         "date": "2025-11-26"
       }
     ]
+  },
+  {
+    "number": 60,
+    "slug": "the-missing-layer",
+    "title": "The Missing Layer: America Regulates Chinese Batteries Everywhere but Capital",
+    "dek": "The COINS Act turned America's outbound-investment screening into law, and this week's proposal extended it to biotechnology. Batteries are still not on the list. The reason is structural: the US runs five tools against Chinese industry — capital out, capital in, goods out, goods in, and subsidy eligibility — and only four of them reach a battery.",
+    "publishedAt": "2026-10-29T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "geopolitics",
+      "markets"
+    ],
+    "readingMinutes": 8,
+    "coverAsset": "/cover-060.svg",
+    "contentFile": "issue-060.md",
+    "highlights": [
+      {
+        "tag": "geopolitics",
+        "text": "COINS is not CFIUS and not export control: it governs US capital leaving the country, while the tools that actually bind Chinese batteries are tariffs, FEOC eligibility and grid-equipment rules"
+      },
+      {
+        "tag": "risk",
+        "text": "The equipment layer can stop a project rather than reprice it, and the FEOC test can cost a project the entire 30% ITC base rate"
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "US Department of the Treasury",
+        "title": "Treasury Issues Proposed Rule to Implement Comprehensive Outbound Investment National Security Act",
+        "url": "https://home.treasury.gov/news/press-releases/sb0667/",
+        "date": "2026-10-22"
+      },
+      {
+        "outlet": "商务部",
+        "title": "商务部新闻发言人就美发布新版对外投资限制拟议规则答记者问",
+        "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_fe1a483e92bf48a88409978cc738e62f.html",
+        "date": "2026-10-24"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "Trump cites 'unusual and extraordinary threat' in executive order banning inverter, BESS & transformer imports",
+        "url": "https://www.energy-storage.news/trump-cites-unusual-and-extraordinary-threat-in-executive-order-banning-inverter-bess-transformer-imports/",
+        "date": "2026-08-31"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "FCC inverter ban poses greater threat to US renewables than FEOC compliance, industry experts warn",
+        "url": "https://www.energy-storage.news/fcc-inverter-ban-poses-greater-threat-to-us-renewables-than-feoc-compliance-industry-experts-warn/",
+        "date": "2026-09-16"
+      },
+      {
+        "outlet": "USTR",
+        "title": "USTR Finalizes Action on China Tariffs Following Statutory Four-Year Review",
+        "url": "https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/september/ustr-finalizes-action-china-tariffs-following-statutory-four-year-review",
+        "date": "2024-09-13"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2025 年第 58 号公告（锂电池及人造石墨负极材料等出口管制）",
+        "url": "https://www.mofcom.gov.cn/zfxxgk/gkml/art/2025/art_ea1c3c25d9094e40a70c9c2d887953f8.html",
+        "date": "2025-10-09"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2025 年第 70 号公告（暂停实施相关出口管制至 2026-11-10）",
+        "url": "https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html",
+        "date": "2025-11-07"
+      },
+      {
+        "outlet": "C2ES",
+        "title": "The 30D & 45X Tax Credits Explained",
+        "url": "https://www.c2es.org/2025/09/the-30d-45x-tax-credits-explained/",
+        "date": "2025-09-05"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "US power conversion manufacturers in spotlight: Power Electronics builds Houston factory, Heron Power lands RWE pilot",
+        "url": "https://www.energy-storage.news/us-power-conversion-manufacturers-in-spotlight-power-electronics-builds-houston-factory-heron-power-lands-rwe-pilot/",
+        "date": "2026-09-25"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "Goldman Sachs Alternatives, Cleanhill Partners sell PCS manufacturer EPC Power for US$4.4 billion",
+        "url": "https://www.energy-storage.news/goldman-sachs-alternatives-cleanhill-partners-sell-pcs-manufacturer-epc-power-for-us4-4-billion/",
+        "date": "2026-09-04"
+      }
+    ]
   }
 ]

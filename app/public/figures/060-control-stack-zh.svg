@@ -1,0 +1,53 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="美国对华电池管制的四个层级：资本审查不覆盖电池，关税、补贴资格与并网设备规则覆盖电池">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <text x="72" y="64" font-family="Courier,monospace" font-size="14" letter-spacing="3" fill="#8E97A8">美国对华电池管制，分层拆解</text>
+  <text x="72" y="108" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="36" fill="#F4F0E6">四道测试，一个缺失的问题</text>
+  <line x1="72" y1="132" x2="1128" y2="132" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- 资本 -->
+  <rect x="72" y="164" width="1056" height="92" fill="#111823" stroke="#8E97A8" stroke-width="1.2" stroke-dasharray="7 6" opacity="0.85"/>
+  <rect x="72" y="164" width="5" height="92" fill="#8E97A8" opacity="0.55"/>
+  <text x="102" y="202" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#8E97A8">资本</text>
+  <text x="102" y="232" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="21" font-weight="600" fill="#B8BFCC">谁可以拥有它</text>
+  <text x="470" y="202" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1" fill="#8E97A8">财政部 · COINS 法案 · 2026 年 10 月</text>
+  <text x="470" y="230" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" fill="#8E97A8">五个技术领域，另加生物技术，不含电池</text>
+  <text x="1100" y="214" text-anchor="end" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#8E97A8">未覆盖</text>
+
+  <!-- 商品 -->
+  <rect x="72" y="272" width="1056" height="92" fill="#111823"/>
+  <rect x="72" y="272" width="5" height="92" fill="#F0A832"/>
+  <text x="102" y="310" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#F0A832">商品</text>
+  <text x="102" y="340" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="21" font-weight="600" fill="#F4F0E6">过境要付多少</text>
+  <text x="470" y="310" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1" fill="#8E97A8">美国贸易代表办公室 · 301 条款</text>
+  <text x="470" y="338" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" fill="#8E97A8">电动车 100%，电池 25%</text>
+  <text x="1100" y="322" text-anchor="end" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#F0A832">覆盖</text>
+
+  <!-- 补贴 -->
+  <rect x="72" y="380" width="1056" height="92" fill="#111823"/>
+  <rect x="72" y="380" width="5" height="92" fill="#5ADFC3"/>
+  <text x="102" y="418" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#5ADFC3">补贴</text>
+  <text x="102" y="448" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="21" font-weight="600" fill="#F4F0E6">项目能不能拿到抵免</text>
+  <text x="470" y="418" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1" fill="#8E97A8">财政部与国税局 · FEOC</text>
+  <text x="470" y="446" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" fill="#8E97A8">不合规将失去 30% 投资税收抵免基础税率</text>
+  <text x="1100" y="430" text-anchor="end" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#5ADFC3">有条件</text>
+
+  <!-- 设备 -->
+  <rect x="72" y="488" width="1056" height="92" fill="#111823"/>
+  <rect x="72" y="488" width="5" height="92" fill="#C9F24B"/>
+  <text x="102" y="526" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#C9F24B">设备</text>
+  <text x="102" y="556" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="21" font-weight="600" fill="#F4F0E6">能不能并网</text>
+  <text x="470" y="526" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1" fill="#8E97A8">FCC · 能源部 · 2026 年 7 至 8 月</text>
+  <text x="470" y="554" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" fill="#8E97A8">逆变器、变压器、电池储能，69 kV 及以上</text>
+  <text x="1100" y="538" text-anchor="end" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#C9F24B">覆盖</text>
+
+  <line x1="72" y1="612" x2="1128" y2="612" stroke="#1B2A33" stroke-width="1"/>
+  <text x="72" y="642" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="16" fill="#8E97A8">前三层决定一个项目能不能建成，缺的那一层决定谁能拥有它。</text>
+</svg>
