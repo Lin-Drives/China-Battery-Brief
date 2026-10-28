@@ -32,7 +32,7 @@ Why is a battery not on the COINS list? Because the statute is aimed at technolo
 
 That classification does not leave batteries unregulated. It routes them to the other four tools.
 
-**Goods in.** The Section 301 review finalised in September 2024 raised tariffs on Chinese electric vehicles to 100% and on lithium-ion batteries to 25%, with the storage-cell rate taking effect in January 2026.[^6] China answered at the source: in October 2025 it put export controls on cells at or above 300 Wh/kg, on cathode materials, on artificial graphite anodes and on the equipment to make them, then suspended those controls until November 10, 2026.[^7][^8]
+**Goods in.** The Section 301 review finalised in September 2024 raised tariffs on Chinese electric vehicles to 100% and on lithium-ion batteries to 25%, with the storage-cell rate taking effect in January 2026.[^6] China answered at the source: in October 2025 it put export controls on cells at or above 300 Wh/kg, on cathode materials, on artificial graphite anodes and on the equipment to make them, then suspended those controls, a pause since extended to January 10, 2027.[^7][^8]
 
 **Subsidy.** The foreign entity of concern, or FEOC, rules do not ban Chinese batteries. They decide whether a project using them can claim the credits that make it financeable, principally the investment tax credit under Section 48 and the advanced-manufacturing credit under Section 45X.[^9] Non-compliance eliminates the entire 30% investment tax credit base rate, not just the domestic-content adder. Developers at the 2026 US Battery Asset Management Summit put compliant battery cost at US$180–200 per kWh, against US$100–120 for the Chinese product they had been buying; some cut project duration from five hours to three to keep the numbers above their return threshold.[^5]
 
@@ -59,7 +59,7 @@ The capital carve-out is real. It is also the least useful fact in the file.
 <!-- k:#F0A832|ON THE HORIZON -->
 ## Three dates
 
-On November 10 China's suspension of its battery and graphite export controls expires. On December 7 the comment period on the COINS proposal closes. By late December the Department of Energy must publish rules implementing the late-August equipment order. Each date changes a different test: source, ownership, and connection.
+On January 10, 2027, China's suspension of its battery and graphite export controls expires. On December 7 the comment period on the COINS proposal closes. By late December the Department of Energy must publish rules implementing the late-August equipment order. Each date changes a different test: source, ownership, and connection.
 
 <!-- /horizon -->
 
@@ -79,7 +79,7 @@ On November 10 China's suspension of its battery and graphite export controls ex
 
 [^7]: 商务部、海关总署 — [2025 年第 58 号公告（锂电池及人造石墨负极材料等出口管制），2025-10-09](https://www.mofcom.gov.cn/zfxxgk/gkml/art/2025/art_ea1c3c25d9094e40a70c9c2d887953f8.html). Source for the export controls on high-energy-density cells at or above 300 Wh/kg, cathode materials, artificial graphite anodes and related equipment.
 
-[^8]: 商务部、海关总署 — [2025 年第 70 号公告（暂停实施相关出口管制至 2026-11-10），2025-11-07](https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html). Source for the suspension of the measures in Announcement No. 58 until November 10, 2026.
+[^8]: 商务部、海关总署 — [2025 年第 70 号公告（暂停实施相关出口管制至 2026-11-10），2025-11-07](https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html). Source for the suspension of the measures in Announcement No. 58 until November 10, 2026; the pause was extended with the Kuala Lumpur arrangement to January 10, 2027 at the September 2026 leaders' meeting (see 外交部, ["中美达成八点成果共识," 2026-09-26](https://www.fmprc.gov.cn/zyxw/202609/t20260926_12031616.shtml)).
 
 [^9]: Center for Climate and Energy Solutions — ["The 30D & 45X Tax Credits Explained," 2025-09-05](https://www.c2es.org/2025/09/the-30d-45x-tax-credits-explained/). Background on the investment tax credit and the advanced-manufacturing production credit referenced in the FEOC discussion.
 
