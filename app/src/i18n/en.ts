@@ -65,7 +65,6 @@ export const en: Record<string, string> = {
   'stamp.fileNotFound': 'FILE NOT FOUND',
 
   /* ---------- Email capture ---------- */
-  'email.microcopy': 'ONE FREE ISSUE EVERY MONTH · NO CARD REQUIRED',
   'email.button': 'GET THE BRIEF →',
   'email.placeholder': 'YOUR@EMAIL.COM',
   'email.aria': 'Email address',

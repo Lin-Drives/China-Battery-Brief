@@ -13,16 +13,13 @@ import { useLang } from '@/i18n/lang'
  * trpc.content["subscribe.email"].
  */
 export default function EmailCapture({
-  microcopy,
   buttonLabel,
   className,
 }: {
-  microcopy?: string
   buttonLabel?: string
   className?: string
 }) {
   const { t, lang } = useLang()
-  const micro = microcopy ?? t('email.microcopy')
   const label = buttonLabel ?? t('email.button')
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'error' | 'done'>('idle')
@@ -97,10 +94,8 @@ export default function EmailCapture({
           }}
         />
       </div>
-      {state === 'error' ? (
+      {state === 'error' && (
         <p className="mt-2 font-mono text-[11px] tracking-wide text-signal">{t('email.error')}</p>
-      ) : (
-        <p className="mt-2 font-mono text-[11px] tracking-wide text-faint">{micro}</p>
       )}
     </div>
   )

@@ -65,7 +65,6 @@ export const zh: Record<string, string> = {
   'stamp.fileNotFound': '档案未找到',
 
   /* ---------- 邮件订阅 ---------- */
-  'email.microcopy': '每月一期免费样刊 · 无需信用卡',
   'email.button': '订阅简报',
   'email.placeholder': '你的邮箱地址',
   'email.aria': '邮箱地址',
