@@ -119,7 +119,7 @@ export const zh: Record<string, string> = {
   'redacted.cursor': '显示',
 
   /* ---------- 首页 · 头版 ---------- */
-  'hero.kicker': '每周情报简报 · 每周四 14:00（北京时间）',
+  'hero.kicker': '每周情报简报 · 每周四北京时间 14:00',
   'hero.h1a': '中国建造电池',
   'hero.h1b': '我们向全球',
   'hero.h1em': '播报',
