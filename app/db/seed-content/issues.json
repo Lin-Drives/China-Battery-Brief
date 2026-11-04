@@ -1270,7 +1270,7 @@
       "markets",
       "technology"
     ],
-    "readingMinutes": 8,
+    "readingMinutes": 6,
     "coverAsset": "/cover-061.svg",
     "contentFile": "issue-061.md",
     "highlights": [
@@ -1284,7 +1284,7 @@
       },
       {
         "tag": "risk",
-        "text": "The next constraint is bankability: the consumption tax rises to 4% in 2027, export rebates end, and a stressed capacity-payment project can still earn a 2.27% IRR."
+        "text": "The next constraint is bankability: the consumption tax rises to 4% in 2027, export rebates end, and capacity payments now pay by discharge duration, not by energy. A two-hour project collects only a third."
       }
     ],
     "sources": [
