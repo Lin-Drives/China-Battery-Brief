@@ -1258,5 +1258,84 @@
         "date": "2026-09-04"
       }
     ]
+  },
+  {
+    "number": 61,
+    "slug": "revenue-without-profit",
+    "title": "Revenue Without Profit: The Battery Industry's Share War Becomes a Margin War",
+    "dek": "CATL grew revenue 58.6% and net profit 14.5%; its Hong Kong shares fell 10.6% the next day. The storage pivot is real — 188GW/535GWh globally this year — but it is compressing margins, not repairing them. The fight has moved from who can ship the most cells to who can get paid for them.",
+    "publishedAt": "2026-11-05T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "markets",
+      "technology"
+    ],
+    "readingMinutes": 8,
+    "coverAsset": "/cover-061.svg",
+    "contentFile": "issue-061.md",
+    "highlights": [
+      {
+        "tag": "markets",
+        "text": "Revenue rose by 50% or more at most of the companies that reported; profit fell, stalled or turned negative. The storage boom is real, but it is not repairing margins."
+      },
+      {
+        "tag": "markets",
+        "text": "CESA counted 584.6GWh of disclosed overseas orders; a single EVE–Fluence contract was 206GWh, or 35.2%. Strip it out and third-quarter orders fell 49% from the second."
+      },
+      {
+        "tag": "risk",
+        "text": "The next constraint is bankability: the consumption tax rises to 4% in 2027, export rebates end, and a stressed capacity-payment project can still earn a 2.27% IRR."
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "CnEVPost",
+        "title": "CATL Q3 net profit reaches $3.16 billion, with growth trailing revenue",
+        "url": "https://cnevpost.com/2026/10/20/catl-q3-2026-earnings/",
+        "date": "2026-10-20"
+      },
+      {
+        "outlet": "CnEVPost",
+        "title": "CATL shares fall over 10% in Hong Kong as tax changes add to profit pressure",
+        "url": "https://cnevpost.com/2026/10/21/catl-shares-fall-profit-pressure/",
+        "date": "2026-10-21"
+      },
+      {
+        "outlet": "LG Energy Solution",
+        "title": "LG Energy Solution Releases 2026 Third-Quarter Financial Results",
+        "url": "https://news.lgensol.com/company-news/press-releases/5549/",
+        "date": "2026-11-03"
+      },
+      {
+        "outlet": "Samsung SDI",
+        "title": "Samsung SDI Announces Third Quarter 2026 Results",
+        "url": "https://news.samsungsdi.com/global/articleView?seq=470",
+        "date": "2026-10-29"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "海外订单584.6GWh！规模扩张之后，中国储能如何赢得全球市场？",
+        "url": "https://www.escn.com.cn/news/show-2336105.html",
+        "date": "2026-11-02"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "BNEF：2026年全球储能新增装机将达188GW/535GWh",
+        "url": "https://www.escn.com.cn/news/show-2336238.html",
+        "date": "2026-11-02"
+      },
+      {
+        "outlet": "InfoLink",
+        "title": "Energy Storage Spot Price",
+        "url": "https://www.infolink-group.com/spot-price-energy-storage/",
+        "date": "2026-11-04"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "安徽容量电价机制与储能项目收益测算",
+        "url": "https://www.escn.com.cn/news/show-2331433.html",
+        "date": "2026-10-09"
+      }
+    ]
   }
 ]

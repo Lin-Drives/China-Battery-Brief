@@ -1,0 +1,48 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 061 — 增收不增利：电池行业从份额战进入利润战">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">061</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 061 · 周四 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="140" font-family="Courier,monospace" font-size="13" letter-spacing="3" fill="#F0A832">市场 · 技术</text>
+
+  <g opacity="0.5">
+    <rect x="560" y="420" width="26" height="60" fill="#2F6E77"/>
+    <rect x="600" y="392" width="26" height="88" fill="#2F6E77"/>
+    <rect x="640" y="352" width="26" height="128" fill="#2F6E77"/>
+    <rect x="680" y="300" width="26" height="180" fill="#2F6E77"/>
+    <rect x="720" y="236" width="26" height="244" fill="#2F6E77"/>
+  </g>
+  <polyline points="470,414 520,418 570,424 620,430 670,436 720,440 752,446" fill="none" stroke="#F0A832" stroke-width="3" opacity="0.9"/>
+  <circle cx="752" cy="446" r="5" fill="#F0A832"/>
+
+  <text x="48" y="262" font-family="Songti SC,STSong,serif" font-size="92" fill="#F4F0E6">增收</text>
+  <text x="48" y="356" font-family="Songti SC,STSong,serif" font-size="92" fill="#C9F24B">不增利</text>
+
+  <text x="48" y="410" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#8E97A8">电池行业从份额战进入利润战</text>
+
+  <text x="48" y="546" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#8E97A8">宁德时代：营收 +58.6%，净利 +14.5%</text>
+  <text x="48" y="566" font-family="Courier,monospace" font-size="11" letter-spacing="2" fill="#5C6675">储能需求 +45% · 利润率下行</text>
+</svg>
