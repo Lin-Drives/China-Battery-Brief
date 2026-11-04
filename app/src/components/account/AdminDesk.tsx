@@ -315,6 +315,8 @@ export default function AdminDesk() {
                   '--sheet-muted': '#8E97A8',
                   '--sheet-line': 'rgba(244,240,230,0.16)',
                   '--sheet-2': '#151A22',
+                  '--cbb-up': '#5ADFC3',
+                  '--cbb-down': '#F0A832',
                   '--dropcap-color': '#C9F24B',
                   '--reader-body': '19px',
                 } as React.CSSProperties}

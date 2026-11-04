@@ -56,6 +56,20 @@ export function extractHeadings(markdown: string): TocHeading[] {
     .map((text) => ({ id: headingSlug(text), text }))
 }
 
+/** Classify a table cell as a gain or a decline so metrics tables can use
+ *  semantic colour without hard-coding classes in the markdown. Only whole-cell
+ *  change values qualify: a leading sign plus a number, or a short phrase such
+ *  as "Turned profitable" / "扭亏". Levels such as "净利润 212.5 亿元" stay neutral. */
+function tableCellTone(text: string): 'up' | 'down' | undefined {
+  const t = text.trim()
+  if (!t) return undefined
+  if (/^[+＋]\s?[^\s]{0,6}\d/.test(t)) return 'up'
+  if (/^[-−–]\s?[^\s]{0,6}\d/.test(t)) return 'down'
+  if (/^(turned profitable|loss narrowed|扭亏|亏损收窄|盈利改善)/i.test(t)) return 'up'
+  if (/^(turned to loss|net loss|转亏|净亏损|亏损扩大|下降|下滑)/i.test(t)) return 'down'
+  return undefined
+}
+
 /** Remove dangling `[^n]` footnote refs (truncated previews lose the definitions). */
 export function stripDanglingFootnoteRefs(markdown: string): string {
   const defined = new Set(
@@ -362,8 +376,12 @@ export default function ReaderMarkdown({
       th({ node: _n, children, ...props }) {
         return (
           <th
-            className="border px-3 py-2 text-left font-mono text-[10.5px] font-medium uppercase tracking-[0.1em]"
-            style={{ borderColor: 'var(--sheet-line)', color: 'var(--sheet-muted)' }}
+            className="border px-3 py-2.5 text-left font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em]"
+            style={{
+              borderColor: 'var(--sheet-line)',
+              backgroundColor: 'var(--sheet-2)',
+              color: 'var(--sheet-ink)',
+            }}
             {...props}
           >
             {children}
@@ -371,12 +389,24 @@ export default function ReaderMarkdown({
         )
       },
       td({ node: _n, children, ...props }) {
+        const text = collectText(children).trim()
+        const tone = tableCellTone(text)
+        const hasArrow = /^[▲▼]/.test(text)
         return (
           <td
             className="border px-3 py-2 align-top"
-            style={{ borderColor: 'var(--sheet-line)' }}
+            style={{
+              borderColor: 'var(--sheet-line)',
+              color: tone ? `var(--cbb-${tone})` : undefined,
+              fontWeight: tone ? 500 : undefined,
+            }}
             {...props}
           >
+            {tone && !hasArrow ? (
+              <span aria-hidden style={{ marginRight: 4 }}>
+                {tone === 'up' ? '▲' : '▼'}
+              </span>
+            ) : null}
             {children}
           </td>
         )

@@ -44,6 +44,8 @@ const TONE_VARS: Record<PaperTone, Record<string, string>> = {
     '--sheet-ink': '#16181D',
     '--sheet-muted': '#6B6558',
     '--sheet-line': 'rgba(22,24,29,0.15)',
+    '--cbb-up': '#1F7A63',
+    '--cbb-down': '#B0552F',
   },
   sepia: {
     '--sheet-bg': '#EFE6D2',
@@ -51,6 +53,8 @@ const TONE_VARS: Record<PaperTone, Record<string, string>> = {
     '--sheet-ink': '#1A1712',
     '--sheet-muted': '#6E6250',
     '--sheet-line': 'rgba(26,23,18,0.15)',
+    '--cbb-up': '#1E6E58',
+    '--cbb-down': '#A34E2B',
   },
   night: {
     '--sheet-bg': '#0C1017',
@@ -58,6 +62,8 @@ const TONE_VARS: Record<PaperTone, Record<string, string>> = {
     '--sheet-ink': '#EDEBE3',
     '--sheet-muted': '#8E97A8',
     '--sheet-line': 'rgba(237,235,227,0.12)',
+    '--cbb-up': '#5ADFC3',
+    '--cbb-down': '#F0A832',
   },
 }
 
