@@ -95,7 +95,12 @@ DB_FILE="$(remote "ls -1t $PULL_REMOTE_DIR/cbb-db-*.sql.gz | head -1")"
 ASSET_FILE="$(remote "ls -1t $PULL_REMOTE_DIR/cbb-assets-*.tar.gz | head -1")"
 
 pull "$DB_FILE"
-pull "$ASSET_FILE"
+
+# Assets are regenerable from git; a slow/flaky link must not fail the daily
+# offsite run after the database dump has already been archived.
+if ! pull "$ASSET_FILE"; then
+  log "WARNING: assets snapshot not archived this run (non-fatal; regenerable from git)"
+fi
 
 # Prune the local offsite archive (keep recent N days only).
 find "$PULL_LOCAL_DIR" -type f \( -name 'cbb-db-*.sql.gz' -o -name 'cbb-assets-*.tar.gz' \) \
