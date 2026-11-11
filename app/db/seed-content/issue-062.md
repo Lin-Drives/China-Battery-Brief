@@ -24,7 +24,7 @@ That distinction is the one most coverage of the result skips. The instruments t
 
 ![Two horizontal bars: 224 House seats won against the 290 needed to override a veto, and 53 Senate seats against 67](/figures/062-override-gap.svg "Figure 01 · A majority is not two-thirds")
 
-Read the table from the bottom up and it tells you where the risk sits. The instruments that reach a battery were made by agencies and by a president, and they can be unmade the same way. The one instrument that could add batteries to a capital-screening list — a rulemaking — is also the one the election cannot stop.
+Every row ends the same way. The instruments that reach a battery were made by agencies and by a president, and they can be unmade the same way. The one instrument that could add batteries to a capital-screening list — a rulemaking — is also the one the election cannot stop.
 
 <!-- k:#2F6E77|PART 02 · WHAT SURVIVES -->
 ## Five tools, none of them on the ballot
