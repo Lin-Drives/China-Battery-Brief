@@ -1,6 +1,6 @@
 # 写作语感规范（Voice）
 
-> 目标读者是电池与储能行业的从业者与投资人。本文件把「像一家行业媒体那样写」拆成可执行的规则：先对齐结构与信息密度（S1–S6），再管语感（R1–R6）。所有规则都配了可测量的阈值，`dev/voice-check.mjs` 会逐条报。
+> 目标读者是电池与储能行业的从业者与投资人。本文件把「像一家行业媒体那样写」拆成可执行的规则：先对齐结构与信息密度（S1–S6），再管语感（R1–R7）。所有规则都配了可测量的阈值，`dev/voice-check.mjs` 会逐条报。
 >
 > 适用范围：`app/db/seed-content/`、`app/db/seed-content-zh/` 下的稿件，以及 `issues.json` 里的 title / dek。
 
@@ -62,7 +62,7 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 
 ---
 
-## 二、语感规则（R1–R6）
+## 二、语感规则（R1–R7）
 
 ### R1 · 反转句配额
 「不是 A，而是 B」「not X but Y」「The point is not A. It is B.」：相邻两段不得重复出现，全文每 500 词 ≤ 1 次。
@@ -81,7 +81,12 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 ### R5 · 排比与标题公式
 同一段落三连排比 ≤ 1 次；标题不用「A and B: 解释」的抽象名词公式。标题优先给具体对象（`The Rules That Weren't on the Ballot` 好于 `Veto and Margin`）。
 
-### R6 · 词表
+### R6 · 段首不用标签
+禁止以加粗短语或单词起段（`**Goods in.**`、`**补贴。**`）。段首必须是主语或判断句。
+
+对标实测：CnEVPost 三篇共 44 段，**0 处**段首加粗；BNEF 两篇共 25 段，2 处，且只用在“要点清单”那种列表语境。正文叙述一律以句子推进。
+
+### R7 · 词表
 英文避免：crucial, pivotal, underscore, testament, landscape, tapestry, delve, seamless, robust, significant, substantial, key, in today's, it is worth noting。
 中文避免：值得注意的是、不难看出、不仅仅是、更是、赋能、闭环、显著、大幅、远超、某种意义上、可以说。
 
@@ -104,7 +109,7 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 1. 起草前读母本（No. 060 PART 01 的机制段、No. 061 THE TAKE 的判断段）。
 2. 完稿跑 `node dev/voice-check.mjs app/db/seed-content/issue-0NN.md app/db/seed-content-zh/issue-0NN-zh.md`。
 3. 逐条处理 S1–S6 的硬失败（首句无数字、数字密度不足、破折号超标、句长超标）。
-4. 再读一遍改 R1–R6 的语感问题。
+4. 再读一遍改 R1–R7 的语感问题。
 5. 交 `content-reviewer` 复核事实与红线。
 
 脚本只报不判，最终由编辑裁决。

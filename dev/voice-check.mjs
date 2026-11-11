@@ -84,6 +84,8 @@ function analyse(file) {
   const lower = text.toLowerCase();
   const hits = blacklist.filter(function (w) { return lower.indexOf(w.toLowerCase()) >= 0; });
 
+  const boldStart = paras.filter(function (p) { return /^\*\*[^*]{1,40}\*\*/.test(p); }).length;
+
   const firstPara = paras[0] || "";
   const s1ok = numRe.test(firstPara.split(isZh ? /(?<=[。！？])/ : /(?<=[.!?])\s+/)[0] || "");
 
@@ -95,6 +97,7 @@ function analyse(file) {
   if (avg > (isZh ? 65 : 26)) fails.push("S5 平均句长 " + avg.toFixed(1) + " 超标");
   if (max > (isZh ? 110 : 45)) fails.push("S5 最长句 " + max + " 超标");
   if (r1hits > r1Quota) fails.push("R1 反转句 " + r1hits + " > " + r1Quota);
+  if (boldStart > 0) fails.push("R6 段首粗体标签 " + boldStart + " 处");
 
   const warnings = [];
   if (pctNoBase.length) warnings.push("S3 无口径百分比 " + pctNoBase.length + " 处: " + pctNoBase[0].slice(0, 80));
@@ -109,7 +112,8 @@ function analyse(file) {
   console.log("  S4 破折号      " + dashPer1k + "/千" + unit + "  (≤" + dashQuota + ")  " + (dashPer1k <= dashQuota ? "ok" : "超标"));
   console.log("  S5 句长        平均 " + avg.toFixed(1) + " / 最长 " + max + "  (上限 " + (isZh ? "65 / 110" : "26 / 45") + ")");
   console.log("  R1 反转句      " + r1hits + " 处  (配额 " + r1Quota + ")");
-  console.log("  R6 词表        " + hits.length + " 处");
+  console.log("  R6 段首标签    " + boldStart + " 处  (应为 0)");
+  console.log("  R7 词表        " + hits.length + " 处");
   warnings.forEach(function (w) { console.log("  ! " + w); });
   fails.forEach(function (f) { console.log("  FAIL " + f); });
 
