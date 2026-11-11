@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 /**
- * Voice + briefing checker for China Battery Brief drafts.
- * Implements S1-S6 and R1-R6 from docs/voice.md, calibrated against CnEVPost (2026-11-11).
+ * Briefing checker for China Battery Brief drafts.
+ * Implements S1-S6 (structure) and R1-R7 (voice) from docs/voice.md, plus footnote
+ * reference/definition consistency. Thresholds calibrated against CnEVPost and
+ * BloombergNEF samples on 2026-11-11.
  *
  * Usage: node dev/draft-check.mjs <draft.md> [draft2.md ...] [--news]
- *   --news  raise the number-density target to 55% (news items) instead of 45% (analysis).
+ *   --news  raise the number-density target to 55% (news items) instead of 40% (analysis).
  * Exits 1 on a hard failure; warnings never change the exit code.
  */
 import fs from "node:fs";
