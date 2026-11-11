@@ -2,12 +2,12 @@ Democrats took both chambers in the November 3 midterms: at least 224 seats in t
 
 That is a majority. It is not a veto-proof one. Overriding a president takes two-thirds of each chamber: 290 votes in the House, 67 in the Senate. The Senate result leaves the party 14 seats short, with no new class of senators until 2028.
 
-The market read it as a reprieve anyway. Twelve Chinese battery, storage and solar stocks rose 3.26% on average on November 4; LG Energy Solution rose 9.5% and Samsung SDI 11.3%, and Shenzhen's tech index outran Shanghai's.[^3] Those moves price a stretch without new restrictions. The five that already exist are still in force.
+The market read it as a reprieve anyway. Twelve Chinese battery, storage and solar stocks rose 3.26% on average on November 4 against the previous close; LG Energy Solution rose 9.5% and Samsung SDI 11.3%, and Shenzhen's tech index outran Shanghai's.[^3] Those moves price a stretch without new restrictions. The five that already exist are still in force.
 
 <!-- k:#5A6B9E|PART 01 · THE ARITHMETIC -->
 ## A majority is not a veto-proof majority
 
-The House count is not final: 78 districts remain undecided, and a clean sweep would take the Democratic caucus to 302, past the 290 needed to override a veto.[^1] That arithmetic is hypothetical. The Senate's is not: only a third of the chamber was up, and the next tranche is not available until 2028.
+The House count is not final: 78 districts remain undecided, and a clean sweep would take the Democratic caucus to 302, past the 290 needed to override a veto. A bare majority is 218 of the 435 seats; a veto override is 290.[^1] That arithmetic is hypothetical. The Senate's is not: only a third of the chamber was up, and the next tranche is not available until 2028.
 
 So for the next two years, no bill that tightens or loosens the treatment of Chinese batteries can become law without the president's signature. The Congress that was elected on November 3 can hold hearings, issue subpoenas, and refuse money. It cannot write a rule and put it into force.
 
@@ -24,7 +24,7 @@ That distinction is the one most coverage of the result skips. The instruments t
 
 ![Two horizontal bars: 224 House seats won against the 290 needed to override a veto, and 53 Senate seats against 67](/figures/062-override-gap.svg "Figure 01 · A majority is not two-thirds")
 
-Every row ends the same way. The instruments that reach a battery were made by agencies and by a president, and they can be unmade the same way. The one instrument that could add batteries to a capital-screening list — a rulemaking — is also the one the election cannot stop.
+All six rows end the same way. The four instruments that reach a battery were made by agencies and by a president, and they can be unmade the same way. The one instrument that could add batteries to a capital-screening list, a Treasury rulemaking, is also the one the election cannot stop.
 
 <!-- k:#2F6E77|PART 02 · WHAT SURVIVES -->
 ## Five tools, none of them on the ballot
@@ -33,9 +33,9 @@ No. 060 described the architecture: America does not regulate Chinese batteries 
 
 **Goods in.** The Section 301 review finalised in September 2024, and unrevised since, put tariffs of 100% on Chinese electric vehicles and 25% on lithium-ion batteries, with the storage-cell rate taking effect in January 2026.[^4] Congress delegates that authority; it does not exercise it.
 
-**Subsidy.** The foreign entity of concern rules decide whether a project using Chinese cells can claim the credits that make it financeable, principally the Section 48 investment tax credit, which reaches 30% when labour requirements are met, and the advanced-manufacturing credit under Section 45X.[^5] This is statute, and a statute needs a signature.
+**Subsidy.** The foreign entity of concern rules decide whether a project using Chinese cells can claim the credits that make it financeable, principally the Section 48 investment tax credit, which reaches 30% when labour requirements are met, and the advanced-manufacturing credit under Section 45X.[^5] This is statute, and a statute needs a signature. For a developer, that 30% often decides whether a project clears its return threshold.
 
-**Equipment.** On July 28 the Federal Communications Commission announced a ban on foreign-made inverters for US power plants. On August 26 the White House declared a national emergency over foreign power equipment — grid-connected inverters, transformers and battery storage systems interacting with transmission lines of 69 kV or above, sourced from 24 countries on arms-embargo and sanctions lists.[^6] The Department of Energy's implementing rules are due in late December.
+**Equipment.** On July 28 the Federal Communications Commission announced a ban on foreign-made inverters for US power plants. On August 26 the White House declared a national emergency over foreign power equipment: grid-connected inverters, transformers and battery storage systems interacting with transmission lines of 69 kV or above, sourced from 24 countries on arms-embargo and sanctions lists.[^6] The order gave the Department of Energy 120 days, putting its implementing rules in late December.
 
 **Goods out.** China's own export controls, imposed in October 2025 on cells at or above 300 Wh/kg, on cathode materials, on artificial graphite anodes and on the equipment to make them, remain suspended, a pause extended to January 10, 2027.[^7]
 
@@ -46,27 +46,27 @@ The election did not touch any of these. What it can change is the temperature a
 <!-- k:#6B6558|PART 03 · WHAT THE MARKET PRICED -->
 ## Why the Koreans rose nearly three times as much as the Chinese
 
-Korean cellmakers rose roughly three times as much as their Chinese peers on the same news, and the reason is exposure rather than sentiment. The United States is where LG Energy Solution and Samsung SDI have built their growth case: LG Energy Solution's third-quarter operating profit of KRW756bn included KRW416.9bn of advanced-manufacturing production credit, and Samsung SDI returned to operating profit on storage orders above 60GWh.[^9][^10]
+Korean cellmakers rose roughly three times as much as their Chinese peers on the same news, and the reason is exposure rather than sentiment. The United States is where LG Energy Solution and Samsung SDI have built their growth case: LG Energy Solution's third-quarter operating profit of KRW756bn included KRW416.9bn of advanced-manufacturing production credit. Its revenue for the quarter was KRW9.64tn, and Samsung SDI's operating profit was KRW407.8bn on storage orders above 60GWh.[^9][^10]
 
-For the Chinese companies, the United States is a smaller and shrinking part of the business. China exported US$7.36bn of lithium-ion batteries to the United States in the first nine months of 2026, down 17.4% year on year, while exports to the Netherlands rose 89.3% — much of it cells transiting Rotterdam.[^11] A policy change that matters enormously to the American market can therefore be worth a 3.26% mark on a Chinese portfolio and a 10% mark on a Korean one.
+For the Chinese companies, the United States is a smaller and shrinking part of the business. China exported US$7.36bn of lithium-ion batteries to the United States in the first nine months of 2026, down 17.4% year on year, while exports to the Netherlands rose 89.3%, much of it cells transiting Rotterdam. By value, the United States is about 9% of China's lithium-ion battery exports.[^11] A policy change that matters enormously to the American market can therefore be worth a 3.26% mark on a Chinese portfolio and a 10% mark on a Korean one.
 
 What the election cannot undo is the executive's own record. Since January 2025 the administration has cut or frozen roughly US$177bn in federal grants, and the Environmental Protection Agency has repealed its greenhouse-gas endangerment finding and stopped assigning monetary values to avoided deaths and illness in its regulatory analysis.[^12] A Democratic House can subpoena the agencies that did this. It cannot restore the money or the finding without the president who removed them.
 
 <!-- k:#F0A832|PART 04 · THE TWO YEARS -->
 ## Hearings, appropriations, and a deadline China controls
 
-The Democratic majority's leverage is real but negative, and it arrives in stages. From January, committee chairs can compel documents and testimony from the Treasury on COINS implementation, from the FCC on the inverter ban, and from the Department of Energy on the grid-equipment rules. From October 1, 2027, the House can refuse to fund programmes it dislikes — the first budget it can shape is fiscal 2028, which begins after the next election campaign is already under way.
+The Democratic majority's leverage is real but negative, and it arrives in stages. From January, committee chairs can compel documents and testimony from the Treasury on COINS implementation, from the FCC on the inverter ban, and from the Department of Energy on the grid-equipment rules. From October 1, 2027, the House can refuse to fund programmes it dislikes. The first budget it can shape is fiscal 2028, which begins on October 1, 2027, after the next election campaign is already under way; the 12 annual spending bills are the lever.
 
 None of that creates a policy. It slows one down, or raises its political price, or forces an agency to publish what it would rather not.
 
-The decisions that bind the industry in the meantime are elsewhere. The Treasury's comment window on COINS closes on December 7; China's export-control suspension lapses on January 10, 2027, and whether it is extended is a decision for China's government rather than America's; the tariff schedule remains the president's to change, in either direction, at any time.
+The decisions that bind the industry in the meantime are elsewhere. The Treasury's comment window on COINS closes on December 7. China's export-control suspension lapses on January 10, 2027, and whether it is extended is a decision for China's government rather than America's. The tariff schedule remains the president's to change, in either direction, at any time.
 
 <!-- k:#6B6558|THE TAKE -->
 ## Time is the only thing that changed
 
 For a Chinese battery exporter, the useful reading of the midterms is narrow and unglamorous. The probability of a new American restriction fell. The probability that an existing one is enforced differently did not. And the rules that decide whether a project in Texas or Arizona can use Chinese cells are still written by agencies, still applied by grid operators, and still audited by an administration that did not change.
 
-That makes the next two years a period for implementation work rather than strategy resets: certification paths, ownership structures that clear FEOC, alternative routes into the American market through licensing rather than ownership. Companies that were waiting for a political signal received one — but it says the calendar is open, not that the door is.
+That makes the next two years a period for implementation work rather than strategy resets: certification paths, ownership structures that clear FEOC, alternative routes into the American market through licensing rather than ownership. Companies that were waiting for a political signal received one, but it says the calendar is open, not that the door is.
 
 The one thing the election did buy is time, and time is only worth what is done with it. Two years is roughly the permitting lead time of a single plant, or the certification cycle of a single inverter. It is not enough to build a supply chain. It is enough to decide whether to start one.
 

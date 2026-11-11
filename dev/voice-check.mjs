@@ -1,97 +1,121 @@
 #!/usr/bin/env node
 /**
- * Voice checker for China Battery Brief drafts.
- * Implements R1-R4 and R6 from docs/voice.md. Reports only; exits 1 on a quota breach.
+ * Voice + briefing checker for China Battery Brief drafts.
+ * Implements S1-S6 and R1-R6 from docs/voice.md, calibrated against CnEVPost (2026-11-11).
  *
- * Usage: node dev/voice-check.mjs app/db/seed-content/issue-062.md [more files...]
+ * Usage: node dev/voice-check.mjs <draft.md> [draft2.md ...] [--news]
+ *   --news  raise the number-density target to 55% (news items) instead of 45% (analysis).
+ * Exits 1 on a hard failure; warnings never change the exit code.
  */
 import fs from "node:fs";
 
-const files = process.argv.slice(2);
+const args = process.argv.slice(2);
+const newsMode = args.includes("--news");
+const files = args.filter(function (a) { return a !== "--news"; });
 if (files.length === 0) {
-  console.error("usage: node dev/voice-check.mjs <draft.md> [draft2.md ...]");
+  console.error("usage: node dev/voice-check.mjs <draft.md> [draft2.md ...] [--news]");
   process.exit(2);
 }
 
-const EN_BLACKLIST = ["crucial", "pivotal", "underscore", "testament", "landscape", "tapestry", "delve", "seamless", "robust", "in today's", "it is worth noting", "at the end of the day"];
-const ZH_BLACKLIST = ["值得注意的是", "不难看出", "不仅仅是", "更是", "赋能", "闭环", "生态位", "某种意义上", "可以说"];
+const EN_BLACKLIST = ["crucial", "pivotal", "underscore", "testament", "landscape", "tapestry", "delve", "seamless", "robust", "significant", "substantial", "in today's", "it is worth noting"];
+const ZH_BLACKLIST = ["值得注意的是", "不难看出", "不仅仅是", "更是", "赋能", "闭环", "显著", "大幅", "远超", "某种意义上", "可以说"];
+const EN_BASE = /(year on year|yoy|quarter on quarter|qoq|compared|versus|\bvs\b|from|of|to|in the|since|share)/i;
+const ZH_BASE = /(同比|环比|较|上年|去年|占|从|至|到)/;
 
 function analyse(file) {
   const raw = fs.readFileSync(file, "utf8");
   const isZh = /-zh\.md$/.test(file);
   const body = raw.split(/\n---\n/)[0];
-  const words = isZh
-    ? (body.match(/[\u4e00-\u9fff]/g) || []).length
-    : body.split(/\s+/).filter(Boolean).length;
+  const text = body
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/^#+ .*$/gm, " ")
+    .replace(/^\|.*$/gm, " ")
+    .replace(/^!\[.*$/gm, " ")
+    .replace(/\[\^\d+\]/g, "")
+    .replace(/\*\*/g, "");
 
-  const paras = body
-    .split(/\n{2,}/)
-    .map(function (p) { return p.trim(); })
-    .filter(function (p) { return p && p.charAt(0) !== "#" && p.slice(0, 4) !== "<!--" && p.charAt(0) !== "|" && p.charAt(0) !== "!"; });
+  const words = isZh ? (text.match(/[\u4e00-\u9fff]/g) || []).length : text.split(/\s+/).filter(Boolean).length;
+  const unit = isZh ? "字" : "词";
 
-  const findings = [];
-  function add(rule, para, snippet) {
-    findings.push({ rule: rule, para: para, snippet: snippet.replace(/\s+/g, " ").slice(0, 110) });
-  }
+  const sentences = (isZh ? text.split(/(?<=[。！？])/) : text.split(/(?<=[.!?])\s+/))
+    .map(function (s) { return s.trim(); })
+    .filter(function (s) { return s.length > 0; });
 
-  // R1 - antithesis quota: 1 per 500 words
+  const lens = sentences.map(function (s) {
+    return isZh ? s.replace(/\s/g, "").length : s.split(/\s+/).filter(Boolean).length;
+  });
+  const avg = lens.length ? lens.reduce(function (a, b) { return a + b; }, 0) / lens.length : 0;
+  const max = lens.length ? Math.max.apply(null, lens) : 0;
+
+  const numRe = isZh ? /(\d|亿|万|%)/ : /\d/;
+  const withNum = sentences.filter(function (s) { return numRe.test(s); }).length;
+  const numPct = sentences.length ? Math.round((withNum / sentences.length) * 100) : 0;
+
+  const dash = isZh ? (text.match(/——/g) || []).length : (text.match(/—/g) || []).length;
+  const dashPer1k = +((dash / words) * 1000).toFixed(1);
+  const dashQuota = Math.max(1, Math.ceil(words / 1000));
+
   const r1 = isZh
     ? [/不是[^。！？]{0,40}而是/g, /并非[^。！？]{0,40}而是/g]
     : [/(?:is|are|was|were|do|does|did|has|have)\s+not\b[^.!?]{0,70}[.!?]\s*(?:It|That|This|They)\b/gi, /\bnot\b[^.!?]{0,60}\bbut\b/gi];
   let r1hits = 0;
-  paras.forEach(function (p, i) {
-    r1.forEach(function (re) {
-      const ms = p.match(re) || [];
-      ms.forEach(function (m) { r1hits++; add("R1", i + 1, m); });
+  sentences.forEach(function (s) { r1.forEach(function (re) { r1hits += (s.match(re) || []).length; }); });
+  const r1Quota = Math.max(1, Math.floor(words / 500));
+
+  const longLim = isZh ? 80 : 35;
+  const longSents = sentences.map(function (s, i) { return { s: s, i: i, n: lens[i] }; })
+    .filter(function (o) { return o.n > longLim; })
+    .sort(function (a, b) { return b.n - a.n; });
+
+  const pctSentences = sentences.filter(function (s) { return /%/.test(s); });
+  const pctNoBase = pctSentences.filter(function (s) { return !(isZh ? ZH_BASE : EN_BASE).test(s); });
+
+  const predRe = isZh ? /(预计|预测|将|可能|有望)/ : /\b(will|expected|forecast|likely|should)\b/i;
+  const paras = text.split(/\n{2,}/).map(function (p) { return p.trim(); }).filter(Boolean);
+  const predNoCite = [];
+  paras.forEach(function (p) {
+    if (/\[\^\d+\]/.test(p)) return;
+    (isZh ? p.split(/(?<=[。！？])/) : p.split(/(?<=[.!?])\s+/)).forEach(function (s) {
+      if (predRe.test(s)) predNoCite.push(s.trim());
     });
   });
 
-  // R2 - em dash density
-  const dash = isZh ? (body.match(/——/g) || []).length : (body.match(/—/g) || []).length;
-  const dashQuota = Math.ceil((words / 1000) * (isZh ? 3 : 4));
+  const blacklist = isZh ? ZH_BLACKLIST : EN_BLACKLIST;
+  const lower = text.toLowerCase();
+  const hits = blacklist.filter(function (w) { return lower.indexOf(w.toLowerCase()) >= 0; });
 
-  // R3 - paragraph-final summary sentences
-  const sentRe = isZh ? /[^。！？]*[。！？]/g : /[^.!?]+[.!?]/g;
-  paras.forEach(function (p, i) {
-    const ms = p.match(sentRe) || [];
-    const last = (ms[ms.length - 1] || "").trim();
-    const summaryEn = /^(That is|That's|This is|It is|In short|Ultimately)\b/.test(last);
-    const summaryZh = /(这就是|这正是|说到底|归根结底|全部意义)/.test(last);
-    if (summaryEn || summaryZh) add("R3", i + 1, last);
-  });
+  const firstPara = paras[0] || "";
+  const s1ok = numRe.test(firstPara.split(isZh ? /(?<=[。！？])/ : /(?<=[.!?])\s+/)[0] || "");
 
-  // R4 - opening must carry a fact (a digit)
-  const first = (paras[0] || "").replace(/^[^\p{L}\p{N}]*/u, "");
-  if (first && !/\d/.test(first.slice(0, 200))) add("R4", 1, first);
+  const target = newsMode ? 55 : 40;
+  const fails = [];
+  if (!s1ok) fails.push("S1 首句无数字");
+  if (numPct < target) fails.push("S2 数字密度 " + numPct + "% < " + target + "%");
+  if (dashPer1k > dashQuota) fails.push("S4 破折号 " + dashPer1k + "/千词 > " + dashQuota);
+  if (avg > (isZh ? 65 : 26)) fails.push("S5 平均句长 " + avg.toFixed(1) + " 超标");
+  if (max > (isZh ? 110 : 45)) fails.push("S5 最长句 " + max + " 超标");
+  if (r1hits > r1Quota) fails.push("R1 反转句 " + r1hits + " > " + r1Quota);
 
-  // R6 - vocabulary
-  const list = isZh ? ZH_BLACKLIST : EN_BLACKLIST;
-  const lower = body.toLowerCase();
-  list.forEach(function (w) {
-    const idx = lower.indexOf(w.toLowerCase());
-    if (idx >= 0) add("R6", "-", w + ": " + body.slice(Math.max(0, idx - 40), idx + 40));
-  });
+  const warnings = [];
+  if (pctNoBase.length) warnings.push("S3 无口径百分比 " + pctNoBase.length + " 处: " + pctNoBase[0].slice(0, 80));
+  if (predNoCite.length) warnings.push("S6 无来源预测 " + predNoCite.length + " 处: " + predNoCite[0].slice(0, 80));
+  if (longSents.length) warnings.push("S5 超长句 " + longSents.length + " 处（最长 " + longSents[0].n + "）: " + longSents[0].s.slice(0, 80));
+  if (hits.length) warnings.push("R6 词表: " + hits.join(", "));
 
-  const unit = isZh ? "字" : "词";
   console.log("");
-  console.log(file + "  (" + (isZh ? "zh" : "en") + ", " + words + " " + unit + ")");
-  const cap = Math.max(1, Math.floor(words / 500));
-  console.log("  R1 反转句      " + r1hits + " 处 / 配额 " + cap + "  " + (r1hits <= cap ? "ok" : "超出"));
-  console.log("  R2 破折号      " + dash + " 处 / 配额 " + dashQuota + "  " + (dash <= dashQuota ? "ok" : "超出"));
-  console.log("  R3 段末升华    " + findings.filter(function (f) { return f.rule === "R3"; }).length + " 处");
-  console.log("  R4 首句事实    " + (findings.some(function (f) { return f.rule === "R4"; }) ? "缺数字" : "ok"));
-  console.log("  R6 词表        " + findings.filter(function (f) { return f.rule === "R6"; }).length + " 处");
+  console.log(file + "  (" + (isZh ? "zh" : "en") + ", " + words + " " + unit + (newsMode ? ", news" : ", analysis") + ")");
+  console.log("  S1 首句事实    " + (s1ok ? "ok" : "缺数字"));
+  console.log("  S2 数字密度    " + numPct + "%  (目标 ≥" + target + "%)  " + (numPct >= target ? "ok" : "不足"));
+  console.log("  S4 破折号      " + dashPer1k + "/千" + unit + "  (≤" + dashQuota + ")  " + (dashPer1k <= dashQuota ? "ok" : "超标"));
+  console.log("  S5 句长        平均 " + avg.toFixed(1) + " / 最长 " + max + "  (上限 " + (isZh ? "65 / 110" : "26 / 45") + ")");
+  console.log("  R1 反转句      " + r1hits + " 处  (配额 " + r1Quota + ")");
+  console.log("  R6 词表        " + hits.length + " 处");
+  warnings.forEach(function (w) { console.log("  ! " + w); });
+  fails.forEach(function (f) { console.log("  FAIL " + f); });
 
-  findings.filter(function (f) { return f.rule !== "R6"; }).slice(0, 8).forEach(function (f) {
-    console.log("    " + f.rule + " P" + f.para + ": " + f.snippet);
-  });
-  findings.filter(function (f) { return f.rule === "R6"; }).slice(0, 3).forEach(function (f) {
-    console.log("    R6: " + f.snippet);
-  });
-
-  return !(r1hits <= cap) || dash > dashQuota || findings.some(function (f) { return f.rule === "R4"; });
+  return fails.length === 0;
 }
 
-let bad = false;
-for (const f of files) bad = analyse(f) || bad;
-process.exit(bad ? 1 : 0);
+let ok = true;
+files.forEach(function (f) { ok = analyse(f) && ok; });
+process.exit(ok ? 0 : 1);
