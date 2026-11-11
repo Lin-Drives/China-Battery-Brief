@@ -1,6 +1,6 @@
 # 写作语感规范（Voice）
 
-> 目标读者是电池与储能行业的从业者与投资人。本文件把「像一家行业媒体那样写」拆成可执行的规则：先对齐结构与信息密度（S1–S6），再管语感（R1–R7）。所有规则都配了可测量的阈值，`dev/voice-check.mjs` 会逐条报。
+> 目标读者是电池与储能行业的从业者与投资人。本文件把「像一家行业媒体那样写」拆成可执行的规则：先对齐结构与信息密度（S1–S6），再管语感（R1–R7）。所有规则都配了可测量的阈值，`dev/draft-check.mjs` 会逐条报。
 >
 > 适用范围：`app/db/seed-content/`、`app/db/seed-content-zh/` 下的稿件，以及 `issues.json` 里的 title / dek。
 
@@ -21,6 +21,12 @@
 
 1. 我们的句子不比对标对象长，甚至更短；**问题在数字太少、破折号太多**。初稿读起来像评论，根子在这里。
 2. 分析体的数字密度天然低于快讯——BNEF 自己也只有 37.2%。我们把分析体门槛定在 40%，是**刻意略高于 BNEF**，不是给自己放宽。
+
+### 参考文本库
+
+母本不再抄在这份文件里，统一放 [`docs/voice-samples/`](voice-samples/README.md)：外部快讯（CnEVPost）、外部分析（BNEF）、本刊好评段落、反例，各若干条，每条都注明「为什么好 / 违反哪条规则」。
+
+起草前按选题读两条：一条快讯学首句与口径，一条分析学归属与时间窗。编辑新挑的样本直接放进该目录，并在它的 README 索引表加一行。
 
 ---
 
@@ -107,7 +113,7 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 ## 四、流程
 
 1. 起草前读母本（No. 060 PART 01 的机制段、No. 061 THE TAKE 的判断段）。
-2. 完稿跑 `node dev/voice-check.mjs app/db/seed-content/issue-0NN.md app/db/seed-content-zh/issue-0NN-zh.md`。
+2. 完稿跑 `node dev/draft-check.mjs app/db/seed-content/issue-0NN.md app/db/seed-content-zh/issue-0NN-zh.md`。
 3. 逐条处理 S1–S6 的硬失败（首句无数字、数字密度不足、破折号超标、句长超标）。
 4. 再读一遍改 R1–R7 的语感问题。
 5. 交 `content-reviewer` 复核事实与红线。

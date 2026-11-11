@@ -3,7 +3,7 @@
  * Voice + briefing checker for China Battery Brief drafts.
  * Implements S1-S6 and R1-R6 from docs/voice.md, calibrated against CnEVPost (2026-11-11).
  *
- * Usage: node dev/voice-check.mjs <draft.md> [draft2.md ...] [--news]
+ * Usage: node dev/draft-check.mjs <draft.md> [draft2.md ...] [--news]
  *   --news  raise the number-density target to 55% (news items) instead of 45% (analysis).
  * Exits 1 on a hard failure; warnings never change the exit code.
  */
@@ -13,7 +13,7 @@ const args = process.argv.slice(2);
 const newsMode = args.includes("--news");
 const files = args.filter(function (a) { return a !== "--news"; });
 if (files.length === 0) {
-  console.error("usage: node dev/voice-check.mjs <draft.md> [draft2.md ...] [--news]");
+  console.error("usage: node dev/draft-check.mjs <draft.md> [draft2.md ...] [--news]");
   process.exit(2);
 }
 
