@@ -31,7 +31,7 @@
   <text x="48" y="272" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="82" font-weight="600" fill="#F4F0E6">五条规则</text>
   <text x="48" y="360" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="82" font-weight="600" fill="#C9F24B">并未改变</text>
 
-  <text x="48" y="408" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="23" fill="#8E97A8">中期选举换了国会，管电池的规则一条没动</text>
+  <text x="48" y="408" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="23" fill="#8E97A8">美国中期选举换了国会，管电池的规则一条没动</text>
 
   <line x1="48" y1="466" x2="330" y2="466" stroke="#C9F24B" stroke-width="2"/>
   <line x1="470" y1="466" x2="752" y2="466" stroke="#C9F24B" stroke-width="2"/>
