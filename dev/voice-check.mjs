@@ -86,6 +86,18 @@ function analyse(file) {
 
   const boldStart = paras.filter(function (p) { return /^\*\*[^*]{1,40}\*\*/.test(p); }).length;
 
+  const refs = [];
+  (body.match(/\[\^(\d+)\]/g) || []).forEach(function (m) {
+    const n = Number(m.replace(/[^0-9]/g, ""));
+    if (refs.indexOf(n) < 0) refs.push(n);
+  });
+  const defs = [];
+  (raw.match(/^\[\^(\d+)\]:/gm) || []).forEach(function (m) {
+    defs.push(Number(m.replace(/[^0-9]/g, "")));
+  });
+  const missingDefs = refs.filter(function (n) { return defs.indexOf(n) < 0; });
+  const unusedDefs = defs.filter(function (n) { return refs.indexOf(n) < 0; });
+
   const firstPara = paras[0] || "";
   const s1ok = numRe.test(firstPara.split(isZh ? /(?<=[。！？])/ : /(?<=[.!?])\s+/)[0] || "");
 
@@ -98,6 +110,8 @@ function analyse(file) {
   if (max > (isZh ? 110 : 45)) fails.push("S5 最长句 " + max + " 超标");
   if (r1hits > r1Quota) fails.push("R1 反转句 " + r1hits + " > " + r1Quota);
   if (boldStart > 0) fails.push("R6 段首粗体标签 " + boldStart + " 处");
+  if (missingDefs.length) fails.push("脚注缺定义: " + missingDefs.join(","));
+  if (unusedDefs.length) fails.push("脚注无引用: " + unusedDefs.join(","));
 
   const warnings = [];
   if (pctNoBase.length) warnings.push("S3 无口径百分比 " + pctNoBase.length + " 处: " + pctNoBase[0].slice(0, 80));
@@ -114,6 +128,7 @@ function analyse(file) {
   console.log("  R1 反转句      " + r1hits + " 处  (配额 " + r1Quota + ")");
   console.log("  R6 段首标签    " + boldStart + " 处  (应为 0)");
   console.log("  R7 词表        " + hits.length + " 处");
+  console.log("  脚注编号      引用 " + refs.length + " / 定义 " + defs.length + "  " + (missingDefs.length || unusedDefs.length ? "不一致" : "ok"));
   warnings.forEach(function (w) { console.log("  ! " + w); });
   fails.forEach(function (f) { console.log("  FAIL " + f); });
 
