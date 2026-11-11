@@ -16,7 +16,7 @@ bash scripts/deploy-release.sh
 1. 本期中英文源稿、`issues.json` 与 `issues-zh.json` 已完成核对，且目标期号、标题、摘要和脚注一致
 2. 本轮完整改动已通过相应检查并完成 Git 提交；工作区干净
 3. 若改动涉及功能、接口、构建配置或数据处理逻辑，已先修复测试失败项并完成复测
-4. 确认本次授权仅限站点发布；邮件群发是另一项外部动作，不能随发布自动执行
+4. 明确区分两件事：部署脚本只发布站点，**不发信**；按周排期的摘要邮件由 VPS cron 在 `publishedAt` 到点后自动发送（见 6.1）。手动补发或重发才需要单独授权
 5. 确认首页「本周档案」没有硬编码期号/标题/导语/highlights；该区块必须由 `content.issues.latest` 驱动
 
 ## 三、脚本实际执行的步骤
@@ -30,6 +30,14 @@ bash scripts/deploy-release.sh
 7. 在 VPS 本机检查应用 HTTP 200，并确认生产库最大期号达到本地最新期号
 
 脚本的默认 SSH 目标、密钥和远程目录可由 `DEPLOY_HOST`、`DEPLOY_KEY`、`DEPLOY_REMOTE` 覆盖。除非在排障或重复发布时有明确理由，不使用 `DEPLOY_FORCE=1` 绕过期号保护。
+
+**同一期号的更新**（例如只改标题、封面或正文，期号不变）：第 2 步会把「库内期号 = 本地期号」判为无新一期并跳过，此时必须显式强制：
+
+```bash
+DEPLOY_FORCE=1 bash scripts/deploy-release.sh
+```
+
+报告时写明这是**强制重发同一期**，不要写成「新一期已发布」。
 
 ## 四、成功、跳过与失败的判定
 
@@ -49,7 +57,7 @@ bash scripts/deploy-release.sh
 
 ## 六、邮件群发是独立步骤
 
-`npm run email:blast` 会向订阅者发送邮件，不属于部署脚本，也不应随发刊自动运行。只有在用户明确要求发送本期邮件后，才单独执行，并报告发送结果
+`npm run email:blast` 会立即向订阅者发送邮件，不属于部署脚本。**手动补发或重发**只有在用户明确要求后才执行，并报告发送结果；按周排期的自动发送由 VPS cron 完成，见 6.1
 
 ### 6.1 长期定时群发（VPS cron）
 
@@ -71,6 +79,19 @@ node dist/send-blast.js 59             # 真正发送
 ```
 
 每次发送结果写入 `email-blast.log` 和数据库 `email_sends` 表。
+
+### 6.2 发送时点与暂停
+
+发送时点由**本期的 `publishedAt`** 决定，不是由发版时间决定：cron 每小时位置固定，但脚本只选 `publishedAt` 已到期的最新一期。因此提前发版不会提前发信，改 `publishedAt` 等于改发送时间。
+
+核对某一期是否已发：
+
+```bash
+mysql -u root cbb -N -e "SELECT issueId, kind, status, COUNT(*) FROM email_sends GROUP BY issueId, kind, status ORDER BY issueId DESC LIMIT 5"
+tail -n 20 /opt/cbb/app/app/email-blast.log
+```
+
+临时暂停或改期：编辑 VPS 的 crontab（`crontab -e`）注释掉 `weekly-blast.sh` 那一行，或把 `publishedAt` 往后调；恢复时改回即可。`DRY_RUN=1 /opt/cbb/app/app/scripts/weekly-blast.sh` 可以在不发送的情况下打印当期决策。
 
 邮件排版示例（免费期 No. 047，中英可切换）：
 
