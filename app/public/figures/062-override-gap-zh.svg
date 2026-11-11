@@ -1,0 +1,51 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="图表：民主党拿下众议院 435 席中的 224 席、参议院 100 席中的 53 席；推翻否决需要 290 席与 67 席，分别差 66 席和 14 席">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <text x="72" y="64" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" letter-spacing="2" fill="#8E97A8">2026 年中期选举，按席位算</text>
+  <text x="72" y="110" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="34" fill="#F4F0E6">众议院尚可能摸到 290，参议院到不了 67</text>
+  <line x1="72" y1="134" x2="1128" y2="134" stroke="#1B2A33" stroke-width="1"/>
+
+  <!-- 众议院 -->
+  <text x="72" y="210" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="2" fill="#8E97A8">众议院</text>
+  <text x="72" y="234" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" fill="#5C6675">共 435 席</text>
+
+  <rect x="200" y="184" width="860" height="44" fill="#0F141C" stroke="#1B2A33" stroke-width="1"/>
+  <rect x="200" y="184" width="443" height="44" fill="#5A6B9E" opacity="0.55"/>
+  <rect x="200" y="184" width="443" height="44" fill="none" stroke="#5A6B9E" stroke-width="1.4"/>
+
+  <text x="212" y="212" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#F4F0E6">已定 224 席</text>
+  <text x="1064" y="212" text-anchor="end" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" fill="#8E97A8">差 66 席</text>
+
+  <!-- 参议院 -->
+  <text x="72" y="330" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="2" fill="#8E97A8">参议院</text>
+  <text x="72" y="354" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" fill="#5C6675">共 100 席</text>
+
+  <rect x="200" y="304" width="860" height="44" fill="#0F141C" stroke="#1B2A33" stroke-width="1"/>
+  <rect x="200" y="304" width="456" height="44" fill="#2F6E77" opacity="0.6"/>
+  <rect x="200" y="304" width="456" height="44" fill="none" stroke="#2F6E77" stroke-width="1.4"/>
+
+  <text x="212" y="332" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#F4F0E6">已定 53 席</text>
+  <text x="1064" y="332" text-anchor="end" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" fill="#8E97A8">差 14 席</text>
+
+  <line x1="774" y1="168" x2="774" y2="364" stroke="#F0A832" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="774" y="158" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1" fill="#F0A832">三分之二线</text>
+  <text x="774" y="392" text-anchor="middle" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="12" fill="#8E97A8">众议院 290 · 参议院 67</text>
+
+  <line x1="72" y1="424" x2="1128" y2="424" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="72" y="462" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" letter-spacing="2" fill="#8E97A8">不需要投票、照常运转的五件工具</text>
+  <text x="72" y="502" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="18" fill="#F4F0E6">301 条款关税 · FEOC 与 45X 资格 · 逆变器禁令 · 出口管制 · COINS 规章</text>
+  <text x="72" y="528" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#8E97A8">五件工具、五个机构、同一位总统；没有一件需要这届国会点头。</text>
+
+  <rect x="72" y="552" width="1056" height="72" fill="#111823" stroke="#1B2A33" stroke-width="1"/>
+  <rect x="72" y="552" width="5" height="72" fill="#C9F24B"/>
+  <text x="98" y="582" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1" fill="#C9F24B">唯一的立法路径</text>
+  <text x="98" y="608" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="16" fill="#F4F0E6">新法要么有签字（218/51 即可），要么 290 与 67 票；后者它没有。</text>
+</svg>

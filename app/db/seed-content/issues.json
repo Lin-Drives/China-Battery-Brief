@@ -1337,5 +1337,72 @@
         "date": "2026-10-09"
       }
     ]
+  },
+  {
+    "number": 62,
+    "slug": "veto-and-margin",
+    "title": "Veto and Margin: What a Democratic Congress Can Do to Chinese Batteries",
+    "dek": "Democrats took the House with at least 224 seats and the Senate with at least 53. A veto override needs 290 and 67. The election lowered the odds of the next restriction, not the reach of the five tools already in force, and the deadlines that bind the industry are Dec 7, Jan 10 and Oct 1, 2027.",
+    "publishedAt": "2026-11-12T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "geopolitics",
+      "markets"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": "/cover-062.svg",
+    "contentFile": "issue-062.md",
+    "highlights": [
+      {
+        "tag": "geopolitics",
+        "text": "Both chambers changed hands: at least 224 House seats and 53 in the Senate. Overriding a veto needs 290 and 67, so no new battery statute can become law without the president's signature."
+      },
+      {
+        "tag": "geopolitics",
+        "text": "None of the five tools that regulate Chinese batteries was on the ballot. Tariffs, FEOC eligibility, the inverter ban, export controls and the COINS list all move through agencies and the executive."
+      },
+      {
+        "tag": "markets",
+        "text": "Chinese battery, storage and solar stocks rose 3.26% on average; LG Energy Solution rose 9.5% and Samsung SDI 11.3% — the US is a larger share of Korean earnings than of Chinese ones."
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "China Daily",
+        "title": "Blue wave sweeps US midterms as Democrats seize Congress",
+        "url": "https://www.chinadaily.com.cn/a/202611/04/WS6aeae554e4b06d4aa05670bf.html",
+        "date": "2026-11-04"
+      },
+      {
+        "outlet": "Qazinform",
+        "title": "Democrats capture Senate and House in US midterm election",
+        "url": "https://qazinform.com/news/democrats-capture-senate-and-house-in-us-midterm-election-ef6e02",
+        "date": "2026-11-04"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "US Midterms: China's battery stocks jump, but Korean ones soar in reaction to Democrat wins",
+        "url": "https://www.energy-storage.news/us-midterms-chinas-battery-stocks-jump-korean-ones-soar-reaction-democrat-wins/",
+        "date": "2026-11-04"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "What Democratic control of Congress could mean for US BESS and renewables",
+        "url": "https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/",
+        "date": "2026-11-05"
+      },
+      {
+        "outlet": "US Department of the Treasury",
+        "title": "Treasury Issues Proposed Rule to Implement COINS Act",
+        "url": "https://home.treasury.gov/news/press-releases/sb0667/",
+        "date": "2026-10-22"
+      },
+      {
+        "outlet": "USTR",
+        "title": "USTR Finalizes Action on China Tariffs Following Statutory Four-Year Review",
+        "url": "https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/september/ustr-finalizes-action-china-tariffs-following-statutory-four-year-review",
+        "date": "2024-09-13"
+      }
+    ]
   }
 ]
