@@ -1,13 +1,13 @@
-The United States voted on November 3. By the following afternoon, the count had produced a result that both parties had spent two years calling unlikely: the Democratic Party won both chambers of Congress. It took at least 224 seats in the 435-member House, and at least 53 in the 100-member Senate, a net gain of seven in the upper chamber against the four it needed.[^1][^2]
+Democrats took both chambers in the November 3 midterms: at least 224 seats in the 435-member House, at least 53 in the 100-member Senate, seven net gains where four were needed.[^1][^2]
 
-The number that now matters is not the majority. It is the margin. Overriding a presidential veto takes two-thirds of each chamber: 290 votes in the House, 67 in the Senate. The Democrats have 224 and 53. That gap — 66 seats in one chamber, 14 in the other — is the whole of this week's story for the battery industry, because it decides which of the rules the industry now faces can move, and in which direction.
+That is a majority. It is not a veto-proof one. Overriding a president takes two-thirds of each chamber: 290 votes in the House, 67 in the Senate. The Senate result leaves the party 14 seats short, with no new class of senators until 2028.
 
-The market moved first, and less precisely. Twelve large Chinese battery, storage and solar companies rose 3.26% on average in November 4 trading, measured against the previous close. Their two big Korean competitors did better: LG Energy Solution rose 9.5%, Samsung SDI 11.3%. Shenzhen's technology-heavy index gained 4.2%, against 2.3% in Shanghai.[^3] None of those numbers is a forecast. What they price is a lower probability of the next restriction, not the removal of the last five.
+The market read it as a reprieve anyway. Twelve Chinese battery, storage and solar stocks rose 3.26% on average on November 4; LG Energy Solution rose 9.5% and Samsung SDI 11.3%, and Shenzhen's tech index outran Shanghai's.[^3] Those moves price a stretch without new restrictions. The five that already exist are still in force.
 
 <!-- k:#5A6B9E|PART 01 · THE ARITHMETIC -->
 ## A majority is not a veto-proof majority
 
-The House count is still provisional. At the time of writing, 78 districts remained undecided, and a clean sweep of them would take the Democratic caucus to 302.[^1] That arithmetic is hypothetical and almost certainly wrong; the Senate arithmetic is not. Only a third of the Senate was up for election, and the next tranche is not available until 2028.
+The House count is not final: 78 districts remain undecided, and a clean sweep would take the Democratic caucus to 302, past the 290 needed to override a veto.[^1] That arithmetic is hypothetical. The Senate's is not: only a third of the chamber was up, and the next tranche is not available until 2028.
 
 So for the next two years, no bill that tightens or loosens the treatment of Chinese batteries can become law without the president's signature. The Congress that was elected on November 3 can hold hearings, issue subpoenas, and refuse money. It cannot write a rule and put it into force.
 
