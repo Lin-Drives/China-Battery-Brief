@@ -1386,22 +1386,76 @@
         "date": "2026-11-04"
       },
       {
-        "outlet": "Energy-Storage.News",
-        "title": "What Democratic control of Congress could mean for US BESS and renewables",
-        "url": "https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/",
-        "date": "2026-11-05"
-      },
-      {
-        "outlet": "US Department of the Treasury",
-        "title": "Treasury Issues Proposed Rule to Implement COINS Act",
-        "url": "https://home.treasury.gov/news/press-releases/sb0667/",
-        "date": "2026-10-22"
-      },
-      {
         "outlet": "USTR",
         "title": "USTR Finalizes Action on China Tariffs Following Statutory Four-Year Review",
         "url": "https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/september/ustr-finalizes-action-china-tariffs-following-statutory-four-year-review",
         "date": "2024-09-13"
+      },
+      {
+        "outlet": "Center for Climate and Energy Solutions",
+        "title": "The 30D & 45X Tax Credits Explained",
+        "url": "https://www.c2es.org/2025/09/the-30d-45x-tax-credits-explained/",
+        "date": "2025-09-05"
+      },
+      {
+        "outlet": "US Department of the Treasury",
+        "title": "Treasury Issues Proposed Rule to Implement Comprehensive Outbound Investment National Security Act",
+        "url": "https://home.treasury.gov/news/press-releases/sb0667/",
+        "date": "2026-10-22"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2025 年第 58 号公告（锂电池及人造石墨负极材料等出口管制）",
+        "url": "https://www.mofcom.gov.cn/zfxxgk/gkml/art/2025/art_ea1c3c25d9094e40a70c9c2d887953f8.html",
+        "date": "2025-10-09"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "Trump cites 'unusual and extraordinary threat' in executive order banning inverter, BESS & transformer imports",
+        "url": "https://www.energy-storage.news/trump-cites-unusual-and-extraordinary-threat-in-executive-order-banning-inverter-bess-transformer-imports/",
+        "date": "2026-08-31"
+      },
+      {
+        "outlet": "US Department of War, Office of Strategic Capital",
+        "title": "Department of War's Office of Strategic Capital Signs $250 Million Conditional Loan Commitment",
+        "url": "https://www.war.gov/News/Releases/Release/Article/4642212/department-of-wars-office-of-strategic-capital-signs-250-million-conditional-lo/",
+        "date": "2026-11-05"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "US energy storage companies secure financing and launch compliance services amid regulatory shifts",
+        "url": "https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/",
+        "date": "2026-09-14"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2025 年第 70 号公告（暂停实施相关出口管制）",
+        "url": "https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html",
+        "date": "2025-11-07"
+      },
+      {
+        "outlet": "LG Energy Solution",
+        "title": "LG Energy Solution Releases 2026 Third-Quarter Financial Results",
+        "url": "https://news.lgensol.com/company-news/press-releases/5549/",
+        "date": "2026-11-03"
+      },
+      {
+        "outlet": "Samsung SDI",
+        "title": "Samsung SDI Announces Third Quarter 2026 Results",
+        "url": "https://news.samsungsdi.com/global/articleView?seq=470",
+        "date": "2026-10-29"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "前三季度锂离子电池出口787.7亿美元",
+        "url": "https://www.escn.com.cn/news/show-2334339.html",
+        "date": "2026-10-23"
+      },
+      {
+        "outlet": "Energy-Storage.News",
+        "title": "What Democratic control of Congress could mean for US BESS and renewables",
+        "url": "https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/",
+        "date": "2026-11-05"
       }
     ]
   }

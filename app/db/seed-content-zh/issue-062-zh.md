@@ -29,24 +29,24 @@
 <!-- k:#2F6E77|PART 02 · 开关在哪里 -->
 ## 不在选票上的开关
 
-No. 060 讲过五件工具：关税、补贴资格、并网设备、资本审查，以及中国自己的出口管制。法律依据一条没变：301 条款管关税，[^4] FEOC 规则管补贴资格，[^5] COINS 管资本审查，[^8] 2025 年 10 月的公告管出口端。[^7] 五件都由机构执行，选举不会重置机构的时间表。
+No. 060 讲过五件工具：关税、补贴资格、并网设备、资本审查，以及中国自己的出口管制。法律依据一条没变：301 条款管关税，[^4] FEOC 规则管补贴资格，[^5] COINS 管资本审查，[^6] 2025 年 10 月的公告管出口端。[^7] 五件都由机构执行，选举不会重置机构的时间表。
 
-最近的一个决定，是 8 月 26 日紧急状态令的覆盖范围。能源部从那天起有 120 天发布实施细则，落在 12 月底，新一届国会还没就座。细则决定 69 千伏及以上哪些设备算“受控”，也就决定了哪些项目还能建。联邦通信委员会从 8 月 20 日起不再回答行业提问，开发商只能对着一个还没见到的定义做规划。[^6]
+最近的一个决定，是 8 月 26 日紧急状态令的覆盖范围。能源部从那天起有 120 天发布实施细则，落在 12 月底，新一届国会还没就座。细则决定 69 千伏及以上哪些设备算“受控”，也就决定了哪些项目还能建。联邦通信委员会从 8 月 20 日起不再回答行业提问，开发商只能对着一个还没见到的定义做规划。[^8]
 
 联邦的钱还在往本土电池材料里投。11 月 5 日，国防部战略资本办公室与 6K Inc（美国电池材料企业）签署 2.5 亿美元有条件贷款承诺，用于扩大正极材料的本土产能。[^9] 这个办公室的预算来自国会，所以民主党控制的众议院能追问它怎么放贷：传唤签字的官员、通过拨款放慢下一批承诺，或者把限制写进法律。但这些都碰不到已经签下的这一笔，而任何新法律都要总统签字。
 
 私营部门已经先一步重新定价。美国储能开发商这个秋天在筹信贷额度，也在推出围绕 FEOC 与本土含量规则的合规服务。对一个项目，关键问题已经不再是“中国电芯便宜不便宜”，而是“能不能拿到认证、能不能融到资”。[^10]
 
-第五个开关在中国手里。中国自己对高能量密度电芯的出口管制暂停到 2027 年 1 月 10 日；如果到期不再延，真正卡住供应的限制来自中国政府，而不是美国。这是整份文件里，中期选举完全碰不到的一个决定。
+第五个开关在中国手里。中国自己对高能量密度电芯的出口管制暂停到 2027 年 1 月 10 日。[^11] 如果到期不再延，真正卡住供应的限制来自中国政府，而不是美国。这是整份文件里，中期选举完全碰不到的一个决定。
 
 <!-- k:#6B6558|PART 03 · 市场定价了什么 -->
 ## 韩国公司为什么涨了约三倍
 
-同一则消息，韩国电芯企业的涨幅约为中国同行的三倍，原因在敞口，不在情绪。LG 新能源与三星 SDI 的增长故事主要押在美国。LG 新能源三季度营业利润 7,560 亿韩元中，4,169 亿来自先进制造生产抵免（AMPC），当季营收 9.64 万亿韩元。三星 SDI 恢复营业利润，当季 4,078 亿韩元，储能订单超过 60GWh。[^11][^12]
+同一则消息，韩国电芯企业的涨幅约为中国同行的三倍，原因在敞口，不在情绪。LG 新能源与三星 SDI 的增长故事主要押在美国。LG 新能源三季度营业利润 7,560 亿韩元中，4,169 亿来自先进制造生产抵免（AMPC），当季营收 9.64 万亿韩元。三星 SDI 恢复营业利润，当季 4,078 亿韩元，储能订单超过 60GWh。[^12][^13]
 
-对中国企业，美国是更小、且在收缩的一块。2026 年前三季度，中国对美出口锂电池 73.63 亿美元，同比下降 17.4%；同期对荷兰出口增长 89.3%，其中不少是经鹿特丹中转的电芯；按金额算，美国约占中国锂电池出口的 9%。[^13] 同一项对美国市场极重要的政策变化，在中国资产上值 3.26%，在韩国资产上值 10%。
+对中国企业，美国是更小、且在收缩的一块。2026 年前三季度，中国对美出口锂电池 73.63 亿美元，同比下降 17.4%；同期对荷兰出口增长 89.3%，其中不少是经鹿特丹中转的电芯；按金额算，美国约占中国锂电池出口的 9%。[^14] 同一项对美国市场极重要的政策变化，在中国资产上值 3.26%，在韩国资产上值 10%。
 
-选举也抹不掉行政分支已经做过的事：2025 年 1 月以来，约 1,770 亿美元联邦拨款被削减或冻结；美国环保署（EPA）撤销了温室气体危害认定，并在监管分析中不再为“避免的死亡与疾病”定价。[^14] 民主党控制的众议院可以传唤做这些事的机构，却绕不开当初撤销它们的那位总统，把钱和认定恢复回来。
+选举也抹不掉行政分支已经做过的事：2025 年 1 月以来，约 1,770 亿美元联邦拨款被削减或冻结；美国环保署（EPA）撤销了温室气体危害认定，并在监管分析中不再为“避免的死亡与疾病”定价。[^15] 民主党控制的众议院可以传唤做这些事的机构，却绕不开当初撤销它们的那位总统，把钱和认定恢复回来。
 
 <!-- k:#F0A832|PART 04 · 两年 -->
 ## 听证、拨款，一个截止日
@@ -55,7 +55,7 @@ No. 060 讲过五件工具：关税、补贴资格、并网设备、资本审查
 
 这些都不会创造政策。它们让政策变慢、变贵，或者逼机构公开它不想公开的东西。
 
-真正约束行业的时间表在别处。财政部 COINS 意见 12 月 7 日截止；中国出口管制的暂停 2027 年 1 月 10 日到期，是否再延由中国自己决定；关税表仍在总统手里，随时可升可降。
+真正约束行业的时间表在别处。财政部 COINS 意见 12 月 7 日截止。[^6] 中国出口管制的暂停 2027 年 1 月 10 日到期，是否再延由中国自己决定；关税表仍在总统手里，随时可升可降。
 
 <!-- k:#6B6558|THE TAKE -->
 ## 改变的只有时间
@@ -76,30 +76,32 @@ No. 060 讲过五件工具：关税、补贴资格、并网设备、资本审查
 
 ---
 
-[^1]: 中国日报 — [《Blue wave sweeps US midterms as Democrats seize Congress》，2026-11-04](https://www.chinadaily.com.cn/a/202611/04/WS6aeae554e4b06d4aa05670bf.html)。来源：民主党夺回参众两院；截稿时众议院已定 224 席、过半需 218 席（全院 435 席）、78 个选区待定；参议院翻转至少 7 个共和党席位（夺回多数需净增 4 席），全院 100 席。
+[^1]: 中国日报 — [“Blue wave sweeps US midterms as Democrats seize Congress,” 2026-11-04](https://www.chinadaily.com.cn/a/202611/04/WS6aeae554e4b06d4aa05670bf.html)。民主党夺回参众两院；截稿时众议院已定 224 席、过半需 218 席（全院 435 席）、78 个选区待定；参议院翻转至少 7 个共和党席位（夺回多数需净增 4 席），全院 100 席。
 
-[^2]: Qazinform（引半岛电视台）— [《Democrats capture Senate and House in US midterm election》，2026-11-04](https://qazinform.com/news/democrats-capture-senate-and-house-in-us-midterm-election-ef6e02)。来源：民主党至少拿下 53 个参议院席位。
+[^2]: Qazinform，转引半岛电视台 — [“Democrats capture Senate and House in US midterm election,” 2026-11-04](https://qazinform.com/news/democrats-capture-senate-and-house-in-us-midterm-election-ef6e02)。民主党至少拿下 53 个参议院席位。
 
-[^3]: Energy-Storage.News — [《US Midterms: China's battery stocks jump, but Korean ones soar in reaction to Democrat wins》，2026-11-04](https://www.energy-storage.news/us-midterms-chinas-battery-stocks-jump-korean-ones-soar-reaction-democrat-wins/)。来源：12 家中国电池、储能与光伏企业平均上涨 3.26%；LG 新能源涨 9.5%、三星 SDI 涨 11.3%；深证成指涨 4.2%、上证综指涨 2.3%。
+[^3]: Energy-Storage.News — [“US Midterms: China's battery stocks jump, but Korean ones soar in reaction to Democrat wins,” 2026-11-04](https://www.energy-storage.news/us-midterms-chinas-battery-stocks-jump-korean-ones-soar-reaction-democrat-wins/)。12 家中国电池、储能与光伏企业平均上涨 3.26%；LG 新能源涨 9.5%、三星 SDI 涨 11.3%；深证成指涨 4.2%、上证综指涨 2.3%。
 
-[^4]: 美国贸易代表办公室 — [《USTR Finalizes Action on China Tariffs Following Statutory Four-Year Review》，2024-09-13](https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/september/ustr-finalizes-action-china-tariffs-following-statutory-four-year-review)。来源：中国产电动车 100% 关税、锂电池 25% 关税，储能电芯税率 2026 年 1 月生效。
+[^4]: 美国贸易代表办公室 — [“USTR Finalizes Action on China Tariffs Following Statutory Four-Year Review,” 2024-09-13](https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/september/ustr-finalizes-action-china-tariffs-following-statutory-four-year-review)。中国产电动车 100% 关税、锂电池 25% 关税，储能电芯税率 2026 年 1 月生效。
 
-[^5]: Center for Climate and Energy Solutions — [《The 30D & 45X Tax Credits Explained》，2025-09-05](https://www.c2es.org/2025/09/the-30d-45x-tax-credits-explained/)。背景：第 48 条投资税收抵免与第 45X 条先进制造生产抵免，以及外国关注实体规则在资格判定中的作用。
+[^5]: Center for Climate and Energy Solutions — [“The 30D & 45X Tax Credits Explained,” 2025-09-05](https://www.c2es.org/2025/09/the-30d-45x-tax-credits-explained/)。第 48 条投资税收抵免与第 45X 条先进制造生产抵免，以及外国关注实体规则在资格判定中的作用。
 
-[^6]: Energy-Storage.news — [《FCC inverter ban poses greater threat to US renewables than FEOC compliance, industry experts warn》，2026-09-16](https://www.energy-storage.news/fcc-inverter-ban-poses-greater-threat-to-us-renewables-than-feoc-compliance-industry-experts-warn/) 与 [《Trump cites 'unusual and extraordinary threat' in executive order banning inverter, BESS & transformer imports》，2026-08-31](https://www.energy-storage.news/trump-cites-unusual-and-extraordinary-threat-in-executive-order-banning-inverter-bess-transformer-imports/)。来源：7 月 28 日联邦通信委员会逆变器禁令；8 月 26 日紧急状态令，覆盖 69 千伏及以上的并网逆变器、变压器与电池储能系统；24 个名单国家；实施细则 120 天期限。
+[^6]: 美国财政部 — [“Treasury Issues Proposed Rule to Implement Comprehensive Outbound Investment National Security Act,” 2026-10-22](https://home.treasury.gov/news/press-releases/sb0667/)。拟议 COINS 规则把生物技术列入受控技术，受控清单未提及电池与储能；意见期截止日见 Skadden 律所解读 [“Treasury Proposes Modest Expansion of Outbound Investment Rules Under the COINS Act,” 2026-10-30](https://www.skadden.com/insights/publications/2026/10/treasury-proposes-modest-expansion-of-outbound-investment-rules)：2026 年 12 月 7 日。
 
-[^7]: 商务部、海关总署 — 2025 年第 58 号公告（锂电池及人造石墨负极材料等出口管制），2025-10-09，[原文](https://www.mofcom.gov.cn/zfxxgk/gkml/art/2025/art_ea1c3c25d9094e40a70c9c2d887953f8.html)；第 70 号公告（暂停实施相关出口管制），2025-11-07，[原文](https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html)。来源：管制覆盖范围，以及延至 2027 年 1 月 10 日的暂停期。
+[^7]: 商务部、海关总署 — [2025 年第 58 号公告（锂电池及人造石墨负极材料等出口管制），2025-10-09](https://www.mofcom.gov.cn/zfxxgk/gkml/art/2025/art_ea1c3c25d9094e40a70c9c2d887953f8.html)。管制覆盖高能量密度电芯、正极材料、人造石墨负极及相关设备。
 
-[^8]: 美国财政部 — [《Treasury Issues Proposed Rule to Implement Comprehensive Outbound Investment National Security Act》，2026-10-22](https://home.treasury.gov/news/press-releases/sb0667/)。来源：拟议规则把生物技术列入受控技术；受控清单未提及电池与储能。意见期截止日见 Skadden 律所解读 [《Treasury Proposes Modest Expansion of Outbound Investment Rules Under the COINS Act》，2026-10](https://www.skadden.com/insights/publications/2026/10/treasury-proposes-modest-expansion-of-outbound-investment-rules)：2026 年 12 月 7 日。
+[^8]: Energy-Storage.News — [“Trump cites ‘unusual and extraordinary threat’ in executive order banning inverter, BESS & transformer imports,” 2026-08-31](https://www.energy-storage.news/trump-cites-unusual-and-extraordinary-threat-in-executive-order-banning-inverter-bess-transformer-imports/) 与 [“FCC inverter ban poses greater threat to US renewables than FEOC compliance, industry experts warn,” 2026-09-16](https://www.energy-storage.news/fcc-inverter-ban-poses-greater-threat-to-us-renewables-than-feoc-compliance-industry-experts-warn/)。8 月 26 日紧急状态令覆盖 69 千伏及以上的并网逆变器、变压器与电池储能系统；能源部有 120 天发布实施细则；联邦通信委员会 8 月 20 日后不再回答行业提问。
 
-[^9]: 美国国防部战略资本办公室 — [《Department of War's Office of Strategic Capital Signs $250 Million Conditional Loan Commitment》，2026-11-05](https://www.war.gov/News/Releases/Release/Article/4642212/department-of-wars-office-of-strategic-capital-signs-250-million-conditional-lo/)。来源：向 6K Inc 提供 2.5 亿美元有条件贷款承诺，用于扩大先进电池材料本土产能；正极材料工厂用途见 3D Printing Industry 报道 [《6K Gets Conditional $250M Department of War Loan for Cathode Plant》，2026-11](https://3dprintingindustry.com/news/6k-gets-conditional-250m-department-of-war-loan-for-cathode-plant-256307/)。
+[^9]: 美国国防部战略资本办公室 — [“Department of War's Office of Strategic Capital Signs $250 Million Conditional Loan Commitment,” 2026-11-05](https://www.war.gov/News/Releases/Release/Article/4642212/department-of-wars-office-of-strategic-capital-signs-250-million-conditional-lo/)。向 6K Inc 提供 2.5 亿美元有条件贷款承诺，用于扩大先进电池材料本土产能；正极材料工厂用途见 3D Printing Industry 报道 [“6K Gets Conditional $250M Department of War Loan for Cathode Plant,” 2026-11-09](https://3dprintingindustry.com/news/6k-gets-conditional-250m-department-of-war-loan-for-cathode-plant-256307/)。
 
-[^10]: Energy-Storage.News — [《US energy storage companies secure financing and launch compliance services amid regulatory shifts》，2026-09-14](https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/)。来源：美国储能开发商筹集信贷额度，并推出围绕 FEOC 与本土含量规则的合规服务。
+[^10]: Energy-Storage.News — [“US energy storage companies secure financing and launch compliance services amid regulatory shifts,” 2026-09-14](https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/)。美国储能开发商筹集信贷额度，并推出围绕 FEOC 与本土含量规则的合规服务。
 
-[^11]: LG 新能源 — [《LG Energy Solution Releases 2026 Third-Quarter Financial Results》，2026-11-03](https://news.lgensol.com/company-news/press-releases/5549/)。来源：三季度营收 9.6434 万亿韩元、营业利润 7,560 亿韩元，其中先进制造生产抵免 4,169 亿韩元。
+[^11]: 商务部、海关总署 — [2025 年第 70 号公告（暂停实施相关出口管制），2025-11-07](https://www.mofcom.gov.cn/zfxxgk/fdzdgknr/ztfl/dwmygl/art/2025/art_00667414c0524b018985abd28b8847a5.html)。第 58 号公告所列措施暂停至 2026 年 11 月 10 日；该暂停经 2026 年 9 月元首会晤随吉隆坡安排延至 2027 年 1 月 10 日，见外交部 [《中美达成八点成果共识》，2026-09-26](https://www.fmprc.gov.cn/zyxw/202609/t20260926_12031616.shtml)。
 
-[^12]: 三星 SDI — [《Samsung SDI Announces Third Quarter 2026 Results》，2026-10-29](https://news.samsungsdi.com/global/articleView?seq=470)。来源：恢复营业利润 4,078 亿韩元；储能订单超过 60GWh。
+[^12]: LG Energy Solution — [“LG Energy Solution Releases 2026 Third-Quarter Financial Results,” 2026-11-03](https://news.lgensol.com/company-news/press-releases/5549/)。三季度营收 9.6434 万亿韩元、营业利润 7,560 亿韩元，其中先进制造生产抵免 4,169 亿韩元。
 
-[^13]: 中国储能网（引海关数据）— [《前三季度锂离子电池出口787.7亿美元》，2026-10-23](https://www.escn.com.cn/news/show-2334339.html)。来源：2026 年前三季度锂电池出口 787.7 亿美元（金额 +42.2%）；对美 73.63 亿美元（-17.4%），对荷兰 57.07 亿美元（+89.3%）。
+[^13]: Samsung SDI — [“Samsung SDI Announces Third Quarter 2026 Results,” 2026-10-29](https://news.samsungsdi.com/global/articleView?seq=470)。恢复营业利润 4,078 亿韩元；储能订单超过 60GWh。
 
-[^14]: Energy-Storage.News — [《What Democratic control of Congress could mean for US BESS and renewables》，2026-11-05](https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/)。来源：2025 年 1 月以来约 1,770 亿美元联邦拨款被削减或冻结；美国环保署撤销温室气体危害认定。
+[^14]: 中国储能网，转引海关数据 — [“前三季度锂离子电池出口787.7亿美元,” 2026-10-23](https://www.escn.com.cn/news/show-2334339.html)。2026 年前三季度锂电池出口 787.7 亿美元（金额 +42.2%）；对美 73.63 亿美元（-17.4%），对荷兰 57.07 亿美元（+89.3%）。
+
+[^15]: Energy-Storage.News — [“What Democratic control of Congress could mean for US BESS and renewables,” 2026-11-05](https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/)。2025 年 1 月以来约 1,770 亿美元联邦拨款被削减或冻结；美国环保署撤销温室气体危害认定。
