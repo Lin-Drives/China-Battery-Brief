@@ -48,6 +48,8 @@ No. 060 讲过五件工具：关税、补贴资格、并网设备、资本审查
 
 选举也抹不掉行政分支已经做过的事：2025 年 1 月以来，约 1,770 亿美元联邦拨款被削减或冻结；美国环保署（EPA）撤销了温室气体危害认定，并在监管分析中不再为“避免的死亡与疾病”定价。[^15] 民主党控制的众议院可以传唤做这些事的机构，却绕不开当初撤销它们的那位总统，把钱和认定恢复回来。
 
+需求端则有自己的风险。数据中心在美国储能需求中的分量正在上升。Cleanview 统计到 159GW 计划中的数据中心（占全美数据中心规划管道的 41%）位于新州长支持暂停项目的州。另有 69.2GW（占规划管道 18%）位于胜选者想改税收优惠或其他规则的州。[^15] 41 场地方公投中，目前已完成计票的数据中心提案全部未通过。建设放慢会压低未来需求，而不是已装机容量。韩国电芯企业比中国出口商更直接地承担这一风险：让韩国股价涨得更多的美国敞口，也是管道放慢时先受冲击的敞口。
+
 <!-- k:#F0A832|PART 04 · 两年 -->
 ## 听证、拨款，一个截止日
 
@@ -104,4 +106,4 @@ No. 060 讲过五件工具：关税、补贴资格、并网设备、资本审查
 
 [^14]: 中国储能网，转引海关数据 — [“前三季度锂离子电池出口787.7亿美元,” 2026-10-23](https://www.escn.com.cn/news/show-2334339.html)。2026 年前三季度锂电池出口 787.7 亿美元（金额 +42.2%）；对美 73.63 亿美元（-17.4%），对荷兰 57.07 亿美元（+89.3%）。
 
-[^15]: Energy-Storage.News — [“What Democratic control of Congress could mean for US BESS and renewables,” 2026-11-05](https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/)。2025 年 1 月以来约 1,770 亿美元联邦拨款被削减或冻结；美国环保署撤销温室气体危害认定。
+[^15]: Energy-Storage.News — [“What Democratic control of Congress could mean for US BESS and renewables,” 2026-11-05](https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/)。2025 年 1 月以来约 1,770 亿美元联邦拨款被削减或冻结；美国环保署撤销温室气体危害认定；Cleanview 统计的 159GW 计划数据中心（占全美数据中心规划管道的 41%）位于新州长支持暂停项目的州，69.2GW（18%）位于胜选者想改税收优惠或其他规则的州；41 场地方公投中，目前已完成计票的数据中心提案全部未通过。

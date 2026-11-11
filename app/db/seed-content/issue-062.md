@@ -48,6 +48,8 @@ For the Chinese companies, the United States is a smaller and shrinking part of 
 
 What the election cannot undo is the executive's own record. Since January 2025 the administration has cut or frozen roughly US$177bn in federal grants, and the Environmental Protection Agency has repealed its greenhouse-gas endangerment finding and stopped assigning monetary values to avoided deaths and illness in its regulatory analysis.[^15] A Democratic House can subpoena the agencies that did this. It cannot restore the money or the finding without the president who removed them.
 
+The demand side carries a risk of its own. Data centres are now a growing part of US storage demand. Cleanview counts 159GW of planned data centres, 41% of the planned national pipeline, in states whose new governors support pausing projects. Another 69.2GW, 18% of the pipeline, sits in states whose winners want to change tax breaks or other rules.[^15] Every data-centre measure called so far in the 41 local ballots went against the projects. A slower build-out would lower future demand, not installed capacity. Korean cellmakers carry the risk more directly than Chinese exporters: the US exposure that lifted their shares is the exposure that suffers first if the pipeline slows.
+
 <!-- k:#F0A832|PART 04 · THE TWO YEARS -->
 ## Hearings, appropriations, and a deadline China controls
 
@@ -104,4 +106,4 @@ On December 7, 2026, the comment period on the Treasury's COINS rule closes; any
 
 [^14]: 中国储能网, citing customs data — ["前三季度锂离子电池出口787.7亿美元," 2026-10-23](https://www.escn.com.cn/news/show-2334339.html). Source for US$78.77bn of lithium-ion battery exports in the first nine months of 2026 (+42.2% by value), US$7.363bn to the United States (-17.4%) and US$5.707bn to the Netherlands (+89.3%).
 
-[^15]: Energy-Storage.News — ["What Democratic control of Congress could mean for US BESS and renewables," 2026-11-05](https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/). Source for roughly US$177bn of federal grants cut or frozen since January 2025 and for the EPA's repeal of its greenhouse-gas endangerment finding.
+[^15]: Energy-Storage.News — ["What Democratic control of Congress could mean for US BESS and renewables," 2026-11-05](https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/). Source for roughly US$177bn of federal grants cut or frozen since January 2025 and for the EPA's repeal of its greenhouse-gas endangerment finding; also for Cleanview's count of 159GW of planned data centres (41% of the planned national pipeline) in states whose new governors support pausing projects, 69.2GW (18%) in states whose winners want to change tax breaks or other rules, and the 41 local ballots, in which every data-centre measure called so far went against the projects.
