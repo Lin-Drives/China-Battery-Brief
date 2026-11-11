@@ -11,7 +11,7 @@ The House count is still provisional. At the time of writing, 78 districts remai
 
 So for the next two years, no bill that tightens or loosens the treatment of Chinese batteries can become law without the president's signature. The Congress that was elected on November 3 can hold hearings, issue subpoenas, and refuse money. It cannot write a rule and put it into force.
 
-That distinction is the one most coverage of the result skips. The instruments that actually regulate Chinese batteries are not waiting on Capitol Hill.
+That distinction is the one most coverage of the result skips. The instruments that actually regulate Chinese batteries are not waiting on Congress.
 
 | Instrument | Who moves it | Can this Congress change it alone? |
 |---|---|---|
