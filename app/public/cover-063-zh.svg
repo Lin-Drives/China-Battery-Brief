@@ -1,0 +1,43 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 063 — 大部分储能电池产能面向出口">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">063</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 063 · 周四 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="140" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#F0A832">政策 · 市场</text>
+
+  <text x="48" y="268" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="80" font-weight="600" fill="#F4F0E6">大部分产能</text>
+  <text x="48" y="358" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="80" font-weight="600" fill="#C9F24B">面向出口</text>
+
+  <text x="48" y="406" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="22" fill="#8E97A8">“十五五”储能规划按今年的速度定目标，电芯产能只能外销</text>
+
+  <line x1="48" y1="440" x2="752" y2="440" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="468" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1.5" fill="#5C6675">2026 年 1—9 月，能量口径</text>
+  <text x="48" y="500" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#5ADFC3">销量 595.4GWh</text>
+  <text x="300" y="500" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#C9F24B">国内装机 84GWh</text>
+  <text x="48" y="524" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" fill="#8E97A8">留在国内的比例 14%</text>
+
+  <text x="48" y="560" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="12" fill="#5C6675">规划定的是速度，产能定的是出口。</text>
+</svg>

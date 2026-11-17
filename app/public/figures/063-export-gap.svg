@@ -1,0 +1,33 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chart: Chinese storage-cell sales of 595.4GWh in the first nine months of 2026 against 84GWh of domestic installations, leaving 511.4GWh to be exported or held in inventory">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="#0C1017"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <text x="72" y="64" font-family="Courier,monospace" font-size="14" letter-spacing="3" fill="#8E97A8">JANUARY—SEPTEMBER 2026, ENERGY CAPACITY</text>
+  <text x="72" y="112" font-family="Georgia,serif" font-size="34" fill="#F4F0E6">Domestic installations took one-seventh of the cells sold</text>
+  <line x1="72" y1="136" x2="1128" y2="136" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="72" y="222" font-family="Courier,monospace" font-size="13" letter-spacing="2.5" fill="#8E97A8">STORAGE CELL SALES</text>
+  <rect x="72" y="240" width="860" height="52" fill="#5ADFC3" opacity="0.5"/>
+  <rect x="72" y="240" width="860" height="52" fill="none" stroke="#5ADFC3" stroke-width="1.4"/>
+  <text x="932" y="274" font-family="Courier,monospace" font-size="22" fill="#F4F0E6">595.4 GWh</text>
+
+  <text x="72" y="344" font-family="Courier,monospace" font-size="13" letter-spacing="2.5" fill="#8E97A8">DOMESTIC INSTALLATIONS</text>
+  <rect x="72" y="362" width="121" height="52" fill="#C9F24B" opacity="0.6"/>
+  <rect x="72" y="362" width="121" height="52" fill="none" stroke="#C9F24B" stroke-width="1.4"/>
+  <text x="207" y="396" font-family="Courier,monospace" font-size="22" fill="#F4F0E6">84 GWh</text>
+
+  <line x1="193" y1="386" x2="193" y2="430" stroke="#1B2A33" stroke-width="1" stroke-dasharray="3 4"/>
+  <text x="72" y="470" font-family="Courier,monospace" font-size="13" letter-spacing="1.5" fill="#F0A832">14% OF SALES STAYED IN CHINA</text>
+
+  <text x="72" y="534" font-family="Georgia,serif" font-size="20" fill="#F4F0E6">The other 511.4GWh is exported or held in inventory, much of it inside systems</text>
+  <text x="72" y="562" font-family="Georgia,serif" font-size="20" fill="#8E97A8">that customs data does not capture.</text>
+
+  <line x1="72" y1="600" x2="1128" y2="600" stroke="#1B2A33" stroke-width="1"/>
+  <text x="72" y="626" font-family="Courier,monospace" font-size="11" letter-spacing="1" fill="#5C6675">SOURCE: CABIA (SALES), NEA (INSTALLATIONS), JAN—SEP 2026</text>
+</svg>

@@ -1458,5 +1458,102 @@
         "date": "2026-11-05"
       }
     ]
+  },
+  {
+    "number": 63,
+    "slug": "cells-go-abroad",
+    "title": "Most of the Cells Will Go Abroad",
+    "dek": "The deadline matches this year's slower build-out rather than last year's record, and domestic installations absorb about one-seventh of the cells sold.",
+    "publishedAt": "2026-11-19T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "markets",
+      "overseas-capacity"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": "/cover-063.svg",
+    "contentFile": "issue-063.md",
+    "highlights": [
+      {
+        "tag": "markets",
+        "text": "China's 2030 storage target is 300GW, 80% above the 167GW in service at the end of September. The plan needs 31GW a year from here; this year's pace is already 41GW."
+      },
+      {
+        "tag": "markets",
+        "text": "Domestic installations took 84GWh of the 595.4GWh of storage cells sold in January-September. Disclosed overseas orders reached 584.6GWh, five times the domestic annual market."
+      },
+      {
+        "tag": "overseas-capacity",
+        "text": "The plan's export chapter has no numbers: two clauses, no countries, no financing. Saudi tenders at four hours and Australia's CIS at four-hour equivalents already buy the product the plan asks Chinese firms to build."
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "国家发展改革委、国家能源局",
+        "title": "“十五五”新型储能实施方案（发改能源〔2026〕1565号）",
+        "url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261113_1408810.html",
+        "date": "2026-11-13"
+      },
+      {
+        "outlet": "国家能源局",
+        "title": "2026 年三季度新闻发布会实录",
+        "url": "https://www.nea.gov.cn/20261030/dd2b15f04b92441aa59f839a1a3413ba/c.html",
+        "date": "2026-10-30"
+      },
+      {
+        "outlet": "上海证券报",
+        "title": "CNESA：上半年新型储能新增装机下降18%",
+        "url": "https://m.cnstock.com/commonDetail/779747",
+        "date": "2026-08-28"
+      },
+      {
+        "outlet": "中国汽车动力电池产业创新联盟（CABIA）",
+        "title": "2026年9月动力电池月度信息",
+        "url": "https://finance.cnr.cn/ycbd/20261015/t20261015_527842658.shtml",
+        "date": "2026-10-15"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "前三季度中国储能企业海外订单统计（CESA）",
+        "url": "https://www.escn.com.cn/news/show-2336105.html",
+        "date": "2026-11-02"
+      },
+      {
+        "outlet": "财新",
+        "title": "CNESA：2026年上半年中国储能企业海外订单298GWh",
+        "url": "https://www.caixin.com/2026-08-27/102479889.html",
+        "date": "2026-08-27"
+      },
+      {
+        "outlet": "MEED",
+        "title": "Contractors appointed for Group 1 battery storage projects",
+        "url": "https://guest.meed.com/contractors-appointed-for-group-1-battery-storage-projects/",
+        "date": "2026"
+      },
+      {
+        "outlet": "Battlink",
+        "title": "Australia's CIS tender round 8",
+        "url": "https://battlink.com/news/australia-battery-energy-storage-systems-cis-tender-8/",
+        "date": "2026"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "AEMO并网管道中的构网型储能",
+        "url": "https://www.escn.com.cn/news/show-2250918.html",
+        "date": "2026"
+      },
+      {
+        "outlet": "InfoLink",
+        "title": "Energy Storage Spot Price",
+        "url": "https://www.infolink-group.com/spot-price-energy-storage/",
+        "date": "2026-11-04"
+      },
+      {
+        "outlet": "商务部、海关总署",
+        "title": "2026年第58号公告",
+        "url": "https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html",
+        "date": "2026-11"
+      }
+    ]
   }
 ]
