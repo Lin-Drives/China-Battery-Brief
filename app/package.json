@@ -23,7 +23,8 @@
     "email:test": "tsx scripts/send-test.ts",
     "email:prune": "tsx scripts/prune-emails.ts",
     "db:start": "../.local-mysql/start.sh",
-    "db:stop": "../.local-mysql/stop.sh"
+    "db:stop": "../.local-mysql/stop.sh",
+    "review": "node ../dev/review.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.965.0",

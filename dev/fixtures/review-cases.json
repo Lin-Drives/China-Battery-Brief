@@ -1,0 +1,28 @@
+[
+  {
+    "id": "bad-openers-en",
+    "file": "dev/fixtures/bad-openers-en.md",
+    "expect": [
+      "L1.opener"
+    ]
+  },
+  {
+    "id": "bad-063-openers",
+    "file": "docs/voice-samples/bad-063-paragraph-openers.md",
+    "expect": [
+      "L1.opener"
+    ]
+  },
+  {
+    "id": "issue-063-en-clean",
+    "file": "app/db/seed-content/issue-063.md",
+    "expect": [],
+    "clean": true
+  },
+  {
+    "id": "issue-063-zh-clean",
+    "file": "app/db/seed-content-zh/issue-063-zh.md",
+    "expect": [],
+    "clean": true
+  }
+]

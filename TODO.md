@@ -29,6 +29,19 @@
 - [x] 新增 No. 055 EN + ZH 并发布（2026-09-21，早于排期 09-24）：欧盟要求中国混动「自愿」限额约 15% 市场份额否则加税 + 商务部 WTO 异议；经多轮优化（15% 数字、9-17 视频会谈事实修正、盟情咨文场合、取向电工钢佐证、地名/人名回指），VPS HTTP 200、生产库期号 55
 - [x] 首页加载提速：静态资源缓存头修复（`813eaa3`，`/assets/*` → `public, max-age=31536000, immutable`，HTML → `no-cache`），已强制发布并实测变快
 
+## 审稿流程优化（2026-11-17 起，模型不变）
+
+> 目标：把可机械判定的规则沉到脚本，人工从逐句读退到只看红灯与分歧。详见 `dev/review.mjs` 与 `dev/fixtures/review-cases.json`。
+
+- [x] **L1 机械检查**：`dev/review.mjs`（段首空转、单句成段、元话语、配图存在、脚注引用/定义一致、英文与中文数字单位对齐），`npm run review` 可跑；fixtures 4 例（bad-063 中文、英文段首、063 中英各一）全过
+- [ ] **L2 数字台账**（最高优先）：每期 `claims.json`，一行一个数字（值/单位/时点/口径/URL/原文引句），脚本抓取并校验引句与数字，缺行或对不上即阻塞
+- [ ] **L3 三 pass 审稿**：抽取（claim→证据）、对齐（EN/ZH 数字/专名/限定词）、语感（R1–R7，输出 span）各用独立上下文 + JSON schema，合并后按 blocking/advisory 分级
+- [ ] **提示词入仓**：`content-reviewer` 现位于 `~/.config/opencode/agent/content-reviewer.md`，不可复现，迁到 `dev/agents/` 并版本化
+- [ ] **规则 ID 三处对齐**：`docs/voice.md`、`dev/review.mjs`、`docs/voice-samples/` 用同一套编号，避免规则/检查/样本打架
+- [ ] **回归语料**：用 19 期既有稿 + 注入错误（改数字、错换算、段首空转）测召回与误报
+- [ ] **指标**：每期记录 blocking 数、人工改动行数、模型与脚本分歧数，用来决定哪条规则值得留
+- [ ] **CI/pre-commit**：L1 在提交前与 CI 跑，失败阻断
+
 ## 待确认（2026-09-22 看一眼）
 - [ ] **Cloudflare 边缘缓存仍 DYNAMIC**：缓存头上线后浏览器侧已快，但 js/css/svg/ico 全部 `cf-cache-status: DYNAMIC`（无 Set-Cookie、缓存头正确）——疑似 zone 有全局 Bypass 缓存规则。到控制台 **Caching → Cache Rules** 删掉全局 Bypass，或新建规则 `URI Path starts with /assets/` → Eligible for cache（Edge TTL 1 个月）；走 API 需 Cache Rules 写权限 token
 - [ ] **VPS 磁盘 83%（剩 1.7GB）**：`backups/` 每日增长，过 90% 有 MariaDB 风险；缩短保留周期或 pull 回本地。其余正常（2026-09-21 实测：load 0.00、内存 270MB 可用、swap 111MB/3GB、cbb RSS 67MB）

@@ -113,7 +113,7 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 ## 四、流程
 
 1. 起草前读母本（No. 060 PART 01 的机制段、No. 061 THE TAKE 的判断段）。
-2. 完稿跑 `node dev/draft-check.mjs app/db/seed-content/issue-0NN.md app/db/seed-content-zh/issue-0NN-zh.md`。
+2. 完稿先跑 `npm run review -- <en.md> <zh.md>`（L1 机械检查：段首空转、单句成段、元话语、配图、脚注、中英数字单位对齐），再跑 `node dev/draft-check.mjs app/db/seed-content/issue-0NN.md app/db/seed-content-zh/issue-0NN-zh.md`。
 3. 逐条处理 S1–S6 的硬失败（首句无数字、数字密度不足、破折号超标、句长超标）。
 4. 再读一遍改 R1–R7 的语感问题。
 5. 交 `content-reviewer` 复核事实与红线。
