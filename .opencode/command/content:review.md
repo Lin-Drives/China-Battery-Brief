@@ -12,7 +12,7 @@ agent: build
 **步骤**：
 1. 读取 `AGENTS.md` 第七节「内容工作流与安全注意」，明确红线：信源时效（近 3 个月）、读者背景预设（first mention 身份从句）、专业术语、中英一致性、事实溯源。
 2. 用 `content-reviewer` 子代理对稿件做独立复核（它只读不改，按红线逐条输出违规报告）：
-   - 派发对象：`content-reviewer`（`~/.config/opencode/agent/content-reviewer.md`，模型 `opencode/minimax-m3`）
+   - 派发对象：`content-reviewer`（`dev/agents/content-reviewer.md`；opencode 侧保留同名包装）
    - 提供：EN 与 ZH 稿件全文、`info.md` 事实底座路径、要求输出结构化 Review（Red-line violations / Passed / Verdict）
 3. 主模型裁决并修正：
    - **PASS** → 无需改动，直接收尾

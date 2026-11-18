@@ -19,3 +19,6 @@ dev/shots/
 dev/prod-hero-*.png
 dev/home-hero-live.png
 dev/hero-live-*.png
+
+# claim-check page cache
+dev/.cache/

@@ -34,9 +34,9 @@
 > 目标：把可机械判定的规则沉到脚本，人工从逐句读退到只看红灯与分歧。详见 `dev/review.mjs` 与 `dev/fixtures/review-cases.json`。
 
 - [x] **L1 机械检查**：`dev/review.mjs`（段首空转、单句成段、元话语、配图存在、脚注引用/定义一致、英文与中文数字单位对齐），`npm run review` 可跑；fixtures 4 例（bad-063 中文、英文段首、063 中英各一）全过
-- [ ] **L2 数字台账**（最高优先）：每期 `claims.json`，一行一个数字（值/单位/时点/口径/URL/原文引句），脚本抓取并校验引句与数字，缺行或对不上即阻塞
+- [x] **L2 数字台账**：`app/db/seed-content/claims/<期号>.json` + `dev/claims.mjs`（抓取/缓存/Firecrawl 回退，校验引句与数字，覆盖检查）。063 台账 56 条、覆盖完整；4 条付费墙/JS 源标 `pending` 待人工核。`npm run claims -- 63` 可跑
 - [ ] **L3 三 pass 审稿**：抽取（claim→证据）、对齐（EN/ZH 数字/专名/限定词）、语感（R1–R7，输出 span）各用独立上下文 + JSON schema，合并后按 blocking/advisory 分级
-- [ ] **提示词入仓**：`content-reviewer` 现位于 `~/.config/opencode/agent/content-reviewer.md`，不可复现，迁到 `dev/agents/` 并版本化
+- [x] **提示词入仓**：`dev/agents/content-reviewer.md`（三 pass：抽取 / 中英对齐 / 语感，输出 JSON，blocking 仅限数字与中英不一致），`dev/agents/README.md` 说明运行与分级
 - [ ] **规则 ID 三处对齐**：`docs/voice.md`、`dev/review.mjs`、`docs/voice-samples/` 用同一套编号，避免规则/检查/样本打架
 - [ ] **回归语料**：用 19 期既有稿 + 注入错误（改数字、错换算、段首空转）测召回与误报
 - [ ] **指标**：每期记录 blocking 数、人工改动行数、模型与脚本分歧数，用来决定哪条规则值得留

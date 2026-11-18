@@ -1,0 +1,596 @@
+{
+  "issue": 63,
+  "note": "L2 claim ledger. Every unit-bearing number in issue-063 drafts must appear here: source (url + verbatim quote), derived (from ids), range, threshold, or pending (manual verification).",
+  "claims": [
+    {
+      "id": "c-plan-300",
+      "value": 300,
+      "unit": "GW",
+      "basis": "目标",
+      "asOf": "2030",
+      "kind": "source",
+      "url": "https://www.21jingji.com/article/20261113/herald/2c421624916b47e2fbcd90e9c71ea150.html",
+      "quote": "全国新型储能装机规模达到3亿千瓦，平均储能时长3小时左右",
+      "note": "21jingji 全文转载（NDRC 原文为附件 PDF）"
+    },
+    {
+      "id": "c-plan-140",
+      "value": 140,
+      "unit": "GW",
+      "basis": "目标",
+      "asOf": "2030",
+      "kind": "source",
+      "url": "https://www.21jingji.com/article/20261113/herald/2c421624916b47e2fbcd90e9c71ea150.html",
+      "quote": "可承担顶峰保供作用的电网侧独立新型储能规模约1.4亿千瓦",
+      "note": "21jingji 全文转载（NDRC 原文为附件 PDF）"
+    },
+    {
+      "id": "c-plan-60",
+      "value": 60,
+      "unit": "GW",
+      "basis": "目标",
+      "asOf": "2030",
+      "kind": "source",
+      "url": "https://www.21jingji.com/article/20261113/herald/2c421624916b47e2fbcd90e9c71ea150.html",
+      "quote": "新能源基地配置新型储能规模约5000万—6000万千瓦",
+      "note": "21jingji 全文转载（NDRC 原文为附件 PDF）"
+    },
+    {
+      "id": "c-plan-50",
+      "value": 50,
+      "unit": "GW",
+      "basis": "目标",
+      "asOf": "2030",
+      "kind": "range",
+      "from": [
+        "c-plan-60"
+      ],
+      "note": "同一专栏的下限 5000 万千瓦"
+    },
+    {
+      "id": "c-plan-900",
+      "value": 900,
+      "unit": "GWh",
+      "basis": "推算",
+      "asOf": "2030",
+      "kind": "derived",
+      "from": [
+        "c-plan-300"
+      ],
+      "note": "300GW × 3 小时"
+    },
+    {
+      "id": "c-plan-180",
+      "value": 180,
+      "unit": "GW",
+      "basis": "目标",
+      "asOf": "2027",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20250912/24589b84cb0d4120b263106e3e7c50d1/c.html",
+      "quote": "2027年底达到1.8亿千瓦以上"
+    },
+    {
+      "id": "c-nea-167",
+      "value": 167,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20261030/dd2b15f04b92441aa59f839a1a3413ba/c.html",
+      "quote": "1.67亿千瓦"
+    },
+    {
+      "id": "c-nea-435",
+      "value": 435,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20261030/dd2b15f04b92441aa59f839a1a3413ba/c.html",
+      "quote": "4.35亿千瓦时"
+    },
+    {
+      "id": "c-nea-136",
+      "value": 136,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2025-12",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20260130/50f657ce87f848e1a9a1861d1fd9aa23/c.html",
+      "quote": "1.36亿千瓦"
+    },
+    {
+      "id": "c-nea-351",
+      "value": 351,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2025-12",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20260130/50f657ce87f848e1a9a1861d1fd9aa23/c.html",
+      "quote": "3.51亿千瓦时"
+    },
+    {
+      "id": "c-nea-7376",
+      "value": 73.76,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2024-12",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20250123/3e5379eb74b94d94bcdaf556268ad466/c.html",
+      "quote": "7376万千瓦"
+    },
+    {
+      "id": "c-nea-168",
+      "value": 168,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2024-12",
+      "kind": "source",
+      "url": "https://www.nea.gov.cn/20250123/3e5379eb74b94d94bcdaf556268ad466/c.html",
+      "quote": "1.68亿千瓦时"
+    },
+    {
+      "id": "c-cn-809",
+      "value": 809.5,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-06",
+      "kind": "source",
+      "url": "https://www.b910.cn/N/4302.html",
+      "quote": "809.5GWh",
+      "note": "转引 CNESA 数据"
+    },
+    {
+      "id": "c-h1-2181",
+      "value": 21.81,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-06",
+      "kind": "source",
+      "url": "https://www.b910.cn/N/4302.html",
+      "quote": "21.81GW",
+      "note": "转引 CNESA 数据"
+    },
+    {
+      "id": "c-h1-586",
+      "value": 58.6,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-06",
+      "kind": "source",
+      "url": "https://www.b910.cn/N/4302.html",
+      "quote": "58.60GWh",
+      "note": "转引 CNESA 数据"
+    },
+    {
+      "id": "c-cabi-595",
+      "value": 595.4,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://finance.cnr.cn/ycbd/20261015/t20261015_527842658.shtml",
+      "quote": "595.4GWh"
+    },
+    {
+      "id": "c-cesa-584",
+      "value": 584.6,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "584.6GWh"
+    },
+    {
+      "id": "c-cesa-americas",
+      "value": 236.01,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "236.01GWh"
+    },
+    {
+      "id": "c-cesa-europe",
+      "value": 135.31,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "135.31GWh"
+    },
+    {
+      "id": "c-cesa-asia",
+      "value": 115.57,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "115.57GWh"
+    },
+    {
+      "id": "c-cesa-oceania",
+      "value": 34.03,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "34.03GWh"
+    },
+    {
+      "id": "c-cesa-africa",
+      "value": 27.91,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "27.91GWh"
+    },
+    {
+      "id": "c-cesa-sum",
+      "value": 549.8,
+      "unit": "GWh",
+      "basis": "推算",
+      "asOf": "2026-09",
+      "kind": "derived",
+      "from": [
+        "c-cesa-americas",
+        "c-cesa-europe",
+        "c-cesa-asia",
+        "c-cesa-oceania",
+        "c-cesa-africa"
+      ]
+    },
+    {
+      "id": "c-cesa-us",
+      "value": 222.35,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "222.35GWh"
+    },
+    {
+      "id": "c-cesa-eve",
+      "value": 206,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "206GWh"
+    },
+    {
+      "id": "c-cesa-q3",
+      "value": 89.9,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-09",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336105.html",
+      "quote": "89.9GWh"
+    },
+    {
+      "id": "c-cesa-2025",
+      "value": 366,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2025",
+      "kind": "source",
+      "url": "https://finance.sina.com.cn/jjxw/2026-01-22/doc-inhiepst7290716.shtml",
+      "quote": "366GWh"
+    },
+    {
+      "id": "c-cesa-h1",
+      "value": 298,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-06",
+      "kind": "source",
+      "url": "https://www.b910.cn/N/4302.html",
+      "quote": "298GWh",
+      "note": "转引 CNESA 数据"
+    },
+    {
+      "id": "c-cesa-eu-h1",
+      "value": 120,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-06",
+      "kind": "source",
+      "url": "https://www.caixin.com/2026-08-27/102479889.html",
+      "quote": "120GWh",
+      "pending": true,
+      "note": "财新付费墙，静态抓取拿不到全文，需人工核对"
+    },
+    {
+      "id": "c-aemo-33",
+      "value": 33.2,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2250918.html",
+      "quote": "33.2GW"
+    },
+    {
+      "id": "c-saudi-b1",
+      "value": 2,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://www.seetaoe.com/details/263770.html",
+      "quote": "2GW/8GWh"
+    },
+    {
+      "id": "c-saudi-b1e",
+      "value": 8,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://www.seetaoe.com/details/263770.html",
+      "quote": "2GW/8GWh"
+    },
+    {
+      "id": "c-saudi-b2",
+      "value": 3,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://www.seetaoe.com/details/263770.html",
+      "quote": "3GW/12GWh"
+    },
+    {
+      "id": "c-saudi-b2e",
+      "value": 12,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://www.seetaoe.com/details/263770.html",
+      "quote": "3GW/12GWh"
+    },
+    {
+      "id": "c-saudi-5",
+      "value": 5,
+      "unit": "GW",
+      "basis": "推算",
+      "asOf": "2026",
+      "kind": "derived",
+      "from": [
+        "c-saudi-b1",
+        "c-saudi-b2"
+      ]
+    },
+    {
+      "id": "c-saudi-20",
+      "value": 20,
+      "unit": "GWh",
+      "basis": "推算",
+      "asOf": "2026",
+      "kind": "derived",
+      "from": [
+        "c-saudi-b1e",
+        "c-saudi-b2e"
+      ]
+    },
+    {
+      "id": "c-aus-4",
+      "value": 4,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://battlink.com/news/australia-battery-energy-storage-systems-cis-tender-8/",
+      "quote": "4GW"
+    },
+    {
+      "id": "c-aus-16",
+      "value": 16,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://battlink.com/news/australia-battery-energy-storage-systems-cis-tender-8/",
+      "quote": "16GWh"
+    },
+    {
+      "id": "c-indo-1",
+      "value": 0.001,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/sz8srm/stories/WS6af685c5e4b0e14252fcae54.html",
+      "quote": "1MW"
+    },
+    {
+      "id": "c-indo-2",
+      "value": 0.002,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/sz8srm/stories/WS6af685c5e4b0e14252fcae54.html",
+      "quote": "2MW/4MWh"
+    },
+    {
+      "id": "c-indo-4",
+      "value": 0.004,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/sz8srm/stories/WS6af685c5e4b0e14252fcae54.html",
+      "quote": "2MW/4MWh"
+    },
+    {
+      "id": "c-sle-05",
+      "value": 0.0005,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-07",
+      "kind": "source",
+      "url": "https://zoolnasm.com/news/2744",
+      "quote": "500kW/1MWh"
+    },
+    {
+      "id": "c-sle-1",
+      "value": 0.001,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-07",
+      "kind": "source",
+      "url": "https://zoolnasm.com/news/2744",
+      "quote": "500kW/1MWh"
+    },
+    {
+      "id": "c-zim-11",
+      "value": 0.011,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-07",
+      "kind": "source",
+      "url": "https://www.cls.cn/detail/2452575",
+      "quote": "11MWp",
+      "pending": true,
+      "note": "财联社页面静态抓取为空，需人工核对"
+    },
+    {
+      "id": "c-zim-30",
+      "value": 0.03,
+      "unit": "GWh",
+      "basis": "实际",
+      "asOf": "2026-07",
+      "kind": "source",
+      "url": "https://www.cls.cn/detail/2452575",
+      "quote": "30MWh",
+      "pending": true,
+      "note": "财联社页面静态抓取为空，需人工核对"
+    },
+    {
+      "id": "c-zim-4",
+      "value": 0.004,
+      "unit": "GW",
+      "basis": "实际",
+      "asOf": "2026-07",
+      "kind": "source",
+      "url": "https://www.cls.cn/detail/2452575",
+      "quote": "4MW",
+      "pending": true,
+      "note": "财联社页面静态抓取为空，需人工核对"
+    },
+    {
+      "id": "d-62",
+      "value": 62,
+      "unit": "GW",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "c-nea-136",
+        "c-nea-7376"
+      ]
+    },
+    {
+      "id": "d-183",
+      "value": 183,
+      "unit": "GWh",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "c-nea-351",
+        "c-nea-168"
+      ]
+    },
+    {
+      "id": "d-31",
+      "value": 31,
+      "unit": "GW",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "c-nea-167",
+        "c-nea-136"
+      ]
+    },
+    {
+      "id": "d-84",
+      "value": 84,
+      "unit": "GWh",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "c-nea-435",
+        "c-nea-351"
+      ]
+    },
+    {
+      "id": "d-41",
+      "value": 41,
+      "unit": "GW",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "d-31"
+      ]
+    },
+    {
+      "id": "d-112",
+      "value": 112,
+      "unit": "GWh",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "d-84"
+      ]
+    },
+    {
+      "id": "d-109",
+      "value": 109,
+      "unit": "GWh",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "c-plan-900",
+        "c-nea-435"
+      ]
+    },
+    {
+      "id": "d-13",
+      "value": 13,
+      "unit": "GW",
+      "basis": "推算",
+      "kind": "derived",
+      "from": [
+        "c-plan-180",
+        "c-nea-167"
+      ]
+    },
+    {
+      "id": "t-45",
+      "value": 45,
+      "unit": "GW",
+      "basis": "判断",
+      "kind": "threshold",
+      "note": "证伪条件：2027 年新增超过 45GW"
+    },
+    {
+      "id": "t-400",
+      "value": 400,
+      "unit": "GWh",
+      "basis": "判断",
+      "kind": "threshold",
+      "note": "证伪条件：全年海外订单低于 400GWh"
+    }
+  ]
+}

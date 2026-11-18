@@ -24,7 +24,8 @@
     "email:prune": "tsx scripts/prune-emails.ts",
     "db:start": "../.local-mysql/start.sh",
     "db:stop": "../.local-mysql/stop.sh",
-    "review": "node ../dev/review.mjs"
+    "review": "node ../dev/review.mjs",
+    "claims": "node --env-file-if-exists=.env ../dev/claims.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.965.0",
