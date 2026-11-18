@@ -1487,7 +1487,7 @@
         "text": "The plan's export chapter has no numbers: two clauses, no countries, no financing. Saudi tenders at four hours and Australia's CIS at four-hour equivalents already buy the product the plan asks Chinese firms to build."
       }
     ],
-    "sources": [
+        "sources": [
       {
         "outlet": "国家发展改革委、国家能源局",
         "title": "“十五五”新型储能实施方案（发改能源〔2026〕1565号）",
@@ -1496,31 +1496,61 @@
       },
       {
         "outlet": "国家能源局",
-        "title": "2026 年三季度新闻发布会实录",
+        "title": "2026 年三季度例行新闻发布会实录",
         "url": "https://www.nea.gov.cn/20261030/dd2b15f04b92441aa59f839a1a3413ba/c.html",
         "date": "2026-10-30"
       },
       {
+        "outlet": "国家能源局",
+        "title": "2026 年一季度新闻发布会实录",
+        "url": "https://www.nea.gov.cn/20260130/50f657ce87f848e1a9a1861d1fd9aa23/c.html",
+        "date": "2026-01-30"
+      },
+      {
+        "outlet": "国家能源局",
+        "title": "2025 年一季度新闻发布会实录",
+        "url": "https://www.nea.gov.cn/20250123/3e5379eb74b94d94bcdaf556268ad466/c.html",
+        "date": "2025-01-23"
+      },
+      {
+        "outlet": "国家发展改革委、国家能源局",
+        "title": "新型储能规模化建设专项行动方案（2025—2027年）答记者问",
+        "url": "https://www.nea.gov.cn/20250912/24589b84cb0d4120b263106e3e7c50d1/c.html",
+        "date": "2025-09-12"
+      },
+      {
+        "outlet": "21 世纪经济报道",
+        "title": "《“十五五”新型储能实施方案》全文转载",
+        "url": "https://www.21jingji.com/article/20261113/herald/2c421624916b47e2fbcd90e9c71ea150.html",
+        "date": "2026-11-13"
+      },
+      {
         "outlet": "上海证券报",
-        "title": "CNESA：上半年新型储能新增装机下降18%",
+        "title": "CNESA：上半年新型储能新增装机下降 18%",
         "url": "https://m.cnstock.com/commonDetail/779747",
         "date": "2026-08-28"
       },
       {
         "outlet": "中国汽车动力电池产业创新联盟（CABIA）",
-        "title": "2026年9月动力电池月度信息",
+        "title": "2026 年 9 月动力电池月度信息",
         "url": "https://finance.cnr.cn/ycbd/20261015/t20261015_527842658.shtml",
         "date": "2026-10-15"
       },
       {
         "outlet": "中国储能网",
-        "title": "前三季度中国储能企业海外订单统计（CESA）",
+        "title": "前三季度中国储能企业海外订单统计（CESA 储能应用分会）",
         "url": "https://www.escn.com.cn/news/show-2336105.html",
         "date": "2026-11-02"
       },
       {
+        "outlet": "钛媒体",
+        "title": "CNESA：2025 年中国储能企业海外订单 366GWh",
+        "url": "https://www.tmtpost.com/nictation/7853498.html",
+        "date": "2026-02"
+      },
+      {
         "outlet": "财新",
-        "title": "CNESA：2026年上半年中国储能企业海外订单298GWh",
+        "title": "CNESA：2026 年上半年中国储能企业海外订单 298GWh",
         "url": "https://www.caixin.com/2026-08-27/102479889.html",
         "date": "2026-08-27"
       },
@@ -1538,9 +1568,15 @@
       },
       {
         "outlet": "中国储能网",
-        "title": "AEMO并网管道中的构网型储能",
+        "title": "AEMO 并网管道中的构网型储能",
         "url": "https://www.escn.com.cn/news/show-2250918.html",
         "date": "2026"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "消费税落地叠加原料上行，储能电池开启涨价通道",
+        "url": "https://www.escn.com.cn/news/show-2336980.html",
+        "date": "2026-11-04"
       },
       {
         "outlet": "InfoLink",
@@ -1550,9 +1586,33 @@
       },
       {
         "outlet": "商务部、海关总署",
-        "title": "2026年第58号公告",
+        "title": "2026 年第 58 号公告",
         "url": "https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html",
+        "date": "2026"
+      },
+      {
+        "outlet": "China Daily",
+        "title": "印尼岛屿微电网报道",
+        "url": "https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/sz8srm/stories/WS6af685c5e4b0e14252fcae54.html",
         "date": "2026-11"
+      },
+      {
+        "outlet": "众钠能源",
+        "title": "塞拉利昂渔码头光储柴微电网交付",
+        "url": "https://zoolnasm.com/news/2744",
+        "date": "2026-07"
+      },
+      {
+        "outlet": "财联社",
+        "title": "津巴布韦瑞德矿业光储柴微电网投运",
+        "url": "https://www.cls.cn/detail/2452575",
+        "date": "2026-07"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "“136号文”落地一年，新型储能经历了哪些重大变革？",
+        "url": "https://www.escn.com.cn/news/show-2241723.html",
+        "date": "2026-03-13"
       }
     ]
   }
