@@ -63,5 +63,12 @@
       "L1.sections",
       "L1.horizon"
     ]
+  },
+  {
+    "id": "bad-heading-zh",
+    "file": "dev/fixtures/bad-heading-zh.md",
+    "expect": [
+      "L1.heading"
+    ]
   }
 ]

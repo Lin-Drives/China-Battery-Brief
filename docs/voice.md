@@ -30,7 +30,7 @@
 
 ---
 
-## 一、结构规则（S1–S9）
+## 一、结构规则（S1–S10）
 
 ### S1 · 首句即新闻
 第一句必须能独立成立为一条快讯：**主体 + 动作 + 数字或生效时间**。
@@ -80,7 +80,13 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 ### S9 · 小节上限三个
 正文 PART 小节最多 3 个（`THE TAKE` 单列，不计入）。内容多就并进相邻小节，不加第 4 个。文末 `<!-- horizon -->` 时间小方块自 No.063 起停用：三个日期在导语和正文里都已出现过，小方块每期重复、没有信息增量。
 
-S7–S9 由 `dev/review.mjs` 的 `L1.citation` / `L1.sections` / `L1.horizon` 机械检查，FAIL 不得进入发布流程。
+### S10 · 标题命名对象
+文章标题与小节标题必须直接写出对象：人、公司、政策、数字、动作。禁止用数量代称讲故事——「两个动词」「三个日期」「一件事」都是让读者解谜。标题自己就能回答「这节讲什么」。
+
+- 合格：`出海章节没有数字`、`四小时和一台构网型逆变器`（对象具体）。
+- 不合格：`两个动词和一个截止日`、`三个日期`（读者得读完全节才知道指什么）。
+
+S7–S10 由 `dev/review.mjs` 的 `L1.citation` / `L1.sections` / `L1.horizon` / `L1.heading` 机械检查，FAIL 不得进入发布流程。
 
 ---
 
@@ -131,7 +137,7 @@ S7–S9 由 `dev/review.mjs` 的 `L1.citation` / `L1.sections` / `L1.horizon` �
 1. 起草前读母本（No. 060 PART 01 的机制段、No. 061 THE TAKE 的判断段）。
 2. 完稿先跑 `npm run review -- <en.md> <zh.md>`（L1 机械检查：段首空转、单句成段、元话语、配图、脚注、引用位置与序号、PART 小节数、horizon 小方块、中英数字单位对齐、中英限定词、脚注来源一致、专名对齐），再跑 `node dev/draft-check.mjs app/db/seed-content/issue-0NN.md app/db/seed-content-zh/issue-0NN-zh.md`。
 3. 每个单位数字登记到 `app/db/seed-content/claims/<期号>.json`，跑 `npm run claims -- <期号>`：引句对不上或漏登记会报错；付费墙/JS 源标 `pending` 并注明原因。
-4. 逐条处理 S1–S9 的硬失败（首句无数字、数字密度不足、破折号超标、句长超标、引用标注位置与序号、小节数超过 3 个）。
+4. 逐条处理 S1–S10 的硬失败（首句无数字、数字密度不足、破折号超标、句长超标、引用标注位置与序号、小节数超过 3 个、标题代称）。
 5. 再读一遍改 R1–R7 的语感问题。
 6. 交 `content-reviewer` 复核事实与红线。
 
@@ -143,4 +149,4 @@ S7–S9 由 `dev/review.mjs` 的 `L1.citation` / `L1.sections` / `L1.horizon` �
 
 - 2026-11-11 建立：因 No.062 初稿「标题、导言、前三段 AI 味重」。
 - 2026-11-11 改版：加入 CnEVPost / BloombergNEF 对标基线与 S1–S6；破折号配额从 4/千词收紧到 1/千词；新增数字密度与百分比口径检查。
-- 2026-11-18 新增 S7–S9：引用标注写在句末标点之前、多处引用按序号升序、正文小节上限 3 个并停用 horizon 时间小方块；三条由 `dev/review.mjs` 机械检查。
+- 2026-11-18 新增 S7–S9：引用标注写在句末标点之前、多处引用按序号升序、正文小节上限 3 个并停用 horizon 时间小方块；三条由 `dev/review.mjs` 机械检查；同日新增 S10「标题命名对象」。

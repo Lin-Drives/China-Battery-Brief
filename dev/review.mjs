@@ -235,6 +235,30 @@ function checkSections(file) {
   return issues;
 }
 
+/** Section titles must name their object. Counting what is inside ("two verbs",
+ *  "three dates") turns the heading into a riddle the reader has to decode. */
+const RIDDLE_HEADING =
+  /[一两二三四五几]\s*个\s*(动词|日期|数字|信号|变化|故事|问题|答案|理由|动作|词|事)/;
+
+function checkHeadings(file) {
+  const { body } = load(file);
+  const issues = [];
+  for (const line of body.split("\n")) {
+    const h = line.match(/^##\s+(.+?)\s*$/);
+    if (!h) continue;
+    const hit = h[1].match(RIDDLE_HEADING);
+    if (hit) {
+      issues.push({
+        rule: "L1.heading",
+        level: "fail",
+        text: h[1],
+        detail: "标题用「" + hit[0] + "」代称，读者不知道指什么；直接写对象本身",
+      });
+    }
+  }
+  return issues;
+}
+
 /** The ON THE HORIZON box repeated the same three dates every issue and was
  *  retired in No.063. Kept as a warning so the module can come back later. */
 function checkHorizon(file) {
@@ -248,6 +272,59 @@ function checkHorizon(file) {
       detail: "时间小方块已停用（每期重复、无信息增量），正文不再使用",
     },
   ];
+}
+
+/** The rendered "原文出处" ledger comes from `issues.json > sources`, not from the
+ *  markdown footnote definitions. If the two drift, readers see superscripts that
+ *  point past the ledger (or at the wrong entry), so compare count, order and URL. */
+function issueMeta(file) {
+  const base = path.basename(file);
+  const readJson = p => JSON.parse(fs.readFileSync(p, "utf8"));
+  const en = readJson(path.join(ROOT, "app", "db", "seed-content", "issues.json"));
+  if (!isZh(file)) return en.find(i => i.contentFile === base) || null;
+  const zh = readJson(
+    path.join(ROOT, "app", "db", "seed-content-zh", "issues-zh.json"),
+  );
+  const z = zh.find(i => i.contentFileZh === base);
+  if (!z) return null;
+  return en.find(i => i.slug === z.slug) || null;
+}
+
+function checkSourceLedger(file) {
+  const meta = issueMeta(file);
+  if (!meta) return [];
+  const { raw } = load(file);
+  const defs = [...raw.matchAll(/^\[\^(\d+)\]\s*:\s*(.+)$/gm)]
+    .map(m => ({ n: Number(m[1]), text: m[2] }))
+    .sort((a, b) => a.n - b.n);
+  const sources = meta.sources || [];
+  const issues = [];
+
+  if (defs.length !== sources.length) {
+    issues.push({
+      rule: "L1.sourceledger",
+      level: "fail",
+      text: "脚注 " + defs.length + " 条 / 来源 " + sources.length + " 条",
+      detail:
+        "正文脚注与 issues.json 的 sources 条数不一致：读者看到的编号对不上文末「原文出处」",
+    });
+  }
+
+  const n = Math.min(defs.length, sources.length);
+  for (let i = 0; i < n; i += 1) {
+    const url = (defs[i].text.match(/\]\((https?:\/\/[^)]+)\)/) || [])[1];
+    const want = sources[i].url;
+    if (url && want !== url) {
+      issues.push({
+        rule: "L1.sourceledger",
+        level: "fail",
+        text: "脚注 [^" + defs[i].n + "] ↔ 来源 " + String(i + 1).padStart(2, "0"),
+        detail: "第 " + (i + 1) + " 条来源 URL 不一致：脚注 " + url + " / sources " + want,
+      });
+      break;
+    }
+  }
+  return issues;
 }
 
 function checkFootnotes(file) {
@@ -462,7 +539,9 @@ function reviewFile(file) {
     ...checkAssets(file),
     ...checkFootnotes(file),
     ...checkCitations(file),
+    ...checkSourceLedger(file),
     ...checkSections(file),
+    ...checkHeadings(file),
     ...checkHorizon(file),
   ];
 }
