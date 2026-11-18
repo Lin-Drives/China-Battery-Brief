@@ -1,57 +1,47 @@
-China's 2030 storage target is 300GW, 80% above the 167GW in service at the end of September, with average duration to rise from 2.61 hours to about three.[^1][^2]
+China's 2030 storage target is 300GW, 80% above the 167GW in service at the end of September, with average duration to rise from 2.61 hours to about three[^1][^2].
 
-Between the end of 2024 and the end of 2025, installations in service grew by 62GW and 183GWh.[^3][^4] In the first nine months of this year they grew by another 31GW and 84GWh, an annualised 41GW and 112GWh.[^2][^3] From September's base, the 2030 target implies 31GW a year and 109GWh a year, below this year's actual pace and well below last year's.[^1]
+Between the end of 2024 and the end of 2025, installations in service grew by 62GW and 183GWh[^3][^4]. In the first nine months of this year they grew by another 31GW and 84GWh, an annualised 41GW and 112GWh[^2][^3]. From September's base, the 2030 target implies 31GW a year and 109GWh a year, below this year's actual pace and well below last year's.
 
-At last year's pace the target arrives in 2028; at this year's, early in 2030. The first half of 2026 added 21.81GW and 58.6GWh, down 18% and 16% on a year earlier.[^7] The 2027 milestone of 180GW, set by a separate document in September 2025, is already 93% met, 13GW short.[^5][^2]
+At last year's pace the target arrives in 2028; at this year's, early in 2030. The first half of 2026 added 21.81GW and 58.6GWh, down 18% and 16% on a year earlier[^7]. The 2027 milestone of 180GW, set by a separate document in September 2025, is already 93% met, 13GW short[^2][^5].
 
-<!-- k:#5A6B9E|PART 01 · THE MIX -->
-## Where the gigawatts go
+<!-- k:#5A6B9E|PART 01 · THE PLAN -->
+## The plan pays the grid side; the capacity has nowhere to go
 
-Grid-side independent storage, the kind that earns a capacity payment rather than sitting behind a solar farm, is to reach about 140GW by 2030. Storage configured at large renewable bases is capped at about 50GW to 60GW.[^1] The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
+Grid-side independent storage, the kind that earns a capacity payment rather than sitting behind a solar farm, is to reach about 140GW by 2030. Storage configured at large renewable bases is capped at about 50GW to 60GW[^1]. The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
 
-A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh.[^2][^1] Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none.[^21]
+A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh[^1][^2]. Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none[^21].
 
-The plan keeps the capacity payment for grid-side independent storage and adds a reliability payment once spot markets run continuously, on a uniform principle and with list-based approval.[^1] That is a revenue model, not a construction quota, and it is the first one China has written at national level for storage.
+The plan keeps the capacity payment for grid-side independent storage and adds a reliability payment once spot markets run continuously, on a uniform principle and with list-based approval[^1]. That is a revenue model, not a construction quota, and it is the first one China has written at national level for storage. The same document requires storage-cell firms to advance projects "in an orderly way" and to guard against "blind expansion", language that ties the plan to the lithium-battery capacity controls already in force[^6].
 
-The same document requires storage-cell firms to advance projects "in an orderly way" and to guard against "blind expansion", language that ties the plan to the lithium-battery capacity controls already in force.[^6]
-
-<!-- k:#2F6E77|PART 02 · THE CAPACITY -->
-## Eight hundred gigawatt-hours with nowhere to go
-
-By the end of June, China had 809.5GWh of storage-cell capacity in operation, excluding lines that can switch between vehicle and storage cells.[^7] Consultants put planned capacity near 2TWh, and the growth rate of new lines has already slowed.[^15] The domestic market does not absorb a large share of it. In the first nine months of 2026, installations added 84GWh of energy capacity, while storage-cell sales reached 595.4GWh, up 111.8%.[^2][^8] Domestic installations therefore took about one-seventh of the cells sold.
+By the end of June, China had 809.5GWh of storage-cell capacity in operation, excluding lines that can switch between vehicle and storage cells[^7]. Consultants put planned capacity near 2TWh, and the growth rate of new lines has already slowed[^15]. The domestic market does not absorb a large share of it. In the first nine months of 2026, installations added 84GWh of energy capacity, while storage-cell sales reached 595.4GWh, up 111.8%[^2][^8]. Domestic installations therefore took about one-seventh of the cells sold.
 
 ![Bar chart: 595.4GWh of storage-cell sales against 84GWh of domestic installations in January-September 2026](/figures/063-export-gap.svg "Figure 01 · One-seventh of the cells stayed home")
 
-A large part of the remainder is exported, increasingly inside systems rather than as bare cells, which is why customs figures understate the trade. Some of it sits in inventory. The forward-looking number is orders. Chinese firms disclosed 584.6GWh of overseas storage orders in the first nine months of 2026, five times the domestic annual installation.[^9]
+A large part of the remainder is exported, increasingly inside systems rather than as bare cells, which is why customs figures understate the trade. Some of it sits in inventory. The forward-looking number is orders: Chinese firms disclosed 584.6GWh of overseas storage orders in the first nine months of 2026, five times the domestic annual installation[^9]. The target grows 80% over four years from a base already running at the required pace. Capacity built for a market several times its size has nowhere to go.
 
-A target that grows 80% in four years, from a base that is already running at the required pace, cannot absorb capacity that has been built for a market several times its size.
+<!-- k:#2F6E77|PART 02 · THE BUYERS -->
+## The buyers are not in China, and they set the spec
 
-<!-- k:#6B6558|PART 03 · THE BUYERS -->
-## The buyers are not in China
+The Americas took 236.01GWh, or 40% of disclosed overseas orders in the first nine months; Europe 135.31GWh, or 23%; Asia 115.57GWh, or 20%; Oceania 34.03GWh and Africa 27.91GWh[^9]. The regional totals sum to 549.8GWh against a headline 584.6GWh, so the shares are indicative rather than exact.
 
-The Americas took 236.01GWh, or 40% of disclosed overseas orders in the first nine months; Europe 135.31GWh, or 23%; Asia 115.57GWh, or 20%; Oceania 34.03GWh and Africa 27.91GWh.[^9] The regional totals sum to 549.8GWh against a headline 584.6GWh, so the shares are indicative rather than exact.[^9]
+Eve Energy's 206GWh framework agreement with Fluence, a US storage integrator, signed in September, is counted against the United States, lifting that country to 222.35GWh. Strip it out and third-quarter orders outside that deal were 89.9GWh, down about 49% from the second quarter[^9].
 
-Eve Energy's 206GWh framework agreement with Fluence, a US storage integrator, signed in September, is counted against the United States, lifting that country to 222.35GWh. Strip it out and third-quarter orders outside that deal were 89.9GWh, down about 49% from the second quarter.[^9]
+Chinese firms disclosed 366GWh of overseas orders in 2025, up 144%; the first half of 2026 added 298GWh, up 83%, with Europe alone near 120GWh[^10][^11]. Excluding that agreement, Europe is the largest market, even as American tariffs and eligibility rules tighten. Its projects are procured by utilities and infrastructure funds, which need duration and certification more than the cheapest cell.
 
-The longer series shows the same direction with less distortion. Chinese firms disclosed 366GWh of overseas orders in 2025, up 144%; the first half of 2026 added 298GWh, up 83%, with Europe alone near 120GWh.[^10][^11] Excluding that agreement, Europe is the largest market, even as American tariffs and eligibility rules tighten. Its projects are procured by utilities and infrastructure funds, which need duration and certification more than the cheapest cell.
+Saudi Arabia's state power procurement company, SPPC, has procured ten projects totalling 5GW/20GWh on a standard four-hour configuration, under 15-year build-own-operate contracts[^12]. Australia's Capacity Investment Scheme ran its eighth round at a four-hour equivalent, 4GW/16GWh[^13]. The Australian Energy Market Operator (AEMO) counts 33.2GW of battery storage in the national electricity market's connection pipeline, about 74% of it with grid-forming inverters confirmed[^14].
 
-<!-- k:#F0A832|PART 04 · THE SPEC -->
-## Four hours and a grid-forming inverter
+Those specifications now match what China's plan asks of its own market: three-hour average duration, grid-forming storage at weak grid nodes, and a capacity payment tied to peak contribution[^1]. The domestic rule and the export tender are converging on the same product, which matters more for cellmakers than for developers. A two-hour container built for price competition is not the same product as a four-hour system sold with an availability guarantee.
 
-Saudi Arabia's state power procurement company, SPPC, has procured ten projects totalling 5GW/20GWh on a standard four-hour configuration, under 15-year build-own-operate contracts.[^12] Australia's Capacity Investment Scheme ran its eighth round at a four-hour equivalent, 4GW/16GWh.[^13] The Australian Energy Market Operator (AEMO) counts 33.2GW of battery storage in the national electricity market's connection pipeline, about 74% of it with grid-forming inverters confirmed.[^14]
+Storage cells traded at Rmb0.353/Wh on November 4, up from Rmb0.31 at the end of 2025 and down from Rmb0.365 in August[^16]. The specification upgrade is being paid for out of the same margin that the tariffs and the 2% consumption tax already compress.
 
-Those specifications now match what China's plan asks of its own market: three-hour average duration, grid-forming storage at weak grid nodes, and a capacity payment tied to peak contribution.[^1] The domestic rule and the export tender are converging on the same product, which matters more for cellmakers than for developers. A two-hour container built for price competition is not the same product as a four-hour system sold with an availability guarantee.
-
-Storage cells traded at Rmb0.353/Wh on November 4, up from Rmb0.31 at the end of 2025 and down from Rmb0.365 in August.[^16] The specification upgrade is being paid for out of the same margin that the tariffs and the 2% consumption tax already compress.
-
-<!-- k:#C9F24B|PART 05 · THE WINDOW -->
+<!-- k:#C9F24B|PART 03 · THE WINDOW -->
 ## Two verbs and one deadline
 
-The overseas chapter commits to using the Belt and Road, APEC, BRICS, the SCO and the China-EU channel for policy dialogue. It also promises support for firms that open overseas markets, including "small and beautiful" projects with demonstrable returns.[^6] There is no target, no country list and no financing line. Domestic demand gets three numbers; exports get two verbs.
+The overseas chapter commits to using the Belt and Road, APEC, BRICS, the SCO and the China-EU channel for policy dialogue. It also promises support for firms that open overseas markets, including "small and beautiful" projects with demonstrable returns[^6]. There is no target, no country list and no financing line. Domestic demand gets three numbers; exports get two verbs.
 
-A 1MW solar plus 2MW/4MWh storage microgrid on Pagerungan Kecil island in Indonesia began operating in November, replacing three to six hours of daily supply with more than twenty.[^18] A 480kWp solar, 500kW/1MWh and diesel microgrid at a fishing port in Sierra Leone was handed over in July.[^19] An 11MWp solar, 30MWh storage and 4MW diesel plant at a Zimbabwean mine was completed in 50 days in July.[^20] None of them changes the order book, which remains dominated by utility-scale four-hour projects.
+A 1MW solar plus 2MW/4MWh storage microgrid on Pagerungan Kecil island in Indonesia began operating in November, replacing three to six hours of daily supply with more than twenty[^18]. A 480kWp solar, 500kW/1MWh and diesel microgrid at a fishing port in Sierra Leone was handed over in July[^19]. An 11MWp solar, 30MWh storage and 4MW diesel plant at a Zimbabwean mine was completed in 50 days in July[^20]. None of them changes the order book, which remains dominated by utility-scale four-hour projects.
 
-China's suspension of its own export controls on high-energy-density cells and related materials runs to January 10, 2027, covering the 2025 announcements that first imposed them.[^17] Whether that suspension is extended is a decision in Beijing, and it is the one variable that could close the export channel the plan leaves open.
+China's suspension of its own export controls on high-energy-density cells and related materials runs to January 10, 2027, covering the 2025 announcements that first imposed them[^17]. Whether that suspension is extended is a decision in Beijing, and it is the one variable that could close the export channel the plan leaves open.
 
 <!-- k:#6B6558|THE TAKE -->
 ## The plan prices duration, and so does the buyer
@@ -61,14 +51,6 @@ The most useful number in the document for a cellmaker is 140GW, the grid-side i
 That is the part of the plan with export consequences. A two-hour container engineered for a price auction does not clear those tests; a four-hour system sold with an availability guarantee does. The domestic market is being reorganised around the product the export market already buys, and the reorganisation is happening at 809.5GWh of existing cell capacity rather than at 300GW of future demand.
 
 If 2027 installations run above 45GW, the domestic market is accelerating again and the export share falls. If disclosed overseas orders drop below 400GWh for a full year, the capacity is idling rather than exporting, and price becomes the only clearing mechanism. Neither is visible in the data yet. The first half of 2026 pointed the other way on both.
-
-<!-- horizon -->
-<!-- k:#F0A832|ON THE HORIZON -->
-## Three dates
-
-On January 10, 2027, China's suspension of its own cell and material export controls expires unless it is extended again. At the end of 2027, the 180GW milestone from the 2025 action plan falls due; installations already stand at 93% of it. By the end of 2030, the stock is meant to reach 300GW at three hours, which requires 31GW and 109GWh a year from here.
-
-<!-- /horizon -->
 
 ---
 
