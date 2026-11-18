@@ -50,6 +50,8 @@ The most useful number in the document for a cellmaker is 140GW, the grid-side i
 
 That is the part of the plan with export consequences. A two-hour container engineered for a price auction does not clear those tests; a four-hour system sold with an availability guarantee does. The domestic market is being reorganised around the product the export market already buys, and the reorganisation is happening at 809.5GWh of existing cell capacity rather than at 300GW of future demand.
 
+Planned capacity is near 2TWh. Annualise this year's overseas orders and domestic installations and demand comes to less than half of that. The lines that cannot be filled have two exits: sit idle, or sell cheaper.
+
 If 2027 installations run above 45GW, the domestic market is accelerating again and the export share falls. If disclosed overseas orders drop below 400GWh for a full year, the capacity is idling rather than exporting, and price becomes the only clearing mechanism. Neither is visible in the data yet. The first half of 2026 pointed the other way on both.
 
 ---
