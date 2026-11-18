@@ -1,31 +1,33 @@
 # dev/agents
 
-Versioned prompts for the review agents. Keeping them in the repo means the
-review is reproducible across machines and model providers; the previous copy
-lived at `~/.config/opencode/agent/content-reviewer.md` and was not versioned.
+复核提示词的版本化目录。放在仓库里，换机器、换环境都能复现；此前只有一份在 `~/.config/opencode/agent/content-reviewer.md`，没有版本记录。
 
-| File | Used by | Output |
+| 文件 | 用途 | 输出 |
 |---|---|---|
-| `content-reviewer.md` | L3 review (three passes: extraction, EN/ZH diff, voice) | one JSON object with `passA` / `passB` / `passC`, plus `verdict` |
+| `content-reviewer.md` | L3 复核：抽取 / 中英对齐 / 语感，三遍独立执行 | 一个 JSON 对象，含 `passA` / `passB` / `passC` 与 `verdict` |
 
-## Running it
+## 怎么跑
 
-In DeepSeek Harness, pass the file to a subagent whose model differs from the
-drafting model when possible:
+在 DSH 里，把提示词交给一个子代理，并要求它只返回 JSON：
 
 ```
-读 dev/agents/content-reviewer.md，按其指示复核 app/db/seed-content/issue-063.md
-与 app/db/seed-content-zh/issue-063-zh.md，只返回 JSON。
+读 dev/agents/content-reviewer.md，按其指示复核
+app/db/seed-content/issue-063.md 与 app/db/seed-content-zh/issue-063-zh.md，只返回 JSON。
 ```
 
-In opencode, keep a thin wrapper at `~/.config/opencode/agent/content-reviewer.md`
-that includes this file (or symlink it), so the checklist has one source of truth.
+在 opencode 里，保留 `~/.config/opencode/agent/content-reviewer.md` 作为薄包装，引用本文件，避免两份清单各自演化。
 
-## Grading (agreed 2026-11-18)
+## 分级（2026-11-18 定）
 
-Only two findings block publication:
+只有两类发现会阻断发刊：
 
-1. a number that contradicts its cited source;
-2. an EN/ZH mismatch in numbers, entities or hedges.
+1. 数字与所引来源矛盾；
+2. 中英之间的数字、专名或限定词不一致。
 
-Everything else is advisory and stays with the editor.
+其余都是 advisory，由编辑裁决。
+
+## 和脚本的分工
+
+- `dev/review.mjs`：机械项（段首空转、单句成段、元话语、配图、脚注、中英单位）。
+- `dev/claims.mjs`：数字台账与来源引句。
+- `content-reviewer.md`：只有模型能做的判断（抽取、对齐、语感），且必须绑定原文片段。
