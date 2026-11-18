@@ -259,6 +259,28 @@ function checkHeadings(file) {
   return issues;
 }
 
+/** Body prose must not summarise itself with a count ("three numbers", "a
+ *  paragraph") when the reader needs the actual content. Titles fail; body
+ *  paragraphs warn. */
+const VAGUE_REF =
+  /[一两二三四五几]\s*(个|段|句|条|种|件)\s*(动词|日期|数字|信号|变化|故事|问题|答案|理由|动作|词|话|说法|事|结论)/;
+
+function checkVagueRefs(file) {
+  const { body } = load(file);
+  const issues = [];
+  for (const p of paragraphs(body)) {
+    const hit = p.match(VAGUE_REF);
+    if (!hit) continue;
+    issues.push({
+      rule: "L1.vague",
+      level: "warn",
+      text: p.slice(0, 90),
+      detail: "用「" + hit[0] + "」指代内容，读者要回读；直接写出数字或事实",
+    });
+  }
+  return issues;
+}
+
 /** The ON THE HORIZON box repeated the same three dates every issue and was
  *  retired in No.063. Kept as a warning so the module can come back later. */
 function checkHorizon(file) {
@@ -542,6 +564,7 @@ function reviewFile(file) {
     ...checkSourceLedger(file),
     ...checkSections(file),
     ...checkHeadings(file),
+    ...checkVagueRefs(file),
     ...checkHorizon(file),
   ];
 }

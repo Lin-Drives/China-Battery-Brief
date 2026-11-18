@@ -42,7 +42,7 @@ mode: subagent
  "difference": "差在哪", "severity": "number | entity | hedge | logic", "fix": "建议改法"}
 ```
 
-## 第三遍 · 语感（只查 R1–R7）
+## 第三遍 · 语感（只查 R1–R8）
 
 按 `docs/voice.md` 的 R1–R7 逐条检查，输出：
 
@@ -50,7 +50,7 @@ mode: subagent
 {"id": "C1", "rule": "R2", "span": "…", "problem": "…", "fix": "…"}
 ```
 
-R6 只查「段首的判断句有没有携带事实」，标签检查交给 `dev/review.mjs`。R7 按词表逐个核对。
+R6 只查「段首的判断句有没有携带事实」，标签检查交给 `dev/review.mjs`。R7 按词表逐个核对。R8 查数量代称（「三个数字」「一段话」「两个方向」），判断标准是：删掉这句，读者是否必须回读前文。
 
 ## 格式硬规则（违反即 blocking）
 

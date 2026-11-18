@@ -70,5 +70,12 @@
     "expect": [
       "L1.heading"
     ]
+  },
+  {
+    "id": "bad-vague-zh",
+    "file": "dev/fixtures/bad-vague-zh.md",
+    "expect": [
+      "L1.vague"
+    ]
   }
 ]
