@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { useLang } from '@/i18n/lang'
 
 /** Flatten React children to plain text (footnote refs render as `<sup>N</sup>`). */
 function collectText(nodes: ReactNode): string {
@@ -192,7 +193,8 @@ export default function ReaderMarkdown({
     () => headings.map((h) => kickers.get(h.text) ?? undefined),
     [headings, kickers],
   )
-  // Footnote refs written back-to-back (e.g. `[^1][^7]`) get a `、` separator.
+  // Footnote refs written back-to-back (e.g. `[^1][^7]`) get a separator that
+  // follows the copy's language: `、` in Chinese, `,` in English.
   // We detect true adjacency from source offsets via `node.position`; a CSS
   // sibling combinator can't — text nodes are ignored, so it would wrongly
   // separate any two refs sharing a paragraph.
@@ -205,6 +207,8 @@ export default function ReaderMarkdown({
     }
     return offsets
   }, [content])
+  const { lang } = useLang()
+  const refSep = lang === 'zh' ? '、' : ','
   const components = useMemo<Components>(() => {
     const map: Components = {
       h2({ node, children, ...props }) {
@@ -290,7 +294,7 @@ export default function ReaderMarkdown({
           typeof offset === 'number' && refContinuations.has(offset)
         return (
           <sup {...props}>
-            {needsSep ? <span style={{ fontWeight: 400 }}>、</span> : null}
+            {needsSep ? <span style={{ fontWeight: 400 }}>{refSep}</span> : null}
             {collectText(children)}
           </sup>
         )
@@ -464,7 +468,7 @@ export default function ReaderMarkdown({
       },
     }
     return { ...map, horizonbox: HorizonBox } as Components
-  }, [headings, kickerSeq, refContinuations])
+  }, [headings, kickerSeq, refContinuations, refSep])
 
   return (
     <div className="cbb-reader">
