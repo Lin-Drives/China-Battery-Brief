@@ -43,13 +43,13 @@ Those specifications now match what China's plan asks of its own market: three-h
 Storage cells traded at Rmb0.353/Wh on November 4, up from Rmb0.31 at the end of 2025 and down from Rmb0.365 in August[^16]. The specification upgrade is being paid for out of the same margin that the tariffs and the 2% consumption tax already compress.
 
 <!-- k:#C9F24B|PART 03 · THE WINDOW -->
-## The Overseas Chapter Has No Numbers
+## The Export Chapter Has Only Wording
 
-The overseas chapter commits to using the Belt and Road, APEC, BRICS, the SCO and the China-EU channel for policy dialogue. It also promises support for firms that open overseas markets, including "small and beautiful" projects with demonstrable returns[^6]. There is no target, no country list and no financing line. Domestically the plan sets 300GW, three hours of average duration and 140GW of grid-side independent storage.
+On exports the plan offers wording, not commitments: Chapter 7 has two clauses, with no target, no country list and no financing line. The text commits to using the Belt and Road, APEC, BRICS, the SCO and the China-EU channel for policy dialogue, and to supporting firms that open overseas markets with "landmark" and "small and beautiful" projects[^6]. Domestically the same document sets 300GW, three hours of average duration and 140GW of grid-side independent storage.
 
 A 1MW solar plus 2MW/4MWh storage microgrid on Pagerungan Kecil island in Indonesia began operating in November, replacing three to six hours of daily supply with more than twenty[^18]. A 480kWp solar, 500kW/1MWh and diesel microgrid at a fishing port in Sierra Leone was handed over in July[^19]. An 11MWp solar, 30MWh storage and 4MW diesel plant at a Zimbabwean mine was completed in 50 days in July[^20]. None of them changes the order book, which remains dominated by utility-scale four-hour projects.
 
-China's suspension of its own export controls on high-energy-density cells and related materials runs to January 10, 2027, covering the 2025 announcements that first imposed them[^17]. Whether that suspension is extended is a decision in Beijing, and it is the one variable that could close the export channel the plan leaves open.
+China's suspension of its own export controls on high-energy-density cells and related materials runs to January 10, 2027, covering the 2025 announcements that first imposed them[^17]. Whether it is extended is a decision in Beijing: the channel's fate depends on that date, not on buyers.
 
 <!-- k:#6B6558|THE TAKE -->
 ## The plan prices duration, and so does the buyer
@@ -74,7 +74,7 @@ If 2027 installations run above 45GW, the domestic market is accelerating again 
 
 [^5]: 国家发展改革委、国家能源局 — 《新型储能规模化建设专项行动方案（2025—2027年）》（发改能源〔2025〕1144号）答记者问，2025-09-12，[原文](https://www.nea.gov.cn/20250912/24589b84cb0d4120b263106e3e7c50d1/c.html). Source for the 2027 target of 180GW and Rmb250bn of associated direct investment.
 
-[^6]: 21 世纪经济报道 — 《“十五五”新型储能实施方案》全文转载，2026-11-13，[原文](https://www.21jingji.com/article/20261113/herald/2c421624916b47e2fbcd90e9c71ea150.html). Source for the wording of Chapter 7 on international cooperation, the "small and beautiful" phrase, the Chapter 6 clause on orderly project construction and blind expansion, and the standard mutual-recognition clause.
+[^6]: 21 世纪经济报道 — 《“十五五”新型储能实施方案》全文转载，2026-11-13，[原文](https://www.21jingji.com/article/20261113/herald/2c421624916b47e2fbcd90e9c71ea150.html). Source for Chapter 7 clauses 15-16 on international cooperation, including the "landmark" and "small and beautiful" wording, the Chapter 6 clause on orderly project construction and blind expansion, and the standard mutual-recognition clause.
 
 [^7]: 上海证券报 — 《CNESA：上半年新型储能新增装机下降18%》，2026-08-28，[原文](https://m.cnstock.com/commonDetail/779747). Source for 809.5GWh of installed storage-cell capacity at the end of June 2026, the 21.81GW/58.6GWh first-half additions and their 18% and 16% declines, and the slowing growth of new cell lines.
 
