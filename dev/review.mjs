@@ -296,6 +296,31 @@ function checkHorizon(file) {
   ];
 }
 
+/** Markers are numbered by order of first appearance (mdast-util-to-hast),
+ *  while the ledger is printed in label order. Those two agree only when labels
+ *  first appear as 1, 2, 3... so a later [^7] would display as 5 and point at
+ *  the wrong source. Enforce the ordering instead of renumbering by hand. */
+function checkCitationOrder(file) {
+  const { body } = load(file);
+  const refs = [...body.matchAll(/\[\^(\d+)\]/g)].map(m => Number(m[1]));
+  const seen = [];
+  for (const n of refs) if (!seen.includes(n)) seen.push(n);
+  const bad = seen.findIndex((n, i) => n !== i + 1);
+  if (bad < 0) return [];
+  return [
+    {
+      rule: "L1.citationorder",
+      level: "fail",
+      text:
+        "第 " + (bad + 1) + " 个首次引用是 [^" + seen[bad] + "]，应为 [^" + (bad + 1) + "]",
+      detail:
+        "上标编号按首次出现顺序生成，文末来源按标签排序；首次出现必须从 [^1] 起逐个递增（当前 " +
+        seen.slice(0, 8).join("→") +
+        "…）",
+    },
+  ];
+}
+
 /** The rendered "原文出处" ledger comes from `issues.json > sources`, not from the
  *  markdown footnote definitions. If the two drift, readers see superscripts that
  *  point past the ledger (or at the wrong entry), so compare count, order and URL. */
@@ -561,6 +586,7 @@ function reviewFile(file) {
     ...checkAssets(file),
     ...checkFootnotes(file),
     ...checkCitations(file),
+    ...checkCitationOrder(file),
     ...checkSourceLedger(file),
     ...checkSections(file),
     ...checkHeadings(file),

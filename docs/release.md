@@ -18,7 +18,7 @@ bash scripts/deploy-release.sh
 3. 若改动涉及功能、接口、构建配置或数据处理逻辑，已先修复测试失败项并完成复测
 4. 明确区分两件事：部署脚本只发布站点，**不发信**；按周排期的摘要邮件由 VPS cron 在 `publishedAt` 到点后自动发送（见 6.1）。手动补发或重发才需要单独授权
 5. 确认首页「本周档案」没有硬编码期号/标题/导语/highlights；该区块必须由 `content.issues.latest` 驱动
-6. 已跑 `npm run review -- db/seed-content/issue-0NN.md db/seed-content-zh/issue-0NN-zh.md`：引用位置与序号（S7/S8）、PART 小节数（S9）、标题不得代称（S10）、horizon 小方块、脚注与 `issues.json` 来源台账一致，均无 FAIL / warn
+6. 已跑 `npm run review -- db/seed-content/issue-0NN.md db/seed-content-zh/issue-0NN-zh.md`：引用位置与序号（S7/S8）、引用标签首次出现递增、PART 小节数（S9）、标题不得代称（S10）、horizon 小方块、脚注与 `issues.json` 来源台账一致，均无 FAIL / warn
 
 ## 三、脚本实际执行的步骤
 

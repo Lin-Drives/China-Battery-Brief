@@ -86,6 +86,8 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 - 合格：`出海章节没有数字`、`四小时和一台构网型逆变器`（对象具体）。
 - 不合格：`两个动词和一个截止日`、`三个日期`（读者得读完全节才知道指什么）。
 
+标签编号按首次出现顺序递增：`[^1]` 必须第一次出现，`[^2]` 第二次，依此类推（渲染器的上标编号按出现顺序生成，文末来源按标签排序，两者只在递增时一致）。
+
 S7–S10 由 `dev/review.mjs` 的 `L1.citation` / `L1.sections` / `L1.horizon` / `L1.heading` 机械检查，FAIL 不得进入发布流程。
 
 ---
