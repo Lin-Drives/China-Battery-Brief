@@ -2,106 +2,25 @@
 
 > 定位：**短期执行台账**——本次会话任务、当前迭代动作、调试/调研记录。长期方向与队列见 `docs/plan.md`「长期战略队列」；**一个任务只登记一处**（能本周动手的放这里，有触发条件/未到时机的放 plan.md）。
 
-## 已完成
-- [x] 开发进度可视化展板：`dev/devboard.mjs`（扫描 git/TODO/plan/deploy + 代码统计 → 生成纯 SVG/CSS 静态 `dev/devboard.html`，暗色编辑部风，`node dev/devboard.mjs` 重建）
-- [x] VPS 部署 Step 3：MariaDB 加固 + 建库建用户 + `db:push` 建表 + 种子灌入（7 EN + 7 ZH 期）已验证；生产构建完成（schema 因 MariaDB 不兼容 `serial` 改为 `bigint().autoincrement()`，未提交）
-- [x] VPS 部署 Step 6/7：VPS 同步到 `9d61cf0`（移除 Kimi OAuth）+ 重建；systemd `cbb.service` 常驻（www-data，3000 端口，`ping` + 期刊全量可读已验证）+ 备份 cron（每日 03:00，`/opt/cbb/backups/`）
-- [x] **自托管正式上线**：https://chinabatterybrief.com 已可访问——Step 1 DNS（CF A 记录 @/www → 161.35.120.114）+ Step 4 Nginx 反代（XFF 信任 CF 21 段）+ Step 5 HTTPS 全链路（2026-09-05：Let’s Encrypt 源站证书、Cloudflare Full (strict)、源站与公网 HTTP→HTTPS 301、CSP + HSTS）；`/api/oauth/begin` 404 ✓
-- [x] No. 048《再出口枢纽》EN + ZH（真实信源、SVG 程序化封面）
-- [x] No. 049 / No. 050 EN + ZH（真实信源、SVG 程序化封面）
-- [x] 四大支柱中文命名统一：产能地图 / 技术路线 / 政策追踪 / 市场信号
-- [x] 全站发刊日期前移对齐：No. 044–050 序列改为 07-02 至 08-10
-- [x] 修复 No. 050 脚注编号与来源账本错位，校正各支柱页相关简报
-- [x] 统一产能地图统计口径为真实跟踪数据（19 站点 / 11 国 / 464 GWh）
-- [x] 信源收敛：26 → 17 个零失败信源
-- [x] 归档精选卡片封面 4:3 SVG 改用 object-contain 完整显示
-- [x] 全 5 期中英「PART 签注」小标题（分组颜色，正文/左侧导航栏一致，每部分一次）
-- [x] 翻译校对：直引号→全角、混排间距、长句顺化、信源时效约定（AGENTS.md）
-- [x] 根 README（技术栈/部署/边界）、Git 初始化推送初始版
-- [x] 安全设计前置一轮（44d95db）：限流 / 安全响应头+CSRF / OAuth state / 审计表 / 备份脚本 / security.md 应急手册；部署方案敲定后需复核 XFF、HTTPS/HSTS、OAuth redirect allowlist
-- [x] 确认 scan 抓取定时任务已启动并运行正常：launchd `com.cbb.scan`（plist 实际为**每周六 21:00**，非此前记录的周日 09:00；最近 2026-09-05 跑 16 源、esnews 403 失败，535 条/376 新增；整理层 `scan:digest` 仍需手动触发）
-- [x] 整理层 `scan:digest` 跑 2026-08-23：529 原始 → 6 story（0 多源，1 已覆盖 No.046），见 scan/2026-08-23/digest.md
-- [x] 选题跟进（No.051 背景）：调研中国电池/储能厂商在日落地全景（CATL 借 CHC 松山 12MW/35.8MWh、国轩 Edison/DEI 1GWh、阳光 Sun Village 500MWh、BYD 仅汽车、海辰/晶科仅有布局），骨架见 scan/2026-08-23/draft-rept-japan.md
-- [x] 新增 No. 051 EN + ZH（真实信源）：瑞浦兰钧日本首并网 + LTDA 容量市场单芯 ≤30% 国产化红线（方向 A「政策定份额」），registration 入 issues.json / issues-zh.json + published-topics.md
-- [x] No. 051 双语文稿经 content:review 子代理复核并修正（30% 引用层级加固、ZH 走样、首字专名身份、Marubeni 误报更正），已提交 `d658e0d` 并推送
-- [x] 新增 No. 053 EN + ZH（真实信源）：三部门《汽车行业境外竞争行为与合规建设指引》（商合函〔2026〕451 号）+ 欧盟价格承诺镜像 + 反内卷国内治理时间线；经 content-reviewer 复核修正 10 项后提交 `24ffb79`；scan:digest 2026-09-05 已产出（13 story）
-- [x] 新增 No. 054 EN + ZH（真实信源）：电池消费税恢复征收（第 20 号公告，锂电 2%→4%）+ 钠电/固态/燃料电池免征至 2028 年底 + 增值税出口退税 9%→6%→2027 取消（第 2 号公告）；经 content-reviewer 复核、精简篇幅（英文 -18%）与中文标点修正后提交 `ba52ddb`/`d8171ea`/`ae2e4c0`，2026-09-17 提前发布（VPS HTTP 200、生产库期号 54）
-- [x] 新增 No. 055 EN + ZH 并发布（2026-09-21，早于排期 09-24）：欧盟要求中国混动「自愿」限额约 15% 市场份额否则加税 + 商务部 WTO 异议；经多轮优化（15% 数字、9-17 视频会谈事实修正、盟情咨文场合、取向电工钢佐证、地名/人名回指），VPS HTTP 200、生产库期号 55
-- [x] 首页加载提速：静态资源缓存头修复（`813eaa3`，`/assets/*` → `public, max-age=31536000, immutable`，HTML → `no-cache`），已强制发布并实测变快
+## 待办
 
-## 审稿流程优化（2026-11-17 起，模型不变）
-
-> 目标：把可机械判定的规则沉到脚本，人工从逐句读退到只看红灯与分歧。详见 `dev/review.mjs` 与 `dev/fixtures/review-cases.json`。
-
-- [x] **L1 机械检查**：`dev/review.mjs`（段首空转、单句成段、元话语、配图、脚注配对、中英数字单位、**中英限定词**、**脚注来源一致**、**专名对齐**（`dev/glossary.json`，58 条，含别名与 risky 跳过；`dev/glossary-suggest.mjs` 抽候选）），`npm run review` 可跑；fixtures 7 例（含 3 组中英对照）全过
-- [x] **L2 数字台账**：`app/db/seed-content/claims/<期号>.json` + `dev/claims.mjs`（抓取/缓存/Firecrawl 回退，校验引句与数字，覆盖检查）。063 台账 56 条、覆盖完整；4 条付费墙/JS 源标 `pending` 待人工核。`npm run claims -- 63` 可跑
-- [ ] **L3 三 pass 审稿**：抽取（claim→证据）、对齐（EN/ZH 数字/专名/限定词）、语感（R1–R7，输出 span）各用独立上下文 + JSON schema，合并后按 blocking/advisory 分级
-- [x] **提示词入仓**：`dev/agents/content-reviewer.md`（三 pass：抽取 / 中英对齐 / 语感，输出 JSON，blocking 仅限数字与中英不一致），`dev/agents/README.md` 说明运行与分级
-- [ ] **规则 ID 三处对齐**：`docs/voice.md`、`dev/review.mjs`、`docs/voice-samples/` 用同一套编号，避免规则/检查/样本打架
-- [ ] **回归语料**：用 19 期既有稿 + 注入错误（改数字、错换算、段首空转）测召回与误报
+- [ ] **回补 No.055–062 的引用与来源台账**：055 以后把引用写在了句末标点之后（060 有 39 处、061 有 54 处、062 有 26 处）；13 期 `sources` 与脚注条数/顺序不一致；061、062 还是 4–5 个 PART 小节。做法：逐期跑 `npm run review`，按 `L1.citation` / `L1.citationorder` / `L1.sourceledger` / `L1.sections` 修到全绿，再决定随下期发布还是 `DEPLOY_FORCE=1` 同号重发
+- [ ] **国内独立储能收入结构**：容量电价、现货价差、辅助服务各自的占比，现有脚注支撑不了；先找山东、广东、安徽 2–3 个省的结算披露或典型项目数据，再动笔
+- [ ] **L3 三 pass 审稿**：抽取（claim→证据）、对齐（EN/ZH 数字/专名/限定词）、语感（R1–R8）各用独立上下文 + JSON schema，合并后按 blocking/advisory 分级
+- [ ] **规则 ID 三处对齐**：`docs/voice.md`、`dev/review.mjs`、`docs/voice-samples/` 用同一套编号（现为 S1–S10 / R1–R8 / L1.*）
+- [ ] **回归语料**：用 19 期既有稿 + 注入错误（改数字、错换算、段首空转、引用倒序）测召回与误报
 - [ ] **指标**：每期记录 blocking 数、人工改动行数、模型与脚本分歧数，用来决定哪条规则值得留
 - [ ] **CI/pre-commit**：L1 在提交前与 CI 跑，失败阻断
+- [ ] **Cloudflare 边缘缓存仍 DYNAMIC**：缓存头已生效但 js/css/svg 全部 `cf-cache-status: DYNAMIC`，疑似 zone 有全局 Bypass 规则；到 Caching → Cache Rules 删掉 Bypass 或给 `/assets/` 建 Eligible for cache
+- [ ] **VPS 磁盘 83%**：`backups/` 每日增长，过 90% 有 MariaDB 风险；缩短保留周期或 pull 回本地
 
-## 待确认（2026-09-22 看一眼）
-- [ ] **Cloudflare 边缘缓存仍 DYNAMIC**：缓存头上线后浏览器侧已快，但 js/css/svg/ico 全部 `cf-cache-status: DYNAMIC`（无 Set-Cookie、缓存头正确）——疑似 zone 有全局 Bypass 缓存规则。到控制台 **Caching → Cache Rules** 删掉全局 Bypass，或新建规则 `URI Path starts with /assets/` → Eligible for cache（Edge TTL 1 个月）；走 API 需 Cache Rules 写权限 token
-- [ ] **VPS 磁盘 83%（剩 1.7GB）**：`backups/` 每日增长，过 90% 有 MariaDB 风险；缩短保留周期或 pull 回本地。其余正常（2026-09-21 实测：load 0.00、内存 270MB 可用、swap 111MB/3GB、cbb RSS 67MB）
+## 最近完成
 
-## 调试记录（No. 048 阅读页专项，已提交）
-- [x] 修复 markdown HTML 注释泄漏（`skipHtml`）：PART 签注注释不再显示为正文文本
-- [x] THE TAKE / 本刊观点：kicker 与标题同文时隐藏签注，只保留标题
-- [x] 左侧导航（TocRail）：字号 15px、透明度 90%、加宽至 320px、标题不换行
-- [x] 修复点击跳转：Lenis 接管滚动导致 `window.scrollTo` 失效 → 新增 `src/lib/scroll.ts` 单例；根因是中文标题 slug 生成空串 → `headingSlug` 改用 Unicode 属性保留 CJK
-- [x] 修复来源重复：gfm 脚注列表与 `issue.sources` 双份渲染 → 抑制 footnotes section，上标改纯数字，`#sources` 锚点迁移
-- [x] 删除阅读页顶部进度条 ProgressRail
-- [x] 删除 /briefs 档案页跑马灯 TickerBar
-- [x] 开发模式运行中（`npm run dev`，HMR 生效；本地验证基线 `npm run build && npm start` 仍适用）
-
-## 新方向：多模态模型接入 opencode
-- [x] 调研 opencode 是否支持 vision/多模态模型（providers 配置、模型支持情况）
-- [x] 目标：让 AI 能读图——解决截图、封面图、设计稿无法理解的问题
-- [x] 参考资料：opencode.ai 文档、customize-opencode skill、opencode.json 配置
-
-## 读图能力落地（vision 子代理）
-- [x] 新增 `~/.config/opencode/agent/vision.md`：vision 子代理，读图并输出版式/文字/配色/缺陷报告
-- [x] 选定主模型：`opencode/minimax-m3`（Zen 按量，$0.30/$1.20 per 1M，约 $1/千张封面图）
-- [x] 备选模型：`kimi-for-coding/kimi-for-coding`（Kimi K2.7 Code，支持读图）
-- [x] Zen 免费档 `opencode/mimo-v2.5-free` 读图验证通过（受限流影响，仅作演示）
-- [x] 免费档仅 `mimo-v2.5-free` 支持读图，其余 `-free` 后缀模型为纯文本或 401 不可用
-- [x] 全局默认模型切换为 `deepseek/deepseek-flash`（即 2026-09-10 发布的 V4.1 Flash，原生多模态；旧 v4-flash / vision-exp 已下线并路由至此）
-- [x] 结论：Zen/Go 提供 61+ 模型按量或订阅访问，vision 子代理读封面图质量达标（配色、文字逐字、缺陷检测均准确）
-
-## 生图调研（结论：暂缓）
-- [x] 调研 NVIDIA NIM 生图：`qwen-image-edit` 已不在目录；`diffusiongemma-26b-a4b-it` 仅输出文本（离散扩散加速的对话/OCR 模型，非文生图）
-- [x] 备选生图路线（未启用，需额外 key）：阿里百炼 `qwen-image-2.0`、字节 `seedream`、Vercel AI Gateway
-- [x] 维持规范：新刊封面继续程序化 SVG（AGENTS.md 第七节）
-
-## 当前迭代（短期，可动手）
-- [x] 重启 opencode 启用 `scan:digest` 命令（`.opencode/command/scan:digest.md` 已建，需重启生效）
-- [x] 跑一次 `scan:digest` 整理 No. 050 之后素材，产出下周选题池（2026-08-15，303 新增 → 10 story，见 scan/2026-08-15/digest.md；补登记 No.050 主题画像至 published-topics.md）
-- [x] 补政府站 HTML 解析（商务部/工信部已接入首页 art 详情解析；发改委/国务院/新华社首页无列表结构，维持存档占位）
-- [x] 固化 content-reviewer 复核流程为 opencode 命令（`.opencode/command/content:review.md`，已更新 AGENTS.md 引用）
-- [x] 部署方案敲定：自有 VPS + Nginx + 新购域名 + VPS 同机 MariaDB，方案文档 `docs/deploy.md`，在分支 `deploy/self-hosted` 开发（主线保持平台托管）
-- [x] **去平台化登录第一步**（分支 `deploy/self-hosted`）：移除 Kimi OAuth 全部代码（`api/kimi/`、`boot.ts` 路由、env 变量），demo 免登录全站可读，`auth.*` 接口预留 stub，cookie 改 `cbb_sid`，Login 页改占位
-- [x] VPS 部署全链路完成（DigitalOcean 161.35.120.114）：MariaDB+seed、systemd、备份 cron、Cloudflare DNS/Nginx/HTTPS
-- [x] 域名 `chinabatterybrief.com` 已迁 Cloudflare（A 记录 @/www → VPS，Proxied）
-- [x] **Cloudflare 边缘安全防护已上线（2026-09-03）**（网站已 Proxied；zone_id `7faa5df04d2638616458d0421ec8f7fa`、account_id `a32ed911284b609d2f204e8967c39c43`）：已通过 API 开启 **Bot Fight Mode**（`PUT /zones/{id}/bot_management {"fight_mode":true,"enable_js":true}`）+ 两条**自定义防火墙规则**（规则集 `a89da7d86623414d8116a5f2d800dbda`）：
-  - 拦截明显扫描 UA：sqlmap / nikto / zgrab / masscan / wpscan / gobuster / dirbuster / acunetix / nessus / nuclei / python-requests
-  - 拦截恶意探测路径：`/.git` `/.env` `wp-login` `xmlrpc` `wp-admin` `phpmyadmin` `/etc/passwd` `/.aws` `/.ssh` `/server-status`
-  - 已实测：扫描 UA 与上述路径均 403，正常浏览器访问 200 不受影响。
-  - 备注：写新版 WAF 规则需 API token 补 **Zone→WAF→Edit** 权限（`Firewall Services` 旧权限只对旧接口有效，旧接口 `firewall/rules` 已进入维护模式）。
-  - [x] **Web Analytics 已启用（2026-09-05）**：Cloudflare RUM 选“完整访客覆盖”（含 EU）并自动注入 beacon；应用 CSP 已放行 `https://static.cloudflareinsights.com`，公网 HTML 与 CSP 均已核验。首批访问/性能数据需等待真实访客回传。
-
-## 暂停（暂不开发付费功能）
-- 邮箱+密码认证（demo 免登录，接口已预留 stub）—— 队列 B
-- 付费墙/权限单测 —— 搁置
-- Stripe 支付、邮件群发、独立 /admin 属长期方向，登记在 plan.md「队列 B — 平台真实化」
-
-## 部署注意事项（2026-08-19 目录重构时发现）
-- VPS 仅 454MB 内存，`npm run build` 全量构建会 OOM 崩溃（已临时加 2GB swap，治标）。**发版流程改为：本地 `npm run build` → `scp -r app/dist root@<VPS>:/opt/cbb/app/app/` → `systemctl restart cbb`**（dist 是平台无关纯 JS，直接可跑）。
-- 可选根治：VPS 升档至 1GB RAM（约 +$2/月），或限制 `NODE_OPTIONS='--max-old-space-size=256'`（强制 V8 更早 GC，不保证够用）。
-- VPS 侧目录已从 `deploy/self-hosted` 切到 `main` 分支；systemd `WorkingDirectory` 与备份 cron 均已指向 `/opt/cbb/app/app`。
-- **访问日志观测（Nginx）**：`/` 磁盘已用 82%、`backups/` 91M 且每日增长（考虑缩短保留或 `pull-backup.sh` 拉回本地）；攻击/扫描流量集中于单 IP `146.70.199.131`（探测 `.exe/.ps1` 等恶意路径、UA 为 `-`，约 4782 次）——建议 Cloudflare Firewall/WAF 规则阻断；真实浏览器访客很少（~/小时级），真实人类请求集中在 Windows/Mac/iOS/Android。
+- [x] 2026-11-18 **No.063 上线**（标题改为「出口填不满规划产能」；PART 压缩到 3 个；去掉 horizon 小方块；补两类储能对照表、目标结构比例、配储收入口径；引用重排到 22 条并与来源逐条对齐）
+- [x] 2026-11-18 **审稿 L1 扩到七条新检查**：`L1.citation`（引用在标点前）、`L1.citationorder`（标签按首现递增）、`L1.sourceledger`（脚注↔sources 逐条 URL）、`L1.sections`（PART ≤3）、`L1.heading`（标题不代称）、`L1.vague`（正文不代称）、`L1.horizon`（小方块停用）；fixtures 11 例全过，规则写进 AGENTS / voice.md / content-reviewer / 发刊清单
 
 ## 约定
-- 改动只提交本地，未获允许不 push 远端（本次已获用户明确授权推送）
+
+- 改动只提交本地，push 需用户明确授权
 - 信源优先近 3 个月；新刊封面一律程序化 SVG（无生图能力）
+- 发版走 `app/scripts/deploy-release.sh`（见 `docs/release.md`）；VPS 454MB 内存，依赖 2GB swap，别在服务器上跑全量构建
