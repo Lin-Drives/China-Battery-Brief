@@ -1,4 +1,4 @@
-China's 2030 storage target is 300GW, 80% above the 167GW in service at the end of September, with average duration to rise from 2.61 hours to about three[^1][^2].
+China's 2030 storage target is 300GW, 80% above the 167GW in service at the end of September, with average duration to rise from 2.61 hours to about three[^1][^2]. The target comes from the new-type storage plan under the 15th Five-Year Plan, published on November 13 by the National Development and Reform Commission and the National Energy Administration[^1]. The document also fixes duration, siting and the payment mechanism.
 
 Between the end of 2024 and the end of 2025, installations in service grew by 62GW and 183GWh[^3][^4]. In the first nine months of this year they grew by another 31GW and 84GWh, an annualised 41GW and 112GWh[^2][^3]. From September's base, the 2030 target implies 31GW a year and 109GWh a year, below this year's actual pace and well below last year's.
 
@@ -7,7 +7,15 @@ At last year's pace the target arrives in 2028; at this year's, early in 2030. T
 <!-- k:#5A6B9E|PART 01 · THE PLAN -->
 ## The plan pays the grid side; the capacity has nowhere to go
 
-Grid-side independent storage connects as a standalone market entity, not tied to a particular wind or solar project, and is to reach about 140GW by 2030. Storage built alongside large wind and solar bases, mainly to cut curtailment, is capped at about 50GW to 60GW[^1]. The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
+The plan splits new-type storage into two categories with two sets of rules: grid-side independent storage, at about 140GW by 2030, and storage attached to renewable bases, capped at about 50GW to 60GW[^1].
+
+| Item | Grid-side independent storage | Storage at renewable bases |
+|---|---|---|
+| Status | A standalone market entity, separately metered | Part of the wind or solar project |
+| Dispatch | Called by the grid, charging and discharging on price signals | Follows the plant's output to cut curtailment |
+| Revenue | Capacity payment, spot spreads, ancillary services | Inside the renewable tariff, no standalone capacity payment |
+
+At 140GW, the first is more than twice the 50GW to 60GW cap. The plan leaves the capacity payment to the grid-side segment and caps the part whose cost can only be recovered through a project's tariff.
 
 A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh[^1][^2]. Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none[^21].
 
