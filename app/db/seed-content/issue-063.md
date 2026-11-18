@@ -7,17 +7,17 @@ At last year's pace the target arrives in 2028; at this year's, early in 2030. T
 <!-- k:#5A6B9E|PART 01 · THE PLAN -->
 ## The plan pays the grid side; the capacity has nowhere to go
 
-The plan splits new-type storage into two categories with two sets of rules: grid-side independent storage, at about 140GW by 2030, and storage attached to renewable bases, capped at about 50GW to 60GW[^1].
+The plan's scale targets sit in two columns: grid-side independent storage at about 140GW by 2030, and storage attached to renewable bases at about 50GW to 60GW[^1]. The first is about half of the target, the second about a fifth. Together they take about two-thirds; the rest is spread across distributed storage, user-side sites, coal and nuclear plants and new models, with no separate target.
 
 | Item | Grid-side independent storage | Storage at renewable bases |
 |---|---|---|
 | Status | A standalone market entity, separately metered | Part of the wind or solar project |
-| Dispatch | Called by the grid, charging and discharging on price signals | Follows the plant's output to cut curtailment |
-| Revenue | Capacity payment, spot spreads, ancillary services | Inside the renewable tariff, no standalone capacity payment |
+| Dispatch | Spot-cleared where spot markets run continuously, otherwise by system need | Follows the plant's output to cut curtailment |
+| Revenue | Capacity payment, spot spreads, ancillary services | Capacity leasing; sold with the plant, or as a standalone entity |
 
-At 140GW, the first is more than twice the 50GW to 60GW cap. The plan leaves the capacity payment to the grid-side segment and caps the part whose cost can only be recovered through a project's tariff.
+The mechanism split is the capacity payment: only the listed grid-side segment gets it. Storage at renewable bases can be coupled with its plant in the market, or trade as a standalone entity, and earns its capacity value through leasing and market revenue[^1]. A capped build-out and no capacity payment: that is the difference the plan draws between the two.
 
-A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh[^1][^2]. Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none[^21].
+A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh[^1][^2]. Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none[^21]. Zhou Yi, president of the Electric Power Planning and Engineering Institute, put it more plainly in the official reading: a three-hour average means new storage will be built at four hours and above[^22].
 
 The plan keeps the capacity payment for grid-side independent storage and adds a reliability payment once spot markets run continuously, on a uniform principle and with list-based approval[^1]. That is a revenue model, not a construction quota, and it is the first one China has written at national level for storage. The same document requires storage-cell firms to advance projects "in an orderly way" and to guard against "blind expansion", language that ties the plan to the lithium-battery capacity controls already in force[^6].
 
@@ -105,3 +105,5 @@ If 2027 installations run above 45GW, the domestic market is accelerating again 
 [^20]: 财联社 — 津巴布韦瑞德矿业光储柴微电网投运，2026-07，[原文](https://www.cls.cn/detail/2452575). Source for the 11MWp solar, 30MWh storage and 4MW diesel plant and its 50-day construction.
 
 [^21]: 中国储能网 — 《“136号文”落地一年，新型储能经历了哪些重大变革？》，2026-03-13，[原文](https://www.escn.com.cn/news/show-2241723.html). Source for provincial capacity-payment rules, including Anhui's six-hour peak window and Qinhuangdao's four-hour scoring.
+
+[^22]: 电力规划设计总院院长周毅 — 《“十五五”新型储能实施方案》解读之三，2026-11-17，[原文](https://www.cpnn.com.cn/news/nytt/202611/t20261117_1927145.html). Source for the reading that a three-hour average points to new build at four hours and above.
