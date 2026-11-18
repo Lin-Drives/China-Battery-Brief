@@ -7,7 +7,7 @@ At last year's pace the target arrives in 2028; at this year's, early in 2030. T
 <!-- k:#5A6B9E|PART 01 · THE PLAN -->
 ## The plan pays the grid side; the capacity has nowhere to go
 
-Grid-side independent storage, the kind that earns a capacity payment rather than sitting behind a solar farm, is to reach about 140GW by 2030. Storage configured at large renewable bases is capped at about 50GW to 60GW[^1]. The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
+Grid-side independent storage connects as a standalone market entity, not tied to a particular wind or solar project, and is to reach about 140GW by 2030. Storage built alongside large wind and solar bases, mainly to cut curtailment, is capped at about 50GW to 60GW[^1]. The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
 
 A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh[^1][^2]. Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none[^21].
 
