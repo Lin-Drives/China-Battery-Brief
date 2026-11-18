@@ -33,7 +33,7 @@
 
 > 目标：把可机械判定的规则沉到脚本，人工从逐句读退到只看红灯与分歧。详见 `dev/review.mjs` 与 `dev/fixtures/review-cases.json`。
 
-- [x] **L1 机械检查**：`dev/review.mjs`（段首空转、单句成段、元话语、配图、脚注配对、中英数字单位、**中英限定词**、**脚注来源一致**、**专名对齐**（`dev/glossary.json`）），`npm run review` 可跑；fixtures 7 例（含 3 组中英对照）全过
+- [x] **L1 机械检查**：`dev/review.mjs`（段首空转、单句成段、元话语、配图、脚注配对、中英数字单位、**中英限定词**、**脚注来源一致**、**专名对齐**（`dev/glossary.json`，58 条，含别名与 risky 跳过；`dev/glossary-suggest.mjs` 抽候选）），`npm run review` 可跑；fixtures 7 例（含 3 组中英对照）全过
 - [x] **L2 数字台账**：`app/db/seed-content/claims/<期号>.json` + `dev/claims.mjs`（抓取/缓存/Firecrawl 回退，校验引句与数字，覆盖检查）。063 台账 56 条、覆盖完整；4 条付费墙/JS 源标 `pending` 待人工核。`npm run claims -- 63` 可跑
 - [ ] **L3 三 pass 审稿**：抽取（claim→证据）、对齐（EN/ZH 数字/专名/限定词）、语感（R1–R7，输出 span）各用独立上下文 + JSON schema，合并后按 blocking/advisory 分级
 - [x] **提示词入仓**：`dev/agents/content-reviewer.md`（三 pass：抽取 / 中英对齐 / 语感，输出 JSON，blocking 仅限数字与中英不一致），`dev/agents/README.md` 说明运行与分级

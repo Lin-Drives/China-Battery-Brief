@@ -9,7 +9,14 @@
   },
   {
     "en": "Eve Energy",
-    "zh": "亿纬锂能"
+    "zh": "亿纬锂能",
+    "en_aliases": [
+      "EVE Energy",
+      "EVE"
+    ],
+    "zh_aliases": [
+      "亿纬"
+    ]
   },
   {
     "en": "Fluence",
@@ -33,7 +40,11 @@
   },
   {
     "en": "SCO",
-    "zh": "上海合作组织"
+    "zh": "上海合作组织",
+    "zh_aliases": [
+      "上合组织",
+      "上合"
+    ]
   },
   {
     "en": "Saudi Arabia",
@@ -41,19 +52,14 @@
   },
   {
     "en": "Australia",
-    "zh": "澳大利亚"
-  },
-  {
-    "en": "Europe",
-    "zh": "欧洲"
+    "zh": "澳大利亚",
+    "zh_aliases": [
+      "澳洲"
+    ]
   },
   {
     "en": "Americas",
     "zh": "美洲"
-  },
-  {
-    "en": "Asia",
-    "zh": "亚洲"
   },
   {
     "en": "Oceania",
@@ -86,5 +92,200 @@
   {
     "en": "Pagerungan Kecil",
     "zh": "Pagerungan Kecil"
+  },
+  {
+    "en": "Beijing",
+    "zh": "北京",
+    "kind": "place"
+  },
+  {
+    "en": "Debrecen",
+    "zh": "德布勒森",
+    "kind": "place"
+  },
+  {
+    "en": "Szeged",
+    "zh": "塞格德",
+    "kind": "place"
+  },
+  {
+    "en": "Middle East",
+    "zh": "中东",
+    "kind": "place"
+  },
+  {
+    "en": "Shenzhen",
+    "zh": "深圳",
+    "kind": "place"
+  },
+  {
+    "en": "Michigan",
+    "zh": "密歇根",
+    "kind": "place"
+  },
+  {
+    "en": "Brussels",
+    "zh": "布鲁塞尔",
+    "kind": "place"
+  },
+  {
+    "en": "SAIC",
+    "zh": "上汽",
+    "kind": "company"
+  },
+  {
+    "en": "Marshall",
+    "zh": "马歇尔",
+    "kind": "place"
+  },
+  {
+    "en": "Southeast Asia",
+    "zh": "东南亚",
+    "kind": "place"
+  },
+  {
+    "en": "ASEAN",
+    "zh": "东盟",
+    "kind": "org"
+  },
+  {
+    "en": "BMW",
+    "zh": "宝马",
+    "kind": "company"
+  },
+  {
+    "en": "White House",
+    "zh": "白宫",
+    "kind": "org"
+  },
+  {
+    "en": "Ningbo Contemporary Brunp",
+    "zh": "宁波当代邦普",
+    "kind": "company"
+  },
+  {
+    "en": "Lygend",
+    "zh": "力勤",
+    "kind": "company"
+  },
+  {
+    "en": "Karawang",
+    "zh": "卡拉旺",
+    "kind": "place"
+  },
+  {
+    "en": "Jakarta",
+    "zh": "雅加达",
+    "kind": "place"
+  },
+  {
+    "en": "Bahia",
+    "zh": "巴伊亚",
+    "kind": "place"
+  },
+  {
+    "en": "FAW",
+    "zh": "一汽",
+    "kind": "company"
+  },
+  {
+    "en": "WeLion",
+    "zh": "卫蓝新能源",
+    "kind": "company"
+  },
+  {
+    "en": "Geely",
+    "zh": "吉利",
+    "kind": "company"
+  },
+  {
+    "en": "Honda",
+    "zh": "本田",
+    "kind": "company"
+  },
+  {
+    "en": "Nissan",
+    "zh": "日产",
+    "kind": "company",
+    "risky": true
+  },
+  {
+    "en": "Portugal",
+    "zh": "葡萄牙",
+    "kind": "place"
+  },
+  {
+    "en": "Bangkok",
+    "zh": "曼谷",
+    "kind": "place"
+  },
+  {
+    "en": "Kanuma",
+    "zh": "鹿沼",
+    "kind": "place"
+  },
+  {
+    "en": "Queensland",
+    "zh": "昆士兰",
+    "kind": "place"
+  },
+  {
+    "en": "Volkswagen",
+    "zh": "大众",
+    "kind": "company",
+    "risky": true
+  },
+  {
+    "en": "Wang Wentao",
+    "zh": "王文涛",
+    "kind": "person"
+  },
+  {
+    "en": "Barcelona",
+    "zh": "巴塞罗那",
+    "kind": "place"
+  },
+  {
+    "en": "Kuala Lumpur",
+    "zh": "吉隆坡",
+    "kind": "place"
+  },
+  {
+    "en": "Peugeot",
+    "zh": "标致",
+    "kind": "company"
+  },
+  {
+    "en": "Economic Observer",
+    "zh": "经济观察报",
+    "kind": "institution"
+  },
+  {
+    "en": "Defense Production Act",
+    "zh": "国防生产法",
+    "kind": "law"
+  },
+  {
+    "en": "Federal Communications Commission",
+    "zh": "联邦通信委员会",
+    "kind": "institution"
+  },
+  {
+    "en": "Panasonic Energy",
+    "zh": "松下能源",
+    "kind": "company"
+  },
+  {
+    "en": "Netherlands",
+    "zh": "荷兰",
+    "kind": "place",
+    "en_aliases": [
+      "Dutch"
+    ]
+  },
+  {
+    "en": "Rotterdam",
+    "zh": "鹿特丹",
+    "kind": "place"
   }
 ]

@@ -315,14 +315,18 @@ function checkEntities(enFile, zhFile) {
   const pairs = JSON.parse(fs.readFileSync(glossaryFile, "utf8"));
   const issues = [];
   for (const p of pairs) {
-    const inEn = en.includes(p.en.toLowerCase());
-    const inZh = zh.includes(p.zh);
+    if (p.risky) continue;
+    const enForms = [p.en, ...(p.en_aliases || [])].map(x => x.toLowerCase());
+    const zhForms = [p.zh, ...(p.zh_aliases || [])];
+    const inEn = enForms.some(x => en.includes(x));
+    const inZh = zhForms.some(x => zh.includes(x));
     if (inEn !== inZh) {
       issues.push({
         rule: "L1.entity",
         level: "fail",
         text: p.en + " / " + p.zh,
-        detail: inEn ? "英文出现、中文缺失" : "中文出现、英文缺失",
+        detail: (inEn ? "英文出现、中文缺失" : "中文出现、英文缺失") +
+          (p.risky ? "（易误伤，已跳过）" : ""),
       });
     }
   }
@@ -372,8 +376,7 @@ function reviewAll(files) {
         ...checkSourceParity(en, zh),
         ...checkEntities(en, zh),
       ];
-      results[en] = results[en].concat(parity);
-      results[zh] = results[zh].concat(parity);
+      results[en + " ↔ " + zh] = parity;
     }
   }
   return results;
