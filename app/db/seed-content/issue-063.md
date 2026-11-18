@@ -37,7 +37,7 @@ Storage cells traded at Rmb0.353/Wh on November 4, up from Rmb0.31 at the end of
 <!-- k:#C9F24B|PART 03 · THE WINDOW -->
 ## The Overseas Chapter Has No Numbers
 
-The overseas chapter commits to using the Belt and Road, APEC, BRICS, the SCO and the China-EU channel for policy dialogue. It also promises support for firms that open overseas markets, including "small and beautiful" projects with demonstrable returns[^6]. There is no target, no country list and no financing line. Domestic demand gets three numbers; exports get a paragraph.
+The overseas chapter commits to using the Belt and Road, APEC, BRICS, the SCO and the China-EU channel for policy dialogue. It also promises support for firms that open overseas markets, including "small and beautiful" projects with demonstrable returns[^6]. There is no target, no country list and no financing line. Domestically the plan sets 300GW, three hours of average duration and 140GW of grid-side independent storage.
 
 A 1MW solar plus 2MW/4MWh storage microgrid on Pagerungan Kecil island in Indonesia began operating in November, replacing three to six hours of daily supply with more than twenty[^18]. A 480kWp solar, 500kW/1MWh and diesel microgrid at a fishing port in Sierra Leone was handed over in July[^19]. An 11MWp solar, 30MWh storage and 4MW diesel plant at a Zimbabwean mine was completed in 50 days in July[^20]. None of them changes the order book, which remains dominated by utility-scale four-hour projects.
 
