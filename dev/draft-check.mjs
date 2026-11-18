@@ -3,7 +3,9 @@
  * Briefing checker for China Battery Brief drafts.
  * Implements S1-S6 (structure) and R1-R7 (voice) from docs/voice.md, plus footnote
  * reference/definition consistency. Thresholds calibrated against CnEVPost and
- * BloombergNEF samples on 2026-11-11.
+ * BloombergNEF samples on 2026-11-11. S7-S9 (citation placement and order, the
+ * three-section ceiling, the retired horizon box) are deterministic and live in
+ * dev/review.mjs.
  *
  * Usage: node dev/draft-check.mjs <draft.md> [draft2.md ...] [--news]
  *   --news  raise the number-density target to 55% (news items) instead of 40% (analysis).

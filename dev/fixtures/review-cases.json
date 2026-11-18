@@ -54,5 +54,14 @@
     "expect": [
       "L1.entity"
     ]
+  },
+  {
+    "id": "bad-citation-sections-zh",
+    "file": "dev/fixtures/bad-citation-zh.md",
+    "expect": [
+      "L1.citation",
+      "L1.sections",
+      "L1.horizon"
+    ]
   }
 ]

@@ -44,8 +44,15 @@ function isZh(file) {
   return /-zh\.md$/.test(file);
 }
 
+/** Resolve a draft path from either the repo root or the current directory, so
+ *  `npm run review -- db/seed-content/...` works from app/ as documented. */
+function resolveInput(file) {
+  const candidates = [path.resolve(ROOT, file), path.resolve(process.cwd(), file)];
+  return candidates.find(p => fs.existsSync(p)) || candidates[0];
+}
+
 function load(file) {
-  const raw = fs.readFileSync(path.resolve(ROOT, file), "utf8");
+  const raw = fs.readFileSync(resolveInput(file), "utf8");
   const body = raw.split(/\n---\n/)[0];
   return { raw, body };
 }
@@ -147,6 +154,100 @@ function checkAssets(file) {
     }
   }
   return issues;
+}
+
+/** Citation hygiene: a reference marker belongs before the sentence-ending
+ *  punctuation, and several references at one spot must run in ascending
+ *  order. Both are editorial hard rules; readers quote these numbers. */
+function checkCitations(file) {
+  const { body } = load(file);
+  const zh = isZh(file);
+  const issues = [];
+  const afterPunct = new RegExp(
+    "(" + (zh ? "[。！？]" : "[.!?]") + ")[ \\t]*((?:\\[\\^\\d+\\])+)",
+    "g",
+  );
+  let m;
+  while ((m = afterPunct.exec(body))) {
+    const before = body.slice(Math.max(0, m.index - 24), m.index + 1);
+    issues.push({
+      rule: "L1.citation",
+      level: "fail",
+      text: (before + m[2]).replace(/\n/g, " "),
+      detail: "引用标注放在句末标点之后，应紧贴被引内容、写在句末标点之前",
+    });
+  }
+
+  const runs = /(?:\[\^\d+\]){2,}/g;
+  while ((m = runs.exec(body))) {
+    const nums = (m[0].match(/\d+/g) || []).map(Number);
+    const sorted = nums.every((n, i) => i === 0 || nums[i - 1] < n);
+    if (!sorted) {
+      issues.push({
+        rule: "L1.citation",
+        level: "fail",
+        text: m[0],
+        detail: "多处引用必须按文献序号从小到大排列（当前 " + nums.join("、") + "）",
+      });
+    }
+  }
+
+  return issues;
+}
+
+/** Structural ceiling: at most three PART sections. THE TAKE and the retired
+ *  ON THE HORIZON module are excluded; every other h2 counts as a section. */
+function checkSections(file) {
+  const { body } = load(file);
+  const lines = body.split("\n");
+  const issues = [];
+  let kicker = "";
+  let parts = 0;
+  const h2 = [];
+  for (const line of lines) {
+    const k = line.match(/^<!--\s*k:[^|]*\|\s*(.+?)\s*-->\s*$/);
+    if (k) {
+      kicker = k[1];
+      continue;
+    }
+    const h = line.match(/^##\s+(.+?)\s*$/);
+    if (h) {
+      const fixed = /^(the take|on the horizon|本刊观点|前瞻)$/i.test(kicker);
+      if (/^part\b/i.test(kicker)) parts += 1;
+      if (!fixed) h2.push(h[1]);
+    }
+  }
+  if (parts > 3) {
+    issues.push({
+      rule: "L1.sections",
+      level: "fail",
+      text: parts + " 个 PART 小节：" + h2.join(" / "),
+      detail: "正文小节最多 3 个，多出的内容应与相邻小节合并",
+    });
+  } else if (h2.length > 3) {
+    issues.push({
+      rule: "L1.sections",
+      level: "fail",
+      text: h2.length + " 个小节：" + h2.join(" / "),
+      detail: "正文小节最多 3 个（THE TAKE 单列，不计入）",
+    });
+  }
+  return issues;
+}
+
+/** The ON THE HORIZON box repeated the same three dates every issue and was
+ *  retired in No.063. Kept as a warning so the module can come back later. */
+function checkHorizon(file) {
+  const { body } = load(file);
+  if (!/<!--\s*horizon\s*-->/.test(body)) return [];
+  return [
+    {
+      rule: "L1.horizon",
+      level: "warn",
+      text: "<!-- horizon -->",
+      detail: "时间小方块已停用（每期重复、无信息增量），正文不再使用",
+    },
+  ];
 }
 
 function checkFootnotes(file) {
@@ -360,6 +461,9 @@ function reviewFile(file) {
     ...checkParagraphs(file),
     ...checkAssets(file),
     ...checkFootnotes(file),
+    ...checkCitations(file),
+    ...checkSections(file),
+    ...checkHorizon(file),
   ];
 }
 
