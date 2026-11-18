@@ -7,7 +7,7 @@ At last year's pace the target arrives in 2028; at this year's, early in 2030. T
 <!-- k:#5A6B9E|PART 01 · THE MIX -->
 ## Where the gigawatts go
 
-Grid-side independent storage, the kind that earns a capacity payment rather than sitting behind a solar farm, is to reach 140GW by 2030. Storage configured at large renewable bases is capped at 50GW to 60GW.[^1] The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
+Grid-side independent storage, the kind that earns a capacity payment rather than sitting behind a solar farm, is to reach about 140GW by 2030. Storage configured at large renewable bases is capped at about 50GW to 60GW.[^1] The first is more than twice the second, and the plan treats the gap as deliberate: the grid-side segment is the one allowed to sell peak capacity, reserves and ancillary services into the market.
 
 A 2.61-hour average rising to three hours means the energy build-out is larger than the power build-out: 435GWh in service at the end of September against a 2030 target of roughly 900GWh.[^2][^1] Provinces have moved the same way: Anhui normalises capacity payments to discharge duration against a six-hour peak window; Qinhuangdao's scoring gives four-hour projects four points and two-hour projects none.[^21]
 
@@ -38,7 +38,7 @@ The longer series shows the same direction with less distortion. Chinese firms d
 <!-- k:#F0A832|PART 04 · THE SPEC -->
 ## Four hours and a grid-forming inverter
 
-Saudi Arabia's state power procurement company, SPPC, has procured ten projects totalling 5GW/20GWh on a standard four-hour configuration, under 15-year build-own-operate contracts.[^12] Australia's Capacity Investment Scheme ran its eighth round at a four-hour equivalent, 4GW/16GWh.[^13] The Australian Energy Market Operator (AEMO) counts 33.2GW of battery storage in the NEM connection pipeline, about 74% of it with grid-forming inverters confirmed.[^14]
+Saudi Arabia's state power procurement company, SPPC, has procured ten projects totalling 5GW/20GWh on a standard four-hour configuration, under 15-year build-own-operate contracts.[^12] Australia's Capacity Investment Scheme ran its eighth round at a four-hour equivalent, 4GW/16GWh.[^13] The Australian Energy Market Operator (AEMO) counts 33.2GW of battery storage in the national electricity market's connection pipeline, about 74% of it with grid-forming inverters confirmed.[^14]
 
 Those specifications now match what China's plan asks of its own market: three-hour average duration, grid-forming storage at weak grid nodes, and a capacity payment tied to peak contribution.[^1] The domestic rule and the export tender are converging on the same product, which matters more for cellmakers than for developers. A two-hour container built for price competition is not the same product as a four-hour system sold with an availability guarantee.
 

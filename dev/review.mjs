@@ -193,6 +193,142 @@ function numbersIn(text) {
   return out;
 }
 
+const HEDGE = {
+  approximate: { zh: /约|大约|近|左右|接近/, en: /\b(about|around|roughly|approximately|near|nearly|some|close to)\b/i },
+  lower_bound: { zh: /超过|逾|至少|以上/, en: /\b(more than|over|at least|above)\b/i },
+  forecast: { zh: /预计|预期|有望/, en: /\b(expected|forecast|projected|likely)\b/i },
+  possibility: { zh: /可能|也许/, en: /\b(may|might|could|possibly)\b/i },
+};
+
+function hedgeOf(text, zh) {
+  const out = [];
+  for (const [cat, pair] of Object.entries(HEDGE)) {
+    const base = zh ? pair.zh : pair.en;
+    const r = new RegExp(base.source, base.flags.includes("g") ? base.flags : base.flags + "g");
+    let m;
+    while ((m = r.exec(text))) out.push({ cat, i: m.index });
+  }
+  return out;
+}
+
+function hedgedNumbers(text, zh) {
+  text = text.replace(/^!\[.*$/gm, " ").replace(/^#+ .*$/gm, " ");
+  const spec = {
+    "亿千瓦时": { u: "GWh", f: 100 },
+    "亿千瓦": { u: "GW", f: 100 },
+    "万千瓦时": { u: "GWh", f: 0.01 },
+    "万千瓦": { u: "GW", f: 0.01 },
+    GWH: { u: "GWh", f: 1 }, MWH: { u: "GWh", f: 0.001 }, KWH: { u: "GWh", f: 1e-6 },
+    GW: { u: "GW", f: 1 }, MW: { u: "GW", f: 0.001 }, KW: { u: "GW", f: 1e-6 },
+  };
+  const re = zh
+    ? /(\d+(?:\.\d+)?)\s*(亿千瓦时|亿千瓦|万千瓦时|万千瓦|GWh|MWh|kWh|GW|MW|kW)/gi
+    : /(\d+(?:\.\d+)?)\s*(GWh|MWh|kWh|GW|MW|kW)\b/gi;
+  const hedges = hedgeOf(text, zh);
+  const out = [];
+  let m;
+  while ((m = re.exec(text))) {
+    const s2 = spec[(m[2] || "").toUpperCase()] || spec[m[2]];
+    if (!s2) continue;
+    const i = m.index;
+    const len = m[0].length;
+    const cats = [...new Set(
+      hedges
+        .filter(h => h.i >= i - 8 && h.i < i + len + 4)
+        .map(h => h.cat)
+    )].sort();
+    out.push({ key: +(parseFloat(m[1]) * s2.f).toFixed(3) + "|" + s2.u, cats });
+  }
+  return out;
+}
+
+function checkHedges(enFile, zhFile) {
+  const en = hedgedNumbers(load(enFile).body, false);
+  const zh = hedgedNumbers(load(zhFile).body, true);
+  const group = list => {
+    const m = new Map();
+    for (const x of list) {
+      if (!m.has(x.key)) m.set(x.key, []);
+      m.get(x.key).push(x.cats);
+    }
+    return m;
+  };
+  const enG = group(en);
+  const zhG = group(zh);
+  const issues = [];
+  for (const [key, zhList] of zhG) {
+    const enList = enG.get(key) || [];
+    const n = Math.min(enList.length, zhList.length);
+    for (let i = 0; i < n; i++) {
+      const a = enList[i].join() || "无";
+      const b = zhList[i].join() || "无";
+      if (a !== b) {
+        issues.push({
+          rule: "L1.hedge",
+          level: "fail",
+          text: key + "（第 " + (i + 1) + " 次）英文 " + a + " / 中文 " + b,
+          detail: "同一数字在中英两侧的限定词不一致",
+        });
+      }
+    }
+
+  }
+  return issues;
+}
+
+function footnoteUrls(file) {
+  const { raw } = load(file);
+  const urls = [];
+  const re = /^\[\^(\d+)\]\s*:[\s\S]*?(https?:\/\/[^\s)]+)/gm;
+  let m;
+  while ((m = re.exec(raw))) urls.push(m[2].replace(/[.,;]+$/, ""));
+  return urls;
+}
+
+function checkSourceParity(enFile, zhFile) {
+  const en = footnoteUrls(enFile);
+  const zh = footnoteUrls(zhFile);
+  const norm = u => u.replace(/\/$/, "");
+  const enSet = new Set(en.map(norm));
+  const zhSet = new Set(zh.map(norm));
+  const onlyEn = [...enSet].filter(u => !zhSet.has(u));
+  const onlyZh = [...zhSet].filter(u => !enSet.has(u));
+  const issues = [];
+  if (en.length !== zh.length || onlyEn.length || onlyZh.length) {
+    issues.push({
+      rule: "L1.sources",
+      level: "fail",
+      text: "EN " + en.length + " 条 / ZH " + zh.length + " 条",
+      detail: "中英脚注来源不一致" +
+        (onlyEn.length ? "；仅英文: " + onlyEn.slice(0, 3).join(", ") : "") +
+        (onlyZh.length ? "；仅中文: " + onlyZh.slice(0, 3).join(", ") : ""),
+    });
+  }
+  return issues;
+}
+
+function checkEntities(enFile, zhFile) {
+  const en = load(enFile).body.toLowerCase();
+  const zh = load(zhFile).body;
+  const glossaryFile = path.join(ROOT, "dev", "glossary.json");
+  if (!fs.existsSync(glossaryFile)) return [];
+  const pairs = JSON.parse(fs.readFileSync(glossaryFile, "utf8"));
+  const issues = [];
+  for (const p of pairs) {
+    const inEn = en.includes(p.en.toLowerCase());
+    const inZh = zh.includes(p.zh);
+    if (inEn !== inZh) {
+      issues.push({
+        rule: "L1.entity",
+        level: "fail",
+        text: p.en + " / " + p.zh,
+        detail: inEn ? "英文出现、中文缺失" : "中文出现、英文缺失",
+      });
+    }
+  }
+  return issues;
+}
+
 function checkParity(enFile, zhFile) {
   const en = numbersIn(load(enFile).body);
   const zh = numbersIn(load(zhFile).body);
@@ -223,23 +359,31 @@ function reviewFile(file) {
   ];
 }
 
-function run(files, asJson) {
+function reviewAll(files) {
   const results = {};
-  let failed = false;
-  for (const f of files) {
-    const issues = reviewFile(f);
-    results[f] = issues;
-    if (issues.some(i => i.level === "fail")) failed = true;
-  }
+  for (const f of files) results[f] = reviewFile(f);
   if (files.length === 2) {
     const en = files.find(f => !isZh(f));
     const zh = files.find(f => isZh(f));
     if (en && zh) {
-      const parity = checkParity(en, zh);
+      const parity = [
+        ...checkParity(en, zh),
+        ...checkHedges(en, zh),
+        ...checkSourceParity(en, zh),
+        ...checkEntities(en, zh),
+      ];
       results[en] = results[en].concat(parity);
       results[zh] = results[zh].concat(parity);
-      if (parity.some(i => i.level === "fail")) failed = true;
     }
+  }
+  return results;
+}
+
+function run(files, asJson) {
+  const results = reviewAll(files);
+  let failed = false;
+  for (const issues of Object.values(results)) {
+    if (issues.some(i => i.level === "fail")) failed = true;
   }
   if (asJson) {
     console.log(JSON.stringify(results, null, 2));
@@ -262,8 +406,9 @@ function fixtures() {
   const cases = JSON.parse(fs.readFileSync(file, "utf8"));
   let pass = 0;
   for (const c of cases) {
-    const issues = reviewFile(path.join(ROOT, c.file));
-    const fired = new Set(issues.map(i => i.rule));
+    const files = c.pair ? c.pair.map(f => path.join(ROOT, f)) : [path.join(ROOT, c.file)];
+    const results = reviewAll(files);
+    const fired = new Set(Object.values(results).flat().map(i => i.rule));
     const missing = (c.expect || []).filter(r => !fired.has(r));
     const unexpected = c.clean ? [...fired].filter(r => r !== "L1.meta") : [];
     const ok = missing.length === 0 && unexpected.length === 0;

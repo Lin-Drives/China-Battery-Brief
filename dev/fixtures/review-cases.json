@@ -24,5 +24,35 @@
     "file": "app/db/seed-content-zh/issue-063-zh.md",
     "expect": [],
     "clean": true
+  },
+  {
+    "id": "pair-hedge",
+    "pair": [
+      "dev/fixtures/bad-hedge-en.md",
+      "dev/fixtures/bad-hedge-zh.md"
+    ],
+    "expect": [
+      "L1.hedge"
+    ]
+  },
+  {
+    "id": "pair-sources",
+    "pair": [
+      "dev/fixtures/bad-source-en.md",
+      "dev/fixtures/bad-source-zh.md"
+    ],
+    "expect": [
+      "L1.sources"
+    ]
+  },
+  {
+    "id": "pair-entity",
+    "pair": [
+      "dev/fixtures/bad-entity-en.md",
+      "dev/fixtures/bad-entity-zh.md"
+    ],
+    "expect": [
+      "L1.entity"
+    ]
   }
 ]
