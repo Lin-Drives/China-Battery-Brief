@@ -419,7 +419,8 @@ function numbersIn(text) {
 }
 
 const HEDGE = {
-  approximate: { zh: /约|大约|近|左右|接近/, en: /\b(about|around|roughly|approximately|near|nearly|some|close to)\b/i },
+  // 排除「纽约」「签约」「制约」「节约」里的“约”，否则 400MWh 旁边出现“纽约”就被判成 approximate
+  approximate: { zh: /(?<![纽签制节约])约|大约|近|左右|接近/, en: /\b(about|around|roughly|approximately|near|nearly|some|close to)\b/i },
   lower_bound: { zh: /超过|逾|至少|以上/, en: /\b(more than|over|at least|above)\b/i },
   forecast: { zh: /预计|预期|有望/, en: /\b(expected|forecast|projected|likely)\b/i },
   possibility: { zh: /可能|也许/, en: /\b(may|might|could|possibly)\b/i },

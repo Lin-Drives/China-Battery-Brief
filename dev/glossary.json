@@ -16,7 +16,9 @@
     ],
     "zh_aliases": [
       "亿纬"
-    ]
+    ],
+    "risky": true,
+    "risky_note": "别名 EVE 是常见英文子串（every/level），会误伤，改用 EVE Energy 全称"
   },
   {
     "en": "Fluence",
