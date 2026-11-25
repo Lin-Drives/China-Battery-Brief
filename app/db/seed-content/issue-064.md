@@ -19,7 +19,7 @@ The three differ in size and market and share a delivery format. e-STORAGE suppl
 
 HyperStrong says it has delivered over 70GWh across 400 projects and has over 2GWh under construction in Germany[^1]. Its order book now runs through 25 European countries and four African markets[^1]. What changed this week is the contract itself: equipment, controls and years of service priced together.
 
-A 22-year service agreement outlives the equipment's first owner. That is a different business from shipping containers, and it is being signed at the same time as the order[^2].
+The longest contract in the three deals is the 22-year long-term service agreement e-STORAGE attached to its system package. It keeps operations, spares and performance with the integrator after the equipment is handed over, and the obligation follows the asset if the project changes hands. The buyer gets 1.43GWh of equipment and 22 years of cover; the supplier keeps 22 years of cost exposure[^2].
 
 <!-- k:#2F6E77|PART 02 · THE BUYERS -->
 ## The Buyer Is Building a Data Centre
@@ -47,14 +47,14 @@ Grid-side projects still dominate, at 575.9GWh or 73.8% of shipments[^8]. User-s
 
 Customs data agrees: lithium-battery exports were worth $78.77bn in January to September, up 42.2%, on 4.3bn units, up 26.4%[^8]. The cell trade is not shrinking, and a system contract does not map onto a cell's customs line.
 
-A 22-year service agreement is not a shipment, and it places the supplier inside the operating risk of an asset it no longer owns[^2]. That is why 3.5GWh matters less than the format. Planned cell capacity is close to 2TWh[^9]. Against that, a good week of orders is a rounding error. The scarce input is not cells. It is buyers willing to hand a supplier 22 years of obligation, and suppliers able to carry it.
+The unit of sale moved up: the contract is a 22-year obligation, not a delivery[^2]. That is why 3.5GWh matters less than the format. Planned cell capacity is close to 2TWh[^9]. Against that, a good week of orders is a rounding error. The scarce input is not cells. It is buyers willing to hand a supplier 22 years of obligation, and suppliers able to carry it.
 
 <!-- k:#6B6558|THE TAKE -->
-## The Interface Is the Product
+## The System Seller Wins the Order
 
 A developer that waits two years for a grid connection is not shopping for the cheapest megawatt-hour. It is buying capacity that arrives before the grid does, and it pays for a supplier that can guarantee the system, the controls and the years after commissioning.
 
-If the median service term in 2027 US data-centre storage tenders falls below ten years, or owners bring system integration in house, the interface premium goes and these contracts revert to cell supply. Until then, the limit on Chinese cell capacity is not how many cells the lines can make. It is how many buyers can absorb a 22-year obligation.
+If the median service term in 2027 US data-centre storage tenders falls below ten years, the premium for systems and service goes. If owners bring system integration in house, these contracts revert to cell supply. Until then, the limit on Chinese cell capacity is not how many cells the lines can make. It is how many buyers can absorb a 22-year obligation.
 
 ---
 
