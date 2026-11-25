@@ -1,4 +1,4 @@
-import { and, desc, eq, like, sql, asc } from "drizzle-orm";
+import { and, desc, eq, like, or, sql, asc } from "drizzle-orm";
 import { factories, issues, policyEvents, tickerItems } from "@db/schema";
 import { getDb } from "./connection";
 
@@ -8,7 +8,10 @@ export async function listIssues(opts: { pillar?: string; q?: string; limit?: nu
   const db = getDb();
   const conds = [];
   if (opts.pillar) conds.push(sql`JSON_CONTAINS(${issues.pillars}, JSON_QUOTE(${opts.pillar}))`);
-  if (opts.q) conds.push(like(issues.title, `%${opts.q}%`));
+  if (opts.q) {
+    const term = `%${opts.q}%`;
+    conds.push(or(like(issues.title, term), like(issues.titleZh, term))!);
+  }
   return db
     .select({
       id: issues.id,

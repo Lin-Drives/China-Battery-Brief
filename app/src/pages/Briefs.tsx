@@ -16,6 +16,8 @@ import { useLang, tpl } from '@/i18n/lang'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 const PAGE_SIZE = 8
+// The archive fetches the whole (capped) list so search, sort and pagination stay consistent.
+const ARCHIVE_LIMIT = 100
 
 /** Client-side region keyword map (issue metadata carries no region field). */
 const REGION_KEYWORDS: Record<string, string[]> = {
@@ -99,11 +101,11 @@ export default function Briefs() {
   const clearFilters = () =>
     patchParams({ pillar: null, q: null, region: null, sort: null, page: null })
 
-  // Filtered archive query (server filters pillar + q; region/sort client-side)
+  // Archive query: server filters pillar + q; region, sort and paging are client-side.
   const archiveQuery = trpc.content['issues.list'].useQuery({
     pillar: pillar === 'all' ? undefined : pillar,
-    q: q.trim() === '' ? q.trim() : undefined,
-    limit: page * PAGE_SIZE,
+    q: q.trim() === '' ? undefined : q.trim(),
+    limit: ARCHIVE_LIMIT,
   })
   // Unfiltered query for pillar counts / most-read sidebar
   const allQuery = trpc.content['issues.list'].useQuery(
@@ -122,25 +124,24 @@ export default function Briefs() {
     return c
   }, [allIssues])
 
-  const visible: IssueMeta[] = useMemo(() => {
-    const rows = (archiveQuery.data?.issues ?? []) as IssueMeta[]
-    return sortIssues(rows.filter((i) => matchesRegion(i, region)), sort)
+  const rows: IssueMeta[] = useMemo(() => {
+    const data = (archiveQuery.data?.issues ?? []) as IssueMeta[]
+    return sortIssues(data.filter((i) => matchesRegion(i, region)), sort)
   }, [archiveQuery.data, region, sort])
+
+  const pageStart = (page - 1) * PAGE_SIZE
+  const visible: IssueMeta[] = useMemo(
+    () => rows.slice(pageStart, pageStart + PAGE_SIZE),
+    [rows, pageStart],
+  )
 
   const isLoading = archiveQuery.isLoading
   const filtersActive = pillar !== 'all' || q.trim() !== '' || region !== 'all'
   const featured = !filtersActive && page === 1 ? visible[0] : undefined
   const rest = featured ? visible.slice(1) : visible
 
-  // Pagination math: server `total` counts all issues; exact only when unfiltered
-  const totalPages = filtersActive
-    ? visible.length >= page * PAGE_SIZE
-      ? page + 1
-      : page
-    : Math.max(1, Math.ceil(total / PAGE_SIZE))
-  const canOlder = filtersActive
-    ? visible.length >= page * PAGE_SIZE
-    : page < totalPages
+  const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE))
+  const canOlder = page < totalPages
   const filterKey = `${pillar}|${q}|${region}|${sort}`
 
   return (
@@ -217,7 +218,7 @@ export default function Briefs() {
         onSortChange={setSort}
         search={q}
         onSearchChange={setSearch}
-        resultCount={visible.length}
+        resultCount={rows.length}
         view={view}
         onViewChange={setView}
         onClearFilters={clearFilters}
