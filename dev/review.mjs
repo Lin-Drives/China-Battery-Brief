@@ -212,7 +212,7 @@ function checkSections(file) {
     }
     const h = line.match(/^##\s+(.+?)\s*$/);
     if (h) {
-      const fixed = /^(the take|on the horizon|本刊观点|前瞻)$/i.test(kicker);
+      const fixed = /^(the take|on the horizon|本刊观点|前瞻|小结|结论)$/i.test(kicker);
       if (/^part\b/i.test(kicker)) parts += 1;
       if (!fixed) h2.push(h[1]);
     }
@@ -229,7 +229,7 @@ function checkSections(file) {
       rule: "L1.sections",
       level: "fail",
       text: h2.length + " 个小节：" + h2.join(" / "),
-      detail: "正文小节最多 3 个（THE TAKE 单列，不计入）",
+      detail: "正文小节最多 3 个（THE TAKE / 小结 单列，不计入）",
     });
   }
   return issues;

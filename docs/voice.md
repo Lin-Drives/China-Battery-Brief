@@ -78,6 +78,8 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 同一处引用多篇来源时，按文献序号从小到大排列：`[^1][^2]`，不写 `[^2][^1]`。编号顺序即来源顺序，倒序会让读者以为漏看了什么。
 
 ### S9 · 小节上限三个
+
+中文稿的结语 kicker 写「小结」（英文稿写 `THE TAKE`），两者同等对待、不计入小节上限；`dev/review.mjs` 两个标签都识别。
 正文 PART 小节最多 3 个（`THE TAKE` 单列，不计入）。内容多就并进相邻小节，不加第 4 个。文末 `<!-- horizon -->` 时间小方块自 No.063 起停用：三个日期在导语和正文里都已出现过，小方块每期重复、没有信息增量。
 
 ### S10 · 标题命名对象
@@ -87,6 +89,13 @@ BNEF 的写法是 `A new report from BloombergNEF, commissioned by …, indicate
 - 不合格：`两个动词和一个截止日`、`三个日期`（读者得读完全节才知道指什么）。
 
 标签编号按首次出现顺序递增：`[^1]` 必须第一次出现，`[^2]` 第二次，依此类推（渲染器的上标编号按出现顺序生成，文末来源按标签排序，两者只在递增时一致）。
+
+英文标题另有一条：**主语必须是行为主体**（公司、政府、买家、项目、资产），不要把中文的条件从句名词化成主语、再配一个使役动词。英文里「等待」不会把买家送去买电池。
+
+- 不合格：`A Two-Year Grid Wait Sends Data Centres to Batteries`（`接电要等两年，数据中心开始买储能` 的逐字直译：条件从句变名词主语，`sends` 让抽象名词当施动者）
+- 合格：`Data Centres Won't Wait Two Years for the Grid`
+
+判断方法：把标题的主语单独拎出来问「它会做这个动作吗？」。不会，就是翻译腔。把条件留在从句里（while / because / so），让承受条件的人做主语。
 
 S7–S10 由 `dev/review.mjs` 的 `L1.citation` / `L1.sections` / `L1.horizon` / `L1.heading` 机械检查，FAIL 不得进入发布流程。
 
