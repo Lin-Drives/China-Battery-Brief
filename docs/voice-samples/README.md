@@ -33,6 +33,7 @@
 | [zh-cbb-061-take.md](zh-cbb-061-take.md) | 本刊·判断段 | 中文如何避免翻译腔，短句与冒号的使用（R2、R7） |
 | [bad-062-opening.md](bad-062-opening.md) | 反例 | 无信息开场、反转句连用、段末升华（R1、R2、R4） |
 | [bad-063-paragraph-openers.md](bad-063-paragraph-openers.md) | 反例 | 段首空转：短判断起段、单句成段、用隐喻替代数字（R2、R6） |
+| [bad-064-concept-drop.md](bad-064-concept-drop.md) | 反例 | 概念突现：LTSA 与「第一位业主的持有期」都没交代就下判断；行话先出场（R2、R9） |
 
 ## 维护
 
