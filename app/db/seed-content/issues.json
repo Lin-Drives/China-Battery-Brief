@@ -1630,8 +1630,8 @@
     "publishedAt": "2026-11-26T06:00:00Z",
     "isFree": false,
     "pillars": [
-      "storage",
-      "overseas-capacity"
+      "overseas-capacity",
+      "markets"
     ],
     "readingMinutes": 7,
     "coverAsset": "/cover-064.svg",
@@ -1642,7 +1642,7 @@
         "text": "HyperStrong booked 1.6GWh in California and Arizona, 400MWh of it at data centres, plus a first 400MWh project in New York. e-STORAGE signed 590MW/1.43GWh with a 22-year service agreement."
       },
       {
-        "tag": "storage",
+        "tag": "overseas-capacity",
         "text": "56% of US data-centre developers surveyed by Turner & Townsend call power the main obstacle to delivery; about half wait one to two years for a utility connection."
       },
       {

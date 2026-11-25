@@ -1,5 +1,8 @@
 <svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chart: of 779.9GWh of storage cells shipped in January-September 2026, 466.8GWh or 59.9% went outside China, and 575.9GWh or 73.8% went to grid-side projects">
   <defs>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#5C6675" stroke-width="1" opacity="0.55"/>
+    </pattern>
     <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
       <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
     </pattern>
@@ -31,14 +34,16 @@
   <rect x="72" y="372" width="635" height="56" fill="#2F6E77" opacity="0.75"/>
   <rect x="707" y="372" width="108" height="56" fill="#C9F24B" opacity="0.55"/>
   <rect x="815" y="372" width="69" height="56" fill="#F0A832" opacity="0.55"/>
-  <rect x="884" y="372" width="48" height="56" fill="#5C6675" opacity="0.35"/>
+  <rect x="884" y="372" width="48" height="56" fill="url(#hatch)"/>
   <rect x="72" y="372" width="860" height="56" fill="none" stroke="#2A3A44" stroke-width="1.2"/>
 
   <text x="90" y="398" font-family="Courier,monospace" font-size="16" fill="#F4F0E6">GRID-SIDE 575.9</text>
   <text x="90" y="414" font-family="Courier,monospace" font-size="12" fill="#C9E9E3">73.8%</text>
-  <text x="707" y="452" font-family="Courier,monospace" font-size="13" fill="#8E97A8">USER 97.5 (12.5%)</text>
-  <text x="815" y="452" font-family="Courier,monospace" font-size="13" fill="#8E97A8">C&amp;I 62.2 (8.0%)</text>
-  <text x="884" y="452" font-family="Courier,monospace" font-size="13" fill="#5C6675">OTHER 44.3</text>
+
+  <rect x="72" y="458" width="12" height="12" fill="#C9F24B" opacity="0.55"/>
+  <text x="94" y="469" font-family="Courier,monospace" font-size="13" fill="#8E97A8">USER-SIDE 97.5GWH · 12.5%</text>
+  <rect x="470" y="458" width="12" height="12" fill="#F0A832" opacity="0.55"/>
+  <text x="492" y="469" font-family="Courier,monospace" font-size="13" fill="#8E97A8">C&amp;I 62.2GWH · 8.0%</text>
 
   <line x1="72" y1="560" x2="1128" y2="560" stroke="#1B2A33" stroke-width="1"/>
   <text x="72" y="596" font-family="Courier,monospace" font-size="13" fill="#5C6675">USER-SIDE GREW 152% YEAR ON YEAR, THE FASTEST SEGMENT</text>

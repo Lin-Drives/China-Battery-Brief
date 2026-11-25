@@ -339,7 +339,7 @@
   },
   {
     "slug": "two-year-wait",
-    "titleZh": "接电要等两年，数据中心开始买储能",
+    "titleZh": "数据中心开始买储能",
     "dekZh": "一周内三笔中国储能订单合计 3.5GWh，全部按系统交付，控制与多年服务打包在内。美国 56% 的数据中心开发商把电力列为交付的主要障碍，约一半要等 1 至 2 年才能接上电网。",
     "contentFileZh": "issue-064-zh.md",
     "highlightsZh": [
@@ -348,7 +348,7 @@
         "text": "海博思创在加州与亚利桑那中标 1.6GWh，其中 400MWh 为数据中心配储，另在纽约拿下首个 400MWh 项目。e-STORAGE 与 X-ELIO 签下 590MW/1.43GWh，附 22 年服务协议。"
       },
       {
-        "tag": "storage",
+        "tag": "overseas-capacity",
         "text": "项目管理公司 Turner & Townsend 的调查中，56% 的美国数据中心开发商把电力列为交付的主要障碍，约一半要等 1 至 2 年才能接上电网。"
       },
       {
