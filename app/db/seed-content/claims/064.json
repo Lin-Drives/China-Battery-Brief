@@ -1,0 +1,269 @@
+{
+  "issue": 64,
+  "note": "L2 claim ledger. Every unit-bearing number in issue-064 drafts must appear here: source (url + verbatim quote), derived (from ids), range, threshold, or pending (manual verification).",
+  "claims": [
+    {
+      "id": "c-hyper-16",
+      "value": 1.6,
+      "unit": "GWh",
+      "basis": "本周新增中标",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "总规模达1.6GWh（包含400MWh数据中心配储项目）",
+      "note": "加州与亚利桑那"
+    },
+    {
+      "id": "c-hyper-dc",
+      "value": 0.4,
+      "unit": "GWh",
+      "basis": "其中数据中心配储",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "总规模达1.6GWh（包含400MWh数据中心配储项目）",
+      "note": "400MWh 折 0.4GWh"
+    },
+    {
+      "id": "c-hyper-ny",
+      "value": 0.4,
+      "unit": "GWh",
+      "basis": "纽约首个项目",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "在美国纽约州，新中标公司在当地的首个储能项目，规模为400MWh"
+    },
+    {
+      "id": "c-hyper-na",
+      "value": 0.1,
+      "unit": "GWh",
+      "basis": "加拿大北部与阿拉斯加",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "两地新中标100MWh的储能项目",
+      "note": "100MWh 折 0.1GWh"
+    },
+    {
+      "id": "c-hyper-texas",
+      "value": 4,
+      "unit": "GWh",
+      "basis": "得州及其他地区累计中标",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "公司已中标的储能项目总规模已达4 GWh"
+    },
+    {
+      "id": "c-hyper-de",
+      "value": 2,
+      "unit": "GWh",
+      "basis": "德国在建项目",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "海博思创在德国的在建项目已超过2GWh"
+    },
+    {
+      "id": "c-hyper-total",
+      "value": 70,
+      "unit": "GWh",
+      "basis": "累计交付",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340871.html",
+      "quote": "累计交付储能已超过70GWh"
+    },
+    {
+      "id": "c-estorage-mw",
+      "value": 0.59,
+      "unit": "GW",
+      "basis": "X-ELIO 五项目合计功率",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340312.html",
+      "quote": "总规模达590MW/1.43GWh的电池储能系统",
+      "note": "590MW 折 0.59GW"
+    },
+    {
+      "id": "c-estorage-gwh",
+      "value": 1.43,
+      "unit": "GWh",
+      "basis": "X-ELIO 五项目合计容量",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340312.html",
+      "quote": "总规模达590MW/1.43GWh的电池储能系统"
+    },
+    {
+      "id": "c-sunwoda-gwh",
+      "value": 5,
+      "unit": "GWh",
+      "basis": "五年框架目标",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340598.html",
+      "quote": "累计推进5GWh储能项目部署"
+    },
+    {
+      "id": "c-sunwoda-kwh",
+      "value": 0.000261,
+      "unit": "GWh",
+      "basis": "一体机规格",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2340598.html",
+      "quote": "采用欣旺达261kWh液冷一体式储能系统",
+      "note": "261kWh 折 0.000261GWh"
+    },
+    {
+      "id": "c-lydian-mw",
+      "value": 0.15,
+      "unit": "GW",
+      "basis": "Faraday 项目功率",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.energy-storage.news/lydians-600mwh-utah-bess-reaches-commercial-operation-supporting-meta-data-centre/",
+      "quote": "150MW/600MWh",
+      "note": "150MW 折 0.15GW"
+    },
+    {
+      "id": "c-lydian-gwh",
+      "value": 0.6,
+      "unit": "GWh",
+      "basis": "Faraday 项目容量",
+      "asOf": "2026-11",
+      "kind": "source",
+      "url": "https://www.energy-storage.news/lydians-600mwh-utah-bess-reaches-commercial-operation-supporting-meta-data-centre/",
+      "quote": "150MW/600MWh",
+      "note": "600MWh 折 0.6GWh"
+    },
+    {
+      "id": "c-sne-total",
+      "value": 779.9,
+      "unit": "GWh",
+      "basis": "全球储能电池出货",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "今年前三季度年全球储能电池出货量达到779.9GWh"
+    },
+    {
+      "id": "c-sne-2025",
+      "value": 451.5,
+      "unit": "GWh",
+      "basis": "2025 年同期出货",
+      "asOf": "2025-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "相较于2025年前三季度451.5GWh"
+    },
+    {
+      "id": "c-sne-q3",
+      "value": 286.8,
+      "unit": "GWh",
+      "basis": "第三季度单季出货",
+      "asOf": "2026-Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "第三季度单季出货286.8GWh"
+    },
+    {
+      "id": "c-sne-cn",
+      "value": 724.5,
+      "unit": "GWh",
+      "basis": "16 家中国企业合计",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "在榜的16家中国企业合计出货量达724.5GWh"
+    },
+    {
+      "id": "c-sne-catl",
+      "value": 198.3,
+      "unit": "GWh",
+      "basis": "宁德时代出货",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "宁德时代以198.3GWh的出货量位居第一"
+    },
+    {
+      "id": "c-sne-china",
+      "value": 313.1,
+      "unit": "GWh",
+      "basis": "中国市场需求",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "中国仍是全球最大储能电池需求市场，前三季度出货313.1GWh"
+    },
+    {
+      "id": "c-sne-outside",
+      "value": 466.8,
+      "unit": "GWh",
+      "basis": "中国以外出货",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "中国以外地区出货466.8GWh"
+    },
+    {
+      "id": "c-sne-grid",
+      "value": 575.9,
+      "unit": "GWh",
+      "basis": "电网侧出货",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "电网侧储能电池需求占比最大，出货量达575.9GWh"
+    },
+    {
+      "id": "c-sne-user",
+      "value": 97.5,
+      "unit": "GWh",
+      "basis": "用户侧出货",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "用户侧储能出货量达97.5GWh"
+    },
+    {
+      "id": "c-sne-ci",
+      "value": 62.2,
+      "unit": "GWh",
+      "basis": "工商业出货",
+      "asOf": "2026-Q1~Q3",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2341268.html",
+      "quote": "工商业储能出货达62.2GWh"
+    },
+    {
+      "id": "c-week-total",
+      "value": 3.5,
+      "unit": "GWh",
+      "basis": "本周三笔合计（取整至 3.5，实际 3.53）",
+      "asOf": "2026-11",
+      "kind": "derived",
+      "from": [
+        "c-hyper-16",
+        "c-hyper-ny",
+        "c-hyper-na",
+        "c-estorage-gwh"
+      ]
+    },
+    {
+      "id": "c-plan-2twh",
+      "value": 2,
+      "unit": "TWh",
+      "basis": "储能电芯规划总产能",
+      "asOf": "2026",
+      "kind": "source",
+      "url": "https://www.escn.com.cn/news/show-2336980.html",
+      "quote": "2TWh",
+      "pending": true,
+      "note": "安泰科估算，原文为“规划总产能接近 2TWh”；TWh 不在 claims 解析单位表内，人工核对"
+    }
+  ]
+}

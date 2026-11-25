@@ -1487,7 +1487,7 @@
         "text": "The plan's export chapter has no numbers: two clauses, no countries, no financing. Saudi tenders at four hours and Australia's CIS at four-hour equivalents already buy the product the plan asks Chinese firms to build."
       }
     ],
-            "sources": [
+    "sources": [
       {
         "outlet": "国家发展改革委、国家能源局",
         "title": "“十五五”新型储能实施方案（发改能源〔2026〕1565号）",
@@ -1619,6 +1619,91 @@
         "title": "2026 年第 58 号公告",
         "url": "https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_91466027f465467985942a639a9485f4.html",
         "date": "2026"
+      }
+    ]
+  },
+  {
+    "number": 64,
+    "slug": "two-year-wait",
+    "title": "A Two-Year Grid Wait Sends Data Centres to Batteries",
+    "dek": "Three Chinese storage deals in one week, 3.5GWh, all sold as systems with controls and service. In the US, 56% of data-centre developers call power the main obstacle to delivery, and about half wait one to two years for a connection.",
+    "publishedAt": "2026-11-26T06:00:00Z",
+    "isFree": false,
+    "pillars": [
+      "storage",
+      "overseas-capacity"
+    ],
+    "readingMinutes": 7,
+    "coverAsset": "/cover-064.svg",
+    "contentFile": "issue-064.md",
+    "highlights": [
+      {
+        "tag": "overseas-capacity",
+        "text": "HyperStrong booked 1.6GWh in California and Arizona, 400MWh of it at data centres, plus a first 400MWh project in New York. e-STORAGE signed 590MW/1.43GWh with a 22-year service agreement."
+      },
+      {
+        "tag": "storage",
+        "text": "56% of US data-centre developers surveyed by Turner & Townsend call power the main obstacle to delivery; about half wait one to two years for a utility connection."
+      },
+      {
+        "tag": "markets",
+        "text": "China’s 16 listed storage-cell makers shipped 724.5GWh in January-September, 92.9% of the global 779.9GWh. Demand outside China was 466.8GWh, close to 60%."
+      }
+    ],
+    "sources": [
+      {
+        "outlet": "中国储能网",
+        "title": "海博思创新中标美国含数据中心配储等项目规模超2GWh，国际市场多点开花",
+        "url": "https://www.escn.com.cn/news/show-2340871.html",
+        "date": "2026-11-23"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "590MW/1.43GWh！阿特斯储能拿下美澳储能大单",
+        "url": "https://www.escn.com.cn/news/show-2340312.html",
+        "date": "2026-11-19"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "欣旺达与 Acelerex 签署 5GWh 储能合作备忘录，首个合作项目同步落地",
+        "url": "https://www.escn.com.cn/news/show-2340598.html",
+        "date": "2026-11-20"
+      },
+      {
+        "outlet": "CNBC",
+        "title": "Data center construction costs soar 13% in 2026",
+        "url": "https://www.cnbc.com/2026/11/20/data-center-construction-costs-soar-13-percent-in-2026.html",
+        "date": "2026-11-20"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "Trina Storage launches genset-battery hybrid solution targeting AI data centre power demand",
+        "url": "https://www.energy-storage.news/trina-storage-launches-genset-battery-hybrid-solution-targeting-ai-data-centre-power-demand/",
+        "date": "2026-11-25"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "Data centre power buildouts are déjà vu for US storage integrators with off-grid roots",
+        "url": "https://www.energy-storage.news/data-centre-power-buildouts-are-deja-vu-for-us-storage-integrators-with-off-grid-roots/",
+        "date": "2026-11-19"
+      },
+      {
+        "outlet": "Energy-Storage.news",
+        "title": "Lydian’s 600MWh Utah BESS reaches commercial operation, supporting Meta data centre",
+        "url": "https://www.energy-storage.news/lydians-600mwh-utah-bess-reaches-commercial-operation-supporting-meta-data-centre/",
+        "date": "2026-11-11"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "前三季度16家中国企业合计出货量达724.5GWh",
+        "url": "https://www.escn.com.cn/news/show-2341268.html",
+        "date": "2026-11-25"
+      },
+      {
+        "outlet": "中国储能网",
+        "title": "消费税落地叠加原料上行，储能电池开启涨价通道",
+        "url": "https://www.escn.com.cn/news/show-2336980.html",
+        "date": "2026-11-04"
       }
     ]
   }

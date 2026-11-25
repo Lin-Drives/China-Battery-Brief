@@ -1,0 +1,42 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cover 064 — A Two-Year Grid Wait Sends Data Centres to Batteries">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">064</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 064 · THU 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="140" font-family="Courier,monospace" font-size="13" letter-spacing="3" fill="#F0A832">STORAGE · OVERSEAS CAPACITY</text>
+
+  <text x="48" y="238" font-family="Georgia,serif" font-size="56" fill="#F4F0E6">A Two-Year Grid Wait</text>
+  <text x="48" y="304" font-family="Georgia,serif" font-size="56" fill="#F4F0E6">Sends Data Centres</text>
+  <text x="48" y="370" font-family="Georgia,serif" font-size="56" fill="#C9F24B">To Batteries</text>
+
+  <text x="48" y="410" font-family="Georgia,serif" font-style="italic" font-size="19" fill="#8E97A8">Three deals, 3.5GWh, sold as systems with a service term</text>
+
+  <line x1="48" y1="442" x2="752" y2="442" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="470" font-family="Courier,monospace" font-size="12" letter-spacing="1.5" fill="#5C6675">US DATA CENTRES, 2026 SURVEY</text>
+  <text x="48" y="500" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#5ADFC3">56% CALL POWER THE MAIN OBSTRUCTION</text>
+  <text x="48" y="524" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#C9F24B">HALF WAIT 1—2 YEARS FOR A CONNECTION</text>
+  <text x="48" y="548" font-family="Courier,monospace" font-size="13" letter-spacing="1" fill="#8E97A8">22-YEAR SERVICE ON 1.43GWH</text>
+</svg>

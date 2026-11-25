@@ -1,0 +1,41 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面 064 — 接电要等两年，数据中心开始买储能">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
+    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C9F24B" stop-opacity="0.08"/>
+      <stop offset="0.6" stop-color="#C9F24B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="#0C1017"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <text x="796" y="196" text-anchor="end" font-family="Georgia,serif" font-size="168" fill="#C9F24B" opacity="0.06">064</text>
+
+  <g stroke="#C9F24B" stroke-width="2" opacity="0.85">
+    <path d="M18 44 V26 a8 8 0 0 1 8 -8 H44" fill="none"/>
+    <path d="M782 44 V26 a8 8 0 0 0 -8 -8 H756" fill="none"/>
+    <path d="M18 556 V574 a8 8 0 0 0 8 8 H44" fill="none"/>
+    <path d="M782 556 V574 a8 8 0 0 1 -8 8 H756" fill="none"/>
+  </g>
+
+  <text x="48" y="52" font-family="Courier,monospace" font-size="13" letter-spacing="4" fill="#8E97A8">CHINA BATTERY BRIEF</text>
+  <text x="752" y="52" text-anchor="end" font-family="Courier,monospace" font-size="13" letter-spacing="2" fill="#C9F24B">No. 064 · 周四 06:00 UTC</text>
+  <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
+
+  <text x="48" y="140" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="15" letter-spacing="4" fill="#F0A832">储能 · 产能地图</text>
+
+  <text x="48" y="268" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="76" font-weight="600" fill="#F4F0E6">接电要等两年</text>
+  <text x="48" y="358" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="76" font-weight="600" fill="#C9F24B">数据中心买储能</text>
+
+  <text x="48" y="406" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="22" fill="#8E97A8">三笔订单 3.5GWh，全部按系统交付、附服务年限</text>
+
+  <line x1="48" y1="442" x2="752" y2="442" stroke="#1B2A33" stroke-width="1"/>
+  <text x="48" y="470" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="13" letter-spacing="1.5" fill="#5C6675">美国数据中心，2026 年调查</text>
+  <text x="48" y="500" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#5ADFC3">56% 称电力是交付的主要障碍</text>
+  <text x="48" y="524" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#C9F24B">一半以上接电要等 1—2 年</text>
+  <text x="48" y="548" font-family="PingFang SC, Noto Sans SC, sans-serif" font-size="14" fill="#8E97A8">1.43GWh 订单附 22 年服务</text>
+</svg>
