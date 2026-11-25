@@ -27,7 +27,7 @@ That distinction is the one most coverage of the result skips. The instruments t
 All six rows end the same way. The four instruments that reach a battery were made by agencies and by a president, and they can be unmade the same way. The one instrument that could add batteries to a capital-screening list, a Treasury rulemaking, is also the one the election cannot stop.
 
 <!-- k:#2F6E77|PART 02 · THE LEVERS -->
-## The levers that are not votes
+## The five instruments that are not on the ballot
 
 No. 060 described five instruments: tariffs, subsidy eligibility, grid equipment, capital screening and China's own export controls. The legal bases have not moved: Section 301 supplies the tariffs,[^4] FEOC rules the subsidy test,[^5] COINS the capital screen,[^6] and China's October 2025 controls the export side.[^7] All five are administered rather than voted on, and an election does not reset an agency's calendar.
 

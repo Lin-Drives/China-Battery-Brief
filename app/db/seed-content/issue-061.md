@@ -5,7 +5,7 @@ The market was not rejecting growth. It was repricing its quality. Gross margin 
 That is the uncomfortable core of this earnings season. Demand is accelerating: BloombergNEF, the energy research arm of Bloomberg, expects 188GW/535GWh of global storage additions in 2026, up 45%.[^3] The pivot to storage is real. It is not repairing margins. In many cases it is compressing them.
 
 <!-- k:#2F6E77|PART 01 · THE REVENUE TRAP -->
-## Everyone grew. Almost no one kept it
+## Everyone grew. Almost no one kept the profit
 
 The quarter was a clean natural experiment: the same demand shock, applied to companies with different positions in the chain and different exposure to policy.
 
@@ -32,7 +32,7 @@ China's second tier is where the divergence becomes violent. EVE Energy and CALB
 This is not a story of good and bad companies. It is three profit models hitting the same demand curve: a scale leader absorbing policy costs, Korean incumbents monetising US eligibility, and Chinese challengers whose reported earnings depend as much on accounting events as on cell margins.
 
 <!-- k:#5A6B9E|PART 02 · THE DEMAND IS REAL -->
-## The boom is real. The order book is softer
+## The boom is real. The order book is softer than it looks
 
 The demand side is not in doubt. Benchmark Mineral Intelligence, a UK battery supply-chain researcher, counted 177GWh of grid-scale storage commissioned globally in the first eight months of 2026, up 35%, with China accounting for 61% of August's volume.[^14] CABIA, the China Automotive Battery Innovation Alliance, recorded 73.5GWh of storage-battery sales in September, up 104.4% year on year and equal to 33% of combined power- and storage-battery sales.[^1]
 

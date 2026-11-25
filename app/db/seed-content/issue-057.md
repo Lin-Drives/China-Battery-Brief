@@ -1,7 +1,7 @@
 From September 23 to 25, Xi Jinping made his first state visit to the United States in eleven years — a tarmac greeting at Joint Base Andrews, a state dinner at the White House, and, on the final morning, a tea at which the two presidents agreed to build a "constructive relationship of strategic stability based on respect, fairness and reciprocity."[^1][^13] The deliverables arrived as an eight-point consensus: a Board of Trade, an Investment Council, an AI dialogue, fentanyl cooperation, and a pair of pandas for the Atlanta zoo.[^1] For the battery industry, the most telling feature of that list is, once again, an absence. Last issue it was a five-year plan with no output target (No. 056); this time it is a summit with no batteries. Across eight points and two days of choreography, batteries, electric vehicles and energy storage appear zero times.[^1][^2]
 
 <!-- k:#2F6E77|PART 01 · THE LIST -->
-## The goods that made the list
+## Toys and soybeans, not batteries
 
 What did get traded is precise. Under a "$30 billion for $30 billion" framework, the US will lower tariffs on roughly $30 billion of Chinese imports — toys, home appliances, baby products, kitchen and bath goods, holiday gifts — while China lowers tariffs on roughly $30 billion of American farm products, personal-care items, medical devices and coal. More than 90% of each list drops all of the mutually imposed additional duties and returns to most-favoured-nation rates, once both sides complete their domestic procedures.[^2] The lists are the message: relief is reserved for goods that neither side considers sensitive.
 

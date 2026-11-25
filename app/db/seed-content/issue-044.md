@@ -1,7 +1,7 @@
 The first week of July delivered a tidy snapshot of where Chinese battery globalization actually stands: in Indonesia, CATL 宁德时代's $6bn nickel-to-battery ecosystem is pouring concrete on schedule; in Brazil, BYD 比亚迪 is the country's best-selling car brand while sitting on the labor ministry's "dirty list"; in Morocco, Gotion 国轩高科's $1.3bn gigafactory — Africa's first — is weeks from its production target. Three continents, three models of market entry, and one common lesson: the bottleneck in going global is no longer capital or chemistry. It is governance.
 
 <!-- k:#5F7A1F|PART 01 · INDONESIA — THE VERTICAL -->
-## Indonesia: the $6bn vertical
+## Indonesia: $6bn from mine to cell
 
 CATL's Indonesia project, internally styled "Dragon," is the most fully integrated bet any battery maker has placed anywhere. Through subsidiary CBL (Ningbo Contemporary Brunp Lygend), with state miner PT Antam and Indonesia Battery Corporation, the roughly $6bn ecosystem spans mining, HPAL and RKEF processing, battery materials, cells and recycling across more than 2,000 hectares in East Halmahera and Karawang. Groundbreaking came in mid-2025.[^1]
 

@@ -1,7 +1,7 @@
 In Q1 2026 the world deployed 244.6 GWh of EV batteries, up 9.1% year on year. CATL 宁德时代 shipped 99.5 GWh — 40.7% of everything — and the combined CATL-BYD share over January–May ran to 54.6%. Add seven Chinese names in the top ten and the picture stops being a race: it is a consolidated duopoly with a state-subsidized tail. This issue reads the scoreboard — the share shifts, the price moves, and the money flows that actually decide where the industry goes next.
 
 <!-- k:#F0A832|PART 01 · THE SHARE SHIFT -->
-## Seven of the top ten are Chinese, and what it means
+## Seven of the Top Ten Are Chinese
 
 The headline number is CATL 宁德时代 at 40.7% of global EV battery usage in Q1 2026, up from 37.9% for full-year 2024. On its own that is a slow grind — under three points over five quarters. But the second-order effects are where the story lives. BYD 比亚迪 volumes fell 8.0% year on year in Q1, to 33.5 GWh, as its Chinese-market pivot kept squeezing and its European entry stayed hostage to the tariff talks. The Korean trio — LG Energy Solution, SK On and Samsung SDI — slipped to a combined 15.6%, down 2.1 points.[^1]
 

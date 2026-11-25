@@ -1,4 +1,4 @@
-<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cover 053 — Don't Export the Price War: Beijing Writes Conduct Rules for Its Automakers">
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cover 053 — Beijing Writes Rules to Keep the Price War at Home">
   <defs>
     <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
       <circle cx="13" cy="13" r="1.1" fill="#1B2A33"/>
@@ -30,8 +30,8 @@
   <line x1="48" y1="72" x2="752" y2="72" stroke="#1B2A33" stroke-width="1"/>
 
   <!-- title -->
-  <text x="48" y="208" font-family="Georgia,serif" font-size="76" fill="#F4F0E6">Don't Export</text>
-  <text x="48" y="292" font-family="Georgia,serif" font-size="76" fill="#F4F0E6">the Price War</text>
+  <text x="48" y="208" font-family="Georgia,serif" font-size="76" fill="#F4F0E6">Keep the Price</text>
+  <text x="48" y="292" font-family="Georgia,serif" font-size="76" fill="#F4F0E6">War at Home</text>
   <text x="48" y="340" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#F0A832">Beijing writes conduct rules for its own champions</text>
 
   <!-- accent block -->

@@ -23,7 +23,7 @@ The ask also has a timetable. China's commerce minister Wang Wentao held a video
 China's refusal, delivered on September 18, was framed in law rather than arithmetic. Any solution between China and the EU, the commerce ministry said, must balance both sides' interests, comply with WTO rules and their respective domestic laws, and accommodate both industries. Voluntary export restraints sit outside WTO legality precisely because they bypass its disciplines on quantitative restrictions — which is why the EU wants the cap to arrive carrying China's own signature.[^2][^3]
 
 <!-- k:#5A6B9E|PART 03 · THE EXIT -->
-## The cap is meant to become a factory
+## The quota is meant to force local factories
 
 Read the ask against the investment map and its purpose clarifies. Chinese carmakers have already announced European production plans totalling more than two million vehicles a year: BYD's wholly owned plant in Szeged, Hungary, with capacity for 300,000 cars, is set to start assembly this quarter; SAIC, the Chinese state-owned carmaker, has picked Galicia in Spain for a 120,000-unit plant due in 2028; Chery is building with Spanish partner Ebro at the former Nissan plant in Barcelona while contract-building at Nissan's Sunderland site in Britain; Leapmotor, backed by Stellantis, begins production of its B10 at the group's plant in Zaragoza, Spain, in October. A restraint that bites on shipped volumes raises the relative return on every one of these projects.[^4]
 

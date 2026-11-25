@@ -5,7 +5,7 @@ On Friday, EU trade commissioner Maroš Šefčovič said on X that the two sides
 Both statements describe the deal reached in Beijing on October 8–9, at the second regular meeting of the China–EU trade and investment consultation mechanism, co-chaired by Šefčovič and commerce minister Wang Wentao.[^4] The two sides are not disputing the deal. They are disputing the denominator.
 
 <!-- k:#2F6E77|PART 01 · THE WEEK -->
-## A week of two numbers
+## The week Europe opened a safeguard case
 
 On October 7, Bloomberg reported that the European Commission was preparing safeguard measures on Chinese hybrids, possibly tariff-rate quotas, as a test case for "trade rebalancing."[^5] Pre-meeting signalling began the same day: Yuyuan Tantian, a state-media commentary account, published "China–EU economic relations need a bigger consensus," noting that France and Germany had submitted a non-paper on October 5 demanding stronger trade-defence tools.[^6] The meeting ran October 8–9, and China's own statement on Friday disclosed no terms.[^1] It was Šefčovič's post that supplied the headline, adding improved EU companies' access to China's market and further eased rare-earth export licensing, and signing off as "a first step," with the two sides to reconvene by January.[^1]
 
