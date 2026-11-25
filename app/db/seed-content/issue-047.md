@@ -16,7 +16,7 @@ Groundbreaking came on 26 November 2025. The construction model is telling: roug
 
 Watch the timeline gap. The official target is production by end-2026; construction completion has been reported as March 2028. Both can be true — phased lines can start while the site is unfinished — but the ambiguity is a reminder that "up to 50 GWh" is a ceiling, not a schedule. The phased structure gives both partners an off-ramp if European EV demand disappoints.
 
-<!-- k:#B43A2B|PART 03 · THE REST OF THE BOARD -->
+<!-- k:#B43A2B|PART 03 · THE BUILD-OUT -->
 ## The other plants in the build-out
 
 Debrecen and Zaragoza are the anchors of a much wider build-out:
