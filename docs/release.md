@@ -22,21 +22,32 @@ bash scripts/deploy-release.sh
 
 ## 三、脚本实际执行的步骤
 
-1. 读取本地 `db/seed-content/issues.json` 的最新期号，并查询 VPS 生产库的最大期号
-2. 若生产库期号已不小于本地最新期号，安全退出：这是“无新一期，跳过发布”，不是发布成功
+1. **变更清单**：查询生产库的期号、标题与正文 MD5，和本地 `db/seed-content*` 逐期比对，打印「新增 / 标题改动 / 正文改动」；没有变更就安全退出（这不是发布成功，是“无事可做”）
+2. **确认**：交互式终端会列出清单并等你输入 `y`；`--yes` 跳过；launchd/cron 等非交互运行时自动继续
 3. 本地运行 `npm run build`
-4. 使用 rsync 同步 `dist/`、`db/seed-content/` 和 `db/seed-content-zh/` 到 VPS `/opt/cbb/app/app`
-5. 在 VPS 运行 `npm run db:seed`，以幂等方式写入本期内容
-6. 修正部署文件属主并执行 `systemctl restart cbb`
-7. 在 VPS 本机检查应用 HTTP 200，并确认生产库最大期号达到本地最新期号
+4. 使用 rsync 同步 `dist/` 到 VPS `/opt/cbb/app/app/dist`
+5. 同步 `db/seed-content/` 与 `db/seed-content-zh/`（`--only-new` 时只推新期）
+6. 在 VPS 运行 `npm run db:seed`，以幂等方式写入内容（`--only-new` 时只写新期，随后把完整内容目录恢复回去但不重新灌库）
+7. 修正部署文件属主并执行 `systemctl restart cbb`
+8. 在 VPS 本机检查应用 HTTP 200，并确认生产库最大期号达到本地最新期号
 
-脚本的默认 SSH 目标、密钥和远程目录可由 `DEPLOY_HOST`、`DEPLOY_KEY`、`DEPLOY_REMOTE` 覆盖。除非在排障或重复发布时有明确理由，不使用 `DEPLOY_FORCE=1` 绕过期号保护。
-
-**同一期号的更新**（例如只改标题、封面或正文，期号不变）：第 2 步会把「库内期号 = 本地期号」判为无新一期并跳过，此时必须显式强制：
+### 常用参数
 
 ```bash
-DEPLOY_FORCE=1 bash scripts/deploy-release.sh
+bash scripts/deploy-release.sh --dry-run      # 只打印变更清单，不构建、不同步、不重启
+bash scripts/deploy-release.sh --yes          # 跳过交互确认（自动任务用）
+bash scripts/deploy-release.sh --only-new     # 本次只把新期灌库，旧期改动留到下次全量
+DEPLOY_FORCE=1 bash scripts/deploy-release.sh # 内容无变更时强制重发（只改了代码/构建时需要）
 ```
+
+- 每周四 00:05 的 launchd 任务不带参数：变更清单照常打印到 `app/release.log`，确认环节因非交互自动跳过。
+- 手动发布时如果想先看清单再决定，用 `--dry-run`，确认后再跑一次不带参数的。
+
+脚本的默认 SSH 目标、密钥和远程目录可由 `DEPLOY_HOST`、`DEPLOY_KEY`、`DEPLOY_REMOTE` 覆盖。除非在排障或内容无变化却需要重发时，不使用 `DEPLOY_FORCE=1`。
+
+**同一期号的更新**（只改标题、封面或正文，期号不变）：变更清单会把它识别为「标题改动 / 正文改动」，照常发布，不需要 `DEPLOY_FORCE`。`DEPLOY_FORCE` 只用于**内容没有任何变化**、但需要重新构建并重启站点的情况（例如只改了前端或 API 代码）。
+
+**只发新期**：`--only-new` 会跳过旧期的标题与正文改动，那些改动留到下一次全量发布生效（清单里会提示有多少项被留下）。
 
 报告时写明这是**强制重发同一期**，不要写成「新一期已发布」。
 
