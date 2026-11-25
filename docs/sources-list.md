@@ -11,7 +11,8 @@
 > 实现参考：数字生命卡兹克 AIHOT / 衍生项目 finhot 的思路（多源聚类 + S0-S4 信源分层 + 双时间戳 + 强制溯源）。
 
 ### 分层
-- **抓取层**（纯代码，cron 可全自动）：`npm run scan:sources`（`app/scan/run.ts` + `app/scan/config.ts`）并发抓取启用信源，增量去重（sha256(url)），落盘 `app/scan/<日期>/raw/<源>.json` + `_all.json` + `_summary.txt`。无 RSS 的官方站落原始 HTML 到 `raw-html/`。
+- **抓取层**（纯代码，cron 可全自动）：`npm run scan:sources`（`app/scan/run.ts` + `app/scan/config.ts`）并发抓取启用信源，增量去重（sha256(url)），落盘 `app/scan/<日期>/raw/<源>.json` + `_all.json` + `_summary.txt`。无 RSS 的官方站落原始 HTML 到 `raw-html/`。单源排查用 `npm run scan:sources -- --only=<key>[,<key>]`（只落源文件、不写当日汇总）。
+- **相关性闸门**：通用财经流（财联社、财联社深度、华尔街见闻、东方财富、CNBC）在 `config.ts` 里配 `filterKeywords`（共用 `BATTERY_KEYWORDS`），条目标题/摘要命中电池·储能关键词才入库；研报类源用 `filterScope: "title"` 只看标题。垂直源与官方源不过滤。目的是不让每日上百条泛资讯稀释「新增」口径、把 pillar 分类带偏。
 - **整理层**（需 opencode）：`opencode run scan:digest`（`.opencode/command/scan:digest.md` → `app/scan/digest.md` 规范），读 raw 素材 → 多源聚类成 story → 四大分类 → 产出 `scan/<日期>/digest.md`。
 
 ### 目标节奏
@@ -128,7 +129,7 @@ launchctl load ~/Library/LaunchAgents/com.cbb.scan.plist
 
 | 站点 | URL | 语言 | 优先级 | 备注 |
 |---|---|---|---|---|
-| Energy-Storage.News | energy-storage.news | 英 | ★★★ | 全球储能垂直媒体头牌，订单/大项目/政策覆盖最全 |
+| Energy-Storage.News | energy-storage.news | 英 | ★★★ | 全球储能垂直媒体头牌，订单/大项目/政策覆盖最全；Cloudflare 全站 403（含 /feed、robots.txt），抓取改经 Firecrawl 取 RSS 原文（`kind: "rss-firecrawl"`） |
 | 中国储能网 | escn.com.cn | 中 | ★★★ | 栏目化建库友好，自带储能项目数据库、招标中标 |
 
 ---

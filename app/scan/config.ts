@@ -3,6 +3,7 @@
  *
  * kind:
  *   rss      — 直接 RSS/Atom URL
+ *   rss-firecrawl — 经 Firecrawl 取 RSS 原文再解析（站点对裸请求全站 403 时用，如 Cloudflare 站点）
  *   rsshub   — 经 RSSHub 公共实例抓取（多实例容错）
  *   html     — 抓取 HTML 页面，用 selector 提取列表（尚未接入解析，先存原始 HTML）
  *   firecrawl        — 经 Firecrawl API 抓取（无头渲染 + 反爬），从 clean markdown 提取链接
@@ -22,6 +23,7 @@ export interface SourceConfig {
   name: string
   kind:
     | "rss"
+    | "rss-firecrawl"
     | "rsshub"
     | "html"
     | "firecrawl"
@@ -57,6 +59,17 @@ export interface SourceConfig {
    * 每次请求间隔 `SLOW_GAP_MS`（见 run.ts），与其余并发源错峰。
    */
   slow?: boolean
+  /**
+   * 相关性闸门（正则片段，忽略大小写）：命中标题或摘要前 600 字任一即保留。
+   * 面向通用财经流（财联社、华尔街见闻、东方财富、CNBC）：它们每天上百条全量
+   * 入原始库，既稀释「新增」口径，也把 pillar 分类带偏。垂直源/官方源不设此项。
+   */
+  filterKeywords?: string[]
+  /**
+   * 闸门匹配范围：`both`（默认，标题+摘要）或 `title`（只看标题）。
+   * 研报类源的标题本身就写明行业，摘要却常顺带提到锂电/储能，用 title 提高精度。
+   */
+  filterScope?: "title" | "both"
   /** 是否启用（来源清单人工确认）。 */
   enabled: boolean
   note?: string
@@ -67,6 +80,60 @@ export const RSSHUB_INSTANCES = [
   "https://rsshub.liumingye.cn",
   "https://rsshub.rssforever.com",
   "https://rsshub.app",
+]
+
+/**
+ * 泛资讯源的电池/储能相关性闸门（正则片段，忽略大小写）。
+ * 中文用子串匹配，英文用词边界，避免 `EV` 命中 `every`、`ESS` 命中 `success`。
+ */
+export const BATTERY_KEYWORDS = [
+  // 中文：品类 + watchlist 公司
+  "储能",
+  "电池",
+  "锂",
+  "电芯",
+  "正极",
+  "负极",
+  "电解液",
+  "隔膜",
+  "固态",
+  "钠离子",
+  "充电桩",
+  "换电",
+  "光储",
+  "宁德时代",
+  "比亚迪",
+  "亿纬",
+  "蜂巢能源",
+  "中创新航",
+  "国轩",
+  "欣旺达",
+  "华友钴业",
+  "中伟股份",
+  "湖南裕能",
+  "恩捷",
+  "天齐锂业",
+  "赣锋锂业",
+  // English
+  "\\bbatter(?:y|ies)\\b",
+  "\\benergy storage\\b",
+  "\\bgrid-scale\\b",
+  "\\bBESS\\b",
+  "\\blithium\\b",
+  "\\bCATL\\b",
+  "\\bBYD\\b",
+  "\\bEVs?\\b",
+  "\\belectric vehicles?\\b",
+  "\\bgigafactory\\b",
+  "\\bcathode\\b",
+  "\\banode\\b",
+  "\\belectrolyte\\b",
+  "\\bLFP\\b",
+  "\\bNMC\\b",
+  "\\bnickel\\b",
+  "\\bcobalt\\b",
+  "\\bgraphite\\b",
+  "\\brare earth",
 ]
 
 /** 行情/持股 watchlist（em-quotes 与 em-holdings 两个信源共用）。 */
@@ -98,8 +165,8 @@ export const SOURCES: SourceConfig[] = [
   /* ---------- ① 产能地图 ---------- */
   { key: "cnevpost", name: "CnEVPost", kind: "rss", url: "https://cnevpost.com/feed/", layer: "S2", pillar: "overseas-capacity", enabled: true, note: "中国巨头海外动态当日全覆盖，首选时效源" },
   { key: "benchmark", name: "Benchmark Mineral", kind: "firecrawl", url: "https://www.benchmarkminerals.com/media-and-news", layer: "S1", pillar: "mixed", enabled: false, note: "Firecrawl 实验：媒体页仅图片无文本链接，0 条，禁用" },
-  { key: "cls", name: "财联社电报", kind: "rsshub", url: "", rsshubRoute: "cls/telegraph/red", layer: "S3", pillar: "mixed", enabled: true, note: "重要电报（加红），带原文链接；原 cls/telegraph 的 <link> 为空不可用" },
-  { key: "cls-depth", name: "财联社（要闻/深度）", kind: "rsshub", url: "", rsshubRoute: "cls/depth", layer: "S3", pillar: "mixed", enabled: true, note: "财联社要闻/深度文章，带原文链接（含并购、产能等公司要闻）" },
+  { key: "cls", name: "财联社电报", kind: "rsshub", url: "", rsshubRoute: "cls/telegraph/red", layer: "S3", pillar: "mixed", enabled: true, filterKeywords: BATTERY_KEYWORDS, note: "重要电报（加红），带原文链接；原 cls/telegraph 的 <link> 为空不可用。通用快讯流，按电池/储能关键词闸门过滤" },
+  { key: "cls-depth", name: "财联社（要闻/深度）", kind: "rsshub", url: "", rsshubRoute: "cls/depth", layer: "S3", pillar: "mixed", enabled: true, filterKeywords: BATTERY_KEYWORDS, note: "财联社要闻/深度文章，带原文链接（含并购、产能等公司要闻）；通用财经流，按关键词闸门过滤" },
   { key: "gasgoo", name: "盖世汽车", kind: "firecrawl", url: "https://news.gasgoo.com/news/", layer: "S2", pillar: "overseas-capacity", enabled: false, note: "Firecrawl 实验：scrape no data（页面结构不适配），禁用" },
 
   /* 公司官方（S0） */
@@ -126,13 +193,13 @@ export const SOURCES: SourceConfig[] = [
   { key: "em-quotes", name: "东方财富行情快照", kind: "em-quotes", url: "https://push2.eastmoney.com/api/qt/ulist.np/get", layer: "S1", pillar: "markets", enabled: true, note: "EM_WATCHLIST 行情快照（免费 JSON，无需密钥）；id 带扫描日期，每周扫描均算新增；summary 含环比上次扫描；CATL/BYD 附 H/A 溢价条目（HKD→CNY 用离岸价 133.HKDCNH）" },
   { key: "em-holdings", name: "沪深港通持股（东财数据中心）", kind: "em-holdings", url: "https://datacenter-web.eastmoney.com/api/data/v1/get", layer: "S1", pillar: "markets", enabled: true, note: "仅南向（RPT_MUTUAL_STOCK_HOLDRANKS，覆盖 watchlist 3 个港股标的）；北向个股持股东财数据止于 2024-08-16（交易所信披调整后停更），不可得" },
   { key: "sne", name: "SNE Research", kind: "html", url: "https://www.sneresearch.com/en/insight/release/", layer: "S1", pillar: "markets", enabled: true, note: "Press Release 列表，含全球装机份额" },
-  { key: "eastmoney", name: "东方财富", kind: "rsshub", url: "", rsshubRoute: "eastmoney/report/industry", layer: "S3", pillar: "markets", enabled: true, note: "财报/研报/公告聚合" },
-  { key: "wallstreetcn", name: "华尔街见闻", kind: "rsshub", url: "", rsshubRoute: "wallstreetcn/live", layer: "S3", pillar: "markets", enabled: true },
+  { key: "eastmoney", name: "东方财富", kind: "rsshub", url: "", rsshubRoute: "eastmoney/report/industry", layer: "S3", pillar: "markets", enabled: true, filterKeywords: BATTERY_KEYWORDS, filterScope: "title", note: "行业研报聚合；通用研报流（医药/保险/通信等），按标题关键词闸门过滤（摘要常顺带提锂电，只看标题精度更高）" },
+  { key: "wallstreetcn", name: "华尔街见闻", kind: "rsshub", url: "", rsshubRoute: "wallstreetcn/live", layer: "S3", pillar: "markets", enabled: true, filterKeywords: BATTERY_KEYWORDS, note: "全球快讯直播流，每日全量上百条，按电池/储能关键词闸门过滤" },
   { key: "reuters", name: "Reuters Markets", kind: "firecrawl-search", url: "", fcQuery: "reuters battery electric vehicle supply chain markets", layer: "S1", pillar: "markets", enabled: true, fcMaxAgeDays: 90, fcAllowDomains: ["reuters.com"], note: "Firecrawl 实验：401 反爬，改搜索；90 天时效 + 限定本源域名" },
-  { key: "cnbc", name: "CNBC Energy", kind: "rss", url: "https://www.cnbc.com/id/100003114/device/rss/rss.html", layer: "S3", pillar: "markets", enabled: true, note: "美股/财报/能源/EV 供应链" },
+  { key: "cnbc", name: "CNBC 美股头条", kind: "rss", url: "https://www.cnbc.com/id/100003114/device/rss/rss.html", layer: "S3", pillar: "markets", enabled: true, filterKeywords: BATTERY_KEYWORDS, note: "实为 US Top News and Analysis（原误标 Energy，站点无电池垂直 feed）；泛财经流（航空、天气、半导体混入），按电池/储能关键词闸门过滤" },
 
   /* ---------- ④ 储能（广泛扫描，筛电池出口相关后归入已有内容） ---------- */
-  { key: "esnews", name: "Energy-Storage.News", kind: "rss", url: "https://www.energy-storage.news/feed/", layer: "S2", pillar: "storage", enabled: true, note: "全球储能垂直媒体头牌" },
+  { key: "esnews", name: "Energy-Storage.News", kind: "rss-firecrawl", url: "https://www.energy-storage.news/feed/", layer: "S2", pillar: "storage", enabled: true, note: "全球储能垂直媒体头牌；站点 Cloudflare 全站 403（含 /feed 与 robots.txt），裸请求必挂，改经 Firecrawl 取 RSS 原文后解析" },
   { key: "escn", name: "中国储能网", kind: "html", url: "https://www.escn.com.cn", layer: "S2", pillar: "storage", enabled: true, note: "自带储能项目数据库，招标中标、政策" },
 ]
 

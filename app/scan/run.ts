@@ -1,5 +1,6 @@
 /* China Battery Brief — 信源抓取器（抓取层）
  * 用法：npm run scan:sources  → 抓取启用信源的最新条目，落盘 scan/<YYYY-MM-DD>/raw/
+ *       npm run scan:sources -- --only=esnews,cnbc  → 只跑指定源（冒烟/排查用）
  *
  * 输出条目 schema：
  *   { id, title, url, source, layer, pillar, publishedAt, discoveredAt, summary }
@@ -132,6 +133,23 @@ function toItems(src: SourceConfig, feedItems: RawFeedItem[]): ScannedItem[] {
 async function fetchRss(src: SourceConfig): Promise<ScannedItem[]> {
   const xml = await fetchText(src.url)
   return toItems(src, parseRss(xml))
+}
+
+/** 站点对裸请求全站 403（Cloudflare）时：经 Firecrawl 取 RSS 原文（rawHtml）再本地解析，保留 pubDate 与摘要。 */
+async function fetchRssFirecrawl(src: SourceConfig): Promise<ScannedItem[]> {
+  const json = await fcRequest<{
+    success: boolean
+    data?: { rawHtml?: string; html?: string; error?: string }
+  }>("/scrape", {
+    url: src.url,
+    formats: ["rawHtml"],
+    onlyMainContent: false,
+    timeout: 45000,
+  })
+  if (!json.success || !json.data) throw new Error(`Firecrawl scrape failed: ${json.data?.error ?? "no data"}`)
+  const feedItems = parseRss(json.data.rawHtml ?? json.data.html ?? "")
+  if (feedItems.length === 0) throw new Error(`${src.key}: empty feed via firecrawl`)
+  return toItems(src, feedItems)
 }
 
 async function fetchRsshub(src: SourceConfig): Promise<ScannedItem[]> {
@@ -738,19 +756,36 @@ export async function fetchEmHoldings(src: SourceConfig): Promise<ScannedItem[]>
   return items
 }
 
-async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[] }> {
-  if (src.kind === "rss") return { src, items: await fetchRss(src) }
-  if (src.kind === "rsshub") return { src, items: await fetchRsshub(src) }
-  if (src.kind === "eastmoney-ann") return { src, items: await fetchEastmoneyAnn(src) }
-  if (src.kind === "hkex-ann") return { src, items: await fetchHkexAnn(src) }
-  if (src.kind === "em-quotes") return { src, items: await fetchEmQuotes(src) }
-  if (src.kind === "em-holdings") return { src, items: await fetchEmHoldings(src) }
-  if (src.kind === "firecrawl" || src.kind === "firecrawl-search") {
-    return { src, items: await fetchFirecrawl(src) }
-  }
+async function runTask(src: SourceConfig): Promise<{ src: SourceConfig; items: ScannedItem[]; fetched: number }> {
+  const fetchedItems = await fetchItems(src)
+  // 闸门在去重之前：被过滤条目不落盘、不进 seen，关键词日后放宽时可重新捞回
+  return { src, items: gateItems(src, fetchedItems), fetched: fetchedItems.length }
+}
+
+/** 源级关键词闸门：只有配置了 filterKeywords 的通用财经流才过滤，垂直源/官方源原样返回。 */
+function gateItems(src: SourceConfig, items: ScannedItem[]): ScannedItem[] {
+  const patterns = src.filterKeywords
+  if (!patterns?.length) return items
+  const regs = patterns.map((p) => new RegExp(p, "i"))
+  const titleOnly = src.filterScope === "title"
+  return items.filter((it) => {
+    const hay = titleOnly ? it.title : `${it.title}\n${(it.summary ?? "").slice(0, 600)}`
+    return regs.some((re) => re.test(hay))
+  })
+}
+
+async function fetchItems(src: SourceConfig): Promise<ScannedItem[]> {
+  if (src.kind === "rss") return fetchRss(src)
+  if (src.kind === "rss-firecrawl") return fetchRssFirecrawl(src)
+  if (src.kind === "rsshub") return fetchRsshub(src)
+  if (src.kind === "eastmoney-ann") return fetchEastmoneyAnn(src)
+  if (src.kind === "hkex-ann") return fetchHkexAnn(src)
+  if (src.kind === "em-quotes") return fetchEmQuotes(src)
+  if (src.kind === "em-holdings") return fetchEmHoldings(src)
+  if (src.kind === "firecrawl" || src.kind === "firecrawl-search") return fetchFirecrawl(src)
   // 慢速源（政府站等）串行 + 间隔，避免并发突发
-  if (src.slow) return { src, items: await enqueueSlow(() => fetchHtmlRaw(src)) }
-  return { src, items: await fetchHtmlRaw(src) }
+  if (src.slow) return enqueueSlow(() => fetchHtmlRaw(src))
+  return fetchHtmlRaw(src)
 }
 
 async function loadSeenIds(): Promise<Set<string>> {
@@ -776,13 +811,23 @@ async function main() {
   const outDir = join(ROOT, date, "raw")
   mkdirSync(outDir, { recursive: true })
   let sources = enabledSources()
+  const onlyArg = process.argv.find((a) => a.startsWith("--only="))?.slice("--only=".length)
+  if (onlyArg) {
+    const wanted = new Set(onlyArg.split(",").map((s) => s.trim()).filter(Boolean))
+    sources = sources.filter((s) => wanted.has(s.key))
+    if (sources.length === 0) {
+      console.error(`--only=${onlyArg} 未匹配任何启用信源；可用 key 见 scan/config.ts`)
+      process.exit(1)
+    }
+  }
+  const fcKinds = ["firecrawl", "firecrawl-search", "rss-firecrawl"]
   const noFcKey = !process.env.FIRECRAWL_API_KEY
   if (noFcKey) {
-    const fcOnes = sources.filter((s) => s.kind === "firecrawl" || s.kind === "firecrawl-search")
+    const fcOnes = sources.filter((s) => fcKinds.includes(s.kind))
     if (fcOnes.length > 0) {
       console.log(`ℹ FIRECRAWL_API_KEY 未设置 — 跳过 ${fcOnes.length} 个 firecrawl 源：${fcOnes.map((s) => s.key).join(", ")}`)
     }
-    sources = sources.filter((s) => s.kind !== "firecrawl" && s.kind !== "firecrawl-search")
+    sources = sources.filter((s) => !fcKinds.includes(s.kind))
   }
   const seen = await loadSeenIds()
   console.log(`Scanning ${sources.length} enabled sources → scan/${date}/raw/ (concurrency=${CONCURRENCY})\n`)
@@ -798,15 +843,17 @@ async function main() {
       if (n >= sources.length) return
       const src = sources[n]
       try {
-        const { items } = await runTask(src)
+        const { items, fetched } = await runTask(src)
         const newOnes = items.filter((i) => !seen.has(i.id))
         items.forEach((i) => seen.add(i.id))
         fresh.push(...newOnes)
         freshBySource.set(src.key, newOnes)
         // 边抓边写：立即落盘该源结果（含历史全量）
         writeFileSync(join(outDir, `${src.key}.json`), JSON.stringify(items, null, 2))
+        const dropped = fetched - items.length
+        const gateNote = dropped > 0 ? ` (filtered ${dropped}/${fetched})` : ""
         console.log(
-          `  ✓ ${src.key.padEnd(14)} ${src.name.padEnd(20)} ${String(items.length).padStart(4)} items, ${String(newOnes.length).padStart(4)} new`,
+          `  ✓ ${src.key.padEnd(14)} ${src.name.padEnd(20)} ${String(items.length).padStart(4)} items${gateNote}, ${String(newOnes.length).padStart(4)} new`,
         )
       } catch (e) {
         fail++
@@ -819,7 +866,12 @@ async function main() {
   await Promise.all(workers)
 
   // 汇总：_all.json 写当日抓到的全量（供整理层），_all_new.json 写当日新增
+  // --only 冒烟只落源文件，不写当日汇总，避免把真实扫描日的 _all.json 覆盖成残缺版
   const allToday = fresh.filter((i) => i.discoveredAt.startsWith(date))
+  if (onlyArg) {
+    console.log(`\nDone (--only): ${sources.length} sources, ${allToday.length} new, ${fail} failed. 汇总文件已跳过。`)
+    return
+  }
   const todayFull: ScannedItem[] = []
   for (const src of sources) {
     try {
