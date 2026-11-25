@@ -1,4 +1,4 @@
-Chinese storage suppliers booked over 3.5GWh of overseas business in the week of RE+ 2026. All three deals were structured as system supply, with controls, integration or service inside the package rather than cells alone[^1][^2][^3].
+Chinese storage suppliers booked over 3.5GWh of overseas business during RE+ 2026, the largest clean energy trade show in North America. All three deals were structured as system supply, with controls, integration or service inside the package rather than cells alone[^1][^2][^3].
 
 HyperStrong, a Beijing-based storage system integrator, won 1.6GWh of projects in California and Arizona, 400MWh of it built for data centres, plus a first 400MWh project in New York[^1]. It also took 100MWh in northern Canada and Alaska, and says cumulative awards in Texas and elsewhere now reach 4GWh[^1].
 
